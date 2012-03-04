@@ -7,6 +7,6 @@
 	  <packaging>war</packaging>
 	  <version>0.0.1-SNAPSHOT</version>
 	
-	  <name>Risk Analyzer</name>
+	  <name>Risk Analyzer Web</name>
 	  <url>http://sci-risk-backend-ws.appspot.com</url>
 </project>
