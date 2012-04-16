@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.scirisk.riskanalyzer.domain.Node;
+import com.scirisk.riskanalyzer.domain.NetworkNode;
 
 public class NetworkManager {
 	
@@ -14,10 +14,10 @@ public class NetworkManager {
 		this.connectionFactory = connectionFactory;
 	}
 	
-	public Collection<Node> listNodes() {
+	public Collection<NetworkNode> listNodes() {
 		Connection connection = connectionFactory.getConnection();
 		System.out.println("connection: " + connection);
-		return new ArrayList<Node>();
+		return new ArrayList<NetworkNode>();
 	}
 
 }
