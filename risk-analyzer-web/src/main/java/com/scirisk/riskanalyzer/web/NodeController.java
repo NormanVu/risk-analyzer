@@ -30,7 +30,7 @@ public class NodeController {
 	}
 
 	@RequestMapping(value = "/AddNode.do", method = RequestMethod.POST)
-	public void createOrUpdateNode(HttpServletRequest request,
+	public void createOrUpdate(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		NetworkNode nn = mapRequestParams(request);
@@ -40,7 +40,7 @@ public class NodeController {
 	}
 	
 	@RequestMapping(value = "/ReadNode.do", method = RequestMethod.POST)
-	public void readNode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void read(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	    String rawNodeId = request.getParameter("node_id"); // TODO VALIDATE
 	    Long nodeId = Long.valueOf(rawNodeId);
 	    NetworkNode node = networkNodeManager.read(nodeId);
@@ -61,9 +61,16 @@ public class NodeController {
 	    o.put("node_recovery_time_3", node.getRecoveryTime3());
 	    o.put("node_type", node.getType());
 
-	    response.setContentType("text/json");
+	    response.setContentType("application/json");
 	    PrintWriter out = response.getWriter();
 	    out.println(o.toString(2));
+	}
+
+	@RequestMapping(value = "/DeleteNode.do", method = RequestMethod.POST)
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	    String rawId = request.getParameter("id"); // TODO CONST
+	    Long id = Long.valueOf(rawId);
+	    networkNodeManager.delete(id);
 	}
 
 	public NetworkNode mapRequestParams(HttpServletRequest req) {

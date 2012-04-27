@@ -59,10 +59,6 @@
     <servlet-class>com.scirisk.riskanalyzer.web.ReadEdgeServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>DeleteNodeServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.DeleteNodeServlet</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>AddEdgeServlet</servlet-name>
     <servlet-class>com.scirisk.riskanalyzer.web.AddEdgeServlet</servlet-class>
   </servlet>
@@ -98,10 +94,6 @@
   <servlet-mapping>
     <servlet-name>ReadEdgeServlet</servlet-name>
     <url-pattern>/ReadEdge.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DeleteNodeServlet</servlet-name>
-    <url-pattern>/DeleteNode.do</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AddEdgeServlet</servlet-name>
