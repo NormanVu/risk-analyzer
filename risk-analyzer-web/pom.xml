@@ -127,13 +127,11 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>3.3.2.GA</version>
 		</dependency>
-		<!-- 
 		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>1.8.0.10</version>
 		</dependency>
-		-->
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>

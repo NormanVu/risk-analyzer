@@ -3,45 +3,132 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-	<!-- Reads request input using UTF-8 encoding -->
-	<filter>
-		<filter-name>Character Encoding Filter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
+  <display-name>risk-analyzer</display-name>
 
-	<filter-mapping>
-		<filter-name>Character Encoding Filter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+  <servlet>
+    <description>Returns JSON representation of the network to be displayed as a tree.</description>
+    <servlet-name>NetworkTreeServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.NetworkTreeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>Returns JSON representation of the network to be displayed on a Google map.</description>
+    <servlet-name>NetworkMapServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.NetworkMapServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ImportServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.ImportServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ExportServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.ExportServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ExportReportServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.ExportReportServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddNodeServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.AddNodeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ReadNodeServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.ReadNodeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ReadEdgeServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.ReadEdgeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteNodeServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.DeleteNodeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddEdgeServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.AddEdgeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteEdgeServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.DeleteEdgeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AvailableNodesServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.AvailableNodesServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EmailReportServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.EmailReportServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SubmitSimulationServlet</servlet-name>
+    <servlet-class>com.scirisk.riskanalyzer.web.SubmitSimulationServlet</servlet-class>
+  </servlet>
 
-	<!-- Handles all requests into the application -->
-	<servlet>
-		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				/WEB-INF/spring/servlet-context.xml
-			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+  <servlet-mapping>
+    <servlet-name>NetworkTreeServlet</servlet-name>
+    <url-pattern>/NetworkTree.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NetworkMapServlet</servlet-name>
+    <url-pattern>/NetworkMap.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ImportServlet</servlet-name>
+    <url-pattern>/Import.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ExportServlet</servlet-name>
+    <url-pattern>/Export.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ExportReportServlet</servlet-name>
+    <url-pattern>/ExportReport.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddNodeServlet</servlet-name>
+    <url-pattern>/AddNode.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ReadNodeServlet</servlet-name>
+    <url-pattern>/ReadNode.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ReadEdgeServlet</servlet-name>
+    <url-pattern>/ReadEdge.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteNodeServlet</servlet-name>
+    <url-pattern>/DeleteNode.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddEdgeServlet</servlet-name>
+    <url-pattern>/AddEdge.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteEdgeServlet</servlet-name>
+    <url-pattern>/DeleteEdge.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AvailableNodesServlet</servlet-name>
+    <url-pattern>/AvailableNodes.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmailReportServlet</servlet-name>
+    <url-pattern>/EmailReport.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SubmitSimulationServlet</servlet-name>
+    <url-pattern>/SubmitSimulation.do</url-pattern>
+  </servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
-	</servlet-mapping>
-
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
-
+  <session-config>
+    <session-timeout>
+      30
+    </session-timeout>
+  </session-config>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
 </web-app>
+
+
