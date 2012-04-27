@@ -41,22 +41,7 @@
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-	
 
-<!--
-  <servlet>
-    <description>Returns JSON representation of the network to be displayed as a tree.</description>
-    <servlet-name>NetworkTreeServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.NetworkTreeServlet</servlet-class>
-  </servlet>
-  -->
-  <!--
-  <servlet>
-    <description>Returns JSON representation of the network to be displayed on a Google map.</description>
-    <servlet-name>NetworkMapServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.NetworkMapServlet</servlet-class>
-  </servlet>
-  -->
   <servlet>
     <servlet-name>ImportServlet</servlet-name>
     <servlet-class>com.scirisk.riskanalyzer.web.ImportServlet</servlet-class>
@@ -68,10 +53,6 @@
   <servlet>
     <servlet-name>ExportReportServlet</servlet-name>
     <servlet-class>com.scirisk.riskanalyzer.web.ExportReportServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>AddNodeServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.AddNodeServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ReadNodeServlet</servlet-name>
@@ -106,18 +87,6 @@
     <servlet-class>com.scirisk.riskanalyzer.web.SubmitSimulationServlet</servlet-class>
   </servlet>
 
-<!--
-  <servlet-mapping>
-    <servlet-name>NetworkTreeServlet</servlet-name>
-    <url-pattern>/NetworkTree.do</url-pattern>
-  </servlet-mapping>
-  -->
-  <!--
-  <servlet-mapping>
-    <servlet-name>NetworkMapServlet</servlet-name>
-    <url-pattern>/NetworkMap.do</url-pattern>
-  </servlet-mapping>
-  -->
   <servlet-mapping>
     <servlet-name>ImportServlet</servlet-name>
     <url-pattern>/Import.do</url-pattern>
@@ -129,10 +98,6 @@
   <servlet-mapping>
     <servlet-name>ExportReportServlet</servlet-name>
     <url-pattern>/ExportReport.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>AddNodeServlet</servlet-name>
-    <url-pattern>/AddNode.do</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ReadNodeServlet</servlet-name>
