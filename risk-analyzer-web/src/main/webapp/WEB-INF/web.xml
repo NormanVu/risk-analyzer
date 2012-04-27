@@ -55,10 +55,6 @@
     <servlet-class>com.scirisk.riskanalyzer.web.ExportReportServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>ReadNodeServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.ReadNodeServlet</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>ReadEdgeServlet</servlet-name>
     <servlet-class>com.scirisk.riskanalyzer.web.ReadEdgeServlet</servlet-class>
   </servlet>
@@ -98,10 +94,6 @@
   <servlet-mapping>
     <servlet-name>ExportReportServlet</servlet-name>
     <url-pattern>/ExportReport.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ReadNodeServlet</servlet-name>
-    <url-pattern>/ReadNode.do</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ReadEdgeServlet</servlet-name>

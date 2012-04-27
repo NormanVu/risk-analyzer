@@ -1,7 +1,11 @@
 package com.scirisk.riskanalyzer.web;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
@@ -33,6 +37,33 @@ public class NodeController {
 		System.out.println(ReflectionToStringBuilder.toString(nn));
 		networkNodeManager.save(nn);
 		response.setStatus(HttpServletResponse.SC_CREATED);
+	}
+	
+	@RequestMapping(value = "/ReadNode.do", method = RequestMethod.POST)
+	public void readNode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	    String rawNodeId = request.getParameter("node_id"); // TODO VALIDATE
+	    Long nodeId = Long.valueOf(rawNodeId);
+	    NetworkNode node = networkNodeManager.read(nodeId);
+
+	    JSONObject o = new JSONObject();
+	    o.put("node_id", node.getId());
+	    o.put("node_name", node.getName());
+	    o.put("node_kind", node.getKind());
+	    o.put("node_desc", node.getDesc());
+	    o.put("node_address", node.getAddress());
+	    o.put("node_latitude", node.getLatitude());
+	    o.put("node_longitude", node.getLongitude());
+	    o.put("node_risk_category_1", node.getRiskCategory1());
+	    o.put("node_risk_category_2", node.getRiskCategory2());
+	    o.put("node_risk_category_3", node.getRiskCategory3());
+	    o.put("node_recovery_time_1", node.getRecoveryTime1());
+	    o.put("node_recovery_time_2", node.getRecoveryTime2());
+	    o.put("node_recovery_time_3", node.getRecoveryTime3());
+	    o.put("node_type", node.getType());
+
+	    response.setContentType("text/json");
+	    PrintWriter out = response.getWriter();
+	    out.println(o.toString(2));
 	}
 
 	public NetworkNode mapRequestParams(HttpServletRequest req) {
