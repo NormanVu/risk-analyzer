@@ -55,18 +55,6 @@
     <servlet-class>com.scirisk.riskanalyzer.web.ExportReportServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>ReadEdgeServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.ReadEdgeServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>AddEdgeServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.AddEdgeServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>DeleteEdgeServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.DeleteEdgeServlet</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>AvailableNodesServlet</servlet-name>
     <servlet-class>com.scirisk.riskanalyzer.web.AvailableNodesServlet</servlet-class>
   </servlet>
@@ -90,18 +78,6 @@
   <servlet-mapping>
     <servlet-name>ExportReportServlet</servlet-name>
     <url-pattern>/ExportReport.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ReadEdgeServlet</servlet-name>
-    <url-pattern>/ReadEdge.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>AddEdgeServlet</servlet-name>
-    <url-pattern>/AddEdge.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DeleteEdgeServlet</servlet-name>
-    <url-pattern>/DeleteEdge.do</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AvailableNodesServlet</servlet-name>

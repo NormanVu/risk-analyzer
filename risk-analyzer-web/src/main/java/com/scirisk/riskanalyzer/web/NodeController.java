@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +33,6 @@ public class NodeController {
 			HttpServletResponse response) throws Exception {
 
 		NetworkNode nn = mapRequestParams(request);
-		System.out.println(ReflectionToStringBuilder.toString(nn));
 		networkNodeManager.save(nn);
 		response.setStatus(HttpServletResponse.SC_CREATED);
 	}
