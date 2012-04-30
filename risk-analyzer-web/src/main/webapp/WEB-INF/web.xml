@@ -43,14 +43,6 @@
 	</servlet-mapping>
 
   <servlet>
-    <servlet-name>ImportServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.ImportServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>ExportServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.ExportServlet</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>ExportReportServlet</servlet-name>
     <servlet-class>com.scirisk.riskanalyzer.web.ExportReportServlet</servlet-class>
   </servlet>
@@ -67,14 +59,6 @@
     <servlet-class>com.scirisk.riskanalyzer.web.SubmitSimulationServlet</servlet-class>
   </servlet>
 
-  <servlet-mapping>
-    <servlet-name>ImportServlet</servlet-name>
-    <url-pattern>/Import.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ExportServlet</servlet-name>
-    <url-pattern>/Export.do</url-pattern>
-  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ExportReportServlet</servlet-name>
     <url-pattern>/ExportReport.do</url-pattern>

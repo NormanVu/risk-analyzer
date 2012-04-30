@@ -15,6 +15,9 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory -->
 	<mvc:resources mapping="/extjs/**" location="/extjs/" />
+	
+	<bean id="networkMarshaller" class="com.scirisk.riskanalyzer.model.NetworkMarshallerDomImpl" />
+	<bean id="networkParser" class="com.scirisk.riskanalyzer.model.NetworkParserDomImpl" />
 
 	<!-- Configures data access objects -->	
 	<bean id="networkManager" class="com.scirisk.riskanalyzer.persistence.jpa.NetworkManagerJpaImpl" />

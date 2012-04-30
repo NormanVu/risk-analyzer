@@ -1,6 +1,10 @@
 package com.scirisk.riskanalyzer.web;
 
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.scirisk.riskanalyzer.domain.Network;
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.model.NetworkMarshaller;
+import com.scirisk.riskanalyzer.model.NetworkParser;
+import com.scirisk.riskanalyzer.model.NetworkParserDomImpl;
+import com.scirisk.riskanalyzer.model.NetworkValidationException;
 import com.scirisk.riskanalyzer.persistence.NetworkManager;
 
 @Controller
@@ -24,8 +36,22 @@ public class NetworkController {
 	@Autowired
 	private NetworkManager networkManager;
 
+	@Autowired
+	private NetworkMarshaller networkMarshaller;
+
+	@Autowired
+	private NetworkParser networkParser;
+
 	public void setNetworkManager(NetworkManager networkManager) {
 		this.networkManager = networkManager;
+	}
+
+	public void setNetworkMarshaller(NetworkMarshaller networkMarshaller) {
+		this.networkMarshaller = networkMarshaller;
+	}
+
+	public void setNetworkParser(NetworkParser networkParser) {
+		this.networkParser = networkParser;
 	}
 
 	@RequestMapping(value = "/NetworkMap.do", method = RequestMethod.POST)
@@ -99,6 +125,62 @@ public class NetworkController {
 		root.add(networkJson);
 
 		response.getWriter().print(root.toString());
+	}
+
+	@RequestMapping(value = "/Export.do", method = RequestMethod.GET)
+	public void exportToXml(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		Network network = networkManager.read();
+		response.setContentType("application/xml");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+		String file = "risk-analyzer-network-export-"
+				+ dateFormat.format(new Date()) + ".xml";
+		response.setHeader("Content-Disposition", "attachment;filename=" + file);
+
+		networkMarshaller.marshall(network, response.getOutputStream());
+	}
+
+	@RequestMapping(value = "/Import.do", method = RequestMethod.POST)
+	public void importFromXml(HttpServletRequest req, HttpServletResponse resp)
+			throws Exception {
+		resp.setContentType("text/html");
+		PrintWriter out = resp.getWriter();
+		
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("success", true);
+
+		boolean isMulitpart = ServletFileUpload.isMultipartContent(req);
+		if (isMulitpart) {
+
+			ServletFileUpload uploadHandler = new ServletFileUpload();
+			try {
+				FileItemIterator iterator = uploadHandler.getItemIterator(req);
+				while (iterator.hasNext()) {
+					FileItemStream fis = iterator.next();
+					if (!fis.isFormField()) {
+						InputStream is = fis.openStream();
+						Network network = networkParser.parse(is);
+
+						networkManager.save(network);
+						break; // stop iterating
+					}
+				}
+				//out.println("{success: true}");
+			} catch (FileUploadException e) {
+				e.printStackTrace();
+				//out.println("{success: false}");
+				jsonResponse.put("success", false);
+			} catch (NetworkValidationException e) {
+				e.printStackTrace();
+				//out.println("{success: false}");
+				jsonResponse.put("success", false);
+			}
+		} else {
+			//out.println("{success: false}");
+			jsonResponse.put("success", false);
+		}
+		out.println(jsonResponse.toString(2));
 	}
 
 	private JSONArray nodesToJson(final Collection<NetworkNode> nodes) {
