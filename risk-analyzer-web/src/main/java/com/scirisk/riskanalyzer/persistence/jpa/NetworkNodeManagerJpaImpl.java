@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import com.scirisk.riskanalyzer.domain.NetworkNode;
@@ -11,42 +13,46 @@ import com.scirisk.riskanalyzer.persistence.NetworkNodeManager;
 
 public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 
-  public Long save(final NetworkNode node) {
-    EntityManager em = EMF.get().createEntityManager();
-    em.getTransaction().begin();
-    em.merge(node);
-    em.flush();
-    em.getTransaction().commit();
-    return node.getId();
-  }
+	private EntityManagerFactory emf;
 
-  public Collection<NetworkNode> findAll() {
-    EntityManager em = getEntityManager();
-    final String queryString = "SELECT o FROM " + NetworkNode.class.getName() + " o";
-    Query q = em.createQuery(queryString);
-    em.getTransaction().begin();
-    @SuppressWarnings("unchecked")
-    List<NetworkNode> nodes = q.getResultList();
-    em.getTransaction().commit();
-    return nodes;
-  }
+	@PersistenceUnit
+	public void setEntityManagerFactory(EntityManagerFactory emf) {
+		this.emf = emf;
+	}
 
-  public void delete(final Long nodeId) {
-    EntityManager em = EMF.get().createEntityManager();
-    em.getTransaction().begin();
-    NetworkNode nn = em.find(NetworkNode.class, nodeId);
-    em.remove(nn);
-    em.getTransaction().commit();
-  }
+	public Long save(final NetworkNode node) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(node);
+		em.flush();
+		em.getTransaction().commit();
+		return node.getId();
+	}
 
-  public NetworkNode read(final Long nodeId) {
-    EntityManager em = getEntityManager();
-    NetworkNode node = em.find(NetworkNode.class, nodeId);
-    return node;
-  }
+	public Collection<NetworkNode> findAll() {
+		EntityManager em = emf.createEntityManager();
+		final String queryString = "SELECT o FROM "
+				+ NetworkNode.class.getName() + " o";
+		Query q = em.createQuery(queryString);
+		em.getTransaction().begin();
+		@SuppressWarnings("unchecked")
+		List<NetworkNode> nodes = q.getResultList();
+		em.getTransaction().commit();
+		return nodes;
+	}
 
-  protected EntityManager getEntityManager() {
-    return EMF.get().createEntityManager();
-  }
+	public void delete(final Long nodeId) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		NetworkNode nn = em.find(NetworkNode.class, nodeId);
+		em.remove(nn);
+		em.getTransaction().commit();
+	}
+
+	public NetworkNode read(final Long nodeId) {
+		EntityManager em = emf.createEntityManager();
+		NetworkNode node = em.find(NetworkNode.class, nodeId);
+		return node;
+	}
 
 }

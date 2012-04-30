@@ -1,10 +1,14 @@
 package com.scirisk.riskanalyzer.web;
 
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
@@ -70,8 +74,25 @@ public class NodeController {
 	    Long id = Long.valueOf(rawId);
 	    networkNodeManager.delete(id);
 	}
+	
+	@RequestMapping(value = "/AvailableNodes.do", method = RequestMethod.GET)
+	public void findAll(HttpServletRequest req, HttpServletResponse resp)
+			throws Exception {
+		resp.setContentType("application/json");
+		PrintWriter out = resp.getWriter();
+		Collection<NetworkNode> nodes = networkNodeManager.findAll();
+		JSONArray array = new JSONArray();
 
-	public NetworkNode mapRequestParams(HttpServletRequest req) {
+		for (NetworkNode n : nodes) {
+			JSONObject object = new JSONObject();
+			object.element("id", n.getId());
+			object.element("name", n.getName());
+			array.add(object);
+		}
+		out.println(array.toString());
+	}
+
+	NetworkNode mapRequestParams(HttpServletRequest req) {
 		NetworkNode nn = new NetworkNode();
 
 		String nodeIdParam = req.getParameter("node_id");

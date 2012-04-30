@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
@@ -12,48 +14,58 @@ import com.scirisk.riskanalyzer.persistence.NetworkEdgeManager;
 
 public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 
-  public void save(Long edgeId, Double purchasingVolume, Long sourceId, Long targetId) {
-    EntityManager em = EMF.get().createEntityManager();
-    em.getTransaction().begin();
+	private EntityManagerFactory emf;
 
-    NetworkEdge edge = edgeId != null ? em.find(NetworkEdge.class, edgeId) : new NetworkEdge();
+	@PersistenceUnit
+	public void setEntityManagerFactory(EntityManagerFactory emf) {
+		this.emf = emf;
+	}
 
-    edge.setPurchasingVolume(purchasingVolume);
+	public void save(Long edgeId, Double purchasingVolume, Long sourceId,
+			Long targetId) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
 
-    NetworkNode srcNode = em.find(NetworkNode.class, sourceId);
-    NetworkNode destNode = em.find(NetworkNode.class, targetId);
+		NetworkEdge edge = edgeId != null ? em.find(NetworkEdge.class, edgeId)
+				: new NetworkEdge();
 
-    edge.setSourceNode(srcNode);
-    edge.setTargetNode(destNode);
+		edge.setPurchasingVolume(purchasingVolume);
 
-    em.persist(edge);
+		NetworkNode srcNode = em.find(NetworkNode.class, sourceId);
+		NetworkNode destNode = em.find(NetworkNode.class, targetId);
 
-    em.getTransaction().commit();
-  }
+		edge.setSourceNode(srcNode);
+		edge.setTargetNode(destNode);
 
-  public Collection<NetworkEdge> findAll() {
-    EntityManager em = EMF.get().createEntityManager();
-    final String queryString = "SELECT o FROM " + NetworkEdge.class.getName() + " o";
-    Query q = em.createQuery(queryString);
-    em.getTransaction().begin();
-    @SuppressWarnings("unchecked")
-    List<NetworkEdge> nodes = q.getResultList();
-    em.getTransaction().commit();
-    return nodes;
-  }
+		em.persist(edge);
 
-  public void delete(final Long edgeId) {
-    EntityManager em = EMF.get().createEntityManager();
-    em.getTransaction().begin();
-    NetworkEdge edge = em.find(NetworkEdge.class, edgeId);
-    em.remove(edge);
-    em.getTransaction().commit();
-  }
+		em.getTransaction().commit();
+	}
 
-  public NetworkEdge read(final Long edgeId) {
-    EntityManager em = EMF.get().createEntityManager();
-    NetworkEdge edge = em.find(NetworkEdge.class, edgeId);
-    return edge;
-  }
+	public Collection<NetworkEdge> findAll() {
+		EntityManager em = emf.createEntityManager();
+		final String queryString = "SELECT o FROM "
+				+ NetworkEdge.class.getName() + " o";
+		Query q = em.createQuery(queryString);
+		em.getTransaction().begin();
+		@SuppressWarnings("unchecked")
+		List<NetworkEdge> nodes = q.getResultList();
+		em.getTransaction().commit();
+		return nodes;
+	}
+
+	public void delete(final Long edgeId) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		NetworkEdge edge = em.find(NetworkEdge.class, edgeId);
+		em.remove(edge);
+		em.getTransaction().commit();
+	}
+
+	public NetworkEdge read(final Long edgeId) {
+		EntityManager em = emf.createEntityManager();
+		NetworkEdge edge = em.find(NetworkEdge.class, edgeId);
+		return edge;
+	}
 
 }

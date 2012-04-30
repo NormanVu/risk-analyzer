@@ -15,7 +15,7 @@
 	<url>http://sci-risk-backend-ws.appspot.com</url>
 
 	<properties>
-		<org.springframework.version>3.0.5.RELEASE</org.springframework.version>
+		<org.springframework.version>3.1.1.RELEASE</org.springframework.version>
 		<org.slf4j.version>1.6.1</org.slf4j.version>
 	</properties>
 
@@ -36,6 +36,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
 
@@ -78,13 +83,8 @@
 			<version>${org.springframework.version}</version>
 		</dependency>
 
-<!--
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.18</version>
-		</dependency>
--->
+		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+			<version>5.1.18</version> </dependency> -->
 		<dependency>
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-core</artifactId>

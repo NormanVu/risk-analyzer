@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import com.scirisk.riskanalyzer.domain.Network;
@@ -14,57 +16,68 @@ import com.scirisk.riskanalyzer.persistence.NetworkManager;
 
 public class NetworkManagerJpaImpl implements NetworkManager {
 
-  @SuppressWarnings("unchecked")
-  public Network read() {
-    EntityManager em = EMF.get().createEntityManager();
-    Query nodeQuery = em.createQuery("SELECT o FROM " + NetworkNode.class.getName() + " o");
-    Query edgeQuery = em.createQuery("SELECT o FROM " + NetworkEdge.class.getName() + " o");
-    em.getTransaction().begin();
+	private EntityManagerFactory emf;
 
-    List<NetworkNode> nodes = nodeQuery.getResultList();
-    List<NetworkEdge> edges = edgeQuery.getResultList();
+	@PersistenceUnit
+	public void setEntityManagerFactory(EntityManagerFactory emf) {
+		this.emf = emf;
+	}
 
-    em.getTransaction().commit();
+	@SuppressWarnings("unchecked")
+	public Network read() {
+		EntityManager em = emf.createEntityManager();
+		Query nodeQuery = em.createQuery("SELECT o FROM "
+				+ NetworkNode.class.getName() + " o");
+		Query edgeQuery = em.createQuery("SELECT o FROM "
+				+ NetworkEdge.class.getName() + " o");
+		em.getTransaction().begin();
 
-    Network network = new Network();
-    network.setNodes(nodes);
-    network.setEdges(edges);
+		List<NetworkNode> nodes = nodeQuery.getResultList();
+		List<NetworkEdge> edges = edgeQuery.getResultList();
 
-    return network;
-  }
+		em.getTransaction().commit();
 
-  // TODO ADD OPTION TO APPEND NODES
-  public void save(final Network network) {
-    EntityManager em = EMF.get().createEntityManager();
-    em.getTransaction().begin();
-    em.createQuery("DELETE FROM " + NetworkEdge.class.getName()).executeUpdate();
-    em.createQuery("DELETE FROM " + NetworkNode.class.getName()).executeUpdate();
-    
+		Network network = new Network();
+		network.setNodes(nodes);
+		network.setEdges(edges);
 
-    Map<Long, Long> nodeIdMap = new HashMap<Long, Long>();
-    
-    // persist nodes and populate nodeIdMap
-    for (NetworkNode nn : network.getNodes()) {
-      Long fakeId = nn.getId();
-      nn.setId(null);
-      em.persist(nn);
-      em.flush();
-      Long generatedId = nn.getId();
-      nodeIdMap.put(fakeId, generatedId);
-    }
-    
-    // persist edges with references to nodes created in the same transaction
-    for (NetworkEdge ne : network.getEdges()) {
-      Long sourceId = nodeIdMap.get(ne.getSourceNode().getId());
-      Long targetId = nodeIdMap.get(ne.getTargetNode().getId());
-      NetworkNode source = em.find(NetworkNode.class, sourceId);
-      NetworkNode target = em.find(NetworkNode.class, targetId);
-      ne.setSourceNode(source);
-      ne.setTargetNode(target);
-      em.persist(ne);
-    }
+		return network;
+	}
 
-    em.getTransaction().commit();
-  }
+	// TODO ADD OPTION TO APPEND NODES
+	public void save(final Network network) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.createQuery("DELETE FROM " + NetworkEdge.class.getName())
+				.executeUpdate();
+		em.createQuery("DELETE FROM " + NetworkNode.class.getName())
+				.executeUpdate();
+
+		Map<Long, Long> nodeIdMap = new HashMap<Long, Long>();
+
+		// persist nodes and populate nodeIdMap
+		for (NetworkNode nn : network.getNodes()) {
+			Long fakeId = nn.getId();
+			nn.setId(null);
+			em.persist(nn);
+			em.flush();
+			Long generatedId = nn.getId();
+			nodeIdMap.put(fakeId, generatedId);
+		}
+
+		// persist edges with references to nodes created in the same
+		// transaction
+		for (NetworkEdge ne : network.getEdges()) {
+			Long sourceId = nodeIdMap.get(ne.getSourceNode().getId());
+			Long targetId = nodeIdMap.get(ne.getTargetNode().getId());
+			NetworkNode source = em.find(NetworkNode.class, sourceId);
+			NetworkNode target = em.find(NetworkNode.class, targetId);
+			ne.setSourceNode(source);
+			ne.setTargetNode(target);
+			em.persist(ne);
+		}
+
+		em.getTransaction().commit();
+	}
 
 }
