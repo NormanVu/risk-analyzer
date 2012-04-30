@@ -54,10 +54,6 @@
     <servlet-name>EmailReportServlet</servlet-name>
     <servlet-class>com.scirisk.riskanalyzer.web.EmailReportServlet</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>SubmitSimulationServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.SubmitSimulationServlet</servlet-class>
-  </servlet>
 
   <servlet-mapping>
     <servlet-name>ExportReportServlet</servlet-name>
@@ -70,10 +66,6 @@
   <servlet-mapping>
     <servlet-name>EmailReportServlet</servlet-name>
     <url-pattern>/EmailReport.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SubmitSimulationServlet</servlet-name>
-    <url-pattern>/SubmitSimulation.do</url-pattern>
   </servlet-mapping>
 
   <session-config>

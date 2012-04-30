@@ -71,7 +71,7 @@ public class NodeController {
 	    networkNodeManager.delete(id);
 	}
 
-	public NetworkNode mapRequestParams(HttpServletRequest req) {
+	NetworkNode mapRequestParams(HttpServletRequest req) {
 		NetworkNode nn = new NetworkNode();
 
 		String nodeIdParam = req.getParameter("node_id");

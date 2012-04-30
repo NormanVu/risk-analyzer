@@ -29,7 +29,7 @@ public class AvailableNodesServlet extends HttpServlet {
   };
 
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-    resp.setContentType("text/json");
+    resp.setContentType("application/json");
     PrintWriter out = resp.getWriter();
     Collection<NetworkNode> nodes = nnManager.findAll();
     JSONArray array = new JSONArray();
