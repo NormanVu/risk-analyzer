@@ -19,6 +19,8 @@
 		<module>risk-analyzer-web</module>
 		<module>risk-analyzer-reference</module>
 		<module>risk-analyzer-repository</module>
+		<module>risk-analyzer-repository-jpa</module>
+		<module>risk-analyzer-repository-mongodb</module>
 	</modules>
 
 	<build>
