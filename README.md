@@ -8,11 +8,16 @@ the network of suppliers for their company. The application supports the followi
 
 1. View the supply chain, i.e. network of suppliers and the target company
 2. View information pertaining to a supplier
-3. View information pertaining to the target company
+3. View information pertaining to a target company
 4. Update information pertaining to a supplier
-5. Update information pertaining to the target company
+5. Update information pertaining to a target company
 6. Add a new supplier to the supply chain
-7. View frequency distribution* analysis performed on the supply chain
+7. Add a new target company to the supply chain
+8. Delete an existing supplier
+9. Delete an existing target company
+10. Export the supply chain to XML
+11. Import the supply chain from XML
+12. View frequency distribution* analysis performed on the supply chain
 
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/risk-analyzer.png)
 
