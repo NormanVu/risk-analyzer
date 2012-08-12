@@ -19,6 +19,7 @@
 
 	<chapter>
 		<title>Introduction</title>
+		<para>Some french letters élo wioèàüû </para>
 		<para>
 			This is my paragref
 			<classname>MyClass</classname>
@@ -116,7 +117,6 @@
 			following code. -->
 
 		<programlisting language="java">
-		<[]
 			@Controller
 			public class HelloWorldController {
 

@@ -22,7 +22,7 @@
 						<id>documentation identifier</id>
 						<phase>pre-site</phase>
 						<goals>
-							<!-- <goal>generate-html</goal> <goal>generate-pdf</goal> <goal>generate-...</goal> -->
+							<goal>generate-html</goal>
 							<goal>generate-pdf</goal>
 						</goals>
 						<configuration>
