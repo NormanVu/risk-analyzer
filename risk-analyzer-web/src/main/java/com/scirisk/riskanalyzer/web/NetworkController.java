@@ -26,7 +26,6 @@ import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
 import com.scirisk.riskanalyzer.model.NetworkMarshaller;
 import com.scirisk.riskanalyzer.model.NetworkParser;
-import com.scirisk.riskanalyzer.model.NetworkParserDomImpl;
 import com.scirisk.riskanalyzer.model.NetworkValidationException;
 import com.scirisk.riskanalyzer.persistence.NetworkManager;
 
@@ -41,18 +40,6 @@ public class NetworkController {
 
 	@Autowired
 	private NetworkParser networkParser;
-
-	public void setNetworkManager(NetworkManager networkManager) {
-		this.networkManager = networkManager;
-	}
-
-	public void setNetworkMarshaller(NetworkMarshaller networkMarshaller) {
-		this.networkMarshaller = networkMarshaller;
-	}
-
-	public void setNetworkParser(NetworkParser networkParser) {
-		this.networkParser = networkParser;
-	}
 
 	@RequestMapping(value = "/NetworkMap.do", method = RequestMethod.POST)
 	public void getNetworkForGoogleMap(HttpServletRequest request,
@@ -127,7 +114,7 @@ public class NetworkController {
 		response.getWriter().print(root.toString());
 	}
 
-	@RequestMapping(value = "/Export.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/network.xml", method = RequestMethod.GET)
 	public void exportToXml(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
@@ -141,12 +128,12 @@ public class NetworkController {
 		networkMarshaller.marshall(network, response.getOutputStream());
 	}
 
-	@RequestMapping(value = "/Import.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/network", method = RequestMethod.POST)
 	public void importFromXml(HttpServletRequest req, HttpServletResponse resp)
 			throws Exception {
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
-		
+
 		JSONObject jsonResponse = new JSONObject();
 		jsonResponse.put("success", true);
 
@@ -166,18 +153,18 @@ public class NetworkController {
 						break; // stop iterating
 					}
 				}
-				//out.println("{success: true}");
+				// out.println("{success: true}");
 			} catch (FileUploadException e) {
 				e.printStackTrace();
-				//out.println("{success: false}");
+				// out.println("{success: false}");
 				jsonResponse.put("success", false);
 			} catch (NetworkValidationException e) {
 				e.printStackTrace();
-				//out.println("{success: false}");
+				// out.println("{success: false}");
 				jsonResponse.put("success", false);
 			}
 		} else {
-			//out.println("{success: false}");
+			// out.println("{success: false}");
 			jsonResponse.put("success", false);
 		}
 		out.println(jsonResponse.toString(2));

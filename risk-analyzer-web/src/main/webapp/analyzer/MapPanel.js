@@ -49,7 +49,7 @@ Ext.define('RiskAnalyzer.MapPanel', {
 
   update: function() {
     Ext.Ajax.request({
-      url: 'NetworkMap.do',
+      url: 'service/NetworkMap.do',
       params: {
         id: 1
       },

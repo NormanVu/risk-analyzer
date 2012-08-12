@@ -1,6 +1,5 @@
 package com.scirisk.riskanalyzer.persistence.jpa;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -42,7 +41,7 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 		em.getTransaction().commit();
 	}
 
-	public Collection<NetworkEdge> findAll() {
+	public List<NetworkEdge> findAll() {
 		EntityManager em = emf.createEntityManager();
 		final String queryString = "SELECT o FROM "
 				+ NetworkEdge.class.getName() + " o";

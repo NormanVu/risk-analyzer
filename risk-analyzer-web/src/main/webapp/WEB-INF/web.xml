@@ -3,9 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-  <display-name>Risk Analyzer - Web</display-name>
-  
-  <!-- Reads request input using UTF-8 encoding -->
+	<display-name>Risk Analyzer - Web</display-name>
+
+	<!-- Reads request input using UTF-8 encoding -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -18,12 +18,12 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-	
+
 	<filter-mapping>
 		<filter-name>CharacterEncodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/service/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- Handles all requests into the application -->
 	<servlet>
 		<servlet-name>DispatcherServlet</servlet-name>
@@ -39,35 +39,13 @@
 
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/service/*</url-pattern>
 	</servlet-mapping>
 
-  <servlet>
-    <servlet-name>ExportReportServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.ExportReportServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>EmailReportServlet</servlet-name>
-    <servlet-class>com.scirisk.riskanalyzer.web.EmailReportServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>ExportReportServlet</servlet-name>
-    <url-pattern>/ExportReport.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>EmailReportServlet</servlet-name>
-    <url-pattern>/EmailReport.do</url-pattern>
-  </servlet-mapping>
-
-  <session-config>
-    <session-timeout>
-      30
-    </session-timeout>
-  </session-config>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 </web-app>
-
-

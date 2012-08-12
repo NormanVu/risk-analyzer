@@ -1,10 +1,8 @@
 package com.scirisk.riskanalyzer.web;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,8 +10,11 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,61 +24,57 @@ import com.scirisk.riskanalyzer.domain.NetworkNode.Type;
 import com.scirisk.riskanalyzer.persistence.NetworkNodeManager;
 
 @Controller
+@RequestMapping(value = "/node")
 public class NodeController {
-
+	Logger logger = LoggerFactory.getLogger(NodeController.class);
 	@Autowired
 	private NetworkNodeManager networkNodeManager;
 
-	public void setNetworkNodeManager(NetworkNodeManager networkNodeManager) {
-		this.networkNodeManager = networkNodeManager;
-	}
-
-	@RequestMapping(value = "/AddNode.do", method = RequestMethod.POST)
-	public void createOrUpdate(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	@RequestMapping(method = RequestMethod.POST)
+	public void save(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		logger.debug("Saving edge request");
 
 		NetworkNode nn = mapRequestParams(request);
 		networkNodeManager.save(nn);
 		response.setStatus(HttpServletResponse.SC_CREATED);
 	}
-	
-	@RequestMapping(value = "/ReadNode.do", method = RequestMethod.POST)
-	public void read(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	    String rawNodeId = request.getParameter("node_id"); // TODO VALIDATE
-	    Long nodeId = Long.valueOf(rawNodeId);
-	    NetworkNode node = networkNodeManager.read(nodeId);
 
-	    JSONObject o = new JSONObject();
-	    o.put("node_id", node.getId());
-	    o.put("node_name", node.getName());
-	    o.put("node_kind", node.getKind());
-	    o.put("node_desc", node.getDesc());
-	    o.put("node_address", node.getAddress());
-	    o.put("node_latitude", node.getLatitude());
-	    o.put("node_longitude", node.getLongitude());
-	    o.put("node_risk_category_1", node.getRiskCategory1());
-	    o.put("node_risk_category_2", node.getRiskCategory2());
-	    o.put("node_risk_category_3", node.getRiskCategory3());
-	    o.put("node_recovery_time_1", node.getRecoveryTime1());
-	    o.put("node_recovery_time_2", node.getRecoveryTime2());
-	    o.put("node_recovery_time_3", node.getRecoveryTime3());
-	    o.put("node_type", node.getType());
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public void read(@PathVariable("id") Long nodeId,
+			HttpServletResponse response) throws Exception {
+		logger.debug("Reading edge {} request", nodeId);
+		NetworkNode node = networkNodeManager.findOne(nodeId);
 
-	    response.setContentType("application/json");
-	    PrintWriter out = response.getWriter();
-	    out.println(o.toString(2));
+		JSONObject o = new JSONObject();
+		o.put("node_id", node.getId());
+		o.put("node_name", node.getName());
+		o.put("node_kind", node.getKind());
+		o.put("node_desc", node.getDesc());
+		o.put("node_address", node.getAddress());
+		o.put("node_latitude", node.getLatitude());
+		o.put("node_longitude", node.getLongitude());
+		o.put("node_risk_category_1", node.getRiskCategory1());
+		o.put("node_risk_category_2", node.getRiskCategory2());
+		o.put("node_risk_category_3", node.getRiskCategory3());
+		o.put("node_recovery_time_1", node.getRecoveryTime1());
+		o.put("node_recovery_time_2", node.getRecoveryTime2());
+		o.put("node_recovery_time_3", node.getRecoveryTime3());
+		o.put("node_type", node.getType());
+
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.println(o.toString(2));
 	}
 
-	@RequestMapping(value = "/DeleteNode.do", method = RequestMethod.POST)
-	public void delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	    String rawId = request.getParameter("id"); // TODO CONST
-	    Long id = Long.valueOf(rawId);
-	    networkNodeManager.delete(id);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("id") Long nodeId,
+			HttpServletResponse response) throws Exception {
+		networkNodeManager.delete(nodeId);
 	}
-	
-	@RequestMapping(value = "/AvailableNodes.do", method = RequestMethod.GET)
-	public void findAll(HttpServletRequest req, HttpServletResponse resp)
-			throws Exception {
+
+	@RequestMapping(method = RequestMethod.GET)
+	public void findAll(HttpServletResponse resp) throws Exception {
 		resp.setContentType("application/json");
 		PrintWriter out = resp.getWriter();
 		Collection<NetworkNode> nodes = networkNodeManager.findAll();

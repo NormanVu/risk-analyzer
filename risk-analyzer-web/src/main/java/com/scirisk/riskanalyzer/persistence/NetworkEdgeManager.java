@@ -1,6 +1,6 @@
 package com.scirisk.riskanalyzer.persistence;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
 
@@ -12,6 +12,6 @@ public interface NetworkEdgeManager {
 
   NetworkEdge read(Long edgeId);
 
-  Collection<NetworkEdge> findAll();
+  List<NetworkEdge> findAll();
 
 }

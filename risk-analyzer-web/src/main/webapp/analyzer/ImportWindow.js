@@ -64,7 +64,7 @@ Ext.define('RiskAnalyzer.ImportWindow', {
         
        if(this.form.getForm().isValid()){
             this.form.submit({
-                url: 'Import.do',
+                url: 'service/network',
                 waitMsg: 'Importing network...',
                 scope: this,
                 success: this.onImportSuccess

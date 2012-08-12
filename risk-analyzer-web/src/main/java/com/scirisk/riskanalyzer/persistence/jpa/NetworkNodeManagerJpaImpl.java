@@ -29,7 +29,7 @@ public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 		return node.getId();
 	}
 
-	public Collection<NetworkNode> findAll() {
+	public List<NetworkNode> findAll() {
 		EntityManager em = emf.createEntityManager();
 		final String queryString = "SELECT o FROM "
 				+ NetworkNode.class.getName() + " o";
@@ -49,7 +49,7 @@ public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 		em.getTransaction().commit();
 	}
 
-	public NetworkNode read(final Long nodeId) {
+	public NetworkNode findOne(final Long nodeId) {
 		EntityManager em = emf.createEntityManager();
 		NetworkNode node = em.find(NetworkNode.class, nodeId);
 		return node;

@@ -10,8 +10,11 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,7 +24,10 @@ import com.scirisk.riskanalyzer.persistence.NetworkEdgeManager;
 import com.scirisk.riskanalyzer.persistence.NetworkNodeManager;
 
 @Controller
+@RequestMapping(value="/edge")
 public class EdgeController {
+
+	Logger logger = LoggerFactory.getLogger(EdgeController.class);
 
 	@Autowired
 	private NetworkEdgeManager networkEdgeManager;
@@ -29,16 +35,8 @@ public class EdgeController {
 	@Autowired
 	private NetworkNodeManager networkNodeManager;
 
-	public void setNetworkEdgeManager(NetworkEdgeManager networkEdgeManager) {
-		this.networkEdgeManager = networkEdgeManager;
-	}
-
-	public void setNetworkNodeManager(NetworkNodeManager networkNodeManager) {
-		this.networkNodeManager = networkNodeManager;
-	}
-
-	@RequestMapping(value = "/AddEdge.do", method = RequestMethod.POST)
-	public void createOrUpdate(HttpServletRequest request,
+	@RequestMapping(method = RequestMethod.POST)
+	public void save(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		Long edgeId = getEdgeId(request);
@@ -52,10 +50,9 @@ public class EdgeController {
 		response.setStatus(HttpServletResponse.SC_CREATED);
 	}
 
-	@RequestMapping(value = "/ReadEdge.do", method = RequestMethod.POST)
-	public void read(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String rawEdgeId = request.getParameter("edge_id");
-		Long edgeId = Long.valueOf(rawEdgeId);
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public void read(@PathVariable("id") Long edgeId, HttpServletResponse response)
+			throws Exception {
 		NetworkEdge edge = networkEdgeManager.read(edgeId);
 		Collection<NetworkNode> nodes = networkNodeManager.findAll();
 
@@ -83,17 +80,10 @@ public class EdgeController {
 		out.println(json.toString(2));
 	}
 
-	@RequestMapping(value = "/DeleteEdge.do", method = RequestMethod.POST)
-	public void delete(HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("id") Long edgeId, HttpServletResponse response)
 			throws Exception {
-		String rawId = request.getParameter("edge_id");
-		if (rawId == null) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-					"Missing [edge_id] request parameter.");
-			return;
-		}
-		Long id = Long.valueOf(rawId);
-		networkEdgeManager.delete(id);
+		networkEdgeManager.delete(edgeId);
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
 

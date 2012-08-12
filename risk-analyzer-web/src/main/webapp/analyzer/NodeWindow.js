@@ -278,7 +278,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
             msg: 'Saving node...'
         });
         Ext.Ajax.request({
-            url: 'AddNode.do',
+            url: 'service/node',
             params: fieldValues,
             success: this.addNodeSuccess,
             failure: this.addNodeFailure,

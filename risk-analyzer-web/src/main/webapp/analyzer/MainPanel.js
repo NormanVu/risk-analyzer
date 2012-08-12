@@ -153,10 +153,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
   readNode: function(nodeId) {
 
     Ext.Ajax.request({
-        url: 'ReadNode.do',
-        params: {
-          node_id: nodeId
-        },
+        url: 'service/node/' + nodeId,
         success: this.onReadNodeSuccess,
         failure: this.onReadNodeFailure,
         scope: this
@@ -165,10 +162,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
   
   readEdge: function(edgeId) {
     Ext.Ajax.request({
-      url: 'ReadEdge.do',
-      params: {
-        edge_id: edgeId
-      },
+      url: 'service/edge/' + edgeId,
       success: this.onReadEdgeSuccess,
       failure: this.onReadEdgeFailure,
       scope: this
@@ -267,7 +261,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
       tag: 'iframe',
       id:'testIframe',
       css: 'display:none;visibility:hidden;height:0px;',
-      src: 'Export.do',
+      src: 'service/network.xml',
       frameBorder: 0,
       width: 0,
       height: 0
@@ -294,7 +288,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
   onAddEdgeClick: function() {
     // Before showing Edge Dialog fetch available nodes
     Ext.Ajax.request({
-      url: 'AvailableNodes.do',
+      url: 'service/node',
       success: this.onAddEdgeSuccess,
       failure: this.onAddEdgeFailure,
       scope: this
@@ -366,10 +360,8 @@ Ext.define('RiskAnalyzer.MainPanel', {
       var id = parseInt(rawId.substring(2));
 
       Ext.Ajax.request({
-          url: 'DeleteNode.do',
-          params: {
-              id: id
-          },
+          url: 'service/node/' + id,
+          method : 'DELETE',
           success: this.onDeleteNodeSuccess,
           failure: this.onDeleteNodeFailure,
           scope: this
@@ -390,10 +382,8 @@ Ext.define('RiskAnalyzer.MainPanel', {
       var id = parseInt(rawId.substring(2));
 
       Ext.Ajax.request({
-          url: 'DeleteEdge.do',
-          params: {
-              edge_id: id
-          },
+          url: 'service/edge/' + id,
+          method : 'DELETE',
           success: this.onDeleteEdgeSuccess,
           failure: this.onDeleteEdgeFailure,
           scope: this

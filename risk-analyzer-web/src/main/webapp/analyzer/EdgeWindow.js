@@ -107,7 +107,8 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
         var fieldValues = this.form.getForm().getFieldValues();
         this.form.setLoading({msg: 'Saving edge...'});
         Ext.Ajax.request({
-            url: 'AddEdge.do',
+            url: 'service/edge',
+            method : 'POST',
             params: fieldValues,
             success: this.addEdgeSuccess,
             failure: this.addEdgeFailure,

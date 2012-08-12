@@ -113,7 +113,7 @@ Ext.define('RiskAnalyzer.ParamsWindow', {
         });
 
         Ext.Ajax.request({
-            url: 'RunSimulation.do',
+            url: 'service/RunSimulation.do',
             params: {
                 number_of_iterations: numberOfIterations,
                 time_horizon: timeHorizon,
@@ -156,7 +156,7 @@ Ext.define('RiskAnalyzer.ParamsWindow', {
       });
 
       Ext.Ajax.request({
-        url: 'SubmitSimulation.do',
+        url: 'service/SubmitSimulation.do',
         timeout: 1800000,
         params: {
           number_of_iterations: numberOfIterations,
