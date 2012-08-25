@@ -1,7 +1,5 @@
 package com.scirisk.riskanalyzer.web;
 
-import java.io.InputStream;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -12,22 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.FileItemStream;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.scirisk.riskanalyzer.domain.Network;
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
 import com.scirisk.riskanalyzer.model.NetworkMarshaller;
 import com.scirisk.riskanalyzer.model.NetworkParser;
-import com.scirisk.riskanalyzer.model.NetworkValidationException;
 import com.scirisk.riskanalyzer.persistence.NetworkManager;
 
 @Controller
@@ -100,45 +95,23 @@ public class NetworkController {
 	}
 
 	@RequestMapping(value = "/network", method = RequestMethod.POST)
-	public void importFromXml(HttpServletRequest req, HttpServletResponse resp)
-			throws Exception {
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
+	public void importFromXml(
+			@RequestParam("networkXml") MultipartFile networkXml,
+			HttpServletResponse resp) throws Exception {
 
 		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("success", true);
 
-		boolean isMulitpart = ServletFileUpload.isMultipartContent(req);
-		if (isMulitpart) {
-
-			ServletFileUpload uploadHandler = new ServletFileUpload();
-			try {
-				FileItemIterator iterator = uploadHandler.getItemIterator(req);
-				while (iterator.hasNext()) {
-					FileItemStream fis = iterator.next();
-					if (!fis.isFormField()) {
-						InputStream is = fis.openStream();
-						Network network = networkParser.parse(is);
-
-						networkManager.save(network);
-						break; // stop iterating
-					}
-				}
-				// out.println("{success: true}");
-			} catch (FileUploadException e) {
-				e.printStackTrace();
-				// out.println("{success: false}");
-				jsonResponse.put("success", false);
-			} catch (NetworkValidationException e) {
-				e.printStackTrace();
-				// out.println("{success: false}");
-				jsonResponse.put("success", false);
-			}
+		if (!networkXml.isEmpty()) {
+			Network network = networkParser.parse(networkXml.getInputStream());
+			networkManager.save(network);
+			jsonResponse.put("success", true);
 		} else {
-			// out.println("{success: false}");
 			jsonResponse.put("success", false);
 		}
-		out.println(jsonResponse.toString(2));
+
+		// TODO GET RID OF IT
+		resp.setContentType("text/html");
+		resp.getWriter().println(jsonResponse.toString(2));
 	}
 
 	private JSONArray nodesToJson(final Collection<NetworkNode> nodes) {
@@ -165,6 +138,18 @@ public class NetworkController {
 			edgesArray.add(edgeObject);
 		}
 		return edgesArray;
+	}
+
+	class ImportResult {
+		private Boolean success;
+
+		public ImportResult(Boolean success) {
+			this.success = success;
+		}
+
+		public Boolean getSuccess() {
+			return success;
+		}
 	}
 
 }

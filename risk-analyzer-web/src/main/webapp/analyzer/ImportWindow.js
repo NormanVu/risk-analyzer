@@ -25,7 +25,7 @@ Ext.define('RiskAnalyzer.ImportWindow', {
                 id: 'form-file',
                 //emptyText: 'Select an XML file',
                 fieldLabel: 'Network XML',
-                name: 'xml-path',
+                name: 'networkXml',
                 buttonText: 'Browse...'
             }
             

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<!-- Scans the classpath of this application for @Components to deploy as beans -->
+	<!-- Scans the classpath of this application for @Components to deploy as 
+		beans -->
 	<context:component-scan base-package="com.scirisk.riskanalyzer.web" />
 
 	<context:annotation-config />
@@ -15,17 +15,26 @@
 	<!-- Configures the @Controller programming model -->
 	<mvc:annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000" />
+	</bean>
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources/ directory -->
 	<mvc:resources mapping="/extjs/**" location="/extjs/" />
-	
+
 	<bean id="networkMarshaller" class="com.scirisk.riskanalyzer.model.NetworkMarshallerDomImpl" />
 	<bean id="networkParser" class="com.scirisk.riskanalyzer.model.NetworkParserDomImpl" />
-	
-	<bean id="entityManagerFactoryInfo" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" />
 
-	<!-- Configures data access objects -->	
-	<bean id="networkManager" class="com.scirisk.riskanalyzer.persistence.jpa.NetworkManagerJpaImpl" />
-	<bean id="networkNodeManager" class="com.scirisk.riskanalyzer.persistence.jpa.NetworkNodeManagerJpaImpl" />
-	<bean id="networkEdgeManager" class="com.scirisk.riskanalyzer.persistence.jpa.NetworkEdgeManagerJpaImpl" />
+	<bean id="entityManagerFactoryInfo"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" />
+
+	<!-- Configures data access objects -->
+	<bean id="networkManager"
+		class="com.scirisk.riskanalyzer.persistence.jpa.NetworkManagerJpaImpl" />
+	<bean id="networkNodeManager"
+		class="com.scirisk.riskanalyzer.persistence.jpa.NetworkNodeManagerJpaImpl" />
+	<bean id="networkEdgeManager"
+		class="com.scirisk.riskanalyzer.persistence.jpa.NetworkEdgeManagerJpaImpl" />
 
 </beans>
