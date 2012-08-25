@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+// TODO Rename to Distribution Network
 @SuppressWarnings("serial")
 public class Network implements Serializable {
 

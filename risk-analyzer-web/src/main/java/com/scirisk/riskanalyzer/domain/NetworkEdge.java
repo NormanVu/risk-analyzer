@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
+// TODO rename to DistributionChannel
 @Entity()
 @SuppressWarnings("serial")
 public class NetworkEdge implements Serializable {

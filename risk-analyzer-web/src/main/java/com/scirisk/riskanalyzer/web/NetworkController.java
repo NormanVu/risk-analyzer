@@ -74,7 +74,7 @@ public class NetworkController {
 		networkChildren.add(edgeFolder);
 
 		JSONObject networkJson = new JSONObject();
-		networkJson.element("text", "Network");
+		networkJson.element("text", "Distribution Network");
 		networkJson.element("cls", "folder");
 		networkJson.element("expanded", true);
 		networkJson.element("children", networkChildren);

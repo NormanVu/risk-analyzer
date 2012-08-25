@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+// TODO Rename to Facility
 @Entity()
 @SuppressWarnings("serial")
 public class NetworkNode implements Serializable {

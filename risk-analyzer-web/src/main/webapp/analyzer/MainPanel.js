@@ -21,7 +21,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
       items: [
         {
           xtype: 'buttongroup',
-          title: 'Network',
+          title: 'Distribution Network',
           columns: 3,
           items: [
             {text: 'Refresh', iconCls: 'feed', handler: this.onRefreshClick, scope: this},
@@ -32,21 +32,21 @@ Ext.define('RiskAnalyzer.MainPanel', {
         {
           xtype: 'buttongroup',
           itemId: 'nodeButtons',
-          title: 'Node',
+          title: 'Facility',
           columns: 2,
           items: [
-            {text: 'New Node', iconCls: 'feed-add', handler: this.onAddNodeClick, scope: this},
-            {text: 'Delete Node', iconCls: 'feed-remove', handler: this.onDeleteNodeClick, itemId: 'deleteNodeBtn', disabled: true, scope: this}
+            {text: 'New Facility', iconCls: 'feed-add', handler: this.onAddNodeClick, scope: this},
+            {text: 'Delete Facility', iconCls: 'feed-remove', handler: this.onDeleteNodeClick, itemId: 'deleteNodeBtn', disabled: true, scope: this}
           ]
         },
         {
           xtype: 'buttongroup',
           itemId: 'edgeButtons',
-          title: 'Edge',
+          title: 'Distribution Channel',
           columns: 2,
           items: [
-            {text: 'New Edge', iconCls: 'feed-add', handler: this.onAddEdgeClick, scope: this},
-            {text: 'Delete Edge', iconCls: 'feed-remove', handler: this.onDeleteEdgeClick, itemId: 'deleteEdgeBtn', disabled: true, scope: this}
+            {text: 'New Distribution Channel', iconCls: 'feed-add', handler: this.onAddEdgeClick, scope: this},
+            {text: 'Delete Distribution Channel', iconCls: 'feed-remove', handler: this.onDeleteEdgeClick, itemId: 'deleteEdgeBtn', disabled: true, scope: this}
           ]
         },
         {

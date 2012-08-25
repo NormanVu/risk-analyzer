@@ -74,7 +74,7 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
         
         Ext.apply(this, {
             width: 350,
-            title: 'Edge',
+            title: 'Distribution Channel',
             modal: true,
             iconCls: 'feed',
             layout: 'fit',

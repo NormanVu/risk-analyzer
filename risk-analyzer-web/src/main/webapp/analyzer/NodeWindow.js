@@ -211,7 +211,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 
         Ext.apply(this, {
             width: 400,
-            title: 'Node',
+            title: 'Facility',
             modal: true,
             iconCls: 'feed',
             layout: 'fit',
