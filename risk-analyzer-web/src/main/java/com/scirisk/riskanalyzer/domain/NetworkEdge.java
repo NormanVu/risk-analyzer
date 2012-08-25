@@ -12,45 +12,45 @@ import javax.persistence.OneToOne;
 @SuppressWarnings("serial")
 public class NetworkEdge implements Serializable {
 
-  private Long id;
-  private Double purchasingVolume;
-  private NetworkNode sourceNode;
-  private NetworkNode targetNode;
+	private Long id;
+	private Double purchasingVolume;
+	private NetworkNode source;
+	private NetworkNode target;
 
-  @Id()
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public Long getId() {
-    return id;
-  }
+	@Id()
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public Double getPurchasingVolume() {
-    return purchasingVolume;
-  }
+	public Double getPurchasingVolume() {
+		return purchasingVolume;
+	}
 
-  public void setPurchasingVolume(Double purchasingVolume) {
-    this.purchasingVolume = purchasingVolume;
-  }
+	public void setPurchasingVolume(Double purchasingVolume) {
+		this.purchasingVolume = purchasingVolume;
+	}
 
-  @OneToOne()
-  public NetworkNode getSourceNode() {
-    return sourceNode;
-  }
+	@OneToOne()
+	public NetworkNode getSource() {
+		return source;
+	}
 
-  public void setSourceNode(NetworkNode srcNode) {
-    this.sourceNode = srcNode;
-  }
+	public void setSource(NetworkNode source) {
+		this.source = source;
+	}
 
-  @OneToOne()
-  public NetworkNode getTargetNode() {
-    return targetNode;
-  }
+	@OneToOne()
+	public NetworkNode getTarget() {
+		return target;
+	}
 
-  public void setTargetNode(NetworkNode destNode) {
-    this.targetNode = destNode;
-  }
+	public void setTarget(NetworkNode target) {
+		this.target = target;
+	}
 
 }

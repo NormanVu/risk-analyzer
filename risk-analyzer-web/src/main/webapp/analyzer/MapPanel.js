@@ -49,28 +49,23 @@ Ext.define('RiskAnalyzer.MapPanel', {
 
   update: function() {
     Ext.Ajax.request({
-      url: 'service/NetworkMap.do',
-      params: {
-        id: 1
-      },
+      url: 'service/network/map',
       scope: this,
       success: function(response) {
         this.deleteEdges();
         this.deleteMarkers();
         var text = response.responseText;
-        //alert(text);
         var o = Ext.JSON.decode(text);
         var nodes = o.nodes;
-        //alert(array);
         for (var i = 0; i < nodes.length; i++) {
           var node = nodes[i];
-          this.placeNode(node.id, new google.maps.LatLng(node.lat, node.lng), node.title, node.kind);
+          this.placeNode(node.id, new google.maps.LatLng(node.latitude, node.longitude), node.name, node.kind);
         }
         var edges = o.edges;
         for (var i = 0; i < edges.length; i++) {
           var edge = edges[i];
-          this.placeEdge(edge.id, new google.maps.LatLng(edge.srcLat, edge.srcLng),
-              new google.maps.LatLng(edge.trgLat, edge.trgLng));
+          this.placeEdge(edge.id, new google.maps.LatLng(edge.source.latitude, edge.source.longitude),
+              new google.maps.LatLng(edge.target.latitude, edge.target.longitude));
         }
         this.autoCenter();
       }

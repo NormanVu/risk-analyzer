@@ -7,7 +7,7 @@ Ext.define('RiskAnalyzer.NetworkPanel', {
     this.treeStore = Ext.create('Ext.data.TreeStore', {
       proxy: {
         type: 'ajax',
-        url: 'service/NetworkTree.do'
+        url: 'service/network/tree'
       }
     });
     Ext.apply(this, {

@@ -124,8 +124,8 @@ public class NetworkParserDomImpl implements NetworkParser {
 
     ne.setPurchasingVolume(Double.valueOf(purchasingVolumeAttr));
     // TODO CHECK THAT NODE EXISTS
-    ne.setSourceNode(nodesMap.get(sourceId));
-    ne.setTargetNode(nodesMap.get(targetId));
+    ne.setSource(nodesMap.get(sourceId));
+    ne.setTarget(nodesMap.get(targetId));
 
     return ne;
   }

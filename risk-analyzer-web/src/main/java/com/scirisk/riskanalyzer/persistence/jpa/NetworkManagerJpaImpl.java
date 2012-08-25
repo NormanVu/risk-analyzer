@@ -68,12 +68,12 @@ public class NetworkManagerJpaImpl implements NetworkManager {
 		// persist edges with references to nodes created in the same
 		// transaction
 		for (NetworkEdge ne : network.getEdges()) {
-			Long sourceId = nodeIdMap.get(ne.getSourceNode().getId());
-			Long targetId = nodeIdMap.get(ne.getTargetNode().getId());
+			Long sourceId = nodeIdMap.get(ne.getSource().getId());
+			Long targetId = nodeIdMap.get(ne.getTarget().getId());
 			NetworkNode source = em.find(NetworkNode.class, sourceId);
 			NetworkNode target = em.find(NetworkNode.class, targetId);
-			ne.setSourceNode(source);
-			ne.setTargetNode(target);
+			ne.setSource(source);
+			ne.setTarget(target);
 			em.persist(ne);
 		}
 

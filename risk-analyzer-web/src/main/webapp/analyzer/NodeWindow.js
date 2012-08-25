@@ -5,38 +5,36 @@ Ext.define('RiskAnalyzer.NodeWindow', {
   plain: true,
 
   defaultFeeds: [
-        ['company', 'Company'],
-        ['supplier', 'Supplier']
-    ],
+    ['company', 'Company'],
+    ['supplier', 'Supplier']
+  ],
 
-    initComponent: function(){
-        this.addEvents(
-            /**
-             * @event nodecreated
-             * @param {RiskAnalyzer.NodeWindow} this
-             */
-            'nodecreated'
-        );
+  initComponent: function() {
+    this.addEvents(
+    /**
+      * @event nodecreated
+      * @param {RiskAnalyzer.NodeWindow} this
+      */
+    'nodecreated'
+  );
 
-        this.geocoder = new google.maps.Geocoder();
+  this.geocoder = new google.maps.Geocoder();
 
-        this.form = Ext.create('widget.form', {
-            bodyPadding: '12 10 10',
-            border: false,
-            unstyled: true,
-            items: [
-            {
-              xtype: 'fieldset',
-              itemId: 'basic',
+  this.form = Ext.create('widget.form', {
+    bodyPadding: '12 10 10',
+    border: false,
+    unstyled: true,
+    items: [{
+      xtype: 'fieldset',
               padding: 10,
               items: [
                 {
                   xtype: 'hiddenfield',
-                  name: 'node_id'
+                  name: 'id'
                 },
 	            {
 	                anchor: '100%',
-	                name: 'node_kind',
+	                name: 'kind',
 	                fieldLabel: 'Kind',
 	                xtype: 'combo',
 	                store: this.defaultFeeds,
@@ -44,7 +42,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 	                allowBlank: false
 	            },
 	            {anchor: '100%',
-	            	name: 'node_name',
+	            	name: 'name',
 	            	fieldLabel: 'Name',
 	            	xtype: 'textfield',
 	            	allowBlank: false
@@ -52,7 +50,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 	            },
 	            {
 	            	anchor: '100%',
-	            	name: 'node_desc',
+	            	name: 'description',
 	            	fieldLabel: 'Description',
 	            	xtype: 'textarea',
 	            	maxLength: 255
@@ -61,14 +59,12 @@ Ext.define('RiskAnalyzer.NodeWindow', {
             },
             {
               xtype: 'fieldset',
-              itemId: 'address',
               title: 'Location',
               padding: 10,
               items: [
             {
             	anchor: '100%',
-            	name: 'node_address',
-            	itemId: 'node_address',
+            	name: 'address',
             	fieldLabel: 'Address',
             	xtype: 'textfield',
             	allowBlank: false,
@@ -79,7 +75,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
             },
 	            {
 	            	anchor: '100%',
-	            	name: 'node_latitude',
+	            	name: 'latitude',
 	            	fieldLabel: 'Latitude',
 	            	xtype: 'numberfield',
 	            	hideTrigger: true,
@@ -88,7 +84,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 	            },
 	            {
 	            	anchor: '100%',
-	            	name: 'node_longitude',
+	            	name: 'longitude',
 	            	fieldLabel: 'Longitude',
 	            	xtype: 'numberfield',
 	            	hideTrigger: true,
@@ -100,7 +96,6 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 
             {
             	xtype: 'fieldset',
-            	itemId: 'hazard',
             	title: 'Hazard Event Intensities',
             	padding: 10,
             	items: [
@@ -115,7 +110,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
         items: [{
             xtype: 'numberfield',
             fieldLabel: 'Risk Category I',
-            name: 'node_risk_category_1',
+            name: 'riskCategory1',
             anchor:'96%',
             hideTrigger: true,
             allowBlank: false,
@@ -124,7 +119,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
         }, {
             xtype: 'numberfield',
             fieldLabel: 'Risk Category II',
-            name: 'node_risk_category_2',
+            name: 'riskCategory2',
             anchor:'96%',
             hideTrigger: true,
             allowBlank: false,
@@ -134,7 +129,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
         {
             xtype: 'numberfield',
             fieldLabel: 'Risk Category III',
-            name: 'node_risk_category_3',
+            name: 'riskCategory3',
             anchor:'96%',
             hideTrigger: true,
             allowBlank: false,
@@ -152,7 +147,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
         items: [{
             xtype: 'numberfield',
             fieldLabel: 'Recovery Time I',
-            name: 'node_recovery_time_1',
+            name: 'recoveryTime1',
             anchor:'100%',
             hideTrigger: true,
             allowBlank: false,
@@ -161,7 +156,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
         },{
             xtype: 'numberfield',
             fieldLabel: 'Recovery Time II',
-            name: 'node_recovery_time_2',
+            name: 'recoveryTime2',
             anchor:'100%',
             hideTrigger: true,
             allowBlank: false,
@@ -171,7 +166,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
         {
             xtype: 'numberfield',
             fieldLabel: 'Recovery Time III',
-            name: 'node_recovery_time_3',
+            name: 'recoveryTime3',
             anchor:'100%',
             hideTrigger: true,
             allowBlank: false,
@@ -193,7 +188,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
     	allowBlank: false,
     	labelWidth: 110,
     	defaults: {
-    		name: 'node_type'
+    		name: 'type'
     	},
     	items: [
     	        {
@@ -225,7 +220,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
                 xtype: 'button',
                 text: 'Save',
                 scope: this,
-                handler: this.onAddClick
+                handler: this.onSaveClick
             }, {
                 xtype: 'button',
                 text: 'Cancel',
@@ -244,7 +239,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
     onAddressBlur: function(field, eOpts) {
       var form = this.form;
       var fieldValues = form.getForm().getFieldValues();
-      var address = fieldValues.node_address;
+      var address = fieldValues.address;
       form.setLoading({msg: 'Validating address...'});
 
       this.geocoder.geocode({'address': address}, function(results, status) {
@@ -253,24 +248,24 @@ Ext.define('RiskAnalyzer.NodeWindow', {
           var lng = results[0].geometry.location.lng();
           var lat = results[0].geometry.location.lat();
 
-          fieldValues.node_latitude = lat;
-          fieldValues.node_longitude = lng;
+          fieldValues.latitude = lat;
+          fieldValues.longitude = lng;
           form.getForm().setValues(fieldValues);
         } else {
           form.setLoading(false);
           field.markInvalid(address + " is not a valid address");
-          fieldValues.node_latitude = null;
-          fieldValues.node_longitude = null;
+          fieldValues.latitude = null;
+          fieldValues.longitude = null;
           form.getForm().setValues(fieldValues);
         }
       });
     },
 
     /**
-     * React to the add button being clicked.
+     * React to the Save button being clicked.
      * @private
      */
-    onAddClick: function() {
+    onSaveClick: function() {
       if (this.form.getForm().isValid()) {
         var fieldValues = this.form.getForm().getFieldValues();
 

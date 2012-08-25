@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scirisk.riskanalyzer.domain.Network;
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
@@ -41,43 +42,13 @@ public class NetworkController {
 	@Autowired
 	private NetworkParser networkParser;
 
-	@RequestMapping(value = "/NetworkMap.do", method = RequestMethod.POST)
-	public void getNetworkForGoogleMap(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-
-		response.setContentType("application/json");
-		Network network = networkManager.read();
-		Collection<NetworkNode> nodes = network.getNodes();
-		Collection<NetworkEdge> edges = network.getEdges();
-		JSONArray nodesArray = new JSONArray();
-		for (NetworkNode nn : nodes) {
-			JSONObject o = new JSONObject();
-			o.element("id", nn.getId());
-			o.element("lat", nn.getLatitude());
-			o.element("lng", nn.getLongitude());
-			o.element("title", nn.getName());
-			o.element("kind", nn.getKind().toString());
-			nodesArray.add(o);
-		}
-
-		JSONArray edgesArray = new JSONArray();
-		for (NetworkEdge e : edges) {
-			JSONObject o = new JSONObject();
-			o.element("id", e.getId());
-			o.element("srcLat", e.getSourceNode().getLatitude());
-			o.element("srcLng", e.getSourceNode().getLongitude());
-			o.element("trgLat", e.getTargetNode().getLatitude());
-			o.element("trgLng", e.getTargetNode().getLongitude());
-			edgesArray.add(o);
-		}
-
-		JSONObject result = new JSONObject();
-		result.element("nodes", nodesArray);
-		result.element("edges", edgesArray);
-		response.getWriter().write(result.toString());
+	@RequestMapping(value = "/network/map", method = RequestMethod.GET)
+	public @ResponseBody
+	Network getNetworkForGoogleMap() throws Exception {
+		return networkManager.read();
 	}
 
-	@RequestMapping(value = "/NetworkTree.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/network/tree", method = RequestMethod.GET)
 	public void getNetworkForTree(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		response.setContentType("application/json");
@@ -187,8 +158,8 @@ public class NetworkController {
 		for (NetworkEdge e : edges) {
 			JSONObject edgeObject = new JSONObject();
 			edgeObject.element("id", "e_" + e.getId());
-			final String caption = e.getSourceNode().getName() + " > "
-					+ e.getTargetNode().getName();
+			final String caption = e.getSource().getName() + " > "
+					+ e.getTarget().getName();
 			edgeObject.element("text", caption);
 			edgeObject.element("leaf", true);
 			edgesArray.add(edgeObject);

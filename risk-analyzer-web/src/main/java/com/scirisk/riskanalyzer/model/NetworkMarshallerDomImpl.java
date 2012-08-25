@@ -100,8 +100,8 @@ public class NetworkMarshallerDomImpl implements NetworkMarshaller {
       for (NetworkEdge ne : network.getEdges()) {
         Element edgeElement = doc.createElement("edge");
         edgeElement.setAttribute("purchasingVolume", String.valueOf(ne.getPurchasingVolume()));
-        edgeElement.setAttribute("source", String.valueOf(ne.getSourceNode().getId()));
-        edgeElement.setAttribute("target", String.valueOf(ne.getTargetNode().getId()));
+        edgeElement.setAttribute("source", String.valueOf(ne.getSource().getId()));
+        edgeElement.setAttribute("target", String.valueOf(ne.getTarget().getId()));
         edgesElement.appendChild(edgeElement);
       }
       

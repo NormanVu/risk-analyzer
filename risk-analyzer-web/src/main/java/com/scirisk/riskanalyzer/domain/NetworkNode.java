@@ -17,7 +17,7 @@ public class NetworkNode implements Serializable {
 	private Kind kind;
 	private Type type;
 	private String name;
-	private String desc;
+	private String description;
 	private String address;
 	private Double latitude;
 	private Double longitude;
@@ -64,12 +64,12 @@ public class NetworkNode implements Serializable {
 		this.name = name;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getAddress() {

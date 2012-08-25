@@ -91,8 +91,8 @@ public class CalculateRequestMarshaller {
     Element edgesElm = new Element("edges", networkNamespace);
     for (NetworkEdge ne : edges) {
       Element edgeElm = new Element("edge", networkNamespace);
-      edgeElm.setAttribute("source", String.valueOf(ne.getSourceNode().getId()));
-      edgeElm.setAttribute("target", String.valueOf(ne.getTargetNode().getId()));
+      edgeElm.setAttribute("source", String.valueOf(ne.getSource().getId()));
+      edgeElm.setAttribute("target", String.valueOf(ne.getTarget().getId()));
       edgeElm.setAttribute("purchasingVolume", String.valueOf(ne.getPurchasingVolume()));
       edgesElm.addContent(edgeElm);
     }

@@ -33,8 +33,8 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 		NetworkNode srcNode = em.find(NetworkNode.class, sourceId);
 		NetworkNode destNode = em.find(NetworkNode.class, targetId);
 
-		edge.setSourceNode(srcNode);
-		edge.setTargetNode(destNode);
+		edge.setSource(srcNode);
+		edge.setTarget(destNode);
 
 		em.persist(edge);
 

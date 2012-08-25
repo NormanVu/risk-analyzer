@@ -59,8 +59,8 @@ public class EdgeController {
 		JSONObject edgeJson = new JSONObject();
 		edgeJson.put("edge_id", edge.getId());
 		edgeJson.put("edge_purchasing_volume", edge.getPurchasingVolume());
-		edgeJson.put("edge_source", edge.getSourceNode().getId());
-		edgeJson.put("edge_target", edge.getTargetNode().getId());
+		edgeJson.put("edge_source", edge.getSource().getId());
+		edgeJson.put("edge_target", edge.getTarget().getId());
 
 		JSONArray nodesJson = new JSONArray();
 
