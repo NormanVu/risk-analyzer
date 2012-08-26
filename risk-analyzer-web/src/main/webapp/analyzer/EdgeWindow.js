@@ -7,12 +7,24 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
 
   initComponent: function() {
     this.addEvents(
-      /**
-       * @event nodecreated
-       * @param {RiskAnalyzer.EdgeWindow} this
-       */
       'edgecreated'
     );
+    
+    
+    Ext.apply(Ext.form.field.VTypes, {
+
+        different: function(val, field) {
+            if (field.referenceFieldId) {
+                var referenceField = field.up('form').down('#' + field.referenceFieldId);
+                var targetValue = field.getValue();
+                var referenceValue = referenceField.getValue();
+                return targetValue != referenceValue;
+            }
+            return true;
+        },
+
+        differentText: 'Source and Target cannot be the same'
+    });
 
     this.sourceStore = Ext.create('Ext.data.Store', {
       fields: ['id', 'name']
@@ -26,15 +38,18 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
             bodyPadding: '12 10 10',
             border: false,
             unstyled: true,
+            defaults : {
+            	anchor : '100%',
+            	labelWidth : 120
+            },
             items: [{
                 xtype: 'hiddenfield',
                 name: 'edge_id'
               },
               {
-                anchor: '100%',
                 name: 'edge_source',
+                id : 'source',
                 fieldLabel: 'Source',
-                labelWidth: 120,
                 xtype: 'combo',
                 store: this.sourceStore,
                 queryMode: 'local',
@@ -44,27 +59,26 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
                 editable: false
             },
             {
-                anchor: '100%',
                 name: 'edge_target',
+                id : 'target',
                 fieldLabel: 'Target',
-                labelWidth: 120,
                 xtype: 'combo',
                 store: this.targetStore,
                 queryMode: 'local',
                 valueField: 'id',
                 displayField: 'name',
                 allowBlank: false,
-                editable: false
+                editable: false,
+                vtype : 'different',
+                referenceFieldId : 'source'
             },
             {
             	xtype: 'numberfield',
-            	anchor: '100%',
             	name: 'edge_purchasing_volume',
             	fieldLabel: 'Purchasing Volume',
             	minValue: 0,
             	maxValue: 1,
             	hideTrigger: true,
-            	labelWidth: 120,
             	allowBlank: false
             	
             }
@@ -117,11 +131,6 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
       }
     },
 
-    /**
-     * React to the edge creation passing
-     * @private
-     * @param {Object} response The response object
-     */
     addEdgeSuccess: function(response){
         this.form.setLoading(false);
 
@@ -129,10 +138,6 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
         this.destroy();
     },
 
-    /**
-     * React to the edge creation failing
-     * @private
-     */
     addEdgeFailure: function(){
         this.form.setLoading(false);
         Ext.MessageBox.show({
