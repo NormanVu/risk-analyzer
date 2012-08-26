@@ -1,4 +1,5 @@
-This project is built continuously in the cloud powered by BuildHive. Click here [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/) to see the latest build result.
+This project is built continuously in the cloud powered by [BuildHive](https://buildhive.cloudbees.com).
+Click here [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/) to see the latest build result.
 
 ## Risk Analyzer
 
