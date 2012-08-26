@@ -1,3 +1,6 @@
+This project is built continuously in the cloud powered by [BuildHive](https://buildhive.cloudbees.com).
+Click here [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/) to see the latest build result.
+
 ## Risk Analyzer
 
 This repository hosts the source code of a startup project I took part in few months ago.
