@@ -19,10 +19,10 @@
 				<executions>
 					<!-- -->
 					<execution>
-						<id>documentation identifier</id>
-						<phase>pre-site</phase>
+						<id>documentation</id>
+						<phase>package</phase>
 						<goals>
-							<goal>generate-html</goal>
+							<!-- <goal>generate-html</goal> -->
 							<goal>generate-pdf</goal>
 						</goals>
 						<configuration>
