@@ -61,8 +61,4 @@ public class NetworkEdgeFormBean {
 		return nodes;
 	}
 
-	public void setNodes(List<NetworkNode> nodes) {
-		this.nodes = nodes;
-	}
-
 }
