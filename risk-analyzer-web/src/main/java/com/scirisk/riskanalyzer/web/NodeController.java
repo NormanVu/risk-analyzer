@@ -1,16 +1,10 @@
 package com.scirisk.riskanalyzer.web;
 
-import java.io.PrintWriter;
 import java.util.Collection;
 
-import javax.servlet.http.HttpServletResponse;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,16 +18,13 @@ import com.scirisk.riskanalyzer.persistence.NetworkNodeManager;
 @RequestMapping(value = "/node")
 public class NodeController {
 
-	Logger logger = LoggerFactory.getLogger(NodeController.class);
-
 	@Autowired
-	private NetworkNodeManager networkNodeManager;
+	NetworkNodeManager networkNodeManager;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public void save(NetworkNode node, HttpServletResponse response)
-			throws Exception {
+	public ResponseEntity<String> save(NetworkNode node) throws Exception {
 		networkNodeManager.save(node);
-		response.setStatus(HttpServletResponse.SC_CREATED);
+		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -43,25 +34,16 @@ public class NodeController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable("id") Long nodeId,
-			HttpServletResponse response) throws Exception {
+	public ResponseEntity<String> delete(@PathVariable("id") Long nodeId)
+			throws Exception {
 		networkNodeManager.delete(nodeId);
+		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public void findAll(HttpServletResponse resp) throws Exception {
-		resp.setContentType("application/json");
-		PrintWriter out = resp.getWriter();
-		Collection<NetworkNode> nodes = networkNodeManager.findAll();
-		JSONArray array = new JSONArray();
-
-		for (NetworkNode n : nodes) {
-			JSONObject object = new JSONObject();
-			object.element("id", n.getId());
-			object.element("name", n.getName());
-			array.add(object);
-		}
-		out.println(array.toString());
+	public @ResponseBody
+	Collection<NetworkNode> findAll() throws Exception {
+		return networkNodeManager.findAll();
 	}
 
 }
