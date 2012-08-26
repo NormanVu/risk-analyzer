@@ -20,7 +20,7 @@
 					<!-- -->
 					<execution>
 						<id>documentation</id>
-						<phase>package</phase>
+						<phase>pre-site</phase>
 						<goals>
 							<!-- <goal>generate-html</goal> -->
 							<goal>generate-pdf</goal>
