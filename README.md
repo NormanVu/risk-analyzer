@@ -28,3 +28,4 @@ the network of suppliers for their company. The application supports the followi
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/simulation.png)
 
 ext-4.1.0-gpl
+https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon
