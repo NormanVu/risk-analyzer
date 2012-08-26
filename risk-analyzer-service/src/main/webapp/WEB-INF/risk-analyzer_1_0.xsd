@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://scirisk.com/xml/ns/risk-analyzer"
+    xmlns:risk-analyzer="http://scirisk.com/xml/ns/risk-analyzer"
+    xmlns:network="http://scirisk.com/xml/ns/network"
+    elementFormDefault="qualified">
+
+  <xsd:import namespace="http://scirisk.com/xml/ns/network" schemaLocation="network_1_0.xsd" />
+
+  <xsd:element name="CalculateRequest" >
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Network" type="network:NetworkType" minOccurs="1" maxOccurs="1" />
+        <xsd:element name="InputParams" type="risk-analyzer:ParametersType" minOccurs="1" maxOccurs="1" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="CalculateResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="FrequencyDistribution" type="risk-analyzer:FrequencyDistributionType" minOccurs="1" maxOccurs="1" />
+        <xsd:element name="OutputParams" type="risk-analyzer:ParametersType" minOccurs="1" maxOccurs="1" />
+        <xsd:element name="InputParams" type="risk-analyzer:ParametersType" minOccurs="1" maxOccurs="1" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="FrequencyDistributionType">
+    <xsd:sequence>
+      <xsd:element name="Point" type="risk-analyzer:PointType" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="PointType">
+    <xsd:attribute name="X" type="xsd:double" use="required" />
+    <xsd:attribute name="Y" type="xsd:double" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="ParameterType">
+    <xsd:attribute name="name" type="xsd:string" />
+    <xsd:attribute name="value" type="xsd:string" />
+  </xsd:complexType>
+
+  <xsd:complexType name="ParametersType">
+    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="Parameter" type="risk-analyzer:ParameterType" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>
