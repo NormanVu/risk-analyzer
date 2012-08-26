@@ -1,4 +1,4 @@
-The project is built continuously in the cloud powered by BuildHive. Here is the link to the latest build result [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/).
+This project is built continuously in the cloud powered by BuildHive. Click here [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/) to see the latest build result.
 
 ## Risk Analyzer
 
@@ -30,4 +30,3 @@ the network of suppliers for their company. The application supports the followi
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/simulation.png)
 
 ext-4.1.0-gpl
-[![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/)
