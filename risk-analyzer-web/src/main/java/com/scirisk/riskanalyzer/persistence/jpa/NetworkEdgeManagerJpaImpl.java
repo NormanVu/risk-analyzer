@@ -61,7 +61,7 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 		em.getTransaction().commit();
 	}
 
-	public NetworkEdge read(final Long edgeId) {
+	public NetworkEdge findOne(final Long edgeId) {
 		EntityManager em = emf.createEntityManager();
 		NetworkEdge edge = em.find(NetworkEdge.class, edgeId);
 		return edge;

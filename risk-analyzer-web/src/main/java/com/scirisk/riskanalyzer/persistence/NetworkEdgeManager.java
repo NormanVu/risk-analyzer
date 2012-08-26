@@ -10,7 +10,7 @@ public interface NetworkEdgeManager {
 
   void delete(Long edgeId);
 
-  NetworkEdge read(Long edgeId);
+  NetworkEdge findOne(Long edgeId);
 
   List<NetworkEdge> findAll();
 

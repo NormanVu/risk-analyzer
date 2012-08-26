@@ -179,7 +179,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
     });
     win.setSource(json.nodes);
     win.setTarget(json.nodes);
-    win.setFieldValues(json.edge);
+    win.setFieldValues(json);
     win.show();
   },
 

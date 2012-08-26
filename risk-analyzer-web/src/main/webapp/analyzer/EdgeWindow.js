@@ -44,10 +44,10 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
             },
             items: [{
                 xtype: 'hiddenfield',
-                name: 'edge_id'
+                name: 'id'
               },
               {
-                name: 'edge_source',
+                name: 'sourceId',
                 id : 'source',
                 fieldLabel: 'Source',
                 xtype: 'combo',
@@ -59,7 +59,7 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
                 editable: false
             },
             {
-                name: 'edge_target',
+                name: 'targetId',
                 id : 'target',
                 fieldLabel: 'Target',
                 xtype: 'combo',
@@ -74,7 +74,7 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
             },
             {
             	xtype: 'numberfield',
-            	name: 'edge_purchasing_volume',
+            	name: 'purchasingVolume',
             	fieldLabel: 'Purchasing Volume',
             	minValue: 0,
             	maxValue: 1,
@@ -97,7 +97,7 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
                 xtype: 'button',
                 text: 'Save',
                 scope: this,
-                handler: this.onAddClick
+                handler: this.onSaveClick
             }, {
                 xtype: 'button',
                 text: 'Cancel',
@@ -116,7 +116,7 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
      * React to the add button being clicked.
      * @private
      */
-    onAddClick: function() {
+    onSaveClick: function() {
       if (this.form.getForm().isValid()) {
         var fieldValues = this.form.getForm().getFieldValues();
         this.form.setLoading({msg: 'Saving edge...'});
