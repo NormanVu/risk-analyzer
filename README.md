@@ -1,7 +1,7 @@
 This project is built continuously in the cloud powered by [BuildHive](https://buildhive.cloudbees.com).
 Click here [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/) to see the latest build result.
 Click [here](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/com.scirisk$risk-analyzer-web/ws/target/site/cobertura/index.html) to see the latest code coverage report powered by [Cobertura](http://cobertura.sourceforge.net).
-The report might be temporarily unavailable when the build is in progress.
+Note that the report might be temporarily unavailable when the build is in progress.
 
 ## Risk Analyzer
 
