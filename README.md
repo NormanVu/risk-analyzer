@@ -30,4 +30,7 @@ the network of suppliers for their company. The application supports the followi
 
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/simulation.png)
 
+## Project Metrics
+Click [here](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/com.scirisk$risk-analyzer-web/ws/target/site/cobertura/index.html) to see the latest code coverage report.
+
 ext-4.1.0-gpl
