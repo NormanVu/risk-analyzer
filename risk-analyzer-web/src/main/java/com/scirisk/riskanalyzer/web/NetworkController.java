@@ -140,16 +140,4 @@ public class NetworkController {
 		return edgesArray;
 	}
 
-	class ImportResult {
-		private Boolean success;
-
-		public ImportResult(Boolean success) {
-			this.success = success;
-		}
-
-		public Boolean getSuccess() {
-			return success;
-		}
-	}
-
 }

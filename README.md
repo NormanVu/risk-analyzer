@@ -1,6 +1,8 @@
 This project is built continuously in the cloud powered by [BuildHive](https://buildhive.cloudbees.com).
 Click here [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/) to see the latest build result.
 
+Click [here](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/com.scirisk$risk-analyzer-web/ws/target/site/cobertura/index.html) to see the latest code coverage report powered by [Cobertura](http://cobertura.sourceforge.net).
+
 ## Risk Analyzer
 
 This repository hosts the source code of a startup project I took part in few months ago.
@@ -29,8 +31,5 @@ the network of suppliers for their company. The application supports the followi
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/edge-dialog.png)
 
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/simulation.png)
-
-## Project Metrics
-Click [here](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/com.scirisk$risk-analyzer-web/ws/target/site/cobertura/index.html) to see the latest code coverage report.
 
 ext-4.1.0-gpl
