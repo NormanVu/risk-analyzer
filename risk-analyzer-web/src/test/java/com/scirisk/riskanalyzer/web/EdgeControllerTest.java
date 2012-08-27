@@ -1,5 +1,6 @@
 package com.scirisk.riskanalyzer.web;
 
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -10,6 +11,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -32,16 +34,21 @@ public class EdgeControllerTest {
 
 	@Test
 	public void testSave() throws Exception {
+		Long edgeId = new Long(13);
+		Double purchasingVolume = new Double(0.5);
 		NetworkEdgeFormBean edge = new NetworkEdgeFormBean();
-		edge.setId(new Long(13));
-		edge.setPurchasingVolume(0.5);
+		edge.setId(edgeId);
+		edge.setPurchasingVolume(purchasingVolume);
 		edge.setSourceId(new Long(113));
 		edge.setTargetId(new Long(311));
 
 		ResponseEntity<String> responseEntity = controller.save(edge);
-		verify(controller.networkEdgeManager).save(edge.getId(),
-				edge.getPurchasingVolume(), edge.getSourceId(),
-				edge.getTargetId());
+		ArgumentCaptor<NetworkEdge> argument = ArgumentCaptor
+				.forClass(NetworkEdge.class);
+		verify(controller.networkEdgeManager).save(argument.capture(),
+				eq(edge.getSourceId()), eq(edge.getTargetId()));
+		Assert.assertEquals(edgeId, argument.getValue().getId());
+		Assert.assertEquals(purchasingVolume, argument.getValue().getPurchasingVolume());
 		Assert.assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
 	}
 
@@ -69,10 +76,6 @@ public class EdgeControllerTest {
 		Assert.assertEquals(new Long(311), edge.getTargetId());
 		Assert.assertEquals(edge.getNodes(), stubList);
 	}
-
-	// NetworkEdge edge = networkEdgeManager.findOne(edgeId);
-	// List<NetworkNode> nodes = networkNodeManager.findAll();
-	// return new NetworkEdgeFormBean(edge, nodes);
 
 	@Test
 	public void testDelete() throws Exception {

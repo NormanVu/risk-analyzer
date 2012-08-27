@@ -6,12 +6,12 @@ import com.scirisk.riskanalyzer.domain.NetworkEdge;
 
 public interface NetworkEdgeManager {
 
-  void save(Long edgeId, Double purchasingVolume, Long sourceId, Long targetId);
+	void save(NetworkEdge edge, Long sourceId, Long targetId);
 
-  void delete(Long edgeId);
+	void delete(Long edgeId);
 
-  NetworkEdge findOne(Long edgeId);
+	NetworkEdge findOne(Long edgeId);
 
-  List<NetworkEdge> findAll();
+	List<NetworkEdge> findAll();
 
 }

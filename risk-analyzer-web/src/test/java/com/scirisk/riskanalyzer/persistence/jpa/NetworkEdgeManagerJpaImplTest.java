@@ -15,10 +15,12 @@ import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
+import com.scirisk.riskanalyzer.domain.NetworkNode;
 
 public class NetworkEdgeManagerJpaImplTest {
 	EntityManagerFactory emf;
@@ -35,6 +37,36 @@ public class NetworkEdgeManagerJpaImplTest {
 		when(em.getTransaction()).thenReturn(transaction);
 		manager = new NetworkEdgeManagerJpaImpl();
 		manager.emf = emf;
+	}
+
+	@Test
+	public void testSave() throws Exception {
+		Long edgeId = new Long(13);
+		Double purchasingVolume = new Double(0.5);
+		Long sourceId = new Long(113);
+		Long targetId = new Long(311);
+
+		NetworkEdge edge = new NetworkEdge();
+		edge.setId(edgeId);
+		edge.setPurchasingVolume(purchasingVolume);
+		NetworkNode source = new NetworkNode();
+		source.setId(sourceId);
+		NetworkNode target = new NetworkNode();
+		target.setId(targetId);
+
+		Mockito.when(em.find(NetworkNode.class, sourceId)).thenReturn(source);
+		Mockito.when(em.find(NetworkNode.class, targetId)).thenReturn(target);
+
+		manager.save(edge, sourceId, targetId);
+		InOrder inOrder = Mockito.inOrder(em, transaction);
+		inOrder.verify(transaction).begin();
+		ArgumentCaptor<NetworkEdge> argument = ArgumentCaptor.forClass(NetworkEdge.class);
+		inOrder.verify(em).merge(argument.capture());
+		Assert.assertEquals(edgeId, argument.getValue().getId());
+		Assert.assertEquals(purchasingVolume, argument.getValue().getPurchasingVolume());
+		Assert.assertEquals(source, argument.getValue().getSource());
+		Assert.assertEquals(target, argument.getValue().getTarget());
+		inOrder.verify(transaction).commit();
 	}
 
 	@Test

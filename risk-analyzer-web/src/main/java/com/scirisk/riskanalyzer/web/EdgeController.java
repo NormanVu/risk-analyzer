@@ -28,10 +28,11 @@ public class EdgeController {
 	NetworkNodeManager networkNodeManager;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<String> save(NetworkEdgeFormBean edge)
+	public ResponseEntity<String> save(NetworkEdgeFormBean formBean)
 			throws Exception {
-		networkEdgeManager.save(edge.getId(), edge.getPurchasingVolume(),
-				edge.getSourceId(), edge.getTargetId());
+		
+		networkEdgeManager.save(formBean.getNetworkEdge(),
+				formBean.getSourceId(), formBean.getTargetId());
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 

@@ -17,6 +17,13 @@ public class NetworkEdgeFormBean {
 
 	}
 
+	public NetworkEdge getNetworkEdge() {
+		NetworkEdge edge = new NetworkEdge();
+		edge.setId(id);
+		edge.setPurchasingVolume(purchasingVolume);
+		return edge;
+	}
+
 	public NetworkEdgeFormBean(NetworkEdge edge, List<NetworkNode> nodes) {
 		this.id = edge.getId();
 		this.sourceId = edge.getSource().getId();

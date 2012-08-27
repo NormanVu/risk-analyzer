@@ -17,23 +17,17 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 	@Autowired
 	EntityManagerFactory emf;
 
-	public void save(Long edgeId, Double purchasingVolume, Long sourceId,
-			Long targetId) {
+	public void save(NetworkEdge edge, Long sourceId, Long targetId) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 
-		NetworkEdge edge = edgeId != null ? em.find(NetworkEdge.class, edgeId)
-				: new NetworkEdge();
+		NetworkNode source = em.find(NetworkNode.class, sourceId);
+		NetworkNode target = em.find(NetworkNode.class, targetId);
 
-		edge.setPurchasingVolume(purchasingVolume);
+		edge.setSource(source);
+		edge.setTarget(target);
 
-		NetworkNode srcNode = em.find(NetworkNode.class, sourceId);
-		NetworkNode destNode = em.find(NetworkNode.class, targetId);
-
-		edge.setSource(srcNode);
-		edge.setTarget(destNode);
-
-		em.persist(edge);
+		em.merge(edge);
 
 		em.getTransaction().commit();
 	}
