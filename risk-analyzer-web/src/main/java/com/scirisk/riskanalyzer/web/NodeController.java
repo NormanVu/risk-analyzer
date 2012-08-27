@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.persistence.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
 @Controller
 @RequestMapping(value = "/node")

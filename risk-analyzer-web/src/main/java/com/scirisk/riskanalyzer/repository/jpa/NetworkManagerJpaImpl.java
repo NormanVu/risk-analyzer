@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.persistence.jpa;
+package com.scirisk.riskanalyzer.repository.jpa;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import com.scirisk.riskanalyzer.domain.Network;
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.persistence.NetworkManager;
+import com.scirisk.riskanalyzer.repository.NetworkManager;
 
 public class NetworkManagerJpaImpl implements NetworkManager {
 

@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.persistence.jpa;
+package com.scirisk.riskanalyzer.repository.jpa;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -19,6 +19,7 @@ import org.mockito.InOrder;
 import org.mockito.Mockito;
 
 import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.repository.jpa.NetworkNodeManagerJpaImpl;
 
 public class NetworkNodeManagerJpaImplTest {
 

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.persistence.NetworkEdgeManager;
-import com.scirisk.riskanalyzer.persistence.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
+import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 import com.scirisk.riskanalyzer.web.bean.NetworkEdgeFormBean;
 
 @Controller

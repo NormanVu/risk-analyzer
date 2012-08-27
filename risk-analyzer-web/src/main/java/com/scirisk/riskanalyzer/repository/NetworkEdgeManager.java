@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.persistence;
+package com.scirisk.riskanalyzer.repository;
 
 import java.util.List;
 

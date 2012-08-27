@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.persistence.jpa;
+package com.scirisk.riskanalyzer.repository.jpa;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -21,6 +21,7 @@ import org.mockito.Mockito;
 
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.repository.jpa.NetworkEdgeManagerJpaImpl;
 
 public class NetworkEdgeManagerJpaImplTest {
 	EntityManagerFactory emf;

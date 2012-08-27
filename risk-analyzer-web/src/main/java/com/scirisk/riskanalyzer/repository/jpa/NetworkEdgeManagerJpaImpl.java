@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.persistence.jpa;
+package com.scirisk.riskanalyzer.repository.jpa;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.persistence.NetworkEdgeManager;
+import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
 
 public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 

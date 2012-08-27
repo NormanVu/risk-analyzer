@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.persistence.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
 public class NodeControllerTest {
 

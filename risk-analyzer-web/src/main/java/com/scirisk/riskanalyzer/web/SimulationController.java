@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.scirisk.riskanalyzer.domain.Network;
-import com.scirisk.riskanalyzer.persistence.NetworkManager;
+import com.scirisk.riskanalyzer.repository.NetworkManager;
 import com.scirisk.riskanalyzer.soap.client.CalculateRequest;
 import com.scirisk.riskanalyzer.soap.client.CalculateResponse;
 import com.scirisk.riskanalyzer.soap.client.RiskAnalyzerServiceProxy;

@@ -31,10 +31,10 @@
 
 	<!-- Configures data access objects -->
 	<bean id="networkManager"
-		class="com.scirisk.riskanalyzer.persistence.jpa.NetworkManagerJpaImpl" />
+		class="com.scirisk.riskanalyzer.repository.jpa.NetworkManagerJpaImpl" />
 	<bean id="networkNodeManager"
-		class="com.scirisk.riskanalyzer.persistence.jpa.NetworkNodeManagerJpaImpl" />
+		class="com.scirisk.riskanalyzer.repository.jpa.NetworkNodeManagerJpaImpl" />
 	<bean id="networkEdgeManager"
-		class="com.scirisk.riskanalyzer.persistence.jpa.NetworkEdgeManagerJpaImpl" />
+		class="com.scirisk.riskanalyzer.repository.jpa.NetworkEdgeManagerJpaImpl" />
 
 </beans>

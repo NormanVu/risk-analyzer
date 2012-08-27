@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.persistence.jpa;
+package com.scirisk.riskanalyzer.repository.jpa;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.persistence.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
 public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 

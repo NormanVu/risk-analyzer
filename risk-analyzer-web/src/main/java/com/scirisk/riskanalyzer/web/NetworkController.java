@@ -23,7 +23,7 @@ import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
 import com.scirisk.riskanalyzer.model.NetworkMarshaller;
 import com.scirisk.riskanalyzer.model.NetworkParser;
-import com.scirisk.riskanalyzer.persistence.NetworkManager;
+import com.scirisk.riskanalyzer.repository.NetworkManager;
 
 @Controller
 public class NetworkController {
