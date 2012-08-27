@@ -15,6 +15,11 @@
 	<url>http://sci-risk-backend-ws.appspot.com</url>
 
 	<dependencies>
+		<!-- Internal -->
+		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-domain</artifactId>
+		</dependency>
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
