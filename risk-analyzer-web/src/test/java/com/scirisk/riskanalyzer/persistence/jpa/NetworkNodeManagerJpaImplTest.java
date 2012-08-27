@@ -35,8 +35,7 @@ public class NetworkNodeManagerJpaImplTest {
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
 		manager = new NetworkNodeManagerJpaImpl();
-		manager.setEntityManagerFactory(emf); // TODO why it's not passed to the
-												// constructor?
+		manager.emf = emf;
 	}
 
 	@Test

@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
@@ -13,12 +14,8 @@ import com.scirisk.riskanalyzer.persistence.NetworkEdgeManager;
 
 public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 
-	private EntityManagerFactory emf;
-
-	@PersistenceUnit
-	public void setEntityManagerFactory(EntityManagerFactory emf) {
-		this.emf = emf;
-	}
+	@Autowired
+	EntityManagerFactory emf;
 
 	public void save(Long edgeId, Double purchasingVolume, Long sourceId,
 			Long targetId) {
