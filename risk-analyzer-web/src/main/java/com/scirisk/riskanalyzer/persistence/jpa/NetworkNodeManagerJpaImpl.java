@@ -1,6 +1,5 @@
 package com.scirisk.riskanalyzer.persistence.jpa;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
