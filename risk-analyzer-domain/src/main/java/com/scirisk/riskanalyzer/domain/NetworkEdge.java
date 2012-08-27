@@ -1,8 +1,8 @@
 package com.scirisk.riskanalyzer.domain;
 
 import java.io.Serializable;
+
 // TODO rename to DistributionChannel
-//@Entity()
 @SuppressWarnings("serial")
 public class NetworkEdge implements Serializable {
 
@@ -11,8 +11,6 @@ public class NetworkEdge implements Serializable {
 	private NetworkNode source;
 	private NetworkNode target;
 
-	//@Id()
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -29,7 +27,6 @@ public class NetworkEdge implements Serializable {
 		this.purchasingVolume = purchasingVolume;
 	}
 
-	//@OneToOne()
 	public NetworkNode getSource() {
 		return source;
 	}
@@ -38,7 +35,6 @@ public class NetworkEdge implements Serializable {
 		this.source = source;
 	}
 
-	//@OneToOne()
 	public NetworkNode getTarget() {
 		return target;
 	}

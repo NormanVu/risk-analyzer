@@ -3,7 +3,6 @@ package com.scirisk.riskanalyzer.domain;
 import java.io.Serializable;
 
 // TODO Rename to Facility
-//@Entity()
 @SuppressWarnings("serial")
 public class NetworkNode implements Serializable {
 
@@ -22,8 +21,6 @@ public class NetworkNode implements Serializable {
 	private Double recoveryTime2;
 	private Double recoveryTime3;
 
-	//@Id()
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -32,7 +29,6 @@ public class NetworkNode implements Serializable {
 		this.id = id;
 	}
 
-	//@Enumerated(EnumType.STRING)
 	public Kind getKind() {
 		return kind;
 	}
@@ -41,7 +37,6 @@ public class NetworkNode implements Serializable {
 		this.kind = kind;
 	}
 
-	//@Enumerated(EnumType.STRING)
 	public Type getType() {
 		return type;
 	}

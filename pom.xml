@@ -21,6 +21,7 @@
 		<module>risk-analyzer-repository</module>
 		<module>risk-analyzer-repository-jpa</module>
 		<module>risk-analyzer-repository-mongodb</module>
+		<module>risk-analyzer-domain</module>
 	</modules>
 
 	<build>
@@ -39,6 +40,11 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-domain</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-jpa</artifactId>
