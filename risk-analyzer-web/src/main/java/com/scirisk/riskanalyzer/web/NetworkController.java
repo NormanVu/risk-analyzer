@@ -29,13 +29,13 @@ import com.scirisk.riskanalyzer.persistence.NetworkManager;
 public class NetworkController {
 
 	@Autowired
-	private NetworkManager networkManager;
+	NetworkManager networkManager;
 
 	@Autowired
 	private NetworkMarshaller networkMarshaller;
 
 	@Autowired
-	private NetworkParser networkParser;
+	NetworkParser networkParser;
 
 	@RequestMapping(value = "/network/map", method = RequestMethod.GET)
 	public @ResponseBody
@@ -109,7 +109,7 @@ public class NetworkController {
 			jsonResponse.put("success", false);
 		}
 
-		// TODO GET RID OF IT
+		// FIXME This text/html content type is probably a bug in ExtJS 4
 		resp.setContentType("text/html");
 		resp.getWriter().println(jsonResponse.toString(2));
 	}
