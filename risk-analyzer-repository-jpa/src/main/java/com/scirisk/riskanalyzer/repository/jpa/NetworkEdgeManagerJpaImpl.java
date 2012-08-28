@@ -1,6 +1,7 @@
 package com.scirisk.riskanalyzer.repository.jpa;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,19 +19,25 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 		this.emf = emf;
 	}
 
-	public void save(NetworkEdge edge, Long sourceId, Long targetId) {
+	public NetworkEdge save(NetworkEdge edge, String sourceId, String targetId) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 
 		NetworkNode source = em.find(NetworkNode.class, sourceId);
 		NetworkNode target = em.find(NetworkNode.class, targetId);
 
+		edge.setId(isBlank(edge.getId()) ? UUID.randomUUID().toString() : edge.getId());
 		edge.setSource(source);
 		edge.setTarget(target);
 
 		em.merge(edge);
 
 		em.getTransaction().commit();
+		return edge;
+	}
+	
+	boolean isBlank(String string) {
+		return "".equals(string);
 	}
 
 	public List<NetworkEdge> findAll() {
@@ -45,7 +52,7 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 		return nodes;
 	}
 
-	public void delete(final Long edgeId) {
+	public void delete(final String edgeId) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		NetworkEdge edge = em.find(NetworkEdge.class, edgeId);
@@ -53,7 +60,7 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 		em.getTransaction().commit();
 	}
 
-	public NetworkEdge findOne(final Long edgeId) {
+	public NetworkEdge findOne(final String edgeId) {
 		EntityManager em = emf.createEntityManager();
 		return em.find(NetworkEdge.class, edgeId);
 	}

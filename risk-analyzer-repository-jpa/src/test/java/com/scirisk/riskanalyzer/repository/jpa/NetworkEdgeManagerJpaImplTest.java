@@ -41,10 +41,10 @@ public class NetworkEdgeManagerJpaImplTest {
 
 	@Test
 	public void testSave() throws Exception {
-		Long edgeId = new Long(13);
+		String edgeId = "13";
 		Double purchasingVolume = new Double(0.5);
-		Long sourceId = new Long(113);
-		Long targetId = new Long(311);
+		String sourceId = "113";
+		String targetId = "311";
 
 		NetworkEdge edge = new NetworkEdge();
 		edge.setId(edgeId);
@@ -71,7 +71,7 @@ public class NetworkEdgeManagerJpaImplTest {
 
 	@Test
 	public void testFindOne() throws Exception {
-		Long edgeId = new Long(13);
+		String edgeId = "13";
 		NetworkEdge edge = new NetworkEdge();
 		when(em.find(NetworkEdge.class, edgeId)).thenReturn(edge);
 		NetworkEdge foundEdge = manager.findOne(edgeId);
@@ -101,7 +101,7 @@ public class NetworkEdgeManagerJpaImplTest {
 
 	@Test
 	public void testDelete() throws Exception {
-		Long edgeId = new Long(13);
+		String edgeId = "13";
 		NetworkEdge edge = new NetworkEdge();
 		when(em.find(NetworkEdge.class, edgeId)).thenReturn(edge);
 

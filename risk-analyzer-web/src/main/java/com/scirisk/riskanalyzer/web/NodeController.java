@@ -29,12 +29,12 @@ public class NodeController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	NetworkNode read(@PathVariable("id") Long nodeId) throws Exception {
+	NetworkNode read(@PathVariable("id") String nodeId) throws Exception {
 		return networkNodeManager.findOne(nodeId);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("id") Long nodeId)
+	public ResponseEntity<String> delete(@PathVariable("id") String nodeId)
 			throws Exception {
 		networkNodeManager.delete(nodeId);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);

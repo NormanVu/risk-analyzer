@@ -38,14 +38,14 @@ public class EdgeController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	NetworkEdgeFormBean read(@PathVariable("id") Long edgeId) throws Exception {
+	NetworkEdgeFormBean read(@PathVariable("id") String edgeId) throws Exception {
 		NetworkEdge edge = networkEdgeManager.findOne(edgeId);
 		List<NetworkNode> nodes = networkNodeManager.findAll();
 		return new NetworkEdgeFormBean(edge, nodes);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("id") Long edgeId)
+	public ResponseEntity<String> delete(@PathVariable("id") String edgeId)
 			throws Exception {
 		networkEdgeManager.delete(edgeId);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);

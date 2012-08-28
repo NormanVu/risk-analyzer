@@ -35,7 +35,7 @@ public class NetworkParserDomImpl implements NetworkParser {
     try {
       DocumentBuilder builder = f.newDocumentBuilder();
       Document document = builder.parse(is);
-      Map<Long, NetworkNode> nodesMap = new HashMap<Long, NetworkNode>();
+      Map<String, NetworkNode> nodesMap = new HashMap<String, NetworkNode>();
       Network network = new Network();
       Element networkElement = document.getDocumentElement(); // root element is named network
       
@@ -74,7 +74,7 @@ public class NetworkParserDomImpl implements NetworkParser {
     String nameAttr = nodeElement.getAttribute("name");
 
     NetworkNode nn = new NetworkNode();
-    nn.setId(Long.valueOf(idAttr));
+    nn.setId(idAttr);
     nn.setKind(Kind.valueOf(kindAttr));
     nn.setName(nameAttr);
 
@@ -114,13 +114,11 @@ public class NetworkParserDomImpl implements NetworkParser {
     return nn;
   }
 
-  private NetworkEdge parseEdge(final Element edgeElement, final Map<Long, NetworkNode> nodesMap) {
-    String sourceAttr = edgeElement.getAttribute("source");
-    String targetAttr = edgeElement.getAttribute("target");
+  private NetworkEdge parseEdge(final Element edgeElement, final Map<String, NetworkNode> nodesMap) {
+    String sourceId = edgeElement.getAttribute("source");
+    String targetId = edgeElement.getAttribute("target");
     String purchasingVolumeAttr = edgeElement.getAttribute("purchasingVolume");
     NetworkEdge ne = new NetworkEdge();
-    Long sourceId = Long.valueOf(sourceAttr);
-    Long targetId = Long.valueOf(targetAttr);
 
     ne.setPurchasingVolume(Double.valueOf(purchasingVolumeAttr));
     // TODO CHECK THAT NODE EXISTS

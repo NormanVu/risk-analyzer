@@ -35,7 +35,7 @@ public class NodeControllerTest {
 
 	@Test
 	public void testRead() throws Exception {
-		Long nodeId = new Long(13);
+		String nodeId = "13";
 		NetworkNode stub = new NetworkNode();
 		Mockito.when(controller.networkNodeManager.findOne(nodeId)).thenReturn(
 				stub);
@@ -46,7 +46,7 @@ public class NodeControllerTest {
 
 	@Test
 	public void testDelete() throws Exception {
-		Long nodeId = new Long(13);
+		String nodeId = "13";
 		ResponseEntity<String> responseEntity = controller.delete(nodeId);
 		Mockito.verify(controller.networkNodeManager).delete(nodeId);
 		Assert.assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());

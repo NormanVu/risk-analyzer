@@ -6,11 +6,11 @@ import com.scirisk.riskanalyzer.domain.NetworkEdge;
 
 public interface NetworkEdgeManager {
 
-	void save(NetworkEdge edge, Long sourceId, Long targetId);
+	NetworkEdge save(NetworkEdge edge, String sourceId, String targetId);
 
-	void delete(Long edgeId);
+	void delete(String edgeId);
 
-	NetworkEdge findOne(Long edgeId);
+	NetworkEdge findOne(String edgeId);
 
 	List<NetworkEdge> findAll();
 

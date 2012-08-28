@@ -1,6 +1,7 @@
 package com.scirisk.riskanalyzer.repository.jpa;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,13 +18,20 @@ public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 		this.emf = emf;
 	}
 
-	public Long save(final NetworkNode node) {
+	public NetworkNode save(final NetworkNode node) {
+		System.out.printf("node.id [%s]", node.getId());
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
+		node.setId(isBlank(node.getId()) ? UUID.randomUUID().toString() : node
+				.getId());
 		em.merge(node);
 		em.flush();
 		em.getTransaction().commit();
-		return node.getId();
+		return node;
+	}
+
+	boolean isBlank(String string) {
+		return "".equals(string);
 	}
 
 	public List<NetworkNode> findAll() {
@@ -38,7 +46,7 @@ public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 		return nodes;
 	}
 
-	public void delete(final Long nodeId) {
+	public void delete(final String nodeId) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		NetworkNode nn = em.find(NetworkNode.class, nodeId);
@@ -46,7 +54,7 @@ public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 		em.getTransaction().commit();
 	}
 
-	public NetworkNode findOne(final Long nodeId) {
+	public NetworkNode findOne(final String nodeId) {
 		EntityManager em = emf.createEntityManager();
 		NetworkNode node = em.find(NetworkNode.class, nodeId);
 		return node;

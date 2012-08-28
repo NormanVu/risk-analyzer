@@ -34,13 +34,13 @@ public class EdgeControllerTest {
 
 	@Test
 	public void testSave() throws Exception {
-		Long edgeId = new Long(13);
+		String edgeId = "13";
 		Double purchasingVolume = new Double(0.5);
 		NetworkEdgeFormBean edge = new NetworkEdgeFormBean();
 		edge.setId(edgeId);
 		edge.setPurchasingVolume(purchasingVolume);
-		edge.setSourceId(new Long(113));
-		edge.setTargetId(new Long(311));
+		edge.setSourceId("113");
+		edge.setTargetId("311");
 
 		ResponseEntity<String> responseEntity = controller.save(edge);
 		ArgumentCaptor<NetworkEdge> argument = ArgumentCaptor
@@ -48,20 +48,23 @@ public class EdgeControllerTest {
 		verify(controller.networkEdgeManager).save(argument.capture(),
 				eq(edge.getSourceId()), eq(edge.getTargetId()));
 		Assert.assertEquals(edgeId, argument.getValue().getId());
-		Assert.assertEquals(purchasingVolume, argument.getValue().getPurchasingVolume());
+		Assert.assertEquals(purchasingVolume, argument.getValue()
+				.getPurchasingVolume());
 		Assert.assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
 	}
 
 	@Test
 	public void testRead() throws Exception {
-		Long edgeId = new Long(13);
+		String edgeId = "13";
+		String sourceId = "113";
+		String targetId = "311";
 		NetworkEdge stub = new NetworkEdge();
 		stub.setId(edgeId);
 		stub.setPurchasingVolume(0.5);
 		NetworkNode source = new NetworkNode();
-		source.setId(new Long(113));
+		source.setId(sourceId);
 		NetworkNode target = new NetworkNode();
-		target.setId(new Long(311));
+		target.setId(targetId);
 		stub.setSource(source);
 		stub.setTarget(target);
 
@@ -72,14 +75,14 @@ public class EdgeControllerTest {
 		NetworkEdgeFormBean edge = controller.read(edgeId);
 		Assert.assertEquals(edgeId, edge.getId());
 		Assert.assertEquals(new Double(0.5), edge.getPurchasingVolume());
-		Assert.assertEquals(new Long(113), edge.getSourceId());
-		Assert.assertEquals(new Long(311), edge.getTargetId());
+		Assert.assertEquals(sourceId, edge.getSourceId());
+		Assert.assertEquals(targetId, edge.getTargetId());
 		Assert.assertEquals(edge.getNodes(), stubList);
 	}
 
 	@Test
 	public void testDelete() throws Exception {
-		Long nodeId = new Long(13);
+		String nodeId = "13";
 		ResponseEntity<String> responseEntity = controller.delete(nodeId);
 		verify(controller.networkEdgeManager).delete(nodeId);
 		Assert.assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());

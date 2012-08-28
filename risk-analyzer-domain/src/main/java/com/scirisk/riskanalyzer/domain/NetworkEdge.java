@@ -6,16 +6,16 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class NetworkEdge implements Serializable {
 
-	private Long id;
+	private String id;
 	private Double purchasingVolume;
 	private NetworkNode source;
 	private NetworkNode target;
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -6,11 +6,11 @@ import com.scirisk.riskanalyzer.domain.NetworkNode;
 
 public interface NetworkNodeManager {
 
-	Long save(NetworkNode node);
+	NetworkNode save(NetworkNode node);
 
-	NetworkNode findOne(Long nodeId);
+	NetworkNode findOne(String nodeId);
 
-	void delete(Long nodeId);
+	void delete(String nodeId);
 
 	List<NetworkNode> findAll();
 

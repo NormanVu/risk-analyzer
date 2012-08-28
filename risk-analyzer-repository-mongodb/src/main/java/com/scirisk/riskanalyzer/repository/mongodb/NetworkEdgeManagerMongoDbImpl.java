@@ -14,15 +14,15 @@ public class NetworkEdgeManagerMongoDbImpl implements NetworkEdgeManager {
 		this.db = db;
 	}
 
-	public void save(NetworkEdge edge, Long sourceId, Long targetId) {
+	public NetworkEdge save(NetworkEdge edge, String sourceId, String targetId) {
 		throw new IllegalStateException("I'm not implemented yet");
 	}
 
-	public void delete(Long edgeId) {
+	public void delete(String edgeId) {
 		throw new IllegalStateException("I'm not implemented yet");
 	}
 
-	public NetworkEdge findOne(Long edgeId) {
+	public NetworkEdge findOne(String edgeId) {
 		throw new IllegalStateException("I'm not implemented yet");
 	}
 

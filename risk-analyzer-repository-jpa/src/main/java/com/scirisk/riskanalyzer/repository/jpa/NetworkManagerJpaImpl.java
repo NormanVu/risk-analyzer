@@ -51,23 +51,23 @@ public class NetworkManagerJpaImpl implements NetworkManager {
 		em.createQuery("DELETE FROM " + NetworkNode.class.getName())
 				.executeUpdate();
 
-		Map<Long, Long> nodeIdMap = new HashMap<Long, Long>();
+		Map<String, String> nodeIdMap = new HashMap<String, String>();
 
 		// persist nodes and populate nodeIdMap
 		for (NetworkNode nn : network.getNodes()) {
-			Long fakeId = nn.getId();
+			String fakeId = nn.getId();
 			nn.setId(null);
 			em.persist(nn);
 			em.flush();
-			Long generatedId = nn.getId();
+			String generatedId = nn.getId();
 			nodeIdMap.put(fakeId, generatedId);
 		}
 
 		// persist edges with references to nodes created in the same
 		// transaction
 		for (NetworkEdge ne : network.getEdges()) {
-			Long sourceId = nodeIdMap.get(ne.getSource().getId());
-			Long targetId = nodeIdMap.get(ne.getTarget().getId());
+			String sourceId = nodeIdMap.get(ne.getSource().getId());
+			String targetId = nodeIdMap.get(ne.getTarget().getId());
 			NetworkNode source = em.find(NetworkNode.class, sourceId);
 			NetworkNode target = em.find(NetworkNode.class, targetId);
 			ne.setSource(source);

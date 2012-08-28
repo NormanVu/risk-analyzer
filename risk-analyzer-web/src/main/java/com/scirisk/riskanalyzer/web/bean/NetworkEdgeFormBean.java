@@ -7,9 +7,9 @@ import com.scirisk.riskanalyzer.domain.NetworkNode;
 
 public class NetworkEdgeFormBean {
 
-	private Long id;
-	private Long sourceId;
-	private Long targetId;
+	private String id;
+	private String sourceId;
+	private String targetId;
 	private Double purchasingVolume;
 	private List<NetworkNode> nodes;
 
@@ -32,27 +32,27 @@ public class NetworkEdgeFormBean {
 		this.nodes = nodes;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public Long getSourceId() {
+	public String getSourceId() {
 		return sourceId;
 	}
 
-	public void setSourceId(Long sourceId) {
+	public void setSourceId(String sourceId) {
 		this.sourceId = sourceId;
 	}
 
-	public Long getTargetId() {
+	public String getTargetId() {
 		return targetId;
 	}
 
-	public void setTargetId(Long targetId) {
+	public void setTargetId(String targetId) {
 		this.targetId = targetId;
 	}
 

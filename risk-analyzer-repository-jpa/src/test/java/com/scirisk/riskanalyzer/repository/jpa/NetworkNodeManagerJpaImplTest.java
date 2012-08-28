@@ -50,7 +50,7 @@ public class NetworkNodeManagerJpaImplTest {
 
 	@Test
 	public void testDelete() throws Exception {
-		Long nodeId = new Long(13);
+		String nodeId = "13";
 		NetworkNode node = new NetworkNode();
 		when(em.find(NetworkNode.class, nodeId)).thenReturn(node);
 
@@ -63,7 +63,7 @@ public class NetworkNodeManagerJpaImplTest {
 
 	@Test
 	public void testFindOne() throws Exception {
-		Long nodeId = new Long(13);
+		String nodeId = "13";
 		NetworkNode node = new NetworkNode();
 		when(em.find(NetworkNode.class, nodeId)).thenReturn(node);
 		NetworkNode foundNode = manager.findOne(nodeId);

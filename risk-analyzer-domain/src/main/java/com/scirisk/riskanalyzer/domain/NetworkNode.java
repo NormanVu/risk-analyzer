@@ -6,7 +6,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class NetworkNode implements Serializable {
 
-	private Long id;
+	private String id;
 	private Kind kind;
 	private Type type;
 	private String name;
@@ -21,11 +21,11 @@ public class NetworkNode implements Serializable {
 	private Double recoveryTime2;
 	private Double recoveryTime3;
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
