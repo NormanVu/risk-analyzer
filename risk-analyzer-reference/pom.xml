@@ -39,7 +39,7 @@
 					<paperType>A4</paperType>
 					<fop1Extensions>1</fop1Extensions>
 
-					<foCustomization>src/docbkx-stylesheet/fo/docbook.xsl</foCustomization>
+					<foCustomization>${basedir}/src/docbkx-stylesheet/fo/docbook.xsl</foCustomization>
 
 					<customizationParameters>
 						<!-- additional XSLT parameters -->
