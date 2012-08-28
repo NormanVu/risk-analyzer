@@ -5,7 +5,8 @@
 	<!-- Java Persistence API Implementation Configuration -->
 
 	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" />
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	</bean>
 
 	<bean id="networkManager"
 		class="com.scirisk.riskanalyzer.repository.jpa.NetworkManagerJpaImpl">

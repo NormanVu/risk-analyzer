@@ -22,6 +22,6 @@
 	<bean id="networkMarshaller" class="com.scirisk.riskanalyzer.model.NetworkMarshallerDomImpl" />
 	<bean id="networkParser" class="com.scirisk.riskanalyzer.model.NetworkParserDomImpl" />
 
-	<import resource="repository-jpa.xml" />
+	<import resource="classpath:META-INF/spring/repository-jpa.xml" />
 
 </beans>

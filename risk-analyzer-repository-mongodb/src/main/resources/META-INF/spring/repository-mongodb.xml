@@ -6,7 +6,7 @@
 	<!-- MongoDB Repository Implementation Configuration -->
 
 	<context:property-placeholder
-		location="/WEB-INF/spring/repository-mongodb.properties" />
+		location="classpath:META-INF/spring/repository-mongodb.properties" />
 
 	<bean id="mongo" class="com.mongodb.Mongo">
 		<constructor-arg value="${mongodb.host}" />
