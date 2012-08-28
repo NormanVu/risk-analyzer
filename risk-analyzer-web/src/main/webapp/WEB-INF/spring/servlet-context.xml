@@ -23,9 +23,6 @@
 	<bean id="networkParser" class="com.scirisk.riskanalyzer.model.NetworkParserDomImpl" />
 
 	<import resource="repository-jpa.xml" />
-	
-	<!-- Uncomment this element to enable MongoDB storage instead of RDBMS
-	<import resource="repository-mongodb.xml" />
-	-->
+	<!-- <import resource="repository-mongodb.xml" /> -->
 
 </beans>

@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	<!-- MongoDB Repository Implementation Configuration -->
 
+	<context:property-placeholder
+		location="/WEB-INF/spring/repository-mongodb.properties" />
+
+	<bean id="mongo" class="com.mongodb.Mongo">
+		<constructor-arg value="${mongodb.host}" />
+		<constructor-arg value="${mongodb.port}" />
+	</bean>
+
+	<bean id="dbFactory" class="com.scirisk.riskanalyzer.context.DbFactoryBean">
+	<property name="databaseName" value="${mongodb.databaseName}" />
+		<property name="mongo" ref="mongo" />
+	</bean>
+
 	<bean id="networkManager"
-		class="com.scirisk.riskanalyzer.repository.mongodb.NetworkManagerMongoDbImpl" />
+		class="com.scirisk.riskanalyzer.repository.mongodb.NetworkManagerMongoDbImpl">
+		<constructor-arg ref="dbFactory" />
+	</bean>
 
 	<bean id="networkEdgeManager"
-		class="com.scirisk.riskanalyzer.repository.mongodb.NetworkEdgeManagerMongoDbImpl" />
+		class="com.scirisk.riskanalyzer.repository.mongodb.NetworkEdgeManagerMongoDbImpl">
+		<constructor-arg ref="dbFactory" />
+	</bean>
 
 	<bean id="networkNodeManager"
-		class="com.scirisk.riskanalyzer.repository.mongodb.NetworkNodeManagerMongoDbImpl" />
+		class="com.scirisk.riskanalyzer.repository.mongodb.NetworkNodeManagerMongoDbImpl">
+		<constructor-arg ref="dbFactory" />
+	</bean>
 
 </beans>
