@@ -357,7 +357,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
       var modelArray = selectionModel.getSelection();
       var model = modelArray[0]; // we should only have one selection
       var rawId = model.get('id'); // raw node id
-      var id = parseInt(rawId.substring(2));
+      var id = rawId.substring(2);
 
       Ext.Ajax.request({
           url: 'service/node/' + id,
@@ -379,7 +379,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
       var modelArray = selectionModel.getSelection();
       var model = modelArray[0]; // we should only have one selection
       var rawId = model.get('id'); // raw node id
-      var id = parseInt(rawId.substring(2));
+      var id = rawId.substring(2);
 
       Ext.Ajax.request({
           url: 'service/edge/' + id,

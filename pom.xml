@@ -8,6 +8,19 @@
 	<packaging>pom</packaging>
 	<name>Risk Analyzer</name>
 
+	<scm>
+		<connection>scm:git:https://github.com/danielpacak/risk-analyzer.git</connection>
+		<developerConnection>scm:git:https://github.com/danielpacak/risk-analyzer.git</developerConnection>
+		<url>https://github.com/danielpacak/risk-analyzer</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<email>pacak.daniel@gmail.com</email>
+			<name>Daniel Pacak</name>
+		</developer>
+	</developers>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.springframework.version>3.1.1.RELEASE</org.springframework.version>
