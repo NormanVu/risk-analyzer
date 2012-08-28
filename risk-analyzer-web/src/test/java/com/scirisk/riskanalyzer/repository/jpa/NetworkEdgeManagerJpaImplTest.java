@@ -36,8 +36,7 @@ public class NetworkEdgeManagerJpaImplTest {
 		transaction = mock(EntityTransaction.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-		manager = new NetworkEdgeManagerJpaImpl();
-		manager.emf = emf;
+		manager = new NetworkEdgeManagerJpaImpl(emf);
 	}
 
 	@Test

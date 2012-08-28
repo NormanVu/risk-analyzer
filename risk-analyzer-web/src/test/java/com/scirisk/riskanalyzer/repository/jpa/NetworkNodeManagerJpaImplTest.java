@@ -19,7 +19,6 @@ import org.mockito.InOrder;
 import org.mockito.Mockito;
 
 import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.repository.jpa.NetworkNodeManagerJpaImpl;
 
 public class NetworkNodeManagerJpaImplTest {
 
@@ -35,8 +34,7 @@ public class NetworkNodeManagerJpaImplTest {
 		transaction = mock(EntityTransaction.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-		manager = new NetworkNodeManagerJpaImpl();
-		manager.emf = emf;
+		manager = new NetworkNodeManagerJpaImpl(emf);
 	}
 
 	@Test

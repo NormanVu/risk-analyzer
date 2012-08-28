@@ -6,16 +6,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
 import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
 
 public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 
-	@Autowired
-	EntityManagerFactory emf;
+	private EntityManagerFactory emf;
+
+	public NetworkEdgeManagerJpaImpl(EntityManagerFactory emf) {
+		this.emf = emf;
+	}
 
 	public void save(NetworkEdge edge, Long sourceId, Long targetId) {
 		EntityManager em = emf.createEntityManager();
@@ -54,8 +55,7 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 
 	public NetworkEdge findOne(final Long edgeId) {
 		EntityManager em = emf.createEntityManager();
-		NetworkEdge edge = em.find(NetworkEdge.class, edgeId);
-		return edge;
+		return em.find(NetworkEdge.class, edgeId);
 	}
 
 }

@@ -6,15 +6,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.scirisk.riskanalyzer.domain.NetworkNode;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
 public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 
-	@Autowired
-	EntityManagerFactory emf;
+	private EntityManagerFactory emf;
+
+	public NetworkNodeManagerJpaImpl(EntityManagerFactory emf) {
+		this.emf = emf;
+	}
 
 	public Long save(final NetworkNode node) {
 		EntityManager em = emf.createEntityManager();

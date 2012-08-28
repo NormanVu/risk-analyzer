@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import com.scirisk.riskanalyzer.domain.Network;
@@ -17,9 +16,8 @@ import com.scirisk.riskanalyzer.repository.NetworkManager;
 public class NetworkManagerJpaImpl implements NetworkManager {
 
 	private EntityManagerFactory emf;
-
-	@PersistenceUnit
-	public void setEntityManagerFactory(EntityManagerFactory emf) {
+	
+	public NetworkManagerJpaImpl(EntityManagerFactory emf) {
 		this.emf = emf;
 	}
 
