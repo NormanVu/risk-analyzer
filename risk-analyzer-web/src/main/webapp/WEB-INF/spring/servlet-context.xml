@@ -19,9 +19,7 @@
 
 	<mvc:resources mapping="/extjs/**" location="/extjs/" />
 
-	<bean id="networkMarshaller" class="com.scirisk.riskanalyzer.model.NetworkMarshallerDomImpl" />
-	<bean id="networkParser" class="com.scirisk.riskanalyzer.model.NetworkParserDomImpl" />
-
+	<import resource="classpath:META-INF/spring/service.xml" />
 	<import resource="classpath:META-INF/spring/repository-jpa.xml" />
 
 </beans>

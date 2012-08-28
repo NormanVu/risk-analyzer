@@ -32,6 +32,10 @@
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-repository-mongodb</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-service</artifactId>
+		</dependency>
 		<!-- Spring Framework -->
 		<dependency>
 			<groupId>org.springframework</groupId>

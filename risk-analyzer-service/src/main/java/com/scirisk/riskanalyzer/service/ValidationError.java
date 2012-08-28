@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.model;
+package com.scirisk.riskanalyzer.service;
 
 import java.io.Serializable;
 

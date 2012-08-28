@@ -75,6 +75,11 @@
 				<artifactId>risk-analyzer-repository-mongodb</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<!-- Spring Framework -->
 			<dependency>
 				<groupId>org.springframework.data</groupId>

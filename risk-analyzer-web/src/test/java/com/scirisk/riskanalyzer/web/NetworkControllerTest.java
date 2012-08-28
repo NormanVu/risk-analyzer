@@ -16,8 +16,8 @@ import org.junit.Test;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.scirisk.riskanalyzer.domain.Network;
-import com.scirisk.riskanalyzer.model.NetworkParser;
 import com.scirisk.riskanalyzer.repository.NetworkManager;
+import com.scirisk.riskanalyzer.service.NetworkParser;
 
 public class NetworkControllerTest {
 

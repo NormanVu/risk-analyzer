@@ -21,9 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.scirisk.riskanalyzer.domain.Network;
 import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.model.NetworkMarshaller;
-import com.scirisk.riskanalyzer.model.NetworkParser;
 import com.scirisk.riskanalyzer.repository.NetworkManager;
+import com.scirisk.riskanalyzer.service.NetworkMarshaller;
+import com.scirisk.riskanalyzer.service.NetworkParser;
 
 @Controller
 public class NetworkController {
