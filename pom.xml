@@ -35,6 +35,7 @@
 		<module>risk-analyzer-repository-jpa</module>
 		<module>risk-analyzer-repository-mongodb</module>
 		<module>risk-analyzer-domain</module>
+		<module>risk-analyzer-backend-web</module>
 	</modules>
 
 	<build>
