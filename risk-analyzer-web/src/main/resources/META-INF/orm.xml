@@ -13,11 +13,6 @@
 			</basic>
 		</attributes>
 	</entity>
-	<entity class="com.scirisk.riskanalyzer.domain.Person">
-		<attributes>
-			<id name="id" />
-		</attributes>
-	</entity>
 	<entity class="com.scirisk.riskanalyzer.domain.NetworkEdge">
 		<attributes>
 			<id name="id" />

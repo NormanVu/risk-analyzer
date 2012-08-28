@@ -19,7 +19,6 @@ public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 	}
 
 	public NetworkNode save(final NetworkNode node) {
-		System.out.printf("node.id [%s]", node.getId());
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		node.setId(isBlank(node.getId()) ? UUID.randomUUID().toString() : node

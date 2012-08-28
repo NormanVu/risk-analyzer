@@ -140,7 +140,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
     //alert("tree double clicked!");
     var rawId = record.get('id');
     if (rawId) {
-      var id = parseInt(rawId.substring(2));
+      var id = rawId.substring(2);
       if (rawId.charAt(0) == 'n') {
         this.readNode(id);
       } else if (rawId.charAt(0) == 'e') {

@@ -22,9 +22,4 @@
 		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 
-	<bean id="personRepository"
-		class="com.scirisk.riskanalyzer.repository.jpa.PersonRepositoryJpaImpl">
-		<constructor-arg ref="entityManagerFactory" />
-	</bean>
-
 </beans>
