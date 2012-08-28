@@ -23,6 +23,5 @@
 	<bean id="networkParser" class="com.scirisk.riskanalyzer.model.NetworkParserDomImpl" />
 
 	<import resource="repository-jpa.xml" />
-	<!-- <import resource="repository-mongodb.xml" /> -->
 
 </beans>
