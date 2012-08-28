@@ -4,8 +4,8 @@
 	xmlns:db="http://docbook.org/ns/docbook">
 
 	<bookinfo>
-		<title>Application Platform for Professionals</title>
-		<subtitle>Customisation Manager Tutorial</subtitle>
+		<title>Rist Analyzer</title>
+		<subtitle>Technical Reference</subtitle>
 		<releaseinfo>0.0.1-SNAPSHOT</releaseinfo>
 
 
@@ -19,6 +19,55 @@
 
 	<chapter>
 		<title>Introduction</title>
+		<para>
+			The users of Risk Analyzer are supply chain managers who in the
+			course of their work need to view and manage information regarding
+			the network of suppliers for their company. The application supports
+			the following use cases:
+			<itemizedlist spacing="compact">
+				<listitem>
+					<para>View the supply chain, i.e. network of suppliers and the
+						target company</para>
+				</listitem>
+				<listitem>
+					<para>View information pertaining to a supplier</para>
+				</listitem>
+				<listitem>
+					<para>View information pertaining to a target company</para>
+				</listitem>
+				<listitem>
+					<para>Update information pertaining to a supplier</para>
+				</listitem>
+				<listitem>
+					<para>Update information pertaining to a target company</para>
+				</listitem>
+				<listitem>
+					<para>Add a new supplier to the supply chain</para>
+				</listitem>
+				<listitem>
+					<para>Add a new target company to the supply chain</para>
+				</listitem>
+				<listitem>
+					<para>Delete an existing supplier</para>
+				</listitem>
+				<listitem>
+					<para>Delete an existing target company</para>
+				</listitem>
+				<listitem>
+					<para>Export the supply chain to XML</para>
+				</listitem>
+				<listitem>
+					<para>Import the supply chain from XML</para>
+				</listitem>
+				<listitem>
+					<para>View frequency distribution* analysis performed on the supply
+						chain</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+
+
+
 		<para>Some french letters élo wioèàüû </para>
 		<para>
 			This is my paragref
@@ -118,12 +167,15 @@
 
 		<programlisting language="java">
 			@Controller
-			public class HelloWorldController {
+			public class
+			HelloWorldController {
 
 			@RequestMapping("/helloWorld")
-			public String helloWorld(Model model) {
+			public String
+			helloWorld(Model model) {
 			model.addAttribute("message",
-			"Hello World!");
+			"Hello
+			World!");
 			return "helloWorld";
 			}
 			}
