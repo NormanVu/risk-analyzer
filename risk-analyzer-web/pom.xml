@@ -28,7 +28,11 @@
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-repository-jpa</artifactId>
 		</dependency>
-		<!-- Spring -->
+		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-repository-mongodb</artifactId>
+		</dependency>
+		<!-- Spring Framework -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>

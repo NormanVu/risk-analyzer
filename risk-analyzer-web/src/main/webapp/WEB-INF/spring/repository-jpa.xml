@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- Java Persistence API Implementation Configuration -->
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" />
+
+	<bean id="networkManager"
+		class="com.scirisk.riskanalyzer.repository.jpa.NetworkManagerJpaImpl">
+		<constructor-arg ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="networkNodeManager"
+		class="com.scirisk.riskanalyzer.repository.jpa.NetworkNodeManagerJpaImpl">
+		<constructor-arg ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="networkEdgeManager"
+		class="com.scirisk.riskanalyzer.repository.jpa.NetworkEdgeManagerJpaImpl">
+		<constructor-arg ref="entityManagerFactory" />
+	</bean>
+
+</beans>

@@ -22,21 +22,10 @@
 	<bean id="networkMarshaller" class="com.scirisk.riskanalyzer.model.NetworkMarshallerDomImpl" />
 	<bean id="networkParser" class="com.scirisk.riskanalyzer.model.NetworkParserDomImpl" />
 
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" />
-
-	<!-- Configures data access objects -->
-	<bean id="networkManager"
-		class="com.scirisk.riskanalyzer.repository.jpa.NetworkManagerJpaImpl">
-		<constructor-arg ref="entityManagerFactory" />
-	</bean>
-	<bean id="networkNodeManager"
-		class="com.scirisk.riskanalyzer.repository.jpa.NetworkNodeManagerJpaImpl">
-		<constructor-arg ref="entityManagerFactory" />
-	</bean>
-	<bean id="networkEdgeManager"
-		class="com.scirisk.riskanalyzer.repository.jpa.NetworkEdgeManagerJpaImpl">
-		<constructor-arg ref="entityManagerFactory" />
-	</bean>
+	<import resource="repository-jpa.xml" />
+	
+	<!-- Uncomment this element to enable MongoDB storage instead of RDBMS
+	<import resource="repository-mongodb.xml" />
+	-->
 
 </beans>
