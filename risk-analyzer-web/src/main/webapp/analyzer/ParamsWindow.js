@@ -69,7 +69,7 @@ Ext.define('RiskAnalyzer.ParamsWindow', {
              fieldLabel: 'Endpoint URL',
              labelWidth: 120,
              //value: 'http://risk-analyzer.appspot.com/soap/endpoint',
-             value: 'http://localhost:9090/soap/endpoint',
+             value: 'http://localhost:9090/risk-analyzer-backend-web/soap/endpoint',
              itemId: 'endpoint_url',
              allowBlank: false
            }
