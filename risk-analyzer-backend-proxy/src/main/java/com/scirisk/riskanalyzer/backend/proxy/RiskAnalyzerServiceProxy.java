@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.soap.client;
+package com.scirisk.riskanalyzer.backend.proxy;
 
 public interface RiskAnalyzerServiceProxy {
 

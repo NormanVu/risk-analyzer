@@ -37,6 +37,7 @@
 		<module>risk-analyzer-domain</module>
 		<module>risk-analyzer-backend-web</module>
 		<module>risk-analyzer-controller</module>
+		<module>risk-analyzer-backend-proxy</module>
 	</modules>
 
 	<build>
@@ -79,6 +80,11 @@
 			<dependency>
 				<groupId>com.scirisk</groupId>
 				<artifactId>risk-analyzer-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-backend-proxy</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -130,6 +136,11 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
 				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.1</version>
 			</dependency>
 			<!-- JSON Library -->
 			<dependency>

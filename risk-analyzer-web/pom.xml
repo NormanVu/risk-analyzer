@@ -38,6 +38,10 @@
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-backend-proxy</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-controller</artifactId>
 		</dependency>
 		<!-- Spring Framework -->

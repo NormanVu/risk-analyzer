@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.soap.client;
+package com.scirisk.riskanalyzer.backend.proxy;
 
 import java.util.List;
 import java.util.Map;

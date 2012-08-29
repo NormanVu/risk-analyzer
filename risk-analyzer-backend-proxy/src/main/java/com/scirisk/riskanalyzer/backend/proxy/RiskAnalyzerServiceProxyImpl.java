@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.soap.client;
+package com.scirisk.riskanalyzer.backend.proxy;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

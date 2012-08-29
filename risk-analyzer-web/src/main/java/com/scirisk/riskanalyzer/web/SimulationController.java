@@ -16,12 +16,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.scirisk.riskanalyzer.backend.proxy.CalculateRequest;
+import com.scirisk.riskanalyzer.backend.proxy.CalculateResponse;
+import com.scirisk.riskanalyzer.backend.proxy.RiskAnalyzerServiceProxy;
+import com.scirisk.riskanalyzer.backend.proxy.RiskAnalyzerServiceProxyImpl;
 import com.scirisk.riskanalyzer.domain.Network;
 import com.scirisk.riskanalyzer.repository.NetworkManager;
-import com.scirisk.riskanalyzer.soap.client.CalculateRequest;
-import com.scirisk.riskanalyzer.soap.client.CalculateResponse;
-import com.scirisk.riskanalyzer.soap.client.RiskAnalyzerServiceProxy;
-import com.scirisk.riskanalyzer.soap.client.RiskAnalyzerServiceProxyImpl;
 
 @Controller
 public class SimulationController {
