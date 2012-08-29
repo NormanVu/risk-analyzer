@@ -32,4 +32,9 @@ the network of suppliers for their company. The application supports the followi
 
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/simulation.png)
 
-ext-4.1.0-gpl
+## Running Risk Analyzer
+
+1. Downlaod [Risk Analyzer Backend Web App](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/lastStableBuild/com.scirisk$risk-analyzer-backend-web/artifact/com.scirisk/risk-analyzer-backend-web/0.0.1-SNAPSHOT/risk-analyzer-backend-web-0.0.1-SNAPSHOT-exec-war.jar).
+2. Download [Risk Analyzer Web App](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/lastStableBuild/com.scirisk$risk-analyzer-web/artifact/com.scirisk/risk-analyzer-web/0.0.1-SNAPSHOT/risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar).
+3. Launch Risk Analyzer Backend Web App by executing java -jar risk-analyzer-backend-web-0.0.1-SNAPSHOT-exec-war.jar
+4. Launch Risk Analyzer Web App by executing java -jar risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar
