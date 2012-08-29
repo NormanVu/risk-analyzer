@@ -30,9 +30,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				/WEB-INF/spring/servlet-context.xml
-			</param-value>
+			<param-value>classpath:META-INF/spring/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -45,7 +43,9 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
+
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+
 </web-app>
