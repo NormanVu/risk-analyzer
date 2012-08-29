@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.context;
+package com.scirisk.riskanalyzer.repository.mongodb;
 
 import org.springframework.beans.factory.FactoryBean;
 

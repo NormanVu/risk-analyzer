@@ -13,8 +13,9 @@
 		<constructor-arg value="${mongodb.port}" />
 	</bean>
 
-	<bean id="dbFactory" class="com.scirisk.riskanalyzer.context.DbFactoryBean">
-	<property name="databaseName" value="${mongodb.databaseName}" />
+	<bean id="dbFactory"
+		class="com.scirisk.riskanalyzer.repository.mongodb.DbFactoryBean">
+		<property name="databaseName" value="${mongodb.databaseName}" />
 		<property name="mongo" ref="mongo" />
 	</bean>
 
