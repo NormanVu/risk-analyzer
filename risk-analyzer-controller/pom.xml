@@ -21,10 +21,14 @@
 			<artifactId>risk-analyzer-service</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-backend-proxy</artifactId>
+		</dependency>
+		<!-- Spring Framework -->
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 		</dependency>
-		<!-- Spring Framework -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>

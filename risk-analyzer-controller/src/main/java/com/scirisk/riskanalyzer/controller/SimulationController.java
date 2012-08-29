@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.web;
+package com.scirisk.riskanalyzer.controller;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
