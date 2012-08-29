@@ -33,11 +33,12 @@ the network of suppliers for their company. The application supports the followi
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/simulation.png)
 
 ## Running Risk Analyzer
-1. Create the working directory, e.g. C:\RiskAnalyzer - further referred to as RISK_ANALYZER_HOME
-2. Create two subdirectories for backedn and fronted applications, RISK_ANALYZER_HOME\backed and RISK_ANALYZER_HOME\frontend respectively
-1. Downlaod [Risk Analyzer Backend Web App](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/lastStableBuild/com.scirisk$risk-analyzer-backend-web/artifact/com.scirisk/risk-analyzer-backend-web/0.0.1-SNAPSHOT/risk-analyzer-backend-web-0.0.1-SNAPSHOT-exec-war.jar) to the RISK_ANALYZER_HOME\backend directory.
-2. Download [Risk Analyzer Web App](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/lastStableBuild/com.scirisk$risk-analyzer-web/artifact/com.scirisk/risk-analyzer-web/0.0.1-SNAPSHOT/risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar) to the RISK_ANALYZER_HOME\frontend directory.
-3. Launch Risk Analyzer Backend Web App by executing java -jar risk-analyzer-backend-web-0.0.1-SNAPSHOT-exec-war.jar -httpPort 9090
-4. Open this URL http://localhost:9090/risk-analyzer-backend-web/soap/risk-analyzer.wsdl in your favorite Web browser to make sure that the backend application is up and running.
-5. Launch Risk Analyzer Web App by executing java -jar risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar
-6. Open this URL http://localhost:8080/risk-analyzer-web in your favorite Web browser to make sure that the frontend application is up and running.
+1. Create a working directory, for example C:\RiskAnalyzer, hereafter referred to as RISK_ANALYZER_HOME.
+2. Create a sub-directory for the Backend Web application in RISK_ANALYZER_HOME\backed.
+3. Create a sub-directory for the Frontend Web application in RISK_ANALYZER_HOME\frontend.
+4. Downlaod the [Backend Web](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/lastStableBuild/com.scirisk$risk-analyzer-backend-web/artifact/com.scirisk/risk-analyzer-backend-web/0.0.1-SNAPSHOT/risk-analyzer-backend-web-0.0.1-SNAPSHOT-exec-war.jar) application to RISK_ANALYZER_HOME\backend.
+5. Download the [Frontend Web](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/lastStableBuild/com.scirisk$risk-analyzer-web/artifact/com.scirisk/risk-analyzer-web/0.0.1-SNAPSHOT/risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar) application to RISK_ANALYZER_HOME\frontend.
+6. Launch the Backend Web application by executing java -jar risk-analyzer-backend-web-0.0.1-SNAPSHOT-exec-war.jar -httpPort 9090
+7. Open this URL http://localhost:9090/risk-analyzer-backend-web/soap/risk-analyzer.wsdl in your favorite Web browser to make sure that the backend application is up and running.
+8. Launch the Frontend Web application by executing java -jar risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar
+9. Open this URL http://localhost:8080/risk-analyzer-web in your favorite Web browser to make sure that the frontend application is up and running.
