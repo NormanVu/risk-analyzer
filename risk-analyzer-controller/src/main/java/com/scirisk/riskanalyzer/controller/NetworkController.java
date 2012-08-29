@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.web;
+package com.scirisk.riskanalyzer.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Collection;

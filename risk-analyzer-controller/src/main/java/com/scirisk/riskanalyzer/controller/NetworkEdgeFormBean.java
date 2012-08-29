@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.web.bean;
+package com.scirisk.riskanalyzer.controller;
 
 import java.util.List;
 

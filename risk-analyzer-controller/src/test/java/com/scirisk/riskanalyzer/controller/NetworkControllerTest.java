@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.web;
+package com.scirisk.riskanalyzer.controller;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

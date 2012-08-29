@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.web;
+package com.scirisk.riskanalyzer.controller;
 
 import java.util.List;
 
@@ -15,7 +15,6 @@ import com.scirisk.riskanalyzer.domain.NetworkEdge;
 import com.scirisk.riskanalyzer.domain.NetworkNode;
 import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
-import com.scirisk.riskanalyzer.web.bean.NetworkEdgeFormBean;
 
 @Controller
 @RequestMapping(value = "/edge")

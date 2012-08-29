@@ -7,9 +7,8 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 	</bean>
-
-	<bean id="networkManager"
-		class="com.scirisk.riskanalyzer.repository.jpa.NetworkManagerJpaImpl">
+	
+	<bean id="networkManager" class="com.scirisk.riskanalyzer.repository.jpa.NetworkManagerJpaImpl">
 		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 
