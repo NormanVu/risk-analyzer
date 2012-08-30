@@ -19,6 +19,24 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<appendAssemblyId>false</appendAssemblyId>
+					<descriptors>
+						<descriptor>src/assemble/zip-distribution.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
