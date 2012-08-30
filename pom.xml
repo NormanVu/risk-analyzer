@@ -40,6 +40,7 @@
 		<module>risk-analyzer-backend-proxy</module>
 		<module>risk-analyzer-web-static</module>
 		<module>risk-analyzer-web-extjs</module>
+		<module>risk-analyzer-repository-google</module>
 	</modules>
 
 	<build>
@@ -115,6 +116,11 @@
 			<dependency>
 				<groupId>com.scirisk</groupId>
 				<artifactId>risk-analyzer-repository-mongodb</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-repository-google</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
