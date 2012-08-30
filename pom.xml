@@ -38,6 +38,7 @@
 		<module>risk-analyzer-backend-web</module>
 		<module>risk-analyzer-controller</module>
 		<module>risk-analyzer-backend-proxy</module>
+		<module>risk-analyzer-web-static</module>
 	</modules>
 
 	<build>
@@ -128,6 +129,12 @@
 			<dependency>
 				<groupId>com.scirisk</groupId>
 				<artifactId>risk-analyzer-controller</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-web-static</artifactId>
+				<type>war</type>
 				<version>${project.version}</version>
 			</dependency>
 			<!-- Spring Framework -->
