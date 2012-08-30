@@ -39,6 +39,7 @@
 		<module>risk-analyzer-controller</module>
 		<module>risk-analyzer-backend-proxy</module>
 		<module>risk-analyzer-web-static</module>
+		<module>risk-analyzer-web-extjs</module>
 	</modules>
 
 	<build>
@@ -134,6 +135,12 @@
 			<dependency>
 				<groupId>com.scirisk</groupId>
 				<artifactId>risk-analyzer-web-static</artifactId>
+				<type>war</type>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-web-extjs</artifactId>
 				<type>war</type>
 				<version>${project.version}</version>
 			</dependency>

@@ -49,6 +49,11 @@
 			<artifactId>risk-analyzer-web-static</artifactId>
 			<type>war</type>
 		</dependency>
+		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-web-extjs</artifactId>
+			<type>war</type>
+		</dependency>
 		<!-- Spring Framework -->
 		<dependency>
 			<groupId>org.springframework</groupId>
