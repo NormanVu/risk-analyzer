@@ -21,13 +21,13 @@ import org.mockito.Mockito;
 
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.jpa.NetworkEdgeManagerJpaImpl;
+import com.scirisk.riskanalyzer.repository.jpa.DistributionChannelRepositoryJpaImpl;
 
-public class NetworkEdgeManagerJpaImplTest {
+public class DistributionChannelRepositoryJpaImplTest {
 	EntityManagerFactory emf;
 	EntityManager em;
 	EntityTransaction transaction;
-	NetworkEdgeManagerJpaImpl manager;
+	DistributionChannelRepositoryJpaImpl manager;
 
 	@Before
 	public void beforeTest() {
@@ -36,7 +36,7 @@ public class NetworkEdgeManagerJpaImplTest {
 		transaction = mock(EntityTransaction.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-		manager = new NetworkEdgeManagerJpaImpl(emf);
+		manager = new DistributionChannelRepositoryJpaImpl(emf);
 	}
 
 	@Test

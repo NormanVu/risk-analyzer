@@ -11,11 +11,11 @@ import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 
-public class NetworkEdgeManagerJpaImpl implements DistributionChannelRepository {
+public class DistributionChannelRepositoryJpaImpl implements DistributionChannelRepository {
 
 	private EntityManagerFactory emf;
 
-	public NetworkEdgeManagerJpaImpl(EntityManagerFactory emf) {
+	public DistributionChannelRepositoryJpaImpl(EntityManagerFactory emf) {
 		this.emf = emf;
 	}
 

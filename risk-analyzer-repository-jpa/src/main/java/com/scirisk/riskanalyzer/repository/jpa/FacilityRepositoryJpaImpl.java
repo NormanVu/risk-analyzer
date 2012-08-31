@@ -10,11 +10,11 @@ import javax.persistence.Query;
 import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkNodeManagerJpaImpl implements FacilityRepository {
+public class FacilityRepositoryJpaImpl implements FacilityRepository {
 
 	private EntityManagerFactory emf;
 
-	public NetworkNodeManagerJpaImpl(EntityManagerFactory emf) {
+	public FacilityRepositoryJpaImpl(EntityManagerFactory emf) {
 		this.emf = emf;
 	}
 

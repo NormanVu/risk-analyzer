@@ -7,18 +7,19 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 	</bean>
-	
-	<bean id="networkManager" class="com.scirisk.riskanalyzer.repository.jpa.NetworkManagerJpaImpl">
+
+	<bean
+		class="com.scirisk.riskanalyzer.repository.jpa.DistributionNetworkRepositoryJpaImpl">
 		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 
-	<bean id="networkNodeManager"
-		class="com.scirisk.riskanalyzer.repository.jpa.NetworkNodeManagerJpaImpl">
+	<bean
+		class="com.scirisk.riskanalyzer.repository.jpa.FacilityRepositoryJpaImpl">
 		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 
-	<bean id="networkEdgeManager"
-		class="com.scirisk.riskanalyzer.repository.jpa.NetworkEdgeManagerJpaImpl">
+	<bean
+		class="com.scirisk.riskanalyzer.repository.jpa.DistributionChannelRepositoryJpaImpl">
 		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 

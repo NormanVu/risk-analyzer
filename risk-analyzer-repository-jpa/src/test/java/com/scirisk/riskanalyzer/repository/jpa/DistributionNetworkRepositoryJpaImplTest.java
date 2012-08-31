@@ -20,12 +20,12 @@ import org.mockito.Mockito;
 
 import com.scirisk.riskanalyzer.domain.Facility;
 
-public class NetworkNodeManagerJpaImplTest {
+public class DistributionNetworkRepositoryJpaImplTest {
 
 	EntityManagerFactory emf;
 	EntityManager em;
 	EntityTransaction transaction;
-	NetworkNodeManagerJpaImpl manager;
+	FacilityRepositoryJpaImpl manager;
 
 	@Before
 	public void beforeTest() {
@@ -34,7 +34,7 @@ public class NetworkNodeManagerJpaImplTest {
 		transaction = mock(EntityTransaction.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-		manager = new NetworkNodeManagerJpaImpl(emf);
+		manager = new FacilityRepositoryJpaImpl(emf);
 	}
 
 	@Test
