@@ -13,11 +13,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.scirisk.riskanalyzer.domain.Network;
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.domain.NetworkNode.Kind;
-import com.scirisk.riskanalyzer.domain.NetworkNode.Type;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
+import com.scirisk.riskanalyzer.domain.Facility.Kind;
+import com.scirisk.riskanalyzer.domain.Facility.Type;
 
 public class NetworkParserDomImpl implements NetworkParser {
 
@@ -31,12 +31,12 @@ public class NetworkParserDomImpl implements NetworkParser {
 
   }
 
-  public Network parse(InputStream is) throws IOException {
+  public DistributionNetwork parse(InputStream is) throws IOException {
     try {
       DocumentBuilder builder = f.newDocumentBuilder();
       Document document = builder.parse(is);
-      Map<String, NetworkNode> nodesMap = new HashMap<String, NetworkNode>();
-      Network network = new Network();
+      Map<String, Facility> nodesMap = new HashMap<String, Facility>();
+      DistributionNetwork network = new DistributionNetwork();
       Element networkElement = document.getDocumentElement(); // root element is named network
       
       // parse nodes element
@@ -44,7 +44,7 @@ public class NetworkParserDomImpl implements NetworkParser {
       NodeList nodeList = nodesElement.getElementsByTagName("node");
       for (int i = 0; i < nodeList.getLength(); i++) {
         Element nodeElement = (Element) nodeList.item(i);
-        NetworkNode nn = parseNode(nodeElement);
+        Facility nn = parseNode(nodeElement);
         network.getNodes().add(nn);
         
         nodesMap.put(nn.getId(), nn);
@@ -56,7 +56,7 @@ public class NetworkParserDomImpl implements NetworkParser {
       NodeList edgeList = edgesElement.getElementsByTagName("edge");
       for (int i = 0; i < edgeList.getLength(); i++) {
         Element edgeElement = (Element) edgeList.item(i);
-        NetworkEdge ne = parseEdge(edgeElement, nodesMap);
+        DistributionChannel ne = parseEdge(edgeElement, nodesMap);
         network.getEdges().add(ne);
       }
 
@@ -68,12 +68,12 @@ public class NetworkParserDomImpl implements NetworkParser {
     }
   }
 
-  private NetworkNode parseNode(final Element nodeElement) {
+  private Facility parseNode(final Element nodeElement) {
     String idAttr = nodeElement.getAttribute("id");
     String kindAttr = nodeElement.getAttribute("kind");
     String nameAttr = nodeElement.getAttribute("name");
 
-    NetworkNode nn = new NetworkNode();
+    Facility nn = new Facility();
     nn.setId(idAttr);
     nn.setKind(Kind.valueOf(kindAttr));
     nn.setName(nameAttr);
@@ -114,11 +114,11 @@ public class NetworkParserDomImpl implements NetworkParser {
     return nn;
   }
 
-  private NetworkEdge parseEdge(final Element edgeElement, final Map<String, NetworkNode> nodesMap) {
+  private DistributionChannel parseEdge(final Element edgeElement, final Map<String, Facility> nodesMap) {
     String sourceId = edgeElement.getAttribute("source");
     String targetId = edgeElement.getAttribute("target");
     String purchasingVolumeAttr = edgeElement.getAttribute("purchasingVolume");
-    NetworkEdge ne = new NetworkEdge();
+    DistributionChannel ne = new DistributionChannel();
 
     ne.setPurchasingVolume(Double.valueOf(purchasingVolumeAttr));
     // TODO CHECK THAT NODE EXISTS

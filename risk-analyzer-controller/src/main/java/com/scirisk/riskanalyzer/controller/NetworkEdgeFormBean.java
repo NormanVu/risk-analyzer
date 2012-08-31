@@ -2,8 +2,8 @@ package com.scirisk.riskanalyzer.controller;
 
 import java.util.List;
 
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 
 public class NetworkEdgeFormBean {
 
@@ -11,20 +11,20 @@ public class NetworkEdgeFormBean {
 	private String sourceId;
 	private String targetId;
 	private Double purchasingVolume;
-	private List<NetworkNode> nodes;
+	private List<Facility> nodes;
 
 	public NetworkEdgeFormBean() {
 
 	}
 
-	public NetworkEdge getNetworkEdge() {
-		NetworkEdge edge = new NetworkEdge();
+	public DistributionChannel getNetworkEdge() {
+		DistributionChannel edge = new DistributionChannel();
 		edge.setId(id);
 		edge.setPurchasingVolume(purchasingVolume);
 		return edge;
 	}
 
-	public NetworkEdgeFormBean(NetworkEdge edge, List<NetworkNode> nodes) {
+	public NetworkEdgeFormBean(DistributionChannel edge, List<Facility> nodes) {
 		this.id = edge.getId();
 		this.sourceId = edge.getSource().getId();
 		this.targetId = edge.getTarget().getId();
@@ -64,7 +64,7 @@ public class NetworkEdgeFormBean {
 		this.purchasingVolume = purchasingVolume;
 	}
 
-	public List<NetworkNode> getNodes() {
+	public List<Facility> getNodes() {
 		return nodes;
 	}
 

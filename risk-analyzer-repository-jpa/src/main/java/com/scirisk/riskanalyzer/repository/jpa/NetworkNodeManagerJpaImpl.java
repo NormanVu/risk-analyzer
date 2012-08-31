@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
 public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
@@ -18,7 +18,7 @@ public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 		this.emf = emf;
 	}
 
-	public NetworkNode save(final NetworkNode node) {
+	public Facility save(final Facility node) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		node.setId(isBlank(node.getId()) ? UUID.randomUUID().toString() : node
@@ -33,14 +33,14 @@ public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 		return "".equals(string);
 	}
 
-	public List<NetworkNode> findAll() {
+	public List<Facility> findAll() {
 		EntityManager em = emf.createEntityManager();
 		final String queryString = "SELECT o FROM "
-				+ NetworkNode.class.getName() + " o";
+				+ Facility.class.getName() + " o";
 		Query q = em.createQuery(queryString);
 		em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
-		List<NetworkNode> nodes = q.getResultList();
+		List<Facility> nodes = q.getResultList();
 		em.getTransaction().commit();
 		return nodes;
 	}
@@ -48,14 +48,14 @@ public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
 	public void delete(final String nodeId) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		NetworkNode nn = em.find(NetworkNode.class, nodeId);
+		Facility nn = em.find(Facility.class, nodeId);
 		em.remove(nn);
 		em.getTransaction().commit();
 	}
 
-	public NetworkNode findOne(final String nodeId) {
+	public Facility findOne(final String nodeId) {
 		EntityManager em = emf.createEntityManager();
-		NetworkNode node = em.find(NetworkNode.class, nodeId);
+		Facility node = em.find(Facility.class, nodeId);
 		return node;
 	}
 

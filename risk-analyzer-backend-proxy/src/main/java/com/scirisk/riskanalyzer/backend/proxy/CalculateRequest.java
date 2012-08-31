@@ -2,18 +2,18 @@ package com.scirisk.riskanalyzer.backend.proxy;
 
 import java.util.Map;
 
-import com.scirisk.riskanalyzer.domain.Network;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 
 public class CalculateRequest {
 
-  private Network network;
+  private DistributionNetwork network;
   private Map<String, String> inputParams;
 
-  public Network getNetwork() {
+  public DistributionNetwork getNetwork() {
     return network;
   }
 
-  public void setNetwork(Network network) {
+  public void setNetwork(DistributionNetwork network) {
     this.network = network;
   }
 

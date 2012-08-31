@@ -8,9 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-import com.scirisk.riskanalyzer.domain.Network;
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.NetworkManager;
 
 public class NetworkManagerJpaImpl implements NetworkManager {
@@ -22,20 +22,20 @@ public class NetworkManagerJpaImpl implements NetworkManager {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Network read() {
+	public DistributionNetwork read() {
 		EntityManager em = emf.createEntityManager();
 		Query nodeQuery = em.createQuery("SELECT o FROM "
-				+ NetworkNode.class.getName() + " o");
+				+ Facility.class.getName() + " o");
 		Query edgeQuery = em.createQuery("SELECT o FROM "
-				+ NetworkEdge.class.getName() + " o");
+				+ DistributionChannel.class.getName() + " o");
 		em.getTransaction().begin();
 
-		List<NetworkNode> nodes = nodeQuery.getResultList();
-		List<NetworkEdge> edges = edgeQuery.getResultList();
+		List<Facility> nodes = nodeQuery.getResultList();
+		List<DistributionChannel> edges = edgeQuery.getResultList();
 
 		em.getTransaction().commit();
 
-		Network network = new Network();
+		DistributionNetwork network = new DistributionNetwork();
 		network.setNodes(nodes);
 		network.setEdges(edges);
 
@@ -43,18 +43,18 @@ public class NetworkManagerJpaImpl implements NetworkManager {
 	}
 
 	// TODO ADD OPTION TO APPEND NODES
-	public void save(final Network network) {
+	public void save(final DistributionNetwork network) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		em.createQuery("DELETE FROM " + NetworkEdge.class.getName())
+		em.createQuery("DELETE FROM " + DistributionChannel.class.getName())
 				.executeUpdate();
-		em.createQuery("DELETE FROM " + NetworkNode.class.getName())
+		em.createQuery("DELETE FROM " + Facility.class.getName())
 				.executeUpdate();
 
 		Map<String, String> nodeIdMap = new HashMap<String, String>();
 
 		// persist nodes and populate nodeIdMap
-		for (NetworkNode nn : network.getNodes()) {
+		for (Facility nn : network.getNodes()) {
 			String fakeId = nn.getId();
 			nn.setId(null);
 			em.persist(nn);
@@ -65,11 +65,11 @@ public class NetworkManagerJpaImpl implements NetworkManager {
 
 		// persist edges with references to nodes created in the same
 		// transaction
-		for (NetworkEdge ne : network.getEdges()) {
+		for (DistributionChannel ne : network.getEdges()) {
 			String sourceId = nodeIdMap.get(ne.getSource().getId());
 			String targetId = nodeIdMap.get(ne.getTarget().getId());
-			NetworkNode source = em.find(NetworkNode.class, sourceId);
-			NetworkNode target = em.find(NetworkNode.class, targetId);
+			Facility source = em.find(Facility.class, sourceId);
+			Facility target = em.find(Facility.class, targetId);
 			ne.setSource(source);
 			ne.setTarget(target);
 			em.persist(ne);

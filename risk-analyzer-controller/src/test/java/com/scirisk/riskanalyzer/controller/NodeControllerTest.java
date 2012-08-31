@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
 public class NodeControllerTest {
@@ -27,7 +27,7 @@ public class NodeControllerTest {
 
 	@Test
 	public void testSave() throws Exception {
-		NetworkNode node = new NetworkNode();
+		Facility node = new Facility();
 		ResponseEntity<String> responseEntity = controller.save(node);
 		Mockito.verify(controller.networkNodeManager).save(Mockito.eq(node));
 		Assert.assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
@@ -36,10 +36,10 @@ public class NodeControllerTest {
 	@Test
 	public void testRead() throws Exception {
 		String nodeId = "13";
-		NetworkNode stub = new NetworkNode();
+		Facility stub = new Facility();
 		Mockito.when(controller.networkNodeManager.findOne(nodeId)).thenReturn(
 				stub);
-		NetworkNode node = controller.read(nodeId);
+		Facility node = controller.read(nodeId);
 		Mockito.verify(controller.networkNodeManager).findOne(nodeId);
 		Assert.assertEquals(stub, node);
 	}
@@ -54,9 +54,9 @@ public class NodeControllerTest {
 
 	@Test
 	public void testFindAll() throws Exception {
-		List<NetworkNode> stub = Arrays.asList(new NetworkNode());
+		List<Facility> stub = Arrays.asList(new Facility());
 		Mockito.when(controller.networkNodeManager.findAll()).thenReturn(stub);
-		Collection<NetworkNode> allNodes = controller.findAll();
+		Collection<Facility> allNodes = controller.findAll();
 		Assert.assertEquals(stub, allNodes);
 	}
 

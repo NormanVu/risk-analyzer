@@ -1,7 +1,7 @@
 package com.scirisk.riskanalyzer.repository.mongodb;
 
 import com.mongodb.DB;
-import com.scirisk.riskanalyzer.domain.Network;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
 import com.scirisk.riskanalyzer.repository.NetworkManager;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
@@ -14,14 +14,14 @@ public class NetworkManagerMongoDbImpl implements NetworkManager {
 		this.db = db;
 	}
 
-	public void save(Network network) {
+	public void save(DistributionNetwork network) {
 		throw new IllegalStateException("I'm not implemented yet");
 	}
 
-	public Network read() {
+	public DistributionNetwork read() {
 		NetworkNodeManager nodeManager = new NetworkNodeManagerMongoDbImpl(db);
 		NetworkEdgeManager edgeManager = new NetworkEdgeManagerMongoDbImpl(db);
-		return new Network(nodeManager.findAll(), edgeManager.findAll());
+		return new DistributionNetwork(nodeManager.findAll(), edgeManager.findAll());
 	}
 
 }

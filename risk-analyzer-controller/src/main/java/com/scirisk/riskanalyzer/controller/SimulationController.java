@@ -20,7 +20,7 @@ import com.scirisk.riskanalyzer.backend.proxy.CalculateRequest;
 import com.scirisk.riskanalyzer.backend.proxy.CalculateResponse;
 import com.scirisk.riskanalyzer.backend.proxy.RiskAnalyzerServiceProxy;
 import com.scirisk.riskanalyzer.backend.proxy.RiskAnalyzerServiceProxyImpl;
-import com.scirisk.riskanalyzer.domain.Network;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 import com.scirisk.riskanalyzer.repository.NetworkManager;
 
 @Controller
@@ -36,7 +36,7 @@ public class SimulationController {
 	@RequestMapping(value = "/SubmitSimulation.do", method = RequestMethod.POST)
 	public void submit(HttpServletRequest req, HttpServletResponse resp)
 			throws Exception {
-		Network network = networkManager.read();
+		DistributionNetwork network = networkManager.read();
 
 		String endpointUrl = req.getParameter("endpoint_url");
 

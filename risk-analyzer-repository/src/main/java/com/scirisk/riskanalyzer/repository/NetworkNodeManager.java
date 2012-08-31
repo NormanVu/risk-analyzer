@@ -2,16 +2,16 @@ package com.scirisk.riskanalyzer.repository;
 
 import java.util.List;
 
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.Facility;
 
 public interface NetworkNodeManager {
 
-	NetworkNode save(NetworkNode node);
+	Facility save(Facility node);
 
-	NetworkNode findOne(String nodeId);
+	Facility findOne(String nodeId);
 
 	void delete(String nodeId);
 
-	List<NetworkNode> findAll();
+	List<Facility> findAll();
 
 }

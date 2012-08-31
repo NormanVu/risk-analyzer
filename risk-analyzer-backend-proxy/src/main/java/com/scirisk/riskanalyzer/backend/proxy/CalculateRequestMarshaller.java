@@ -7,9 +7,9 @@ import java.util.Map.Entry;
 import org.jdom.Element;
 import org.jdom.Namespace;
 
-import com.scirisk.riskanalyzer.domain.Network;
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 
 public class CalculateRequestMarshaller {
 
@@ -28,7 +28,7 @@ public class CalculateRequestMarshaller {
     return calculateRequestElm;
   }
 
-  Element marshallNetwork(Network network) {
+  Element marshallNetwork(DistributionNetwork network) {
     Element networkElm = new Element("Network", riskAnalyzerNamespace);
     Element nodesElm = marshallNodes(network.getNodes());
     Element edgesElm = marshallEdges(network.getEdges());
@@ -37,9 +37,9 @@ public class CalculateRequestMarshaller {
     return networkElm;
   }
 
-  Element marshallNodes(Collection<NetworkNode> nodes) {
+  Element marshallNodes(Collection<Facility> nodes) {
     Element nodesElm = new Element("nodes", networkNamespace);
-    for (NetworkNode nn : nodes) {
+    for (Facility nn : nodes) {
       Element nodeElm = new Element("node", networkNamespace);
       nodeElm.setAttribute("id", String.valueOf(nn.getId()));
       nodeElm.setAttribute("name", nn.getName());
@@ -53,7 +53,7 @@ public class CalculateRequestMarshaller {
     return nodesElm;
   }
 
-  Element marshallHazardEventIntensities(NetworkNode nn) {
+  Element marshallHazardEventIntensities(Facility nn) {
     Element heiElm = new Element("hazard-event-intensities", networkNamespace);
 
     Element riskCategory1Elm = new Element("risk-category-1", networkNamespace);
@@ -87,9 +87,9 @@ public class CalculateRequestMarshaller {
     return heiElm;
   }
 
-  Element marshallEdges(Collection<NetworkEdge> edges) {
+  Element marshallEdges(Collection<DistributionChannel> edges) {
     Element edgesElm = new Element("edges", networkNamespace);
-    for (NetworkEdge ne : edges) {
+    for (DistributionChannel ne : edges) {
       Element edgeElm = new Element("edge", networkNamespace);
       edgeElm.setAttribute("source", String.valueOf(ne.getSource().getId()));
       edgeElm.setAttribute("target", String.valueOf(ne.getTarget().getId()));

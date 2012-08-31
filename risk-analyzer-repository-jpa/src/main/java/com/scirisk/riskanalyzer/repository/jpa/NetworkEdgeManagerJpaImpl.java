@@ -7,8 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
 
 public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
@@ -19,12 +19,12 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 		this.emf = emf;
 	}
 
-	public NetworkEdge save(NetworkEdge edge, String sourceId, String targetId) {
+	public DistributionChannel save(DistributionChannel edge, String sourceId, String targetId) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 
-		NetworkNode source = em.find(NetworkNode.class, sourceId);
-		NetworkNode target = em.find(NetworkNode.class, targetId);
+		Facility source = em.find(Facility.class, sourceId);
+		Facility target = em.find(Facility.class, targetId);
 
 		edge.setId(isBlank(edge.getId()) ? UUID.randomUUID().toString() : edge.getId());
 		edge.setSource(source);
@@ -40,14 +40,14 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 		return "".equals(string);
 	}
 
-	public List<NetworkEdge> findAll() {
+	public List<DistributionChannel> findAll() {
 		EntityManager em = emf.createEntityManager();
 		final String queryString = "SELECT o FROM "
-				+ NetworkEdge.class.getName() + " o";
+				+ DistributionChannel.class.getName() + " o";
 		Query q = em.createQuery(queryString);
 		em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
-		List<NetworkEdge> nodes = q.getResultList();
+		List<DistributionChannel> nodes = q.getResultList();
 		em.getTransaction().commit();
 		return nodes;
 	}
@@ -55,14 +55,14 @@ public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
 	public void delete(final String edgeId) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		NetworkEdge edge = em.find(NetworkEdge.class, edgeId);
+		DistributionChannel edge = em.find(DistributionChannel.class, edgeId);
 		em.remove(edge);
 		em.getTransaction().commit();
 	}
 
-	public NetworkEdge findOne(final String edgeId) {
+	public DistributionChannel findOne(final String edgeId) {
 		EntityManager em = emf.createEntityManager();
-		return em.find(NetworkEdge.class, edgeId);
+		return em.find(DistributionChannel.class, edgeId);
 	}
 
 }

@@ -11,13 +11,13 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
 
 public class NetworkEdgeManagerGoogleImpl implements NetworkEdgeManager {
 
-  public NetworkEdge save(NetworkEdge edge, String sourceId, String targetId) {
+  public DistributionChannel save(DistributionChannel edge, String sourceId, String targetId) {
     DatastoreService service = DatastoreServiceFactory.getDatastoreService();
     Key sourceKey = KeyFactory.createKey("NetworkNode", sourceId);
     Key targetKey = KeyFactory.createKey("NetworkNode", targetId);
@@ -43,12 +43,12 @@ public class NetworkEdgeManagerGoogleImpl implements NetworkEdgeManager {
     return edge;
   }
 
-  public NetworkEdge findOne(String edgeId) {
+  public DistributionChannel findOne(String edgeId) {
     DatastoreService service = DatastoreServiceFactory.getDatastoreService();
     Key edgeKey = KeyFactory.createKey("NetworkEdge", edgeId);
     try {
       Entity edgeEntity = service.get(edgeKey);
-      NetworkEdge edge = createEdge(edgeEntity);
+      DistributionChannel edge = createEdge(edgeEntity);
 
       Key sourceKey = (Key) edgeEntity.getProperty("sourceId");
       Key targetKey = (Key) edgeEntity.getProperty("targetId");
@@ -72,14 +72,14 @@ public class NetworkEdgeManagerGoogleImpl implements NetworkEdgeManager {
     service.getCurrentTransaction().commit();
   }
 
-  public List<NetworkEdge> findAll() {
+  public List<DistributionChannel> findAll() {
     DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
     Query q = new Query("NetworkEdge");
     PreparedQuery pq = ds.prepare(q);
-    ArrayList<NetworkEdge> edges = new ArrayList<NetworkEdge>();
+    ArrayList<DistributionChannel> edges = new ArrayList<DistributionChannel>();
     for (Entity edgeEntity : pq.asIterable()) {
       try {
-        NetworkEdge edge = createEdge(edgeEntity);
+        DistributionChannel edge = createEdge(edgeEntity);
 
         Key sourceKey = (Key) edgeEntity.getProperty("sourceId");
         Key targetKey = (Key) edgeEntity.getProperty("targetId");
@@ -98,16 +98,16 @@ public class NetworkEdgeManagerGoogleImpl implements NetworkEdgeManager {
     return edges;
   }
 
-  private NetworkEdge createEdge(Entity edgeEntity) {
-    NetworkEdge edge = new NetworkEdge();
+  private DistributionChannel createEdge(Entity edgeEntity) {
+    DistributionChannel edge = new DistributionChannel();
     edge.setId(edgeEntity.getKey().toString());
     edge.setPurchasingVolume((Double) edgeEntity.getProperty("purchasingVolume"));
     return edge;
   }
   
 
-  private NetworkNode createNode(Entity nodeEntity) {
-    NetworkNode n = new NetworkNode();
+  private Facility createNode(Entity nodeEntity) {
+    Facility n = new Facility();
     n.setId(nodeEntity.getKey().toString());
     n.setName((String) nodeEntity.getProperty("name"));
     n.setLatitude((Double) nodeEntity.getProperty("latitude"));

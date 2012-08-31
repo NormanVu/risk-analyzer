@@ -19,8 +19,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.jpa.NetworkEdgeManagerJpaImpl;
 
 public class NetworkEdgeManagerJpaImplTest {
@@ -46,21 +46,21 @@ public class NetworkEdgeManagerJpaImplTest {
 		String sourceId = "113";
 		String targetId = "311";
 
-		NetworkEdge edge = new NetworkEdge();
+		DistributionChannel edge = new DistributionChannel();
 		edge.setId(edgeId);
 		edge.setPurchasingVolume(purchasingVolume);
-		NetworkNode source = new NetworkNode();
+		Facility source = new Facility();
 		source.setId(sourceId);
-		NetworkNode target = new NetworkNode();
+		Facility target = new Facility();
 		target.setId(targetId);
 
-		Mockito.when(em.find(NetworkNode.class, sourceId)).thenReturn(source);
-		Mockito.when(em.find(NetworkNode.class, targetId)).thenReturn(target);
+		Mockito.when(em.find(Facility.class, sourceId)).thenReturn(source);
+		Mockito.when(em.find(Facility.class, targetId)).thenReturn(target);
 
 		manager.save(edge, sourceId, targetId);
 		InOrder inOrder = Mockito.inOrder(em, transaction);
 		inOrder.verify(transaction).begin();
-		ArgumentCaptor<NetworkEdge> argument = ArgumentCaptor.forClass(NetworkEdge.class);
+		ArgumentCaptor<DistributionChannel> argument = ArgumentCaptor.forClass(DistributionChannel.class);
 		inOrder.verify(em).merge(argument.capture());
 		Assert.assertEquals(edgeId, argument.getValue().getId());
 		Assert.assertEquals(purchasingVolume, argument.getValue().getPurchasingVolume());
@@ -72,9 +72,9 @@ public class NetworkEdgeManagerJpaImplTest {
 	@Test
 	public void testFindOne() throws Exception {
 		String edgeId = "13";
-		NetworkEdge edge = new NetworkEdge();
-		when(em.find(NetworkEdge.class, edgeId)).thenReturn(edge);
-		NetworkEdge foundEdge = manager.findOne(edgeId);
+		DistributionChannel edge = new DistributionChannel();
+		when(em.find(DistributionChannel.class, edgeId)).thenReturn(edge);
+		DistributionChannel foundEdge = manager.findOne(edgeId);
 
 		Assert.assertEquals(edge, foundEdge);
 	}
@@ -82,14 +82,14 @@ public class NetworkEdgeManagerJpaImplTest {
 	@Test
 	public void testFindAll() throws Exception {
 		Query q = Mockito.mock(Query.class);
-		List<NetworkEdge> queryResult = new ArrayList<NetworkEdge>();
+		List<DistributionChannel> queryResult = new ArrayList<DistributionChannel>();
 		when(q.getResultList()).thenReturn(queryResult);
 
 		when(
-				em.createQuery("SELECT o FROM " + NetworkEdge.class.getName()
+				em.createQuery("SELECT o FROM " + DistributionChannel.class.getName()
 						+ " o")).thenReturn(q);
 
-		List<NetworkEdge> allEdges = manager.findAll();
+		List<DistributionChannel> allEdges = manager.findAll();
 		Assert.assertEquals(queryResult, allEdges);
 
 		InOrder inOrder = Mockito.inOrder(q, transaction);
@@ -102,8 +102,8 @@ public class NetworkEdgeManagerJpaImplTest {
 	@Test
 	public void testDelete() throws Exception {
 		String edgeId = "13";
-		NetworkEdge edge = new NetworkEdge();
-		when(em.find(NetworkEdge.class, edgeId)).thenReturn(edge);
+		DistributionChannel edge = new DistributionChannel();
+		when(em.find(DistributionChannel.class, edgeId)).thenReturn(edge);
 
 		manager.delete(edgeId);
 		InOrder inOrder = Mockito.inOrder(em, transaction);

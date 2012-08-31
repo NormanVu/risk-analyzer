@@ -1,11 +1,11 @@
 package com.scirisk.riskanalyzer.repository;
 
-import com.scirisk.riskanalyzer.domain.Network;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 
 public interface NetworkManager {
 
-	void save(Network network);
+	void save(DistributionNetwork network);
 
-	Network read();
+	DistributionNetwork read();
 
 }

@@ -1,10 +1,6 @@
 package com.scirisk.riskanalyzer.domain;
 
-import java.io.Serializable;
-
-// TODO Rename to Facility
-@SuppressWarnings("serial")
-public class NetworkNode implements Serializable {
+public class Facility {
 
 	private String id;
 	private Kind kind;

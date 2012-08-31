@@ -9,7 +9,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
@@ -23,7 +23,7 @@ public class NetworkEdgeManagerMongoDbImpl implements NetworkEdgeManager {
 		this.db = db;
 	}
 
-	public NetworkEdge save(NetworkEdge edge, String sourceId, String targetId) {
+	public DistributionChannel save(DistributionChannel edge, String sourceId, String targetId) {
 		DBCollection collection = db.getCollection(NETWORK_EDGE_COLLECTION);
 		BasicDBObject edgeObject = new BasicDBObject();
 
@@ -44,7 +44,7 @@ public class NetworkEdgeManagerMongoDbImpl implements NetworkEdgeManager {
 		collection.remove(query);
 	}
 
-	public NetworkEdge findOne(String edgeId) {
+	public DistributionChannel findOne(String edgeId) {
 		DBCollection collection = db.getCollection(NETWORK_EDGE_COLLECTION);
 
 		BasicDBObject query = new BasicDBObject();
@@ -64,10 +64,10 @@ public class NetworkEdgeManagerMongoDbImpl implements NetworkEdgeManager {
 		}
 	}
 
-	public List<NetworkEdge> findAll() {
+	public List<DistributionChannel> findAll() {
 		DBCollection collection = db.getCollection(NETWORK_EDGE_COLLECTION);
 		DBCursor cursor = collection.find();
-		List<NetworkEdge> edges = new ArrayList<NetworkEdge>();
+		List<DistributionChannel> edges = new ArrayList<DistributionChannel>();
 		try {
 			for (DBObject edgeObject : cursor) {
 				edges.add(map(edgeObject));
@@ -78,8 +78,8 @@ public class NetworkEdgeManagerMongoDbImpl implements NetworkEdgeManager {
 		}
 	}
 
-	private NetworkEdge map(DBObject edgeObject) {
-		NetworkEdge edge = new NetworkEdge();
+	private DistributionChannel map(DBObject edgeObject) {
+		DistributionChannel edge = new DistributionChannel();
 		edge.setId((String) edgeObject.get("_id"));
 		edge.setPurchasingVolume((Double) edgeObject.get("purchasingVolume"));
 		NetworkNodeManager nodeManager = new NetworkNodeManagerMongoDbImpl(db);

@@ -15,8 +15,8 @@ import org.mockito.ArgumentCaptor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
@@ -42,8 +42,8 @@ public class EdgeControllerTest {
 		edge.setTargetId("311");
 
 		ResponseEntity<String> responseEntity = controller.save(edge);
-		ArgumentCaptor<NetworkEdge> argument = ArgumentCaptor
-				.forClass(NetworkEdge.class);
+		ArgumentCaptor<DistributionChannel> argument = ArgumentCaptor
+				.forClass(DistributionChannel.class);
 		verify(controller.networkEdgeManager).save(argument.capture(),
 				eq(edge.getSourceId()), eq(edge.getTargetId()));
 		Assert.assertEquals(edgeId, argument.getValue().getId());
@@ -57,17 +57,17 @@ public class EdgeControllerTest {
 		String edgeId = "13";
 		String sourceId = "113";
 		String targetId = "311";
-		NetworkEdge stub = new NetworkEdge();
+		DistributionChannel stub = new DistributionChannel();
 		stub.setId(edgeId);
 		stub.setPurchasingVolume(0.5);
-		NetworkNode source = new NetworkNode();
+		Facility source = new Facility();
 		source.setId(sourceId);
-		NetworkNode target = new NetworkNode();
+		Facility target = new Facility();
 		target.setId(targetId);
 		stub.setSource(source);
 		stub.setTarget(target);
 
-		List<NetworkNode> stubList = new ArrayList<NetworkNode>();
+		List<Facility> stubList = new ArrayList<Facility>();
 		when(controller.networkEdgeManager.findOne(edgeId)).thenReturn(stub);
 		when(controller.networkNodeManager.findAll()).thenReturn(stubList);
 

@@ -9,9 +9,9 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.domain.NetworkNode.Kind;
-import com.scirisk.riskanalyzer.domain.NetworkNode.Type;
+import com.scirisk.riskanalyzer.domain.Facility;
+import com.scirisk.riskanalyzer.domain.Facility.Kind;
+import com.scirisk.riskanalyzer.domain.Facility.Type;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
 public class NetworkNodeManagerMongoDbImpl implements NetworkNodeManager {
@@ -24,7 +24,7 @@ public class NetworkNodeManagerMongoDbImpl implements NetworkNodeManager {
 		this.db = db;
 	}
 
-	public NetworkNode save(NetworkNode node) {
+	public Facility save(Facility node) {
 		DBCollection collection = db.getCollection(NETWORK_NODE_COLLECTION);
 		BasicDBObject nodeObject = new BasicDBObject();
 
@@ -51,7 +51,7 @@ public class NetworkNodeManagerMongoDbImpl implements NetworkNodeManager {
 		return node;
 	}
 
-	public NetworkNode findOne(String nodeId) {
+	public Facility findOne(String nodeId) {
 		DBCollection collection = db.getCollection(NETWORK_NODE_COLLECTION);
 
 		BasicDBObject query = new BasicDBObject();
@@ -78,10 +78,10 @@ public class NetworkNodeManagerMongoDbImpl implements NetworkNodeManager {
 		collection.remove(query);
 	}
 
-	public List<NetworkNode> findAll() {
+	public List<Facility> findAll() {
 		DBCollection collection = db.getCollection(NETWORK_NODE_COLLECTION);
 		DBCursor cursor = collection.find();
-		List<NetworkNode> nodes = new ArrayList<NetworkNode>();
+		List<Facility> nodes = new ArrayList<Facility>();
 		try {
 			for (DBObject nodeObject : cursor) {
 				nodes.add(map(nodeObject));
@@ -92,8 +92,8 @@ public class NetworkNodeManagerMongoDbImpl implements NetworkNodeManager {
 		}
 	}
 
-	private NetworkNode map(DBObject nodeObject) {
-		NetworkNode node = new NetworkNode();
+	private Facility map(DBObject nodeObject) {
+		Facility node = new Facility();
 		node.setId((String) nodeObject.get("_id"));
 		node.setType(Type.valueOf((String) nodeObject.get("type")));
 		node.setKind(Kind.valueOf((String) nodeObject.get("kind")));

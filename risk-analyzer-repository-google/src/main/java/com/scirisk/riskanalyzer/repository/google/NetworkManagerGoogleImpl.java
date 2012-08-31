@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.scirisk.riskanalyzer.domain.Network;
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
 import com.scirisk.riskanalyzer.repository.NetworkManager;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
@@ -21,24 +21,24 @@ public class NetworkManagerGoogleImpl implements NetworkManager {
 		this.edgeManager = new NetworkEdgeManagerGoogleImpl();
 	}
 
-	public Network read() {
-		Collection<NetworkNode> nodes = nodeManager.findAll();
-		Collection<NetworkEdge> edges = edgeManager.findAll();
-		Network network = new Network(nodes, edges);
+	public DistributionNetwork read() {
+		Collection<Facility> nodes = nodeManager.findAll();
+		Collection<DistributionChannel> edges = edgeManager.findAll();
+		DistributionNetwork network = new DistributionNetwork(nodes, edges);
 		return network;
 	}
 
-	public void save(Network network) {
+	public void save(DistributionNetwork network) {
 		Map<String, String> nodeIdMap = new HashMap<String, String>();
 
-		for (NetworkNode node : network.getNodes()) {
+		for (Facility node : network.getNodes()) {
 			String fakeId = node.getId();
 			node.setId(null);
 			nodeIdMap.put(fakeId, nodeManager.save(node).getId());
 			node.setId(fakeId);
 		}
 
-		for (NetworkEdge ne : network.getEdges()) {
+		for (DistributionChannel ne : network.getEdges()) {
 			String fakeSourceId = ne.getSource().getId();
 			String fakeTargetId = ne.getTarget().getId();
 			String sourceId = nodeIdMap.get(fakeSourceId);

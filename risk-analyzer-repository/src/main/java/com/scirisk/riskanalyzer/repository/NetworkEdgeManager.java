@@ -2,16 +2,16 @@ package com.scirisk.riskanalyzer.repository;
 
 import java.util.List;
 
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
 
 public interface NetworkEdgeManager {
 
-	NetworkEdge save(NetworkEdge edge, String sourceId, String targetId);
+	DistributionChannel save(DistributionChannel edge, String sourceId, String targetId);
 
 	void delete(String edgeId);
 
-	NetworkEdge findOne(String edgeId);
+	DistributionChannel findOne(String edgeId);
 
-	List<NetworkEdge> findAll();
+	List<DistributionChannel> findAll();
 
 }

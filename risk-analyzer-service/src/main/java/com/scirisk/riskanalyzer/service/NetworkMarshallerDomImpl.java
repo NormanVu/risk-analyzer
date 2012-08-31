@@ -16,14 +16,14 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.scirisk.riskanalyzer.domain.Network;
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 
 // jaxp dom marshaller
 public class NetworkMarshallerDomImpl implements NetworkMarshaller {
 
-  public void marshall(Network network, OutputStream os) {
+  public void marshall(DistributionNetwork network, OutputStream os) {
     try {
       DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
       DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
@@ -39,7 +39,7 @@ public class NetworkMarshallerDomImpl implements NetworkMarshaller {
       
       // marshall nodes
       Element nodesElement = doc.createElement("nodes");
-      for (NetworkNode nn : network.getNodes()) {
+      for (Facility nn : network.getNodes()) {
         Element nodeElement = doc.createElement("node");
         nodeElement.setAttribute("id", String.valueOf(nn.getId()));
         nodeElement.setAttribute("name", nn.getName());
@@ -97,7 +97,7 @@ public class NetworkMarshallerDomImpl implements NetworkMarshaller {
       
       // marshall edges
       Element edgesElement = doc.createElement("edges");
-      for (NetworkEdge ne : network.getEdges()) {
+      for (DistributionChannel ne : network.getEdges()) {
         Element edgeElement = doc.createElement("edge");
         edgeElement.setAttribute("purchasingVolume", String.valueOf(ne.getPurchasingVolume()));
         edgeElement.setAttribute("source", String.valueOf(ne.getSource().getId()));

@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.Facility;
 
 public class NetworkNodeManagerJpaImplTest {
 
@@ -39,7 +39,7 @@ public class NetworkNodeManagerJpaImplTest {
 
 	@Test
 	public void testSave() throws Exception {
-		NetworkNode node = new NetworkNode();
+		Facility node = new Facility();
 		manager.save(node);
 		InOrder inOrder = Mockito.inOrder(em, transaction);
 		inOrder.verify(transaction).begin();
@@ -51,8 +51,8 @@ public class NetworkNodeManagerJpaImplTest {
 	@Test
 	public void testDelete() throws Exception {
 		String nodeId = "13";
-		NetworkNode node = new NetworkNode();
-		when(em.find(NetworkNode.class, nodeId)).thenReturn(node);
+		Facility node = new Facility();
+		when(em.find(Facility.class, nodeId)).thenReturn(node);
 
 		manager.delete(nodeId);
 		InOrder inOrder = Mockito.inOrder(em, transaction);
@@ -64,9 +64,9 @@ public class NetworkNodeManagerJpaImplTest {
 	@Test
 	public void testFindOne() throws Exception {
 		String nodeId = "13";
-		NetworkNode node = new NetworkNode();
-		when(em.find(NetworkNode.class, nodeId)).thenReturn(node);
-		NetworkNode foundNode = manager.findOne(nodeId);
+		Facility node = new Facility();
+		when(em.find(Facility.class, nodeId)).thenReturn(node);
+		Facility foundNode = manager.findOne(nodeId);
 
 		Assert.assertEquals(node, foundNode);
 	}
@@ -74,14 +74,14 @@ public class NetworkNodeManagerJpaImplTest {
 	@Test
 	public void testFindAll() throws Exception {
 		Query q = Mockito.mock(Query.class);
-		List<NetworkNode> queryResult = new ArrayList<NetworkNode>();
+		List<Facility> queryResult = new ArrayList<Facility>();
 		when(q.getResultList()).thenReturn(queryResult);
 
 		when(
-				em.createQuery("SELECT o FROM " + NetworkNode.class.getName()
+				em.createQuery("SELECT o FROM " + Facility.class.getName()
 						+ " o")).thenReturn(q);
 
-		List<NetworkNode> allNodes = manager.findAll();
+		List<Facility> allNodes = manager.findAll();
 		Assert.assertEquals(queryResult, allNodes);
 
 		InOrder inOrder = Mockito.inOrder(q, transaction);

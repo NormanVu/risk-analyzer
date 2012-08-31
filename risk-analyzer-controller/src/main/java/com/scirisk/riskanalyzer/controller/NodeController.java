@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
 @Controller
@@ -22,14 +22,14 @@ public class NodeController {
 	NetworkNodeManager networkNodeManager;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<String> save(NetworkNode node) throws Exception {
+	public ResponseEntity<String> save(Facility node) throws Exception {
 		networkNodeManager.save(node);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	NetworkNode read(@PathVariable("id") String nodeId) throws Exception {
+	Facility read(@PathVariable("id") String nodeId) throws Exception {
 		return networkNodeManager.findOne(nodeId);
 	}
 
@@ -42,7 +42,7 @@ public class NodeController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
-	Collection<NetworkNode> findAll() throws Exception {
+	Collection<Facility> findAll() throws Exception {
 		return networkNodeManager.findAll();
 	}
 

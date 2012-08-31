@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
@@ -38,8 +38,8 @@ public class EdgeController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
 	NetworkEdgeFormBean read(@PathVariable("id") String edgeId) throws Exception {
-		NetworkEdge edge = networkEdgeManager.findOne(edgeId);
-		List<NetworkNode> nodes = networkNodeManager.findAll();
+		DistributionChannel edge = networkEdgeManager.findOne(edgeId);
+		List<Facility> nodes = networkNodeManager.findAll();
 		return new NetworkEdgeFormBean(edge, nodes);
 	}
 

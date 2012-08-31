@@ -11,22 +11,22 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
-import com.scirisk.riskanalyzer.domain.NetworkNode.Kind;
-import com.scirisk.riskanalyzer.domain.NetworkNode.Type;
+import com.scirisk.riskanalyzer.domain.Facility;
+import com.scirisk.riskanalyzer.domain.Facility.Kind;
+import com.scirisk.riskanalyzer.domain.Facility.Type;
 import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
 
 public class NetworkNodeManagerGoogleImpl implements NetworkNodeManager {
 
   private static final String NODE_ENTITY_KIND = "NetworkNode";
 
-  public List<NetworkNode> findAll() {
+  public List<Facility> findAll() {
     DatastoreService service = DatastoreServiceFactory.getDatastoreService();
     Query q = new Query(NODE_ENTITY_KIND);
     PreparedQuery pq = service.prepare(q);
-    ArrayList<NetworkNode> nodes = new ArrayList<NetworkNode>();
+    ArrayList<Facility> nodes = new ArrayList<Facility>();
     for (Entity nodeEntity : pq.asIterable()) {
-      NetworkNode node = map(nodeEntity);
+      Facility node = map(nodeEntity);
       nodes.add(node);
     }
     return nodes;
@@ -41,7 +41,7 @@ public class NetworkNodeManagerGoogleImpl implements NetworkNodeManager {
   }
 
 
-  public NetworkNode save(NetworkNode node) {
+  public Facility save(Facility node) {
     DatastoreService service = DatastoreServiceFactory.getDatastoreService();
     Entity nodeEntity = null;
     if (node.getId() != null) {
@@ -74,20 +74,20 @@ public class NetworkNodeManagerGoogleImpl implements NetworkNodeManager {
     return node;
   }
 
-  public NetworkNode findOne(String nodeId) {
+  public Facility findOne(String nodeId) {
     Key nodeKey = KeyFactory.createKey(NODE_ENTITY_KIND, nodeId);
     DatastoreService service = DatastoreServiceFactory.getDatastoreService();
     try {
       Entity nodeEntity = service.get(nodeKey);
-      NetworkNode node = map(nodeEntity);
+      Facility node = map(nodeEntity);
       return node;
     } catch (EntityNotFoundException e) {
       throw new IllegalArgumentException("Cannot find network node entity [" + nodeId + "].");
     }
   }
 
-  NetworkNode map(Entity nodeEntity) {
-    NetworkNode node = new NetworkNode();
+  Facility map(Entity nodeEntity) {
+    Facility node = new Facility();
     node.setId(nodeEntity.getKey().toString());
     node.setName((String) nodeEntity.getProperty("name"));
     node.setKind(Kind.valueOf((String) nodeEntity.getProperty("kind")));

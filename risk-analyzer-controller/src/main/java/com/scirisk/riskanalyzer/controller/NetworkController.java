@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.scirisk.riskanalyzer.domain.Network;
-import com.scirisk.riskanalyzer.domain.NetworkEdge;
-import com.scirisk.riskanalyzer.domain.NetworkNode;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.NetworkManager;
 import com.scirisk.riskanalyzer.service.NetworkMarshaller;
 import com.scirisk.riskanalyzer.service.NetworkParser;
@@ -39,7 +39,7 @@ public class NetworkController {
 
 	@RequestMapping(value = "/network/map", method = RequestMethod.GET)
 	public @ResponseBody
-	Network getNetworkForGoogleMap() throws Exception {
+	DistributionNetwork getNetworkForGoogleMap() throws Exception {
 		return networkManager.read();
 	}
 
@@ -47,10 +47,10 @@ public class NetworkController {
 	public void getNetworkForTree(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		response.setContentType("application/json");
-		Network network = networkManager.read();
+		DistributionNetwork network = networkManager.read();
 
-		Collection<NetworkNode> nodes = network.getNodes();
-		Collection<NetworkEdge> edges = network.getEdges();
+		Collection<Facility> nodes = network.getNodes();
+		Collection<DistributionChannel> edges = network.getEdges();
 
 		JSONObject nodeFolder = new JSONObject();
 		nodeFolder.element("text", "Node");
@@ -84,7 +84,7 @@ public class NetworkController {
 	public void exportToXml(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		Network network = networkManager.read();
+		DistributionNetwork network = networkManager.read();
 		response.setContentType("application/xml");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 		String file = "risk-analyzer-network-export-"
@@ -102,7 +102,7 @@ public class NetworkController {
 		JSONObject jsonResponse = new JSONObject();
 
 		if (!networkXml.isEmpty()) {
-			Network network = networkParser.parse(networkXml.getInputStream());
+			DistributionNetwork network = networkParser.parse(networkXml.getInputStream());
 			networkManager.save(network);
 			jsonResponse.put("success", true);
 		} else {
@@ -114,9 +114,9 @@ public class NetworkController {
 		resp.getWriter().println(jsonResponse.toString(2));
 	}
 
-	private JSONArray nodesToJson(final Collection<NetworkNode> nodes) {
+	private JSONArray nodesToJson(final Collection<Facility> nodes) {
 		JSONArray nodesArray = new JSONArray();
-		for (NetworkNode n : nodes) {
+		for (Facility n : nodes) {
 			JSONObject nodeObject = new JSONObject();
 			nodeObject.element("id", "n_" + n.getId());
 			nodeObject.element("text", n.getName());
@@ -126,9 +126,9 @@ public class NetworkController {
 		return nodesArray;
 	}
 
-	private JSONArray edgesToJson(final Collection<NetworkEdge> edges) {
+	private JSONArray edgesToJson(final Collection<DistributionChannel> edges) {
 		JSONArray edgesArray = new JSONArray();
-		for (NetworkEdge e : edges) {
+		for (DistributionChannel e : edges) {
 			JSONObject edgeObject = new JSONObject();
 			edgeObject.element("id", "e_" + e.getId());
 			final String caption = e.getSource().getName() + " > "
