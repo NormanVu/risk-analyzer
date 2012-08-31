@@ -11,6 +11,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-domain</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-repository</artifactId>
 		</dependency>
 		<dependency>

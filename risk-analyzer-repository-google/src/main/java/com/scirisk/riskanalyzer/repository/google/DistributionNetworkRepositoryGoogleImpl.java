@@ -11,14 +11,14 @@ import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkManagerGoogleImpl implements DistributionNetworkRepository {
+public class DistributionNetworkRepositoryGoogleImpl implements DistributionNetworkRepository {
 
 	private FacilityRepository nodeManager;
 	private DistributionChannelRepository edgeManager;
 
-	public NetworkManagerGoogleImpl() {
-		this.nodeManager = new NetworkNodeManagerGoogleImpl();
-		this.edgeManager = new NetworkEdgeManagerGoogleImpl();
+	public DistributionNetworkRepositoryGoogleImpl() {
+		this.nodeManager = new FacilityRepositoryGoogleImpl();
+		this.edgeManager = new DistributionChannelRepositoryGoogleImpl();
 	}
 
 	public DistributionNetwork read() {

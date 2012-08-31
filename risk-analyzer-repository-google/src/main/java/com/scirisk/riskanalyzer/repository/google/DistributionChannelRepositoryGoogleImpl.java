@@ -15,7 +15,7 @@ import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 
-public class NetworkEdgeManagerGoogleImpl implements DistributionChannelRepository {
+public class DistributionChannelRepositoryGoogleImpl implements DistributionChannelRepository {
 
   public DistributionChannel save(DistributionChannel edge, String sourceId, String targetId) {
     DatastoreService service = DatastoreServiceFactory.getDatastoreService();

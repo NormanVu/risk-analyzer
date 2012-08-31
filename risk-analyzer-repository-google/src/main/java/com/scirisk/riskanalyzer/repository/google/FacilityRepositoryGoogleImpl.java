@@ -16,7 +16,7 @@ import com.scirisk.riskanalyzer.domain.Facility.Kind;
 import com.scirisk.riskanalyzer.domain.Facility.Type;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkNodeManagerGoogleImpl implements FacilityRepository {
+public class FacilityRepositoryGoogleImpl implements FacilityRepository {
 
   private static final String NODE_ENTITY_KIND = "NetworkNode";
 
