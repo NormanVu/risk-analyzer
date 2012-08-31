@@ -19,18 +19,18 @@
 		<property name="mongo" ref="mongo" />
 	</bean>
 
-	<bean id="networkManager"
-		class="com.scirisk.riskanalyzer.repository.mongodb.NetworkManagerMongoDbImpl">
+	<bean
+		class="com.scirisk.riskanalyzer.repository.mongodb.DistributionNetworkRepositoryMongoDbImpl">
 		<constructor-arg ref="dbFactory" />
 	</bean>
 
-	<bean id="networkEdgeManager"
-		class="com.scirisk.riskanalyzer.repository.mongodb.NetworkEdgeManagerMongoDbImpl">
+	<bean
+		class="com.scirisk.riskanalyzer.repository.mongodb.DistributionChannelRepositoryMongoDbImpl">
 		<constructor-arg ref="dbFactory" />
 	</bean>
 
-	<bean id="networkNodeManager"
-		class="com.scirisk.riskanalyzer.repository.mongodb.NetworkNodeManagerMongoDbImpl">
+	<bean
+		class="com.scirisk.riskanalyzer.repository.mongodb.FacilityRepositoryMongoDbImpl">
 		<constructor-arg ref="dbFactory" />
 	</bean>
 

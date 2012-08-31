@@ -6,11 +6,11 @@ import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkManagerMongoDbImpl implements DistributionNetworkRepository {
+public class DistributionNetworkRepositoryMongoDbImpl implements DistributionNetworkRepository {
 
 	private DB db;
 
-	public NetworkManagerMongoDbImpl(DB db) {
+	public DistributionNetworkRepositoryMongoDbImpl(DB db) {
 		this.db = db;
 	}
 
@@ -19,8 +19,8 @@ public class NetworkManagerMongoDbImpl implements DistributionNetworkRepository 
 	}
 
 	public DistributionNetwork read() {
-		FacilityRepository nodeManager = new NetworkNodeManagerMongoDbImpl(db);
-		DistributionChannelRepository edgeManager = new NetworkEdgeManagerMongoDbImpl(db);
+		FacilityRepository nodeManager = new FacilityRepositoryMongoDbImpl(db);
+		DistributionChannelRepository edgeManager = new DistributionChannelRepositoryMongoDbImpl(db);
 		return new DistributionNetwork(nodeManager.findAll(), edgeManager.findAll());
 	}
 

@@ -13,13 +13,13 @@ import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkEdgeManagerMongoDbImpl implements DistributionChannelRepository {
+public class DistributionChannelRepositoryMongoDbImpl implements DistributionChannelRepository {
 
 	private static final String NETWORK_EDGE_COLLECTION = "networkEdgeCollection";
 
 	private DB db;
 
-	public NetworkEdgeManagerMongoDbImpl(DB db) {
+	public DistributionChannelRepositoryMongoDbImpl(DB db) {
 		this.db = db;
 	}
 
@@ -82,7 +82,7 @@ public class NetworkEdgeManagerMongoDbImpl implements DistributionChannelReposit
 		DistributionChannel edge = new DistributionChannel();
 		edge.setId((String) edgeObject.get("_id"));
 		edge.setPurchasingVolume((Double) edgeObject.get("purchasingVolume"));
-		FacilityRepository nodeManager = new NetworkNodeManagerMongoDbImpl(db);
+		FacilityRepository nodeManager = new FacilityRepositoryMongoDbImpl(db);
 		edge.setSource(nodeManager.findOne((String) edgeObject.get("sourceId")));
 		edge.setTarget(nodeManager.findOne((String) edgeObject.get("targetId")));
 		return edge;

@@ -14,13 +14,13 @@ import com.scirisk.riskanalyzer.domain.Facility.Kind;
 import com.scirisk.riskanalyzer.domain.Facility.Type;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkNodeManagerMongoDbImpl implements FacilityRepository {
+public class FacilityRepositoryMongoDbImpl implements FacilityRepository {
 
 	private static final String NETWORK_NODE_COLLECTION = "networkNodeCollection";
 
 	private DB db;
 
-	public NetworkNodeManagerMongoDbImpl(DB db) {
+	public FacilityRepositoryMongoDbImpl(DB db) {
 		this.db = db;
 	}
 
