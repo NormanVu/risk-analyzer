@@ -21,15 +21,15 @@ import com.scirisk.riskanalyzer.backend.proxy.CalculateResponse;
 import com.scirisk.riskanalyzer.backend.proxy.RiskAnalyzerServiceProxy;
 import com.scirisk.riskanalyzer.backend.proxy.RiskAnalyzerServiceProxyImpl;
 import com.scirisk.riskanalyzer.domain.DistributionNetwork;
-import com.scirisk.riskanalyzer.repository.NetworkManager;
+import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
 
 @Controller
 public class SimulationController {
 
 	@Autowired
-	private NetworkManager networkManager;
+	private DistributionNetworkRepository networkManager;
 
-	public void setNetworkManager(NetworkManager networkManager) {
+	public void setNetworkManager(DistributionNetworkRepository networkManager) {
 		this.networkManager = networkManager;
 	}
 

@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 @Controller
 @RequestMapping(value = "/node")
 public class NodeController {
 
 	@Autowired
-	NetworkNodeManager networkNodeManager;
+	FacilityRepository networkNodeManager;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<String> save(Facility node) throws Exception {

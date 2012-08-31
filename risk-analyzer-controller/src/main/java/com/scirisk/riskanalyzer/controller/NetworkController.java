@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.NetworkManager;
+import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.service.NetworkMarshaller;
 import com.scirisk.riskanalyzer.service.NetworkParser;
 
@@ -29,7 +29,7 @@ import com.scirisk.riskanalyzer.service.NetworkParser;
 public class NetworkController {
 
 	@Autowired
-	NetworkManager networkManager;
+	DistributionNetworkRepository networkManager;
 
 	@Autowired
 	private NetworkMarshaller networkMarshaller;

@@ -10,10 +10,10 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
-import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
-import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkEdgeManagerMongoDbImpl implements NetworkEdgeManager {
+public class NetworkEdgeManagerMongoDbImpl implements DistributionChannelRepository {
 
 	private static final String NETWORK_EDGE_COLLECTION = "networkEdgeCollection";
 
@@ -82,7 +82,7 @@ public class NetworkEdgeManagerMongoDbImpl implements NetworkEdgeManager {
 		DistributionChannel edge = new DistributionChannel();
 		edge.setId((String) edgeObject.get("_id"));
 		edge.setPurchasingVolume((Double) edgeObject.get("purchasingVolume"));
-		NetworkNodeManager nodeManager = new NetworkNodeManagerMongoDbImpl(db);
+		FacilityRepository nodeManager = new NetworkNodeManagerMongoDbImpl(db);
 		edge.setSource(nodeManager.findOne((String) edgeObject.get("sourceId")));
 		edge.setTarget(nodeManager.findOne((String) edgeObject.get("targetId")));
 		return edge;

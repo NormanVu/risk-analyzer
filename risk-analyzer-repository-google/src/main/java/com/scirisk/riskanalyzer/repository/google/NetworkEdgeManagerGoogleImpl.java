@@ -13,9 +13,9 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
+import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 
-public class NetworkEdgeManagerGoogleImpl implements NetworkEdgeManager {
+public class NetworkEdgeManagerGoogleImpl implements DistributionChannelRepository {
 
   public DistributionChannel save(DistributionChannel edge, String sourceId, String targetId) {
     DatastoreService service = DatastoreServiceFactory.getDatastoreService();

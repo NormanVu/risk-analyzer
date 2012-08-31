@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.scirisk.riskanalyzer.domain.DistributionNetwork;
-import com.scirisk.riskanalyzer.repository.NetworkManager;
+import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.service.NetworkParser;
 
 public class NetworkControllerTest {
@@ -24,7 +24,7 @@ public class NetworkControllerTest {
 	@Test
 	public void testGetNetworkForGoogleMap() throws Exception {
 		NetworkController controller = new NetworkController();
-		controller.networkManager = mock(NetworkManager.class);
+		controller.networkManager = mock(DistributionNetworkRepository.class);
 		DistributionNetwork network = new DistributionNetwork();
 		when(controller.networkManager.read()).thenReturn(network);
 
@@ -36,7 +36,7 @@ public class NetworkControllerTest {
 	public void testImportFromXmlWithNonEmptyFile() throws Exception {
 		NetworkController controller = new NetworkController();
 		controller.networkParser = mock(NetworkParser.class);
-		controller.networkManager = mock(NetworkManager.class);
+		controller.networkManager = mock(DistributionNetworkRepository.class);
 
 		MultipartFile networkXml = mock(MultipartFile.class);
 		when(networkXml.isEmpty()).thenReturn(false);

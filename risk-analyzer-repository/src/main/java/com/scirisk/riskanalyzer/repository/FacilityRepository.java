@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.scirisk.riskanalyzer.domain.Facility;
 
-public interface NetworkNodeManager {
+public interface FacilityRepository {
 
 	Facility save(Facility node);
 

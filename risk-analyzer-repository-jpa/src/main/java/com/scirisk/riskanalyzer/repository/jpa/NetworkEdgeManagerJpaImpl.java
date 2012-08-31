@@ -9,9 +9,9 @@ import javax.persistence.Query;
 
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
+import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 
-public class NetworkEdgeManagerJpaImpl implements NetworkEdgeManager {
+public class NetworkEdgeManagerJpaImpl implements DistributionChannelRepository {
 
 	private EntityManagerFactory emf;
 

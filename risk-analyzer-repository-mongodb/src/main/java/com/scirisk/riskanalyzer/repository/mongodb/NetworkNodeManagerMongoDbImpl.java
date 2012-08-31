@@ -12,9 +12,9 @@ import com.mongodb.DBObject;
 import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.domain.Facility.Kind;
 import com.scirisk.riskanalyzer.domain.Facility.Type;
-import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkNodeManagerMongoDbImpl implements NetworkNodeManager {
+public class NetworkNodeManagerMongoDbImpl implements FacilityRepository {
 
 	private static final String NETWORK_NODE_COLLECTION = "networkNodeCollection";
 

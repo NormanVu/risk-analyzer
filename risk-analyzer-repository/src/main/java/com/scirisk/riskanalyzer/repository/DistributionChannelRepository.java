@@ -4,9 +4,10 @@ import java.util.List;
 
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 
-public interface NetworkEdgeManager {
+public interface DistributionChannelRepository {
 
-	DistributionChannel save(DistributionChannel edge, String sourceId, String targetId);
+	DistributionChannel save(DistributionChannel edge, String sourceId,
+			String targetId);
 
 	void delete(String edgeId);
 

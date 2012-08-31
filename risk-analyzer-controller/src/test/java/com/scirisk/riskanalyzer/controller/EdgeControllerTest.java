@@ -17,8 +17,8 @@ import org.springframework.http.ResponseEntity;
 
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
-import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class EdgeControllerTest {
 
@@ -27,8 +27,8 @@ public class EdgeControllerTest {
 	@Before
 	public void beforeTest() {
 		this.controller = new EdgeController();
-		this.controller.networkEdgeManager = mock(NetworkEdgeManager.class);
-		this.controller.networkNodeManager = mock(NetworkNodeManager.class);
+		this.controller.networkEdgeManager = mock(DistributionChannelRepository.class);
+		this.controller.networkNodeManager = mock(FacilityRepository.class);
 	}
 
 	@Test

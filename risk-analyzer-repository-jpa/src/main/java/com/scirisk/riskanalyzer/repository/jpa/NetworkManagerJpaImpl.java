@@ -11,9 +11,9 @@ import javax.persistence.Query;
 import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.NetworkManager;
+import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
 
-public class NetworkManagerJpaImpl implements NetworkManager {
+public class NetworkManagerJpaImpl implements DistributionNetworkRepository {
 
 	private EntityManagerFactory emf;
 	

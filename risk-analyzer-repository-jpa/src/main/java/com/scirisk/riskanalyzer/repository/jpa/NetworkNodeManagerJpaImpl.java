@@ -8,9 +8,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkNodeManagerJpaImpl implements NetworkNodeManager {
+public class NetworkNodeManagerJpaImpl implements FacilityRepository {
 
 	private EntityManagerFactory emf;
 

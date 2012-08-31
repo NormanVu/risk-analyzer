@@ -2,11 +2,11 @@ package com.scirisk.riskanalyzer.repository.mongodb;
 
 import com.mongodb.DB;
 import com.scirisk.riskanalyzer.domain.DistributionNetwork;
-import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
-import com.scirisk.riskanalyzer.repository.NetworkManager;
-import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
+import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkManagerMongoDbImpl implements NetworkManager {
+public class NetworkManagerMongoDbImpl implements DistributionNetworkRepository {
 
 	private DB db;
 
@@ -19,8 +19,8 @@ public class NetworkManagerMongoDbImpl implements NetworkManager {
 	}
 
 	public DistributionNetwork read() {
-		NetworkNodeManager nodeManager = new NetworkNodeManagerMongoDbImpl(db);
-		NetworkEdgeManager edgeManager = new NetworkEdgeManagerMongoDbImpl(db);
+		FacilityRepository nodeManager = new NetworkNodeManagerMongoDbImpl(db);
+		DistributionChannelRepository edgeManager = new NetworkEdgeManagerMongoDbImpl(db);
 		return new DistributionNetwork(nodeManager.findAll(), edgeManager.findAll());
 	}
 

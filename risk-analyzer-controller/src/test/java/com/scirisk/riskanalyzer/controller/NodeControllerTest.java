@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class NodeControllerTest {
 
@@ -22,7 +22,7 @@ public class NodeControllerTest {
 	public void beforeTest() {
 		this.controller = new NodeController();
 		this.controller.networkNodeManager = Mockito
-				.mock(NetworkNodeManager.class);
+				.mock(FacilityRepository.class);
 	}
 
 	@Test

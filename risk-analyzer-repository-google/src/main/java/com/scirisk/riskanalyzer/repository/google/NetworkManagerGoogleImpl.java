@@ -7,14 +7,14 @@ import java.util.Map;
 import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
-import com.scirisk.riskanalyzer.repository.NetworkManager;
-import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
+import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkManagerGoogleImpl implements NetworkManager {
+public class NetworkManagerGoogleImpl implements DistributionNetworkRepository {
 
-	private NetworkNodeManager nodeManager;
-	private NetworkEdgeManager edgeManager;
+	private FacilityRepository nodeManager;
+	private DistributionChannelRepository edgeManager;
 
 	public NetworkManagerGoogleImpl() {
 		this.nodeManager = new NetworkNodeManagerGoogleImpl();

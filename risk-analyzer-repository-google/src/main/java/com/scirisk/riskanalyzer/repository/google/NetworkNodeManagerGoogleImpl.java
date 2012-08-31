@@ -14,9 +14,9 @@ import com.google.appengine.api.datastore.Query;
 import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.domain.Facility.Kind;
 import com.scirisk.riskanalyzer.domain.Facility.Type;
-import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NetworkNodeManagerGoogleImpl implements NetworkNodeManager {
+public class NetworkNodeManagerGoogleImpl implements FacilityRepository {
 
   private static final String NODE_ENTITY_KIND = "NetworkNode";
 

@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.NetworkEdgeManager;
-import com.scirisk.riskanalyzer.repository.NetworkNodeManager;
+import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 @Controller
 @RequestMapping(value = "/edge")
 public class EdgeController {
 
 	@Autowired
-	NetworkEdgeManager networkEdgeManager;
+	DistributionChannelRepository networkEdgeManager;
 
 	@Autowired
-	NetworkNodeManager networkNodeManager;
+	FacilityRepository networkNodeManager;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<String> save(NetworkEdgeFormBean formBean)
