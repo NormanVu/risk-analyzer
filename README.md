@@ -39,7 +39,7 @@ as the entities repository, or on Google App Engine with a Big Data storage.
 
 The most common deployment configuration are described in the following sections.
 
-## Deploying Risk Analyzer on a Local Machine
+### Deploying Risk Analyzer on a Local Machine
 
 1. Create a working directory, for example C:\RiskAnalyzer, hereafter referred to as RISK_ANALYZER_HOME.
 2. Create a sub-directory for the Backend Web application in RISK_ANALYZER_HOME\backed.
@@ -51,6 +51,6 @@ The most common deployment configuration are described in the following sections
 8. Launch the Frontend Web application by executing java -jar risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar
 9. Open this URL [http://localhost:8080/risk-analyzer-web](http://localhost:8080/risk-analyzer-web) in your favorite Web browser to make sure that the frontend application is up and running.
 
-## Deploying Risk Analyzer on Google App Engine
+### Deploying Risk Analyzer on Google App Engine
 
 [http://risk-analyzer-frontend.appspot.com](http://risk-analyzer-frontend.appspot.com)
