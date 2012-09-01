@@ -34,8 +34,9 @@ the network of suppliers for their company. The application supports the followi
 
 ## Deployment
 The Risk Analyzer application is divided into a set of functional units named modules. These module can be deployed in
-various configurations. For instance, the application can be run on a local machine with the relational database (RDBMS)
-as data storage, or on Google App Engine with its schemaless High Replication Datastore (HRD).
+various configurations. For instance, the application can be run on a local machine with the [relational database (RDBMS)]
+(http://en.wikipedia.org/wiki/Relational_database) as data storage, or on Google App Engine with its schemaless
+[High Replication Datastore (HRD)](https://developers.google.com/appengine/docs/java/datastore/overview).
 
 The most common deployment configurations are described in the following sections.
 
