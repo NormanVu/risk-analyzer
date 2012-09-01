@@ -24,39 +24,49 @@ public class DistributionChannelRepositoryGoogleImpl implements
 		this.datastoreService = datastoreService;
 	}
 
-	public DistributionChannel save(DistributionChannel edge, String sourceId,
-			String targetId) {
-		Key sourceKey = KeyFactory.createKey("NetworkNode", sourceId);
-		Key targetKey = KeyFactory.createKey("NetworkNode", targetId);
+	public DistributionChannel save(DistributionChannel channel,
+			String sourceId, String targetId) {
 
 		Entity entity = null;
-		if (edge.getId() != null) {
-			Key edgeKey = KeyFactory.createKey("NetworkEdge", edge.getId());
+		if (!isBlank(channel.getId())) {
+			Key channelKey = KeyFactory.createKey(
+					DistributionChannel.class.getSimpleName(),
+					Long.valueOf(channel.getId()));
 			try {
-				entity = datastoreService.get(edgeKey);
+				entity = datastoreService.get(channelKey);
 			} catch (EntityNotFoundException e) {
 				throw new IllegalArgumentException(
-						"Cannot find network edge entity [" + edge.getId()
+						"Cannot find network edge entity [" + channel.getId()
 								+ "].");
 			}
 		} else {
-			entity = new Entity("NetworkEdge");
+			entity = new Entity(DistributionChannel.class.getSimpleName());
 		}
 
-		entity.setProperty("purchasingVolume", edge.getId());
+		Key sourceKey = KeyFactory.createKey(
+				FacilityRepositoryGoogleImpl.FACILITY_ENTITY, Long.valueOf(sourceId));
+		Key targetKey = KeyFactory.createKey(
+				FacilityRepositoryGoogleImpl.FACILITY_ENTITY, Long.valueOf(targetId));
+
+		entity.setProperty("purchasingVolume", channel.getPurchasingVolume());
 		entity.setProperty("sourceId", sourceKey);
 		entity.setProperty("targetId", targetKey);
+
 		datastoreService.beginTransaction();
-		datastoreService.put(entity);
+		Key generatedKey = datastoreService.put(entity);
 		datastoreService.getCurrentTransaction().commit();
-		return edge;
+		channel.setId(String.valueOf(generatedKey.getId()));
+		return channel;
 	}
 
-	public DistributionChannel findOne(String edgeId) {
-		Key edgeKey = KeyFactory.createKey("NetworkEdge", edgeId);
+	public DistributionChannel findOne(String distributionChannelId) {
+		Key channelKey = KeyFactory.createKey(
+				DistributionChannel.class.getSimpleName(),
+				Long.valueOf(distributionChannelId));
 		try {
-			Entity edgeEntity = datastoreService.get(edgeKey);
-			DistributionChannel edge = createEdge(edgeEntity);
+			Entity edgeEntity = datastoreService.get(channelKey);
+			
+			DistributionChannel channel = map(edgeEntity);
 
 			Key sourceKey = (Key) edgeEntity.getProperty("sourceId");
 			Key targetKey = (Key) edgeEntity.getProperty("targetId");
@@ -64,62 +74,67 @@ public class DistributionChannelRepositoryGoogleImpl implements
 			Entity sourceEntity = datastoreService.get(sourceKey);
 			Entity targetEntity = datastoreService.get(targetKey);
 
-			edge.setSource(createNode(sourceEntity));
-			edge.setTarget(createNode(targetEntity));
-			return edge;
+			channel.setSource(mapFacility(sourceEntity));
+			channel.setTarget(mapFacility(targetEntity));
+			return channel;
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(
-					"Cannot find network edge entity [" + edgeId + "].");
+					"Cannot find network edge entity [" + distributionChannelId
+							+ "].");
 		}
 	}
 
-	public void delete(final String edgeId) {
-		Key edgeKey = KeyFactory.createKey("NetworkEdge", edgeId);
+	public void delete(String channelId) {
+		Key channelKey = KeyFactory.createKey(DistributionChannel.class.getSimpleName(), Long.valueOf(channelId));
 		datastoreService.beginTransaction();
-		datastoreService.delete(edgeKey);
+		datastoreService.delete(channelKey);
 		datastoreService.getCurrentTransaction().commit();
 	}
 
 	public List<DistributionChannel> findAll() {
-		Query q = new Query("NetworkEdge");
+		Query q = new Query(DistributionChannel.class.getSimpleName());
 		PreparedQuery pq = datastoreService.prepare(q);
-		ArrayList<DistributionChannel> edges = new ArrayList<DistributionChannel>();
-		for (Entity edgeEntity : pq.asIterable()) {
+		List<DistributionChannel> channels = new ArrayList<DistributionChannel>();
+		for (Entity channelEntity : pq.asIterable()) {
 			try {
-				DistributionChannel edge = createEdge(edgeEntity);
+				DistributionChannel channel = map(channelEntity);
 
-				Key sourceKey = (Key) edgeEntity.getProperty("sourceId");
-				Key targetKey = (Key) edgeEntity.getProperty("targetId");
+				Key sourceKey = (Key) channelEntity.getProperty("sourceId");
+				Key targetKey = (Key) channelEntity.getProperty("targetId");
 
 				Entity sourceEntity = datastoreService.get(sourceKey);
 				Entity targetEntity = datastoreService.get(targetKey);
 
-				edge.setSource(createNode(sourceEntity));
-				edge.setTarget(createNode(targetEntity));
+				channel.setSource(mapFacility(sourceEntity));
+				channel.setTarget(mapFacility(targetEntity));
 
-				edges.add(edge);
+				channels.add(channel);
 			} catch (EntityNotFoundException e) {
 				throw new RuntimeException(e);
 			}
 		}
-		return edges;
+		return channels;
 	}
 
-	private DistributionChannel createEdge(Entity edgeEntity) {
-		DistributionChannel edge = new DistributionChannel();
-		edge.setId(edgeEntity.getKey().toString());
-		edge.setPurchasingVolume((Double) edgeEntity
+	private DistributionChannel map(Entity channelEntity) {
+		DistributionChannel channel = new DistributionChannel();
+		channel.setId(String.valueOf(channelEntity.getKey().getId()));
+		channel.setPurchasingVolume((Double) channelEntity
 				.getProperty("purchasingVolume"));
-		return edge;
+		return channel;
 	}
 
-	private Facility createNode(Entity nodeEntity) {
+	private Facility mapFacility(Entity nodeEntity) {
 		Facility n = new Facility();
-		n.setId(nodeEntity.getKey().toString());
+		n.setId(String.valueOf(nodeEntity.getKey().getId()));
 		n.setName((String) nodeEntity.getProperty("name"));
 		n.setLatitude((Double) nodeEntity.getProperty("latitude"));
 		n.setLongitude((Double) nodeEntity.getProperty("longitude"));
 		return n;
+	}
+
+	boolean isBlank(String string) {
+		return "".equals(string);
 	}
 
 }

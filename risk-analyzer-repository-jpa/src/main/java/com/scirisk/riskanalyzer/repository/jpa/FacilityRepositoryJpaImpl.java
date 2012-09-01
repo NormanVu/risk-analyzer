@@ -29,14 +29,10 @@ public class FacilityRepositoryJpaImpl implements FacilityRepository {
 		return node;
 	}
 
-	boolean isBlank(String string) {
-		return "".equals(string);
-	}
-
 	public List<Facility> findAll() {
 		EntityManager em = emf.createEntityManager();
-		final String queryString = "SELECT o FROM "
-				+ Facility.class.getName() + " o";
+		final String queryString = "SELECT o FROM " + Facility.class.getName()
+				+ " o";
 		Query q = em.createQuery(queryString);
 		em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
@@ -57,6 +53,10 @@ public class FacilityRepositoryJpaImpl implements FacilityRepository {
 		EntityManager em = emf.createEntityManager();
 		Facility node = em.find(Facility.class, nodeId);
 		return node;
+	}
+
+	boolean isBlank(String string) {
+		return "".equals(string);
 	}
 
 }

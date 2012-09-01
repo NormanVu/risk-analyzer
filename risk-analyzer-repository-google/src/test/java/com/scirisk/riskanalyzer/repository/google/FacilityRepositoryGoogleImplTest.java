@@ -22,6 +22,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Transaction;
+import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
 
 // TODO Implement tests
@@ -54,6 +55,7 @@ public class FacilityRepositoryGoogleImplTest {
 	@Test
 	public void testFindAll() throws Exception {
 		DatastoreService datastoreService = mock(DatastoreService.class);
+		System.out.println(DistributionChannel.class.getSimpleName());
 	}
 	
 	
