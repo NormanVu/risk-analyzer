@@ -37,7 +37,7 @@ The Risk Analyzer application is divided into a set of functional units named mo
 various configurations. For instance, the application can be run on a local machine with an embedded HSQL database
 as the entities repository, or on Google App Engine with a Big Data storage.
 
-The most common deployment configuration are described in the following sections.
+The most common deployment configurations are described in the following sections.
 
 ### Deploying Risk Analyzer on a Local Machine
 
