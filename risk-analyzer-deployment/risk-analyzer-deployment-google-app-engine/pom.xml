@@ -10,4 +10,26 @@
 	<packaging>war</packaging>
 	<name>Risk Analyzer - Deployment Google App Engine</name>
 
+	<dependencies>
+		<!-- Internal -->
+		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-web-extjs</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-web-static</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-controller</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-repository-google</artifactId>
+		</dependency>
+	</dependencies>
+
 </project>
