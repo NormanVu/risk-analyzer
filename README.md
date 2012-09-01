@@ -35,7 +35,7 @@ the network of suppliers for their company. The application supports the followi
 ## Deployment
 The Risk Analyzer application is divided into a set of functional units named modules. These module can be deployed in
 various configurations. For instance, the application can be run on a local machine with an embedded HSQL database
-as the entities repository, or on Google App Engine with a Big Data storage.
+as data storage, or on Google App Engine with a Big Data as data storage.
 
 The most common deployment configurations are described in the following sections.
 
