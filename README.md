@@ -32,7 +32,11 @@ the network of suppliers for their company. The application supports the followi
 
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/simulation.png)
 
-## Running Risk Analyzer
+## Deployment
+The Risk Analyzer application is divided into a set of functional units named modules. These module can be deployed in various configurations.
+For instance, Risk Analyzer can be run on a local machine with an embedded HSQL database as entities repository, or can be deployed on Google App Engine
+with Big Data storage. The most common deployment configuration are described in the following sections.
+## Deploying Risk Analyzer on a Local Machine
 1. Create a working directory, for example C:\RiskAnalyzer, hereafter referred to as RISK_ANALYZER_HOME.
 2. Create a sub-directory for the Backend Web application in RISK_ANALYZER_HOME\backed.
 3. Create a sub-directory for the Frontend Web application in RISK_ANALYZER_HOME\frontend.
@@ -42,3 +46,5 @@ the network of suppliers for their company. The application supports the followi
 7. Open this URL [http://localhost:9090/risk-analyzer-backend-web/soap/risk-analyzer.wsdl](http://localhost:9090/risk-analyzer-backend-web/soap/risk-analyzer.wsdl) in your favorite Web browser to make sure that the backend application is up and running.
 8. Launch the Frontend Web application by executing java -jar risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar
 9. Open this URL [http://localhost:8080/risk-analyzer-web](http://localhost:8080/risk-analyzer-web) in your favorite Web browser to make sure that the frontend application is up and running.
+## Deploying Risk Analyzer on Google App Engine
+[http://risk-analyzer-frontend.appspot.com](http://risk-analyzer-frontend.appspot.com)
