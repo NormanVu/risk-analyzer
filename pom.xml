@@ -41,6 +41,7 @@
 		<module>risk-analyzer-web-static</module>
 		<module>risk-analyzer-web-extjs</module>
 		<module>risk-analyzer-repository-google</module>
+		<module>risk-analyzer-deployment</module>
 	</modules>
 
 	<build>

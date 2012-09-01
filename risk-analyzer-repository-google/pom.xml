@@ -9,7 +9,13 @@
 	<artifactId>risk-analyzer-repository-google</artifactId>
 	<name>Risk Analyzer - Repository Google</name>
 
+	<properties>
+		<powermock.version>1.4.12</powermock.version>
+	</properties>
+
+
 	<dependencies>
+		<!-- Internal -->
 		<dependency>
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-domain</artifactId>
@@ -22,6 +28,24 @@
 			<groupId>com.google.appengine.orm</groupId>
 			<artifactId>datanucleus-appengine</artifactId>
 			<version>2.0.1.1</version>
+		</dependency>
+		<!-- Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

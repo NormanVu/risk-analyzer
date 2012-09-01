@@ -1,31 +1,34 @@
 package com.scirisk.riskanalyzer.repository.google;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class DistributionNetworkRepositoryGoogleImpl implements DistributionNetworkRepository {
+public class DistributionNetworkRepositoryGoogleImpl implements
+		DistributionNetworkRepository {
 
-	private FacilityRepository nodeManager;
-	private DistributionChannelRepository edgeManager;
+	private FacilityRepository facilityRepository;
+	private DistributionChannelRepository distributionChannelRepository;
 
-	public DistributionNetworkRepositoryGoogleImpl() {
-		this.nodeManager = new FacilityRepositoryGoogleImpl();
-		this.edgeManager = new DistributionChannelRepositoryGoogleImpl();
+	public DistributionNetworkRepositoryGoogleImpl(
+			FacilityRepository facilityRepository,
+			DistributionChannelRepository distributionChannelRepository) {
+		this.facilityRepository = facilityRepository;
+		this.distributionChannelRepository = distributionChannelRepository;
 	}
 
 	public DistributionNetwork read() {
-		Collection<Facility> nodes = nodeManager.findAll();
-		Collection<DistributionChannel> edges = edgeManager.findAll();
-		DistributionNetwork network = new DistributionNetwork(nodes, edges);
-		return network;
+		List<Facility> nodes = facilityRepository.findAll();
+		List<DistributionChannel> edges = distributionChannelRepository
+				.findAll();
+		return new DistributionNetwork(nodes, edges);
 	}
 
 	public void save(DistributionNetwork network) {
@@ -34,7 +37,7 @@ public class DistributionNetworkRepositoryGoogleImpl implements DistributionNetw
 		for (Facility node : network.getNodes()) {
 			String fakeId = node.getId();
 			node.setId(null);
-			nodeIdMap.put(fakeId, nodeManager.save(node).getId());
+			nodeIdMap.put(fakeId, facilityRepository.save(node).getId());
 			node.setId(fakeId);
 		}
 
@@ -44,7 +47,7 @@ public class DistributionNetworkRepositoryGoogleImpl implements DistributionNetw
 			String sourceId = nodeIdMap.get(fakeSourceId);
 			String targetId = nodeIdMap.get(fakeTargetId);
 
-			edgeManager.save(ne, sourceId, targetId);
+			distributionChannelRepository.save(ne, sourceId, targetId);
 		}
 	}
 

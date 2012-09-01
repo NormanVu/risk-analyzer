@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Google Implementation Configuration -->
+
+	<bean id="datastoreService"
+		class="com.google.appengine.api.datastore.DatastoreServiceFactory"
+		factory-method="getDatastoreService" />
+
+	<bean id="facilityRepository"
+		class="com.scirisk.riskanalyzer.repository.google.FacilityRepositoryGoogleImpl">
+		<constructor-arg ref="datastoreService" />
+	</bean>
+
+	<bean id="distributionChannelRepository"
+		class="com.scirisk.riskanalyzer.repository.google.DistributionChannelRepositoryGoogleImpl">
+		<constructor-arg ref="datastoreService" />
+	</bean>
+
+	<bean
+		class="com.scirisk.riskanalyzer.repository.google.DistributionNetworkRepositoryGoogleImpl">
+		<constructor-arg ref="facilityRepository" />
+		<constructor-arg ref="distributionChannelRepository" />
+	</bean>
+
+</beans>
