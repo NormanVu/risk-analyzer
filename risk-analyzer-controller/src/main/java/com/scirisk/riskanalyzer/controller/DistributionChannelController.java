@@ -18,35 +18,37 @@ import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 @Controller
 @RequestMapping(value = "/edge")
-public class EdgeController {
+public class DistributionChannelController {
 
 	@Autowired
-	DistributionChannelRepository networkEdgeManager;
+	DistributionChannelRepository distributionChannelRepository;
 
 	@Autowired
-	FacilityRepository networkNodeManager;
+	FacilityRepository facilityRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<String> save(NetworkEdgeFormBean formBean)
 			throws Exception {
-		
-		networkEdgeManager.save(formBean.getNetworkEdge(),
+
+		distributionChannelRepository.save(formBean.getNetworkEdge(),
 				formBean.getSourceId(), formBean.getTargetId());
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	NetworkEdgeFormBean read(@PathVariable("id") String edgeId) throws Exception {
-		DistributionChannel edge = networkEdgeManager.findOne(edgeId);
-		List<Facility> nodes = networkNodeManager.findAll();
-		return new NetworkEdgeFormBean(edge, nodes);
+	NetworkEdgeFormBean read(@PathVariable("id") String distributionChannelId)
+			throws Exception {
+		DistributionChannel channel = distributionChannelRepository
+				.findOne(distributionChannelId);
+		List<Facility> facilities = facilityRepository.findAll();
+		return new NetworkEdgeFormBean(channel, facilities);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("id") String edgeId)
-			throws Exception {
-		networkEdgeManager.delete(edgeId);
+	public ResponseEntity<String> delete(
+			@PathVariable("id") String distributionChannelId) throws Exception {
+		distributionChannelRepository.delete(distributionChannelId);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 

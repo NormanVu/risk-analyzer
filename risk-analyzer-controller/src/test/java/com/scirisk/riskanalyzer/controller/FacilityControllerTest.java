@@ -14,14 +14,14 @@ import org.springframework.http.ResponseEntity;
 import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
-public class NodeControllerTest {
+public class FacilityControllerTest {
 
-	NodeController controller;
+	FacilityController controller;
 
 	@Before
 	public void beforeTest() {
-		this.controller = new NodeController();
-		this.controller.networkNodeManager = Mockito
+		this.controller = new FacilityController();
+		this.controller.facilityRepository = Mockito
 				.mock(FacilityRepository.class);
 	}
 
@@ -29,7 +29,7 @@ public class NodeControllerTest {
 	public void testSave() throws Exception {
 		Facility node = new Facility();
 		ResponseEntity<String> responseEntity = controller.save(node);
-		Mockito.verify(controller.networkNodeManager).save(Mockito.eq(node));
+		Mockito.verify(controller.facilityRepository).save(Mockito.eq(node));
 		Assert.assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
 	}
 
@@ -37,10 +37,10 @@ public class NodeControllerTest {
 	public void testRead() throws Exception {
 		String nodeId = "13";
 		Facility stub = new Facility();
-		Mockito.when(controller.networkNodeManager.findOne(nodeId)).thenReturn(
+		Mockito.when(controller.facilityRepository.findOne(nodeId)).thenReturn(
 				stub);
 		Facility node = controller.read(nodeId);
-		Mockito.verify(controller.networkNodeManager).findOne(nodeId);
+		Mockito.verify(controller.facilityRepository).findOne(nodeId);
 		Assert.assertEquals(stub, node);
 	}
 
@@ -48,14 +48,14 @@ public class NodeControllerTest {
 	public void testDelete() throws Exception {
 		String nodeId = "13";
 		ResponseEntity<String> responseEntity = controller.delete(nodeId);
-		Mockito.verify(controller.networkNodeManager).delete(nodeId);
+		Mockito.verify(controller.facilityRepository).delete(nodeId);
 		Assert.assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
 	}
 
 	@Test
 	public void testFindAll() throws Exception {
 		List<Facility> stub = Arrays.asList(new Facility());
-		Mockito.when(controller.networkNodeManager.findAll()).thenReturn(stub);
+		Mockito.when(controller.facilityRepository.findAll()).thenReturn(stub);
 		Collection<Facility> allNodes = controller.findAll();
 		Assert.assertEquals(stub, allNodes);
 	}

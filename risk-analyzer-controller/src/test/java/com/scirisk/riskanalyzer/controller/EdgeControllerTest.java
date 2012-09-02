@@ -22,13 +22,13 @@ import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class EdgeControllerTest {
 
-	EdgeController controller;
+	DistributionChannelController controller;
 
 	@Before
 	public void beforeTest() {
-		this.controller = new EdgeController();
-		this.controller.networkEdgeManager = mock(DistributionChannelRepository.class);
-		this.controller.networkNodeManager = mock(FacilityRepository.class);
+		this.controller = new DistributionChannelController();
+		this.controller.distributionChannelRepository = mock(DistributionChannelRepository.class);
+		this.controller.facilityRepository = mock(FacilityRepository.class);
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class EdgeControllerTest {
 		ResponseEntity<String> responseEntity = controller.save(edge);
 		ArgumentCaptor<DistributionChannel> argument = ArgumentCaptor
 				.forClass(DistributionChannel.class);
-		verify(controller.networkEdgeManager).save(argument.capture(),
+		verify(controller.distributionChannelRepository).save(argument.capture(),
 				eq(edge.getSourceId()), eq(edge.getTargetId()));
 		Assert.assertEquals(edgeId, argument.getValue().getId());
 		Assert.assertEquals(purchasingVolume, argument.getValue()
@@ -68,8 +68,8 @@ public class EdgeControllerTest {
 		stub.setTarget(target);
 
 		List<Facility> stubList = new ArrayList<Facility>();
-		when(controller.networkEdgeManager.findOne(edgeId)).thenReturn(stub);
-		when(controller.networkNodeManager.findAll()).thenReturn(stubList);
+		when(controller.distributionChannelRepository.findOne(edgeId)).thenReturn(stub);
+		when(controller.facilityRepository.findAll()).thenReturn(stubList);
 
 		NetworkEdgeFormBean edge = controller.read(edgeId);
 		Assert.assertEquals(edgeId, edge.getId());
@@ -83,7 +83,7 @@ public class EdgeControllerTest {
 	public void testDelete() throws Exception {
 		String nodeId = "13";
 		ResponseEntity<String> responseEntity = controller.delete(nodeId);
-		verify(controller.networkEdgeManager).delete(nodeId);
+		verify(controller.distributionChannelRepository).delete(nodeId);
 		Assert.assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
 	}
 

@@ -16,34 +16,34 @@ import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 @Controller
 @RequestMapping(value = "/node")
-public class NodeController {
+public class FacilityController {
 
 	@Autowired
-	FacilityRepository networkNodeManager;
+	FacilityRepository facilityRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<String> save(Facility node) throws Exception {
-		networkNodeManager.save(node);
+		facilityRepository.save(node);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
 	Facility read(@PathVariable("id") String nodeId) throws Exception {
-		return networkNodeManager.findOne(nodeId);
+		return facilityRepository.findOne(nodeId);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("id") String nodeId)
 			throws Exception {
-		networkNodeManager.delete(nodeId);
+		facilityRepository.delete(nodeId);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	Collection<Facility> findAll() throws Exception {
-		return networkNodeManager.findAll();
+		return facilityRepository.findAll();
 	}
 
 }
