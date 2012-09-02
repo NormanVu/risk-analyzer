@@ -125,6 +125,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-datasource-mysql</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.scirisk</groupId>
 				<artifactId>risk-analyzer-repository</artifactId>
 				<version>${project.version}</version>
 			</dependency>
