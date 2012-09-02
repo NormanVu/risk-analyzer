@@ -37,7 +37,7 @@
 		<module>risk-analyzer-repository-mongodb</module>
 		<module>risk-analyzer-domain</module>
 		<module>risk-analyzer-backend-web</module>
-		<module>risk-analyzer-controller</module>
+		<module>risk-analyzer-web-controller</module>
 		<module>risk-analyzer-backend-proxy</module>
 		<module>risk-analyzer-web-static</module>
 		<module>risk-analyzer-web-extjs</module>
@@ -142,7 +142,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.scirisk</groupId>
-				<artifactId>risk-analyzer-controller</artifactId>
+				<artifactId>risk-analyzer-web-controller</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

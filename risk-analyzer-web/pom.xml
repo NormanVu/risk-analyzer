@@ -42,7 +42,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-controller</artifactId>
+			<artifactId>risk-analyzer-web-controller</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>

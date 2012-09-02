@@ -7,8 +7,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>risk-analyzer-controller</artifactId>
-	<name>Risk Analyzer - Controller</name>
+	<artifactId>risk-analyzer-web-controller</artifactId>
+	<name>Risk Analyzer - Web Controller</name>
 
 	<dependencies>
 		<!-- Internal -->
