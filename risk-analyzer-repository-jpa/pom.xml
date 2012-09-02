@@ -9,6 +9,7 @@
 	<artifactId>risk-analyzer-repository-jpa</artifactId>
 	<name>Risk Analyzer - Repository - JPA</name>
 	<dependencies>
+		<!-- Internal -->
 		<dependency>
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-domain</artifactId>
@@ -16,6 +17,15 @@
 		<dependency>
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-repository</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-datasource</artifactId>
+		</dependency>
+		<!-- Spring Framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>

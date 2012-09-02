@@ -30,6 +30,14 @@
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-datasource</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.scirisk</groupId>
+			<artifactId>risk-analyzer-datasource-hsql</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-repository-mongodb</artifactId>
 		</dependency>
 		<dependency>

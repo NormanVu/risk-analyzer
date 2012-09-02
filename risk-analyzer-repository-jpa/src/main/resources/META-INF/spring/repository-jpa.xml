@@ -4,8 +4,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<!-- Java Persistence API Implementation Configuration -->
 
+	<bean id="dataSource"
+		class="com.scirisk.riskanalyzer.repository.jpa.DataSourceFactoryBean">
+		<property name="dataSourceFactory" ref="dataSourceFactory" />
+	</bean>
+
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 	<bean

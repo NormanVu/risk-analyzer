@@ -43,6 +43,9 @@
 		<module>risk-analyzer-web-extjs</module>
 		<module>risk-analyzer-repository-google</module>
 		<module>risk-analyzer-deployment</module>
+		<module>risk-analyzer-datasource</module>
+		<module>risk-analyzer-datasource-hsql</module>
+		<module>risk-analyzer-datasource-mysql</module>
 	</modules>
 
 	<build>
@@ -108,6 +111,16 @@
 			<dependency>
 				<groupId>com.scirisk</groupId>
 				<artifactId>risk-analyzer-domain</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-datasource</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-datasource-hsql</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
