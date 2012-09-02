@@ -53,13 +53,13 @@ public class NetworkController {
 		Collection<DistributionChannel> edges = network.getEdges();
 
 		JSONObject nodeFolder = new JSONObject();
-		nodeFolder.element("text", "Node");
+		nodeFolder.element("text", "Facility");
 		nodeFolder.element("cls", "folder");
 		nodeFolder.element("expanded", true);
 		nodeFolder.element("children", nodesToJson(nodes));
 
 		JSONObject edgeFolder = new JSONObject();
-		edgeFolder.element("text", "Edge");
+		edgeFolder.element("text", "Distribution Channel");
 		edgeFolder.element("cls", "folder");
 		edgeFolder.element("expanded", true);
 		edgeFolder.element("children", edgesToJson(edges));
