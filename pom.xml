@@ -298,5 +298,13 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	
+	<distributionManagement>
+		<repository>
+			<id>localhost-release-repo</id>
+			<name>localhost-release-repo</name>
+			<url>file:///C:/development/mavenReleaseRepository</url>
+		</repository>
+	</distributionManagement>
 
 </project>
