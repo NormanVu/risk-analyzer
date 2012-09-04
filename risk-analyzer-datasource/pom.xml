@@ -3,7 +3,7 @@
   <parent>
     <groupId>com.scirisk</groupId>
     <artifactId>risk-analyzer</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
   <artifactId>risk-analyzer-datasource</artifactId>
   <name>Risk Analyzer - Datasource</name>
