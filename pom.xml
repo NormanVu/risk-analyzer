@@ -41,8 +41,8 @@
 		<module>risk-analyzer-backend-proxy</module>
 		<module>risk-analyzer-web-static</module>
 		<module>risk-analyzer-web-extjs</module>
-		<module>risk-analyzer-repository-google</module>
-		<module>risk-analyzer-deployment</module>
+		<!-- <module>risk-analyzer-repository-google</module> -->
+		<!-- <module>risk-analyzer-deployment</module> -->
 		<module>risk-analyzer-datasource</module>
 		<module>risk-analyzer-datasource-hsql</module>
 		<module>risk-analyzer-datasource-mysql</module>
