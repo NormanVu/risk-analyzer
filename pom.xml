@@ -3,7 +3,7 @@
 
 	<groupId>com.scirisk</groupId>
 	<artifactId>risk-analyzer</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Risk Analyzer</name>
 
@@ -11,7 +11,7 @@
 		<connection>scm:git:https://github.com/danielpacak/risk-analyzer.git</connection>
 		<developerConnection>scm:git:https://github.com/danielpacak/risk-analyzer.git</developerConnection>
 		<url>https://github.com/danielpacak/risk-analyzer</url>
-	  <tag>risk-analyzer-0.0.1</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<developers>

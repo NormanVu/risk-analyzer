@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>risk-analyzer</artifactId>
 		<groupId>com.scirisk</groupId>
-		<version>0.0.1</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>risk-analyzer-repository-mongodb</artifactId>
 	<name>Risk Analyzer - Repository - MongoDB</name>
