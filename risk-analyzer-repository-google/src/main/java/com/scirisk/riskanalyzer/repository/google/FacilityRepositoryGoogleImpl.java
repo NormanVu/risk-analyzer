@@ -10,6 +10,8 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.scirisk.google.persistence.EntityManager;
+import com.scirisk.google.persistence.EntityManagerImpl;
 import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.domain.Facility.Kind;
 import com.scirisk.riskanalyzer.domain.Facility.Type;
@@ -17,7 +19,7 @@ import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class FacilityRepositoryGoogleImpl implements FacilityRepository {
 
-	static final String FACILITY_ENTITY = "facilityEntity";
+	public static final String FACILITY_ENTITY = "facilityEntity";
 
 	private DatastoreService datastoreService;
 
@@ -26,6 +28,11 @@ public class FacilityRepositoryGoogleImpl implements FacilityRepository {
 	}
 
 	public Facility save(Facility facility) {
+		EntityManager em = new EntityManagerImpl(datastoreService);
+		return em.save(facility);
+	}
+
+	public Facility ___save(Facility facility) {
 		Entity facilityEntity = null;
 		if (!isBlank(facility.getId())) {
 			Key nodeKey = KeyFactory.createKey(FACILITY_ENTITY,
@@ -68,7 +75,8 @@ public class FacilityRepositoryGoogleImpl implements FacilityRepository {
 	}
 
 	public void delete(String facilityId) {
-		Key nodeKey = KeyFactory.createKey(FACILITY_ENTITY, Long.valueOf(facilityId));
+		Key nodeKey = KeyFactory.createKey(FACILITY_ENTITY,
+				Long.valueOf(facilityId));
 		datastoreService.beginTransaction();
 		datastoreService.delete(nodeKey);
 		datastoreService.getCurrentTransaction().commit();
@@ -86,7 +94,8 @@ public class FacilityRepositoryGoogleImpl implements FacilityRepository {
 	}
 
 	public Facility findOne(String facilityId) {
-		Key facilityKey = KeyFactory.createKey(FACILITY_ENTITY, Long.valueOf(facilityId));
+		Key facilityKey = KeyFactory.createKey(FACILITY_ENTITY,
+				Long.valueOf(facilityId));
 		try {
 			Entity facilityEntity = datastoreService.get(facilityKey);
 			return map(facilityEntity);
@@ -100,18 +109,27 @@ public class FacilityRepositoryGoogleImpl implements FacilityRepository {
 		Facility facility = new Facility();
 		facility.setId(String.valueOf(facilityEntity.getKey().getId()));
 		facility.setName((String) facilityEntity.getProperty("name"));
-		facility.setKind(Kind.valueOf((String) facilityEntity.getProperty("kind")));
-		facility.setDescription((String) facilityEntity.getProperty("description"));
+		facility.setKind(Kind.valueOf((String) facilityEntity
+				.getProperty("kind")));
+		facility.setDescription((String) facilityEntity
+				.getProperty("description"));
 		facility.setAddress((String) facilityEntity.getProperty("address"));
 		facility.setLatitude((Double) facilityEntity.getProperty("latitude"));
 		facility.setLongitude((Double) facilityEntity.getProperty("longitude"));
-		facility.setRiskCategory1((Double) facilityEntity.getProperty("riskCategory1"));
-		facility.setRiskCategory2((Double) facilityEntity.getProperty("riskCategory2"));
-		facility.setRiskCategory3((Double) facilityEntity.getProperty("riskCategory3"));
-		facility.setRecoveryTime1((Double) facilityEntity.getProperty("recoveryTime1"));
-		facility.setRecoveryTime2((Double) facilityEntity.getProperty("recoveryTime2"));
-		facility.setRecoveryTime3((Double) facilityEntity.getProperty("recoveryTime3"));
-		facility.setType(Type.valueOf((String) facilityEntity.getProperty("type")));
+		facility.setRiskCategory1((Double) facilityEntity
+				.getProperty("riskCategory1"));
+		facility.setRiskCategory2((Double) facilityEntity
+				.getProperty("riskCategory2"));
+		facility.setRiskCategory3((Double) facilityEntity
+				.getProperty("riskCategory3"));
+		facility.setRecoveryTime1((Double) facilityEntity
+				.getProperty("recoveryTime1"));
+		facility.setRecoveryTime2((Double) facilityEntity
+				.getProperty("recoveryTime2"));
+		facility.setRecoveryTime3((Double) facilityEntity
+				.getProperty("recoveryTime3"));
+		facility.setType(Type.valueOf((String) facilityEntity
+				.getProperty("type")));
 
 		return facility;
 	}
