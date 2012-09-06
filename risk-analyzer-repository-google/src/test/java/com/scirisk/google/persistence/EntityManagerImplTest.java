@@ -37,6 +37,7 @@ public class EntityManagerImplTest {
 					datastoreService);
 
 			Facility facility = new Facility();
+			facility.setId("");
 			facility.setName("Antibes");
 			facility.setDescription("Not available now.");
 			facility.setKind(Kind.supplier);

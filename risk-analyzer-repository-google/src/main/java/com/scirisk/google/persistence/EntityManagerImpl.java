@@ -71,7 +71,7 @@ public class EntityManagerImpl implements EntityManager {
 			if ("id".equals(pd.getName())) {
 				// todo check type of the id property
 				String id = (String) pd.getReadMethod().invoke(entity);
-				return id != null && "".equals(id) ? Long.valueOf((String) id) : null;
+				return id != null && !"".equals(id) ? Long.valueOf((String) id) : null;
 			}
 		}
 		return null; // throws exception because we couldn't find id property
