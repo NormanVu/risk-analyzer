@@ -22,64 +22,28 @@ public class FacilityRepositoryGoogleImpl implements FacilityRepository {
 	public static final String FACILITY_ENTITY = "facilityEntity";
 
 	private DatastoreService datastoreService;
+	private EntityManager em;
 
 	public FacilityRepositoryGoogleImpl(DatastoreService datastoreService) {
 		this.datastoreService = datastoreService;
+		this.em = new EntityManagerImpl(datastoreService);
 	}
 
+	@Override
 	public Facility save(Facility facility) {
-		EntityManager em = new EntityManagerImpl(datastoreService);
 		return em.save(facility);
 	}
 
-	public Facility ___save(Facility facility) {
-		Entity facilityEntity = null;
-		if (!isBlank(facility.getId())) {
-			Key nodeKey = KeyFactory.createKey(FACILITY_ENTITY,
-					Long.valueOf(facility.getId()));
-			try {
-				facilityEntity = datastoreService.get(nodeKey);
-			} catch (EntityNotFoundException e) {
-				throw new IllegalArgumentException(
-						"Cannot find network node entity [" + facility.getId()
-								+ "].");
-			}
-		} else {
-			facilityEntity = new Entity(FACILITY_ENTITY);
-		}
-		facilityEntity.setProperty("name", facility.getName());
-		facilityEntity.setProperty("kind", facility.getKind().toString());
-		facilityEntity.setProperty("description", facility.getDescription());
-		facilityEntity.setProperty("address", facility.getAddress());
-		facilityEntity.setProperty("latitude", facility.getLatitude());
-		facilityEntity.setProperty("longitude", facility.getLongitude());
-		facilityEntity
-				.setProperty("riskCategory1", facility.getRiskCategory1());
-		facilityEntity
-				.setProperty("riskCategory2", facility.getRiskCategory2());
-		facilityEntity
-				.setProperty("riskCategory3", facility.getRiskCategory3());
-		facilityEntity
-				.setProperty("recoveryTime1", facility.getRecoveryTime1());
-		facilityEntity
-				.setProperty("recoveryTime2", facility.getRecoveryTime2());
-		facilityEntity
-				.setProperty("recoveryTime3", facility.getRecoveryTime3());
-		facilityEntity.setProperty("type", facility.getType().toString());
-
-		datastoreService.beginTransaction();
-		Key generatedKey = datastoreService.put(facilityEntity);
-		datastoreService.getCurrentTransaction().commit();
-		facility.setId(String.valueOf(generatedKey.getId()));
-		return facility;
-	}
-
+	@Override
 	public void delete(String facilityId) {
-		Key nodeKey = KeyFactory.createKey(FACILITY_ENTITY,
-				Long.valueOf(facilityId));
-		datastoreService.beginTransaction();
-		datastoreService.delete(nodeKey);
-		datastoreService.getCurrentTransaction().commit();
+		em.delete(new com.scirisk.google.persistence.Key<Facility>(
+				Facility.class, Long.valueOf(facilityId)));
+		/*
+		 * Key nodeKey = KeyFactory.createKey(FACILITY_ENTITY,
+		 * Long.valueOf(facilityId)); datastoreService.beginTransaction();
+		 * datastoreService.delete(nodeKey);
+		 * datastoreService.getCurrentTransaction().commit();
+		 */
 	}
 
 	public List<Facility> findAll() {

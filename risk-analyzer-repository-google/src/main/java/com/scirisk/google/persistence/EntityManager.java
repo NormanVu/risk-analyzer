@@ -4,6 +4,8 @@ public interface EntityManager {
 
 	<T> T save(T entity);
 
-	<T> T find(Class<T> entityClass, Object primaryKey);
+	<T> T find(Key<T> primaryKey);
+
+	<T> void delete(Key<T> primaryKey);
 
 }
