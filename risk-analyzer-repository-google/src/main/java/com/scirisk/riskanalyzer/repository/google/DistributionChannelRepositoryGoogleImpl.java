@@ -44,9 +44,9 @@ public class DistributionChannelRepositoryGoogleImpl implements
 		}
 
 		Key sourceKey = KeyFactory.createKey(
-				FacilityRepositoryGoogleImpl.FACILITY_ENTITY, Long.valueOf(sourceId));
+				Facility.class.getName(), Long.valueOf(sourceId));
 		Key targetKey = KeyFactory.createKey(
-				FacilityRepositoryGoogleImpl.FACILITY_ENTITY, Long.valueOf(targetId));
+				Facility.class.getName(), Long.valueOf(targetId));
 
 		entity.setProperty("purchasingVolume", channel.getPurchasingVolume());
 		entity.setProperty("sourceId", sourceKey);

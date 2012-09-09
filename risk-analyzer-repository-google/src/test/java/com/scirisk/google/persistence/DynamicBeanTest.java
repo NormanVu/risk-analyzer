@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.scirisk.riskanalyzer.domain.Facility;
+import com.scirisk.riskanalyzer.domain.Facility.Kind;
 
 public class DynamicBeanTest {
 
@@ -16,7 +17,9 @@ public class DynamicBeanTest {
 
 		DynamicBean<Facility> dynamicBean = new DynamicBean<Facility>(facility);
 		dynamicBean.setProperty("name", "Antibes");
+		dynamicBean.setProperty("kind", "supplier");
 		Assert.assertEquals("Antibes", facility.getName());
+		Assert.assertEquals(Kind.supplier, facility.getKind());
 	}
 
 	@Test
@@ -25,6 +28,7 @@ public class DynamicBeanTest {
 
 		Map<String, Object> properties = new HashMap<String, Object>();
 		properties.put("name", "Antibes");
+		properties.put("kind", "supplier");
 		properties.put("description", "No description.");
 		properties.put("riskCategory1", new Double(13));
 

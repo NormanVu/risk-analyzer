@@ -7,7 +7,6 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
-import com.scirisk.riskanalyzer.repository.google.FacilityRepositoryGoogleImpl;
 
 public class EntityManagerImpl implements EntityManager {
 
@@ -53,7 +52,6 @@ public class EntityManagerImpl implements EntityManager {
 
 	@Override
 	public <T> T find(com.scirisk.google.persistence.Key<T> primaryKey) {
-
 		Key googleKey = KeyFactory.createKey(
 				getEntityKind(primaryKey.getEntityClass()), primaryKey.getId());
 
@@ -64,8 +62,8 @@ public class EntityManagerImpl implements EntityManager {
 			Map<String, Object> properties = googleEntity.getProperties();
 			DynamicBean<T> dynamicBean = new DynamicBean<T>(entity);
 			dynamicBean.setProperties(properties);
+			dynamicBean.setProperty("id", String.valueOf(googleEntity.getKey().getId()));
 
-			// return map(facilityEntity);
 			return entity;
 		} catch (EntityNotFoundException e) {
 			throw new IllegalArgumentException(
@@ -84,9 +82,9 @@ public class EntityManagerImpl implements EntityManager {
 		datastoreService.getCurrentTransaction().commit();
 	}
 
+	// move it to class/strategy
 	String getEntityKind(Class<?> entityClass) {
-		// return entity.getClass().getSimpleName();
-		return FacilityRepositoryGoogleImpl.FACILITY_ENTITY;
+		return entityClass.getName();
 	}
 
 	void setProperties(Entity entity, Map<String, Object> properties) {

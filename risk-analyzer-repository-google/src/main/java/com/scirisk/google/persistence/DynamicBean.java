@@ -33,24 +33,6 @@ public class DynamicBean<T> {
 		throw new IllegalArgumentException("No such property: " + name);
 	}
 
-	public DynamicBean<T> setProperty(String name, Object value) {
-		for (PropertyDescriptor pd : wrappedBeanInfo.getPropertyDescriptors()) {
-			if (name.equals(pd.getName())) {
-				try {
-					System.out.printf("Setting property %s value %s%n", name,
-							value);
-					pd.getWriteMethod().invoke(wrappedBean, value);
-					break;
-				} catch (Exception e) {
-					throw new IllegalArgumentException(String.format(
-							"Error setting property %s value %s", name, value),
-							e);
-				}
-			}
-		}
-		return this;
-	}
-
 	public Map<String, Object> getProperties() {
 		Map<String, Object> properties = new HashMap<String, Object>();
 		for (PropertyDescriptor pd : wrappedBeanInfo.getPropertyDescriptors()) {
@@ -67,14 +49,53 @@ public class DynamicBean<T> {
 		return properties;
 	}
 
+	public DynamicBean<T> setProperty(String name, Object value) {
+		for (PropertyDescriptor pd : wrappedBeanInfo.getPropertyDescriptors()) {
+			if (name.equals(pd.getName())) {
+				try {
+					System.out.printf("Setting property %s value %s%n", name,
+							value);
+
+					Class<?> propertyClass = pd.getWriteMethod()
+							.getParameterTypes()[0];
+					pd.getWriteMethod().invoke(wrappedBean,
+							convertType(propertyClass, value));
+					break;
+				} catch (Exception e) {
+					throw new IllegalArgumentException(String.format(
+							"Error setting property %s value %s", name, value),
+							e);
+				}
+			}
+		}
+		return this;
+	}
+
+	private Object convertType(Class<?> targetClass, Object value) {
+		if (value == null) {
+			return value;
+		}
+		if (targetClass.isEnum()) {
+			return Enum.valueOf((Class<? extends Enum>) targetClass,
+					String.valueOf(value));
+		} else {
+			return value;
+		}
+	}
+
 	public DynamicBean<T> setProperties(Map<String, Object> properties) {
 		for (PropertyDescriptor pd : wrappedBeanInfo.getPropertyDescriptors()) {
 			if (!"class".equals(pd.getName())) {
 				try {
 					System.out.printf("Setting property %s value %s%n",
 							pd.getName(), properties.get(pd.getName()));
-					pd.getWriteMethod().invoke(wrappedBean,
-							properties.get(pd.getName()));
+					Class<?> propertyClass = pd.getWriteMethod()
+							.getParameterTypes()[0];
+
+					pd.getWriteMethod().invoke(
+							wrappedBean,
+							convertType(propertyClass,
+									properties.get(pd.getName())));
 				} catch (Exception e) {
 					throw new IllegalArgumentException(String.format(
 							"Error setting property %s value %s", pd.getName(),
@@ -83,6 +104,10 @@ public class DynamicBean<T> {
 			}
 		}
 		return this;
+	}
+
+	public T getBean() {
+		return wrappedBean;
 	}
 
 }
