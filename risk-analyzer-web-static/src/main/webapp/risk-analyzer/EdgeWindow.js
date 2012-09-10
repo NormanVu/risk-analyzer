@@ -1,34 +1,30 @@
 Ext.define('RiskAnalyzer.EdgeWindow', {
-  extend: 'Ext.window.Window',
+	extend: 'Ext.window.Window',
 
-  alias: 'widget.edgewindow',
+	alias: 'widget.edgewindow',
 
-  plain: true,
+	plain: true,
 
-  initComponent: function() {
-    this.addEvents(
-      'edgecreated'
-    );
-    
-    
-    Ext.apply(Ext.form.field.VTypes, {
+	initComponent: function() {
+		this.addEvents('edgecreated');
 
-        different: function(val, field) {
-            if (field.referenceFieldId) {
-                var referenceField = field.up('form').down('#' + field.referenceFieldId);
-                var targetValue = field.getValue();
-                var referenceValue = referenceField.getValue();
-                return targetValue != referenceValue;
-            }
-            return true;
-        },
+		Ext.apply(Ext.form.field.VTypes, {
+			different: function(val, field) {
+				if (field.referenceFieldId) {
+					var referenceField = field.up('form').down('#' + field.referenceFieldId);
+					var targetValue = field.getValue();
+					var referenceValue = referenceField.getValue();
+					return targetValue != referenceValue;
+				}
+				return true;
+			},
 
-        differentText: 'Source and Target cannot be the same'
-    });
+			differentText: 'Source and Target cannot be the same'
+		});
 
-    this.sourceStore = Ext.create('Ext.data.Store', {
-      fields: ['id', 'name']
-    });
+		this.sourceStore = Ext.create('Ext.data.Store', {
+			fields: ['id', 'name']
+		});
 
     this.targetStore = Ext.create('Ext.data.Store', {
       fields: ['id', 'name']

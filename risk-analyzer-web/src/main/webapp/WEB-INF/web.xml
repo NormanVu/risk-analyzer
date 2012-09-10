@@ -56,6 +56,7 @@
 		</form-login-config>
 	</login-config>
 	
+	<!--
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Secured Content</web-resource-name>
@@ -68,5 +69,6 @@
 		</auth-constraint>
 		
 	</security-constraint>
+	-->
 
 </web-app>

@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="Author" content="Daniel Pacak, pacak.daniel@gmail.com" />
-		<title>Risk Analyzer - 0.0.1-SNAPSHOT</title>
+		<title>Risk Analyzer Frontend - ${project.version}</title>
 		<link rel="stylesheet" type="text/css" href="./extjs/resources/css/ext-all.css">
 		<link rel="stylesheet" type="text/css" href="./css/risk-analyzer.css">
 		<script type="text/javascript" src="./extjs/bootstrap.js"></script>

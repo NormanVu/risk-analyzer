@@ -14,7 +14,7 @@ Ext.define('RiskAnalyzer.App', {
 				xtype : 'box',
 				id : 'header',
 				region : 'north',
-				html : '<h1>Risk Analyzer - 0.0.1-SNAPSHOT</h1>',
+				html : '<h1>Risk Analyzer Frontend - ${project.version}</h1>',
 				height : 30
 			},
 
