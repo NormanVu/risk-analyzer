@@ -6,7 +6,8 @@ import java.util.Map;
 import com.scirisk.riskanalyzer.backend.domain.CalculateRequest;
 import com.scirisk.riskanalyzer.backend.domain.CalculateResponse;
 
-public class CalculationServiceMockImpl implements CalculationService {
+public class FrequencyDistributionServiceMockImpl implements
+		FrequencyDistributionService {
 
 	private int sleepTimeInMilliseconds = 1000;
 
