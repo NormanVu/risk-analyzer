@@ -58,6 +58,7 @@ The most common deployment configurations are described in the following section
 
 ### Deploying Risk Analyzer on CloudBees
 
-WSDL: [http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/risk-analyzer.wsdl](http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/risk-analyzer.wsdl)
-Endpoint URL: [http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/endpoint](http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/endpoint)
+[Frontend Web](http://risk-analyzer-frontend-web.pacak-daniel.cloudbees.net)
+
+[Backend Web](http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/risk-analyzer.wsdl)
 
