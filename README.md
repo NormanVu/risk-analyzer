@@ -55,3 +55,9 @@ The most common deployment configurations are described in the following section
 ### Deploying Risk Analyzer on Google App Engine
 
 [http://risk-analyzer-frontend.appspot.com](http://risk-analyzer-frontend.appspot.com)
+
+### Deploying Risk Analyzer on CloudBees
+
+WSDL: [http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/risk-analyzer.wsdl](http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/risk-analyzer.wsdl)
+Endpoint URL: [http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/endpoint](http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/endpoint)
+
