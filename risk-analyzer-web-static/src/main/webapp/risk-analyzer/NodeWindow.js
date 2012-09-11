@@ -221,25 +221,25 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 			var fieldValues = this.form.getForm().getFieldValues();
 
 			this.form.setLoading({
-				msg: 'Saving node...'
+				msg: 'Saving facility...'
 			});
 			Ext.Ajax.request({
-				url: 'service/node',
-				params: fieldValues,
-				success: this.addNodeSuccess,
-				failure: this.addNodeFailure,
+				url : 'service/node',
+				jsonData : fieldValues,
+				success : this.onSaveSuccess,
+				failure : this.onSaveFailure,
 				scope: this
 			});
 		}
 	},
 
-	addNodeSuccess: function(response){
+	onSaveSuccess : function(response){
 		this.form.setLoading(false);
 		this.fireEvent('nodecreated', this);
 		this.destroy();
 	},
 
-	addNodeFailure: function(){
+	onSaveFailure : function(){
 		this.form.setLoading(false);
 		Ext.MessageBox.show({
 			title: 'Application Error',

@@ -27,7 +27,7 @@ public class DistributionChannelController {
 	FacilityRepository facilityRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<String> save(NetworkEdgeFormBean formBean)
+	public ResponseEntity<String> save(DistributionChannelFormBean formBean)
 			throws Exception {
 
 		distributionChannelRepository.save(formBean.getNetworkEdge(),
@@ -37,12 +37,12 @@ public class DistributionChannelController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	NetworkEdgeFormBean read(@PathVariable("id") String distributionChannelId)
+	DistributionChannelFormBean read(@PathVariable("id") String distributionChannelId)
 			throws Exception {
 		DistributionChannel channel = distributionChannelRepository
 				.findOne(distributionChannelId);
 		List<Facility> facilities = facilityRepository.findAll();
-		return new NetworkEdgeFormBean(channel, facilities);
+		return new DistributionChannelFormBean(channel, facilities);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

@@ -115,26 +115,26 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
     onSaveClick: function() {
       if (this.form.getForm().isValid()) {
         var fieldValues = this.form.getForm().getFieldValues();
-        this.form.setLoading({msg: 'Saving edge...'});
+        this.form.setLoading({msg: 'Saving distribution channel...'});
         Ext.Ajax.request({
             url: 'service/edge',
             method : 'POST',
-            params: fieldValues,
-            success: this.addEdgeSuccess,
-            failure: this.addEdgeFailure,
+            jsonData : fieldValues,
+            success : this.onSaveSuccess,
+            failure : this.onSaveFailure,
             scope: this
         });
       }
     },
 
-    addEdgeSuccess: function(response){
+    onSaveSuccess : function(response){
         this.form.setLoading(false);
 
         this.fireEvent('edgecreated', this);
         this.destroy();
     },
 
-    addEdgeFailure: function(){
+    onSaveFailure : function(){
         this.form.setLoading(false);
         Ext.MessageBox.show({
             title: 'Application Error',

@@ -5,7 +5,7 @@ import java.util.List;
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.Facility;
 
-public class NetworkEdgeFormBean {
+public class DistributionChannelFormBean {
 
 	private String id;
 	private String sourceId;
@@ -13,7 +13,7 @@ public class NetworkEdgeFormBean {
 	private Double purchasingVolume;
 	private List<Facility> nodes;
 
-	public NetworkEdgeFormBean() {
+	public DistributionChannelFormBean() {
 
 	}
 
@@ -24,7 +24,7 @@ public class NetworkEdgeFormBean {
 		return edge;
 	}
 
-	public NetworkEdgeFormBean(DistributionChannel edge, List<Facility> nodes) {
+	public DistributionChannelFormBean(DistributionChannel edge, List<Facility> nodes) {
 		this.id = edge.getId();
 		this.sourceId = edge.getSource().getId();
 		this.targetId = edge.getTarget().getId();

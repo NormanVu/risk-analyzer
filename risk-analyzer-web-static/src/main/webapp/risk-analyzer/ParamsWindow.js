@@ -17,10 +17,6 @@ Ext.define('RiskAnalyzer.ParamsWindow', {
 
   initComponent: function() {
     this.addEvents(
-      /**
-        * @event paramsvalid
-        * @param {RiskAnalyzer.ParamsWindow} this
-        */
       'paramsvalid'
     );
 
@@ -28,50 +24,39 @@ Ext.define('RiskAnalyzer.ParamsWindow', {
         bodyPadding: 10,
         border: false,
         unstyled: true,
+        defaults : {
+        	anchor : '100%',
+        	labelWidth : 120,
+        	allowBlank : false
+        },
         items: [
           {
              xtype: 'numberfield',
-             anchor: '100%',
+             name: 'numberOfIterations',
              fieldLabel: 'Number of Iterations',
              minValue: 1,
              maxValue: 10000,
-             value: 1,
-             labelWidth: 120,
-             itemId: 'number_of_iterations',
-             allowBlank: false
-          },
-          {
+             value: 1
+          }, {
              xtype: 'numberfield',
-             anchor: '100%',
              fieldLabel: 'Time Horizon',
+             name: 'timeHorizon',
              minValue: 1,
              maxValue: 365,
-             value: 1,
-             labelWidth: 120,
-             itemId: 'time_horizon',
-             allowBlank: false
-           },
-           {
+             value: 1
+           }, {
              xtype: 'numberfield',
-             anchor: '100%',
+             name: 'confidenceLevel',
              fieldLabel: 'Confidence Level',
              hideTrigger: true,
              minValue: 0,
              maxValue: 1,
-             value: 0.95,
-             labelWidth: 120,
-             itemId: 'confidence_level',
-             allowBlank: false
-           },
-           {
+             value: 0.95
+           }, {
              xtype: 'textfield',
-             anchor: '100%',
+             name: 'endpointUrl',
              fieldLabel: 'Endpoint URL',
-             labelWidth: 120,
-             //value: 'http://risk-analyzer.appspot.com/soap/endpoint',
-             value: 'http://localhost:9090/risk-analyzer-backend-web/soap/endpoint',
-             itemId: 'endpoint_url',
-             allowBlank: false
+             value: 'http://localhost:9090/risk-analyzer-backend-web/soap/endpoint'
            }
         ]
     });
@@ -79,7 +64,7 @@ Ext.define('RiskAnalyzer.ParamsWindow', {
     Ext.apply(this, {
       width: 380,
       modal: true,
-      title: 'Simulation Parameters',
+      title: 'Frequency Distribution Parameters',
       iconCls: 'feed',
       layout: 'fit',
       items: this.form,
@@ -99,57 +84,9 @@ Ext.define('RiskAnalyzer.ParamsWindow', {
     this.callParent(arguments);
   },
 
-  /**
-    * React to the Run button being clicked.
-    * @private
-    */
-  onRunClick: function(){
-    if (this.form.getForm().isValid()) {
-        var numberOfIterations = this.form.getComponent('number_of_iterations').getValue();
-        var timeHorizon = this.form.getComponent('time_horizon').getValue();
-        var confidenceLevel = this.form.getComponent('confidence_level').getValue();
-        
-        this.form.setLoading({
-            msg: 'Running simulation...'
-        });
-
-        Ext.Ajax.request({
-            url: 'service/RunSimulation.do',
-            params: {
-                number_of_iterations: numberOfIterations,
-                time_horizon: timeHorizon,
-                confidence_level: confidenceLevel
-            },
-            success: this.onRunSimulationSuccess,
-            failure: this.onRunSimulationFailure,
-            scope: this
-        });
-
-    }
-  },
-
-  onRunSimulationSuccess: function(response) {
-    this.form.setLoading(false);
-    this.fireEvent('paramsvalid', this);
-    this.destroy();
-  },
-
-  onRunSimulationFailure: function() {
-    this.form.setLoading(false);
-    Ext.MessageBox.show({
-      title: 'Application Error',
-      msg: 'There was a problem processing your request. Please try again later or contact your system administrator.',
-      buttons: Ext.MessageBox.OK,
-      icon: Ext.MessageBox.ERROR
-    });
-  },
-
   onSubmitClick: function() {
     if (this.form.getForm().isValid()) {
-      var numberOfIterations = this.form.getComponent('number_of_iterations').getValue();
-      var timeHorizon = this.form.getComponent('time_horizon').getValue();
-      var confidenceLevel = this.form.getComponent('confidence_level').getValue();
-      var endpointUrl = this.form.getComponent('endpoint_url').getValue();
+    	var fieldValues = this.form.getForm().getFieldValues();
 
 
       this.form.setLoading({
@@ -157,14 +94,10 @@ Ext.define('RiskAnalyzer.ParamsWindow', {
       });
 
       Ext.Ajax.request({
-        url: 'service/SubmitSimulation.do',
+        url: 'service/frequency-distribution',
         timeout: 1800000,
-        params: {
-          number_of_iterations: numberOfIterations,
-          time_horizon: timeHorizon,
-          confidence_level: confidenceLevel,
-          endpoint_url: endpointUrl
-        },
+        //params: fieldValues,
+        jsonData : fieldValues,
         success: this.onSubmitSimulationSuccess,
         failure: this.onSubmitSimulationFailure,
         scope: this

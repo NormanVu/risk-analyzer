@@ -35,8 +35,8 @@ Ext.define('RiskAnalyzer.MainPanel', {
           title: 'Facility',
           columns: 2,
           items: [
-            {text: 'New Facility', iconCls: 'feed-add', handler: this.onAddNodeClick, scope: this},
-            {text: 'Delete Facility', iconCls: 'feed-remove', handler: this.onDeleteNodeClick, itemId: 'deleteNodeBtn', disabled: true, scope: this}
+            {text: 'New', iconCls: 'feed-add', handler: this.onAddNodeClick, scope: this},
+            {text: 'Delete', iconCls: 'feed-remove', handler: this.onDeleteNodeClick, itemId: 'deleteNodeBtn', disabled: true, scope: this}
           ]
         },
         {
@@ -45,16 +45,16 @@ Ext.define('RiskAnalyzer.MainPanel', {
           title: 'Distribution Channel',
           columns: 2,
           items: [
-            {text: 'New Distribution Channel', iconCls: 'feed-add', handler: this.onAddEdgeClick, scope: this},
-            {text: 'Delete Distribution Channel', iconCls: 'feed-remove', handler: this.onDeleteEdgeClick, itemId: 'deleteEdgeBtn', disabled: true, scope: this}
+            {text: 'New', iconCls: 'feed-add', handler: this.onAddEdgeClick, scope: this},
+            {text: 'Delete', iconCls: 'feed-remove', handler: this.onDeleteEdgeClick, itemId: 'deleteEdgeBtn', disabled: true, scope: this}
           ]
         },
         {
           xtype: 'buttongroup',
-          title: 'Tools',
+          title: 'Analysis',
           columns: 1,
           items: [
-            {text: 'Simulation', iconCls: 'feed', handler: this.onFrequencyDistributionClick, scope: this}
+            {text: 'Frequency Distribution', iconCls: 'feed', handler: this.onFrequencyDistributionClick, scope: this}
           ]
         },
         '->',

@@ -35,7 +35,7 @@ public class EdgeControllerTest {
 	public void testSave() throws Exception {
 		String edgeId = "13";
 		Double purchasingVolume = new Double(0.5);
-		NetworkEdgeFormBean edge = new NetworkEdgeFormBean();
+		DistributionChannelFormBean edge = new DistributionChannelFormBean();
 		edge.setId(edgeId);
 		edge.setPurchasingVolume(purchasingVolume);
 		edge.setSourceId("113");
@@ -71,7 +71,7 @@ public class EdgeControllerTest {
 		when(controller.distributionChannelRepository.findOne(edgeId)).thenReturn(stub);
 		when(controller.facilityRepository.findAll()).thenReturn(stubList);
 
-		NetworkEdgeFormBean edge = controller.read(edgeId);
+		DistributionChannelFormBean edge = controller.read(edgeId);
 		Assert.assertEquals(edgeId, edge.getId());
 		Assert.assertEquals(new Double(0.5), edge.getPurchasingVolume());
 		Assert.assertEquals(sourceId, edge.getSourceId());

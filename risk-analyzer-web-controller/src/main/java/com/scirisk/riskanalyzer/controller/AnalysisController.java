@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
@@ -13,6 +12,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,23 +24,24 @@ import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
 
 @Controller
-public class SimulationController {
+public class AnalysisController {
 
 	@Autowired
-	private DistributionNetworkRepository networkManager;
+	private DistributionNetworkRepository networkRepository;
 
-	public void setNetworkManager(DistributionNetworkRepository networkManager) {
-		this.networkManager = networkManager;
-	}
+	@RequestMapping(value = "/frequency-distribution", method = RequestMethod.POST)
+	public void submit(@RequestBody FrequencyDistributionParameters params,
+			HttpServletResponse resp) throws Exception {
+		DistributionNetwork network = networkRepository.read();
 
-	@RequestMapping(value = "/SubmitSimulation.do", method = RequestMethod.POST)
-	public void submit(HttpServletRequest req, HttpServletResponse resp)
-			throws Exception {
-		DistributionNetwork network = networkManager.read();
+		String endpointUrl = params.getEndpointUrl();
 
-		String endpointUrl = req.getParameter("endpoint_url");
+		Map<String, String> inputParams = new HashMap<String, String>();
+		inputParams.put("number_of_iterations",
+				"" + params.getNumberOfIterations());
+		inputParams.put("time_horizon", "" + params.getTimeHorizon());
+		inputParams.put("confidence_level", "" + params.getConfidenceLevel());
 
-		Map<String, String> inputParams = readInputParams(req);
 		JSONObject submitSimulationResponse = null;
 		try {
 			RiskAnalyzerServiceProxy proxy = new RiskAnalyzerServiceProxyImpl(
@@ -51,13 +52,6 @@ public class SimulationController {
 			request.setInputParams(inputParams);
 
 			CalculateResponse response = proxy.calculate(request);
-			// System.out.println("response.outputParams: " +
-			// response.getOutputParams());
-			// System.out.println("response.inputParams: " +
-			// response.getInputParams());
-			// System.out.println("response.frequencyDistribution: " +
-			// response.getFrequencyDistribution());
-
 			submitSimulationResponse = toJson(response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,15 +93,6 @@ public class SimulationController {
 		object.put("outputParamsData", outputParams);
 		object.put("outputParamsFormData", outputParamsFormData);
 		return object;
-	}
-
-	Map<String, String> readInputParams(HttpServletRequest req) {
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("number_of_iterations",
-				req.getParameter("number_of_iterations"));
-		params.put("time_horizon", req.getParameter("time_horizon"));
-		params.put("confidence_level", req.getParameter("confidence_level"));
-		return params;
 	}
 
 }
