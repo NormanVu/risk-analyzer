@@ -46,6 +46,7 @@
 		<module>risk-analyzer-datasource</module>
 		<module>risk-analyzer-datasource-hsql</module>
 		<module>risk-analyzer-datasource-mysql</module>
+		<module>risk-analyzer-repository-neo4j</module>
 	</modules>
 
 	<build>
