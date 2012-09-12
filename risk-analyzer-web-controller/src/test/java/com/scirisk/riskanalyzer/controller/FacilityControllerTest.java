@@ -1,10 +1,13 @@
 package com.scirisk.riskanalyzer.controller;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -21,43 +24,42 @@ public class FacilityControllerTest {
 	@Before
 	public void beforeTest() {
 		this.controller = new FacilityController();
-		this.controller.facilityRepository = Mockito
-				.mock(FacilityRepository.class);
+		this.controller.facilityRepository = mock(FacilityRepository.class);
 	}
 
 	@Test
 	public void testSave() throws Exception {
-		Facility node = new Facility();
-		ResponseEntity<String> responseEntity = controller.save(node);
-		Mockito.verify(controller.facilityRepository).save(Mockito.eq(node));
-		Assert.assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
+		Facility facility = new Facility();
+		ResponseEntity<String> responseEntity = controller.save(facility);
+		verify(controller.facilityRepository).save(Mockito.eq(facility));
+		assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
 	}
 
 	@Test
 	public void testRead() throws Exception {
-		String nodeId = "13";
-		Facility stub = new Facility();
-		Mockito.when(controller.facilityRepository.findOne(nodeId)).thenReturn(
-				stub);
-		Facility node = controller.read(nodeId);
-		Mockito.verify(controller.facilityRepository).findOne(nodeId);
-		Assert.assertEquals(stub, node);
+		String facilityId = "13";
+		Facility facility = new Facility();
+		when(controller.facilityRepository.findOne(facilityId)).thenReturn(
+				facility);
+		Facility foundFacility = controller.read(facilityId);
+		verify(controller.facilityRepository).findOne(facilityId);
+		assertEquals(facility, foundFacility);
 	}
 
 	@Test
 	public void testDelete() throws Exception {
-		String nodeId = "13";
-		ResponseEntity<String> responseEntity = controller.delete(nodeId);
-		Mockito.verify(controller.facilityRepository).delete(nodeId);
-		Assert.assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
+		String facilityId = "13";
+		ResponseEntity<String> responseEntity = controller.delete(facilityId);
+		verify(controller.facilityRepository).delete(facilityId);
+		assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
 	}
 
 	@Test
 	public void testFindAll() throws Exception {
-		List<Facility> stub = Arrays.asList(new Facility());
-		Mockito.when(controller.facilityRepository.findAll()).thenReturn(stub);
-		Collection<Facility> allNodes = controller.findAll();
-		Assert.assertEquals(stub, allNodes);
+		List<Facility> facilities = Arrays.asList(new Facility());
+		when(controller.facilityRepository.findAll()).thenReturn(facilities);
+		List<Facility> foundFacilities = controller.findAll();
+		assertEquals(facilities, foundFacilities);
 	}
 
 }

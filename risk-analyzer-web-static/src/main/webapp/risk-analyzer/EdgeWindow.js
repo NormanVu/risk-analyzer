@@ -117,7 +117,7 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
         var fieldValues = this.form.getForm().getFieldValues();
         this.form.setLoading({msg: 'Saving distribution channel...'});
         Ext.Ajax.request({
-            url: 'service/edge',
+            url: 'service/distribution-channel',
             method : 'POST',
             jsonData : fieldValues,
             success : this.onSaveSuccess,

@@ -11,25 +11,26 @@ public class DistributionChannelFormBean {
 	private String sourceId;
 	private String targetId;
 	private Double purchasingVolume;
-	private List<Facility> nodes;
+	private List<Facility> facilities;
 
 	public DistributionChannelFormBean() {
 
 	}
 
-	public DistributionChannel getNetworkEdge() {
+	public DistributionChannelFormBean(DistributionChannel distributionChannel,
+			List<Facility> facilities) {
+		this.id = distributionChannel.getId();
+		this.sourceId = distributionChannel.getSource().getId();
+		this.targetId = distributionChannel.getTarget().getId();
+		this.purchasingVolume = distributionChannel.getPurchasingVolume();
+		this.facilities = facilities;
+	}
+
+	public DistributionChannel getDistributionChannel() {
 		DistributionChannel edge = new DistributionChannel();
 		edge.setId(id);
 		edge.setPurchasingVolume(purchasingVolume);
 		return edge;
-	}
-
-	public DistributionChannelFormBean(DistributionChannel edge, List<Facility> nodes) {
-		this.id = edge.getId();
-		this.sourceId = edge.getSource().getId();
-		this.targetId = edge.getTarget().getId();
-		this.purchasingVolume = edge.getPurchasingVolume();
-		this.nodes = nodes;
 	}
 
 	public String getId() {
@@ -64,8 +65,8 @@ public class DistributionChannelFormBean {
 		this.purchasingVolume = purchasingVolume;
 	}
 
-	public List<Facility> getNodes() {
-		return nodes;
+	public List<Facility> getFacilities() {
+		return facilities;
 	}
 
 }

@@ -224,7 +224,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 				msg: 'Saving facility...'
 			});
 			Ext.Ajax.request({
-				url : 'service/node',
+				url : 'service/facility',
 				jsonData : fieldValues,
 				success : this.onSaveSuccess,
 				failure : this.onSaveFailure,

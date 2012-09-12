@@ -1,6 +1,6 @@
 package com.scirisk.riskanalyzer.controller;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 @Controller
-@RequestMapping(value = "/node")
+@RequestMapping(value = "/facility")
 public class FacilityController {
 
 	@Autowired
@@ -44,7 +44,7 @@ public class FacilityController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
-	Collection<Facility> findAll() throws Exception {
+	List<Facility> findAll() throws Exception {
 		return facilityRepository.findAll();
 	}
 

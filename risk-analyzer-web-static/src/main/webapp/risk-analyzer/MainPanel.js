@@ -66,8 +66,8 @@ Ext.define('RiskAnalyzer.MainPanel', {
             /*{text: 'Find Address', iconCls: 'feed', handler: this.onFindAddressClick, scope: this},*/
             {text: 'Auto Center', iconCls: 'feed', handler: this.onAutoCenterClick, scope: this},
             {text: 'Display', iconCls: 'feed',
-              menu: [{text: 'Nodes', checked: true, checkHandler: this.onDisplayNodesCheck, scope: this},
-                     {text: 'Edges', checked: true, checkHandler: this.onDisplayEdgeCheck, scope: this}]}
+              menu: [{text: 'Facility', checked: true, checkHandler: this.onDisplayNodesCheck, scope: this},
+                     {text: 'Distribution Channel', checked: true, checkHandler: this.onDisplayEdgeCheck, scope: this}]}
           ]
         },
         {
@@ -149,22 +149,20 @@ Ext.define('RiskAnalyzer.MainPanel', {
     }
   },
 
-  // @param nodeId node identifier
-  readNode: function(nodeId) {
-
+  readNode : function(facilityId) {
     Ext.Ajax.request({
-        url: 'service/node/' + nodeId,
-        success: this.onReadNodeSuccess,
-        failure: this.onReadNodeFailure,
-        scope: this
+        url : 'service/facility/' + facilityId,
+        success : this.onReadNodeSuccess,
+        failure : this.onReadNodeFailure,
+        scope : this
       });
   },
-  
-  readEdge: function(edgeId) {
+
+  readEdge : function(distributionChannelId) {
     Ext.Ajax.request({
-      url: 'service/edge/' + edgeId,
-      success: this.onReadEdgeSuccess,
-      failure: this.onReadEdgeFailure,
+      url : 'service/distribution-channel/' + distributionChannelId,
+      success : this.onReadEdgeSuccess,
+      failure : this.onReadEdgeFailure,
       scope: this
     });
   },
@@ -288,7 +286,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
   onAddEdgeClick: function() {
     // Before showing Edge Dialog fetch available nodes
     Ext.Ajax.request({
-      url: 'service/node',
+      url: 'service/facility',
       success: this.onAddEdgeSuccess,
       failure: this.onAddEdgeFailure,
       scope: this
@@ -360,7 +358,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
       var id = rawId.substring(2);
 
       Ext.Ajax.request({
-          url: 'service/node/' + id,
+          url: 'service/facility/' + id,
           method : 'DELETE',
           success: this.onDeleteNodeSuccess,
           failure: this.onDeleteNodeFailure,
@@ -382,11 +380,11 @@ Ext.define('RiskAnalyzer.MainPanel', {
       var id = rawId.substring(2);
 
       Ext.Ajax.request({
-          url: 'service/edge/' + id,
+          url: 'service/distribution-channel/' + id,
           method : 'DELETE',
-          success: this.onDeleteEdgeSuccess,
-          failure: this.onDeleteEdgeFailure,
-          scope: this
+          success : this.onDeleteEdgeSuccess,
+          failure : this.onDeleteEdgeFailure,
+          scope : this
       });
     }
   },
