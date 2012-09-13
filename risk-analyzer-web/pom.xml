@@ -23,10 +23,12 @@
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-repository</artifactId>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-repository-jpa</artifactId>
+			<artifactId>risk-analyzer-repository-neo4j</artifactId>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-datasource</artifactId>
@@ -35,10 +37,12 @@
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-datasource-hsql</artifactId>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-repository-mongodb</artifactId>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-service</artifactId>

@@ -1,24 +1,28 @@
 package com.scirisk.riskanalyzer.repository.neo4j;
 
-import org.neo4j.graphdb.GraphDatabaseService;
-
 import com.scirisk.riskanalyzer.domain.DistributionNetwork;
+import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class DistributionNetworkRepositoryNeo4jImpl implements
 		DistributionNetworkRepository {
 
-	GraphDatabaseService databaseService;
+	FacilityRepository facilityRepository;
+	DistributionChannelRepository distributionChannelRepository;
 
 	public DistributionNetworkRepositoryNeo4jImpl(
-			GraphDatabaseService databaseService) {
-		this.databaseService = databaseService;
+			FacilityRepository facilityRepository,
+			DistributionChannelRepository distributionChannelRepository) {
+		this.facilityRepository = facilityRepository;
+		this.distributionChannelRepository = distributionChannelRepository;
 	}
 
 	@Override
 	public DistributionNetwork read() {
-		// TODO Auto-generated method stub
-		return null;
+		DistributionNetwork network = new DistributionNetwork();
+		network.setNodes(facilityRepository.findAll());
+		return network;
 	}
 
 	@Override

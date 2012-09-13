@@ -13,20 +13,20 @@
 		<property name="path" value="${neo4jdb.path}" />
 	</bean>
 
-	<bean
+	<bean id="facilityRepository"
 		class="com.scirisk.riskanalyzer.repository.neo4j.FacilityRepositoryNeo4jImpl">
 		<constructor-arg ref="graphDatabaseService" />
 	</bean>
 
-	<bean
+	<bean id="distributionChannelRepository"
 		class="com.scirisk.riskanalyzer.repository.neo4j.DistributionChannelRepositoryNeo4jImpl">
 		<constructor-arg ref="graphDatabaseService" />
 	</bean>
 
 	<bean
 		class="com.scirisk.riskanalyzer.repository.neo4j.DistributionNetworkRepositoryNeo4jImpl">
-		<constructor-arg ref="graphDatabaseService" />
-
+		<constructor-arg ref="facilityRepository" />
+		<constructor-arg ref="distributionChannelRepository" />
 	</bean>
 
 </beans>

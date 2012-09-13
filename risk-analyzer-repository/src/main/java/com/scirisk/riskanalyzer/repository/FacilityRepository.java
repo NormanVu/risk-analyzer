@@ -6,11 +6,11 @@ import com.scirisk.riskanalyzer.domain.Facility;
 
 public interface FacilityRepository {
 
-	Facility save(Facility node);
+	Facility save(Facility facility);
 
-	Facility findOne(String nodeId);
+	Facility findOne(String facilityId);
 
-	void delete(String nodeId);
+	void delete(String facilityId);
 
 	List<Facility> findAll();
 
