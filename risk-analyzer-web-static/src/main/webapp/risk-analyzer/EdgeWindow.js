@@ -8,20 +8,6 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
 	initComponent: function() {
 		this.addEvents('edgecreated');
 
-		Ext.apply(Ext.form.field.VTypes, {
-			different: function(val, field) {
-				if (field.referenceFieldId) {
-					var referenceField = field.up('form').down('#' + field.referenceFieldId);
-					var targetValue = field.getValue();
-					var referenceValue = referenceField.getValue();
-					return targetValue != referenceValue;
-				}
-				return true;
-			},
-
-			differentText: 'Source and Target cannot be the same'
-		});
-
 		this.sourceStore = Ext.create('Ext.data.Store', {
 			fields: ['id', 'name']
 		});
@@ -44,7 +30,6 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
               },
               {
                 name: 'sourceId',
-                id : 'source',
                 fieldLabel: 'Source',
                 xtype: 'combo',
                 store: this.sourceStore,
@@ -56,7 +41,6 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
             },
             {
                 name: 'targetId',
-                id : 'target',
                 fieldLabel: 'Target',
                 xtype: 'combo',
                 store: this.targetStore,
@@ -64,9 +48,7 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
                 valueField: 'id',
                 displayField: 'name',
                 allowBlank: false,
-                editable: false,
-                vtype : 'different',
-                referenceFieldId : 'source'
+                editable: false
             },
             {
             	xtype: 'numberfield',
@@ -118,7 +100,6 @@ Ext.define('RiskAnalyzer.EdgeWindow', {
         this.form.setLoading({msg: 'Saving distribution channel...'});
         Ext.Ajax.request({
             url: 'service/distribution-channel',
-            method : 'POST',
             jsonData : fieldValues,
             success : this.onSaveSuccess,
             failure : this.onSaveFailure,

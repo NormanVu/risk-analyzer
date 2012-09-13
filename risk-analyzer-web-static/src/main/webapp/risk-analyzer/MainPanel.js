@@ -175,8 +175,8 @@ Ext.define('RiskAnalyzer.MainPanel', {
         scope: this
       }
     });
-    win.setSource(json.nodes);
-    win.setTarget(json.nodes);
+    win.setSource(json.facilities);
+    win.setTarget(json.facilities);
     win.setFieldValues(json);
     win.show();
   },
