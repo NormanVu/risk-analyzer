@@ -10,8 +10,13 @@ import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
 import org.neo4j.graphdb.RelationshipType;
 import org.neo4j.graphdb.Transaction;
-import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.graphdb.index.Index;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
+import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
+import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class FacilityRepositoryNeo4jImplTest {
 
@@ -19,11 +24,22 @@ public class FacilityRepositoryNeo4jImplTest {
 	public TemporaryFolder tmpFolder = new TemporaryFolder();
 
 	GraphDatabaseService databaseService;
+	FacilityRepository facilityRepository;
+	DistributionChannelRepository distributionChannelRepository;
+	DistributionNetworkRepository networkRepository;
 
 	@Before
 	public void beforeTest() throws Exception {
-		databaseService = new GraphDatabaseFactory()
-				.newEmbeddedDatabase(tmpFolder.getRoot().getAbsolutePath());
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/spring/repository.xml");
+		databaseService = (GraphDatabaseService) ctx.getBean("graphDatabaseService");
+		facilityRepository = ctx.getBean(FacilityRepository.class);
+		distributionChannelRepository = ctx.getBean(DistributionChannelRepository.class);
+		networkRepository = ctx.getBean(DistributionNetworkRepository.class);
+		System.out.println(facilityRepository);
+		System.out.println(distributionChannelRepository);
+		System.out.println(networkRepository);
+		
+		System.out.println(databaseService);
 	}
 
 	@Test
@@ -46,7 +62,7 @@ public class FacilityRepositoryNeo4jImplTest {
 
 			transaction.success();
 			
-			Node foundFacility = facilityIndex.get("name", "Antibes").getSingle();
+			Node foundFacility = facilityIndex.get("name", "Antibes").next();
 			System.out.println(foundFacility.getProperty("name"));
 		} finally {
 			transaction.finish();
