@@ -20,9 +20,8 @@ public class DistributionNetworkRepositoryNeo4jImpl implements
 
 	@Override
 	public DistributionNetwork read() {
-		DistributionNetwork network = new DistributionNetwork();
-		network.setNodes(facilityRepository.findAll());
-		return network;
+		return new DistributionNetwork(facilityRepository.findAll(),
+				distributionChannelRepository.findAll());
 	}
 
 	@Override

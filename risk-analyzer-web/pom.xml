@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -23,12 +24,10 @@
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-repository</artifactId>
 		</dependency>
-		<!--
 		<dependency>
 			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-repository-neo4j</artifactId>
+			<artifactId>risk-analyzer-repository-jpa</artifactId>
 		</dependency>
-		-->
 		<dependency>
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-datasource</artifactId>
@@ -37,12 +36,8 @@
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-datasource-hsql</artifactId>
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-repository-mongodb</artifactId>
-		</dependency>
-		-->
+		<!-- <dependency> <groupId>com.scirisk</groupId> <artifactId>risk-analyzer-repository-mongodb</artifactId> 
+			</dependency> -->
 		<dependency>
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-service</artifactId>

@@ -6,12 +6,12 @@ import com.scirisk.riskanalyzer.domain.DistributionChannel;
 
 public interface DistributionChannelRepository {
 
-	DistributionChannel save(DistributionChannel edge, String sourceId,
+	DistributionChannel save(DistributionChannel distributionChannel, String sourceId,
 			String targetId);
 
-	void delete(String edgeId);
+	void delete(String distributionChannelId);
 
-	DistributionChannel findOne(String edgeId);
+	DistributionChannel findOne(String distributionChannelId);
 
 	List<DistributionChannel> findAll();
 
