@@ -10,6 +10,8 @@ import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.index.Index;
 
 import com.scirisk.riskanalyzer.domain.Facility;
+import com.scirisk.riskanalyzer.domain.Facility.Kind;
+import com.scirisk.riskanalyzer.domain.Facility.Type;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class FacilityRepositoryNeo4jImpl implements FacilityRepository {
@@ -23,38 +25,35 @@ public class FacilityRepositoryNeo4jImpl implements FacilityRepository {
 	@Override
 	public Facility save(Facility facility) {
 		Transaction transaction = databaseService.beginTx();
-		Index<Node> facilityIndex = databaseService.index().forNodes(
-				Facility.class.getName());
 		try {
-			Node facilityNode = databaseService.createNode();
-			// String facilityId = UUID.randomUUID().toString();
-			// facilityNode.setProperty("id", facilityId);
+			Node node = null;
+			if (isBlank(facility.getId())) {
+				node = databaseService.createNode();
+				facility.setId(String.valueOf(node.getId()));
+			} else {
+				node = databaseService.getNodeById(Long.valueOf(facility
+						.getId()));
+			}
 
-			facilityNode.setProperty("class", Facility.class.getName());
-			facilityIndex.add(facilityNode, "class", Facility.class.getName());
+			node.setProperty("name", facility.getName());
+			node.setProperty("kind", facility.getKind().name());
+			node.setProperty("description", facility.getDescription());
 
-			facilityNode.setProperty("name", facility.getName());
+			node.setProperty("address", facility.getAddress());
+			node.setProperty("longitude", facility.getLongitude());
+			node.setProperty("latitude", facility.getLatitude());
 
-			facilityNode.setProperty("address", facility.getAddress());
-			facilityNode.setProperty("longitude", facility.getLongitude());
-			facilityNode.setProperty("latitude", facility.getLatitude());
+			node.setProperty("riskCategory1", facility.getRiskCategory1());
+			node.setProperty("riskCategory2", facility.getRiskCategory2());
+			node.setProperty("riskCategory3", facility.getRiskCategory3());
 
-			facilityNode.setProperty("riskCategory1",
-					facility.getRiskCategory1());
-			facilityNode.setProperty("riskCategory2",
-					facility.getRiskCategory2());
-			facilityNode.setProperty("riskCategory3",
-					facility.getRiskCategory3());
+			node.setProperty("recoveryTime1", facility.getRecoveryTime1());
+			node.setProperty("recoveryTime2", facility.getRecoveryTime2());
+			node.setProperty("recoveryTime3", facility.getRecoveryTime3());
 
-			facilityNode.setProperty("recoveryTime1",
-					facility.getRecoveryTime1());
-			facilityNode.setProperty("recoveryTime2",
-					facility.getRecoveryTime2());
-			facilityNode.setProperty("recoveryTime3",
-					facility.getRecoveryTime3());
+			node.setProperty("type", facility.getType().name());
 
 			transaction.success();
-			facility.setId(String.valueOf(facilityNode.getId()));
 			return facility;
 		} finally {
 			transaction.finish();
@@ -100,6 +99,8 @@ public class FacilityRepositoryNeo4jImpl implements FacilityRepository {
 		Facility f = new Facility();
 		f.setId(String.valueOf(n.getId()));
 		f.setName((String) n.getProperty("name"));
+		f.setKind(Kind.valueOf((String) n.getProperty("kind")));
+		f.setDescription((String) n.getProperty("description"));
 		f.setAddress((String) n.getProperty("address"));
 		f.setLatitude((Double) n.getProperty("latitude"));
 		f.setLongitude((Double) n.getProperty("longitude"));
@@ -111,8 +112,13 @@ public class FacilityRepositoryNeo4jImpl implements FacilityRepository {
 		f.setRecoveryTime1((Double) n.getProperty("recoveryTime1"));
 		f.setRecoveryTime2((Double) n.getProperty("recoveryTime2"));
 		f.setRecoveryTime3((Double) n.getProperty("recoveryTime3"));
+		f.setType(Type.valueOf((String) n.getProperty("type")));
 		return f;
 
+	}
+
+	boolean isBlank(String string) {
+		return string == null || "".equals(string);
 	}
 
 }
