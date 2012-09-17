@@ -29,7 +29,7 @@ public class DataSourceFactoryPostgresqlImplTest {
 	}
 
 	@Test
-	public void testApplicationContext() throws Exception {
+	public void testGetDataSourceThroughApplicationContext() throws Exception {
 		System.setProperty("DATABASE_URL",
 				"postgres://user:password@hostname:9090/dbname");
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(
