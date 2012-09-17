@@ -30,24 +30,25 @@
 	</properties>
 
 	<modules>
-		<module>risk-analyzer-service</module>
-		<module>risk-analyzer-web</module>
-		<module>risk-analyzer-reference</module>
+		<module>risk-analyzer-domain</module>
 		<module>risk-analyzer-repository</module>
 		<module>risk-analyzer-repository-jpa</module>
 		<module>risk-analyzer-repository-mongodb</module>
-		<module>risk-analyzer-domain</module>
-		<module>risk-analyzer-backend-web</module>
+		<module>risk-analyzer-repository-neo4j</module>
+		<module>risk-analyzer-repository-google</module>
+		<module>risk-analyzer-service</module>
 		<module>risk-analyzer-web-controller</module>
-		<module>risk-analyzer-backend-proxy</module>
+		<module>risk-analyzer-web</module>
 		<module>risk-analyzer-web-static</module>
 		<module>risk-analyzer-web-extjs</module>
-		<module>risk-analyzer-repository-google</module>
-		<module>risk-analyzer-deployment</module>
 		<module>risk-analyzer-datasource</module>
 		<module>risk-analyzer-datasource-hsql</module>
 		<module>risk-analyzer-datasource-mysql</module>
-		<module>risk-analyzer-repository-neo4j</module>
+		<module>risk-analyzer-datasource-postgresql-heroku</module>
+		<module>risk-analyzer-deployment</module>
+		<module>risk-analyzer-reference</module>
+		<module>risk-analyzer-backend-web</module>
+		<module>risk-analyzer-backend-proxy</module>
 	</modules>
 
 	<build>
@@ -315,11 +316,13 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.10</version>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-core</artifactId>
 				<version>1.9.0-rc1</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

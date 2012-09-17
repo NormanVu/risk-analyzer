@@ -6,7 +6,7 @@
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>risk-analyzer-datasource-mysql</artifactId>
-	<name>Risk Analyzer - Datasource MySQL</name>
+	<name>Risk Analyzer - Datasource - MySQL</name>
 
 	<dependencies>
 		<!-- Internal -->
@@ -14,7 +14,7 @@
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-datasource</artifactId>
 		</dependency>
-		<!-- JDBC -->
+		<!-- JDBC Driver -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
