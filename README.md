@@ -1,6 +1,3 @@
-This project is built continuously in the cloud powered by [BuildHive](https://buildhive.cloudbees.com).
-Click here [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/) to see the latest build result.
-
 ## Risk Analyzer
 
 This repository hosts the source code of a start-up project I took part in few months ago.
@@ -11,19 +8,25 @@ a distribution network, i.e. the network of facilities (suppliers and target com
 The application supports the following use cases:
 
 1. View the distribution network
-2. View information pertaining to a facility
-3. Update information pertaining to a facility
-4. Add a new facility to the distribution network
-5. Delete an existing facility
-6. Export the distribution network to XML
-7. Import the distribution network from XML
-8. View frequency distribution analysis performed on the distribution network
+2. View information pertaining to an existing facility
+3. View information pertaining to an existing distribution channel
+4. Update information pertaining to an existing facility
+5. Update information pertaining to an existing distribution channel
+6. Add a new facility to the distribution network
+7. Add a new distribution channel to the distribution network
+8. Delete an existing facility
+9. Delete an existing distribution channel
+10. Export the distribution network to XML
+11. Import the distribution network from XML
+12. View frequency distribution analysis performed on the distribution network
 
 Risk Analyzer presents information using an [Ext JS 4.1](http://www.sencha.com/products/extjs)-based graphical user interface
 in combination with [Spring 3.1.x](http://static.springsource.org/spring/docs/3.1.x/spring-framework-reference/html),
 [Hibernate](http://www.hibernate.org), RESTful Web Services, and a custom network analysis engine exposing the SOAP interface.
 The result is a visually rich, enterprise system that is both quick and secure. It is fully controlled, tested,
-and deployed through a continuous integration infrastructure.
+and deployed through a continuous integration infrastructure powered by [BuildHive](https://buildhive.cloudbees.com).
+You can see the latest build status by clicking here
+[![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/). 
 
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/risk-analyzer.png)
 
