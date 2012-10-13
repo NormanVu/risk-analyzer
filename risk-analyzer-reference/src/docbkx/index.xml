@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<book xmlns:xi="http://www.w3.org/2001/XInclude">
+	<bookinfo>
+		<title>Risk Analyzer User Guide</title>
+		<releaseinfo><?eval ${project.version}?>
+		</releaseinfo>
+
+		<authorgroup>
+			<author>
+				<firstname>Daniel</firstname>
+				<surname>Pacak</surname>
+			</author>
+		</authorgroup>
+	</bookinfo>
+	<chapter>
+		<title>Home Screen</title>
+		<para>In the home screen, you can view at a glance the distribution
+			network.
+		</para>
+
+		<mediaobject>
+			<imageobject>
+				<imagedata width="3in" depth="4in" scalefit="0"
+					fileref="./resources/images/martin-luther-king.jpg"></imagedata>
+			</imageobject>
+		</mediaobject>
+
+		<para>The home screen consists of the following:</para>
+		<itemizedlist spacing="compact">
+			<listitem>
+				<para>Main menu.</para>
+			</listitem>
+			<listitem>
+				<para>Existing facilities and distribution channels displayed as a
+					tree.
+				</para>
+			</listitem>
+			<listitem>
+				<para>Existing facilities and distribution channels displayed on a
+					map.
+				</para>
+			</listitem>
+		</itemizedlist>
+
+		<!-- <xi:include href="reference/included_section.xml" /> -->
+	</chapter>
+</book>

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>risk-analyzer</artifactId>
@@ -14,39 +15,38 @@
 			<plugin>
 				<groupId>com.agilejava.docbkx</groupId>
 				<artifactId>docbkx-maven-plugin</artifactId>
-				<version>2.0.14</version>
+				<version>2.0.7</version>
 				<executions>
-					<!-- -->
 					<execution>
-						<id>documentation</id>
-						<phase>package</phase>
 						<goals>
-							<!-- <goal>generate-html</goal> -->
 							<goal>generate-pdf</goal>
 						</goals>
-						<configuration>
-							<!-- per execution configuration -->
-							<includes>book.xml</includes>
-							<!-- <draftMode>yes</draftMode> -->
-						</configuration>
+						<phase>package</phase>
 					</execution>
 				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.docbook</groupId>
+						<artifactId>docbook-xml</artifactId>
+						<version>4.4</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
 				<configuration>
-					<!-- shared configuration -->
-					<generatedSourceDirectory>${project.build.directory}/docbkx/generated</generatedSourceDirectory>
+					<includes>index.xml</includes>
 					<xincludeSupported>true</xincludeSupported>
-					<paperType>A4</paperType>
-					<fop1Extensions>1</fop1Extensions>
-
-					<foCustomization>${basedir}/src/docbkx-stylesheet/fo/docbook.xsl</foCustomization>
-
-					<customizationParameters>
-						<!-- additional XSLT parameters -->
-						<parameter>
-							<name>key</name>
-							<value>value</value>
-						</parameter>
-					</customizationParameters>
+					<foCustomization>${project.basedir}/src/docbkx/resources/xsl/fopdf.xsl</foCustomization>
+					<!-- <htmlStylesheet>css/html.css</htmlStylesheet> -->
+					<chunkedOutput>false</chunkedOutput>
+					<!-- <htmlCustomization>${project.basedir}/src/docbkx/resources/xsl/html.xsl</htmlCustomization> -->
+					<useExtensions>1</useExtensions>
+					<highlightSource>1</highlightSource>
+					<entities>
+						<entity>
+							<name>version</name>
+							<value>${project.version}</value>
+						</entity>
+					</entities>
 				</configuration>
 			</plugin>
 		</plugins>

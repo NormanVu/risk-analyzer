@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section>
+	<title>This is an included section</title>
+
+	<para>This is an included paragraph.</para>
+
+	<mediaobject>
+		<imageobject>
+			<imagedata width="3in" depth="4in" scalefit="0"
+				fileref="../resources/images/martin-luther-king.jpg"></imagedata>
+		</imageobject>
+	</mediaobject>
+</section>
