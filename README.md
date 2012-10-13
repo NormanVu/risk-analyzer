@@ -20,7 +20,8 @@ The application supports the following use cases:
 8. View frequency distribution analysis performed on the distribution network
 
 Risk Analyzer presents information using an [Ext JS 4.1](http://www.sencha.com/products/extjs)-based graphical user interface
-in combination with Spring MVC, JPA (Hibernate), RESTful Web Services, and a custom network analysis engine exposing the SOAP interface.
+in combination with [Spring 3.1.x](http://static.springsource.org/spring/docs/3.1.x/spring-framework-reference/html),
+[Hibernate](http://www.hibernate.org), RESTful Web Services, and a custom network analysis engine exposing the SOAP interface.
 The result is a visually rich, enterprise system that is both quick and secure. It is fully controlled, tested,
 and deployed through a continuous integration infrastructure.
 
