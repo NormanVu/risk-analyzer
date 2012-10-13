@@ -3,15 +3,15 @@ Click here [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/
 
 ## Risk Analyzer
 
-This repository hosts the source code of a startup project I took part in few months ago.
+This repository hosts the source code of a start-up project I took part in few months ago.
 The application requirement was for a supply chain management system that is accessible through a Web browser.
 
 The users of the application are supply chain managers who in the course of their work need to view and manage information regarding
-the distribution network, i.e. a network of facilities (suppliers and target companies) and distribution channels.
+a distribution network, i.e. the network of facilities (suppliers and target companies) and distribution channels (paths from one facility to another).
 The application supports the following use cases:
 
 1. View the distribution network
-2. View information pertaining to a facility (supplier and/or target company)
+2. View information pertaining to a facility
 3. Update information pertaining to a facility
 4. Add a new facility to the distribution network
 5. Delete an existing facility
@@ -19,12 +19,10 @@ The application supports the following use cases:
 7. Import the distribution network from XML
 8. View frequency distribution analysis performed on the distribution network
 
-Risk Analyzer presents information using an Ext JS 4.1-based graphical user interface in combination with Spring MVC,
-JPA (Hibernate), RESTful Web Services, and a custom network analysis engine exposing the SOAP interface.
-The result is a visually rich, enterprise system that is both quick and secure.
-
-It is fully controlled, tested, and deployed through a continuous integration infrastructure.
-
+Risk Analyzer presents information using an [Ext JS 4.1](http://www.sencha.com/products/extjs)-based graphical user interface
+in combination with Spring MVC, JPA (Hibernate), RESTful Web Services, and a custom network analysis engine exposing the SOAP interface.
+The result is a visually rich, enterprise system that is both quick and secure. It is fully controlled, tested,
+and deployed through a continuous integration infrastructure.
 
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/risk-analyzer.png)
 
