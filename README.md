@@ -58,6 +58,8 @@ The most common deployment configurations are described in the following section
 
 ### Deploying Risk Analyzer on Google App Engine
 
+[https://pacak-daniel.ci.cloudbees.com/job/risk-analyzer-frontend]
+
 [http://risk-analyzer-frontend.appspot.com](http://risk-analyzer-frontend.appspot.com)
 
 ### Deploying Risk Analyzer on CloudBees
