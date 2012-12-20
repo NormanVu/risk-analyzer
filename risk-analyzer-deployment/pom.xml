@@ -11,5 +11,6 @@
 	<modules>
 		<module>risk-analyzer-deployment-google-app-engine</module>
 		<module>backend-google</module>
+		<module>frontend-google</module>
 	</modules>
 </project>

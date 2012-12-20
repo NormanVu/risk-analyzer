@@ -8,6 +8,11 @@
 	</parent>
 	<artifactId>backend-google</artifactId>
 	<name>Risk Analyzer - Deployment - Backend Google</name>
+	<description>Exploded Risk Analyzer Backend Web application to be deployed on Google App Engine.</description>
 	<packaging>war</packaging>
+
+	<build>
+		<finalName>risk-analyzer-backend</finalName>
+	</build>
 
 </project>
