@@ -10,5 +10,6 @@
 	<name>Risk Analyzer - Deployment</name>
 	<modules>
 		<module>risk-analyzer-deployment-google-app-engine</module>
+		<module>backend-google</module>
 	</modules>
 </project>

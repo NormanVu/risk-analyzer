@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>risk-analyzer-deployment-google-app-engine</artifactId>
 	<packaging>war</packaging>
-	<name>Risk Analyzer - Deployment Google App Engine</name>
+	<name>Risk Analyzer - Deployment - Frontend Google</name>
 
 	<build>
 	<!-- this name is used by cloudbee to deploy app (watch out when changing!) -->
