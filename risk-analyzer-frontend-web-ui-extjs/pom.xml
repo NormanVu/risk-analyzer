@@ -6,9 +6,9 @@
 		<artifactId>risk-analyzer</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>risk-analyzer-web-static</artifactId>
+	<artifactId>risk-analyzer-frontend-web-ui-extjs</artifactId>
 	<packaging>war</packaging>
-	<name>Risk Analyzer - Web Static</name>
+	<name>Risk Analyzer - Frontend - Web UI ExtJs</name>
 
 	<build>
 		<resources>

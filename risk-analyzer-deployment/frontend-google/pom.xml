@@ -25,7 +25,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-web-static</artifactId>
+			<artifactId>risk-analyzer-frontend-web-ui-extjs</artifactId>
 			<type>war</type>
 		</dependency>
 		<dependency>

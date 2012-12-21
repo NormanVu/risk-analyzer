@@ -8,10 +8,10 @@
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>risk-analyzer-web</artifactId>
+	<artifactId>risk-analyzer-frontend-webapp</artifactId>
 	<packaging>war</packaging>
 
-	<name>Risk Analyzer - Web</name>
+	<name>Risk Analyzer - Frontend - Web App</name>
 	<url>http://sci-risk-backend-ws.appspot.com</url>
 
 	<dependencies>
@@ -52,7 +52,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-web-static</artifactId>
+			<artifactId>risk-analyzer-frontend-web-ui-extjs</artifactId>
 			<type>war</type>
 		</dependency>
 		<dependency>
