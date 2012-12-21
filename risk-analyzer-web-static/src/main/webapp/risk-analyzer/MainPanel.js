@@ -35,7 +35,7 @@ Ext.define('RiskAnalyzer.MainPanel', {
           title: 'Facility',
           columns: 2,
           items: [
-            {text: 'New', iconCls: 'feed-add', handler: this.onAddNodeClick, scope: this},
+            {id: 'newFacilityButton', text: 'New', iconCls: 'feed-add', handler: this.onAddNodeClick, scope: this},
             {text: 'Delete', iconCls: 'feed-remove', handler: this.onDeleteNodeClick, itemId: 'deleteNodeBtn', disabled: true, scope: this}
           ]
         },

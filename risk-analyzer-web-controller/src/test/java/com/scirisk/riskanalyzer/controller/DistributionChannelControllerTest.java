@@ -70,11 +70,14 @@ public class DistributionChannelControllerTest {
 		distributionChannel.setTarget(target);
 
 		List<Facility> facilities = new ArrayList<Facility>();
-		when(controller.distributionChannelRepository.findOne(distributionChannelId))
-				.thenReturn(distributionChannel);
+		when(
+				controller.distributionChannelRepository
+						.findOne(distributionChannelId)).thenReturn(
+				distributionChannel);
 		when(controller.facilityRepository.findAll()).thenReturn(facilities);
 
-		DistributionChannelFormBean foundFormBean = controller.read(distributionChannelId);
+		DistributionChannelFormBean foundFormBean = controller
+				.read(distributionChannelId);
 		assertEquals(distributionChannelId, foundFormBean.getId());
 		assertEquals(new Double(0.5), foundFormBean.getPurchasingVolume());
 		assertEquals(sourceId, foundFormBean.getSourceId());

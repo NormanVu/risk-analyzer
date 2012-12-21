@@ -28,6 +28,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 					xtype : 'hiddenfield',
 					name : 'id'
 				}, {
+					id : 'facilityKind',
 					name : 'kind',
 					fieldLabel : 'Kind',
 					xtype : 'combo',
@@ -35,11 +36,13 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 					editable : false,
 					allowBlank : false
 				}, {
+					id : 'facilityName',
 					name : 'name',
 					fieldLabel : 'Name',
 					xtype : 'textfield',
 					allowBlank : false
 				}, {
+					id : 'facilityDescription',
 					name : 'description',
 					fieldLabel : 'Description',
 					xtype : 'textarea',
@@ -53,6 +56,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 					anchor : '100%'
 				},
 				items : [{
+					id : 'facilityAddress',
 					name : 'address',
 					fieldLabel : 'Address',
 					xtype : 'textfield',
@@ -155,9 +159,11 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 						name: 'type'
 					},
 					items: [{
+						id : 'facilityTypeIndependent',
 						inputValue: 'independent',
 						boxLabel: 'Independent'
 					}, {
+						id : 'facilityTypeCorrelated',
 						inputValue: 'correlated',
 						boxLabel: 'Correlated'
 					}]
@@ -173,11 +179,13 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 			layout : 'fit',
 			items : this.form,
 			buttons : [{
+				id : 'facilityDialogSaveButton',
 				xtype : 'button',
 				text : 'Save',
 				scope : this,
 				handler : this.onSaveClick
 			}, {
+				id : 'facilityDialogCloseButton',
 				xtype : 'button',
 				text : 'Cancel',
 				scope : this,

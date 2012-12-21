@@ -11,6 +11,7 @@
 
 	<properties>
 		<powermock.version>1.4.12</powermock.version>
+		<appengine.target.version>1.7.4</appengine.target.version>
 	</properties>
 
 	<dependencies>
@@ -24,15 +25,10 @@
 			<artifactId>risk-analyzer-repository</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.google.appengine.orm</groupId>
-			<artifactId>datanucleus-appengine</artifactId>
-			<version>2.0.1.1</version>
-		</dependency>
-<!-- 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-1.0-sdk</artifactId>
-			<version>1.7.1</version>
-		</dependency> -->
+			<version>${appengine.target.version}</version>
+		</dependency>
 		<!-- Testing -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -54,13 +50,14 @@
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
-			<version>1.7.0</version>
+			<version>${appengine.target.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
-			<version>1.7.1</version>
+			<version>${appengine.target.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

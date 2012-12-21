@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-@Ignore
+@Ignore("Run it manually or during the right maven lifecycle phase ..")
 public class SeleniumExampleTest {
 
 	WebDriver webDriver;
@@ -21,36 +21,57 @@ public class SeleniumExampleTest {
 
 	@After
 	public void afterEachTest() throws Exception {
-		// webDriver.quit();
+		webDriver.quit();
 	}
-
-	// <>button id="button-1022-btnEl" class="x-btn-center" autocomplete="off"
-	// role="button" hidefocus="true" type="button" style="height: 16px;">
-	// <span id="button-1022-btnInnerEl" class="x-btn-inner" style="">New</span>
 
 	@Test
-	public void testSomethingSimple() throws Exception {
-		int timeout = 10;
-		webDriver.navigate().to("http://risk-analyzer-frontend.appspot.com/");
+	public void testCreateFacility() throws Exception {
+		// webDriver.navigate().to("http://risk-analyzer-frontend.appspot.com/");
+		webDriver.get("http://localhost:8080/risk-analyzer-web");
 
-		WebElement newFacilityButton = findAndWait(webDriver,
-				By.xpath("//span[contains(@id,'button') and text()='New']"), timeout);
+		WebElement newFacilityButton = findButtonById(webDriver,
+				"newFacilityButton");
 		newFacilityButton.click();
-		
-		
-		WebElement description = findAndWait(webDriver, By.xpath("//textarea[@name='description']"), timeout);
-		description.clear(); // remove text
-		description.sendKeys("Hello World!");
+
+		WebElement nameInput = findInputById(webDriver, "facilityName");
+		WebElement addressInput = findInputById(webDriver, "facilityAddress");
+		WebElement typeInput = findInputById(webDriver,
+				"facilityTypeIndependent");
+		typeInput.click();
+
+		setText(nameInput, "Antibes");
+		setText(addressInput, "Antibes");
+
+		WebElement saveButton = findButtonById(webDriver,
+				"facilityDialogSaveButton");
+		saveButton.click();
+
 	}
 
-	public static WebElement findAndWait(WebDriver driver, final By by,
-			long timeOutSeconds) {
-		WebElement myDynamicElement = (new WebDriverWait(driver, timeOutSeconds))
-				.until(new ExpectedCondition<WebElement>() {
-					public WebElement apply(WebDriver d) {
-						return d.findElement(by);
-					}
-				});
+	// this is a trick for extjs framework that is using id for messing up
+	public static WebElement findButtonById(WebDriver webDriver, String id) {
+		return findAndWait(webDriver,
+				By.xpath(String.format("//button[contains(@id,'%s')]", id)));
+	}
+
+	public static void setText(WebElement webElement, String text) {
+		webElement.clear();
+		webElement.sendKeys(text);
+	}
+
+	public static WebElement findInputById(WebDriver webDriver, String id) {
+		return findAndWait(webDriver,
+				By.xpath(String.format("//input[contains(@id,'%s')]", id)));
+	}
+
+	public static WebElement findAndWait(WebDriver driver, final By by) {
+		int timeoutInSeconds = 5;
+		WebElement myDynamicElement = (new WebDriverWait(driver,
+				timeoutInSeconds)).until(new ExpectedCondition<WebElement>() {
+			public WebElement apply(WebDriver d) {
+				return d.findElement(by);
+			}
+		});
 		return myDynamicElement;
 	}
 
