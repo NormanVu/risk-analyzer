@@ -194,6 +194,12 @@
 			</dependency>
 			<dependency>
 				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-backend-webapp</artifactId>
+				<type>war</type>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.scirisk</groupId>
 				<artifactId>risk-analyzer-backend-proxy</artifactId>
 				<version>${project.version}</version>
 			</dependency>
