@@ -5,9 +5,9 @@
 		<artifactId>risk-analyzer</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>risk-analyzer-backend-web</artifactId>
+	<artifactId>risk-analyzer-backend-webapp</artifactId>
 	<packaging>war</packaging>
-	<name>Risk Analyzer - Backend Web</name>
+	<name>Risk Analyzer - Backend - Web App</name>
 
 	<dependencies>
 		<dependency>

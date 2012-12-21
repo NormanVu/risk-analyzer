@@ -48,7 +48,7 @@
 		<module>risk-analyzer-datasource-postgresql-heroku</module>
 		<module>risk-analyzer-deployment</module>
 		<module>risk-analyzer-reference</module>
-		<module>risk-analyzer-backend-web</module>
+		<module>risk-analyzer-backend-webapp</module>
 		<module>risk-analyzer-backend-proxy</module>
 		<module>risk-analyzer-test</module>
 	</modules>
