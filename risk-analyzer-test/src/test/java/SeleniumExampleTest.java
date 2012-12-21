@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-@Ignore
+@Ignore("Run it manually or during the right maven lifecycle phase ..")
 public class SeleniumExampleTest {
 
 	WebDriver webDriver;
