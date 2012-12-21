@@ -51,6 +51,7 @@
 		<module>risk-analyzer-backend-webapp</module>
 		<module>risk-analyzer-backend-proxy</module>
 		<module>risk-analyzer-test</module>
+		<module>risk-analyzer-backend-web-controller</module>
 	</modules>
 
 	<build>
@@ -184,6 +185,11 @@
 			<dependency>
 				<groupId>com.scirisk</groupId>
 				<artifactId>risk-analyzer-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.scirisk</groupId>
+				<artifactId>risk-analyzer-backend-web-controller</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
