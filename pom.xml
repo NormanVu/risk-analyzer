@@ -49,6 +49,7 @@
 		<module>risk-analyzer-reference</module>
 		<module>risk-analyzer-backend-web</module>
 		<module>risk-analyzer-backend-proxy</module>
+		<module>risk-analyzer-test</module>
 	</modules>
 
 	<build>
