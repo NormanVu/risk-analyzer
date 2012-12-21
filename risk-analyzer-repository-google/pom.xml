@@ -29,6 +29,11 @@
 			<artifactId>appengine-api-1.0-sdk</artifactId>
 			<version>${appengine.target.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.appengine.orm</groupId>
+			<artifactId>datanucleus-appengine</artifactId>
+			<version>2.1.1</version>
+		</dependency>
 		<!-- Testing -->
 		<dependency>
 			<groupId>junit</groupId>
