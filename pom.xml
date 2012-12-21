@@ -38,7 +38,7 @@
 		<module>risk-analyzer-repository-neo4j</module>
 		<module>risk-analyzer-repository-google</module>
 		<module>risk-analyzer-service</module>
-		<module>risk-analyzer-web-controller</module>
+		<module>risk-analyzer-frontend-web-controller</module>
 		<module>risk-analyzer-frontend-webapp</module>
 		<module>risk-analyzer-frontend-web-ui-extjs</module>
 		<module>risk-analyzer-web-extjs</module>
@@ -193,7 +193,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.scirisk</groupId>
-				<artifactId>risk-analyzer-web-controller</artifactId>
+				<artifactId>risk-analyzer-frontend-web-controller</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

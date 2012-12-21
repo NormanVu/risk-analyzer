@@ -48,7 +48,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-web-controller</artifactId>
+			<artifactId>risk-analyzer-frontend-web-controller</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
