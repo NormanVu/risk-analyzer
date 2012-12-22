@@ -1,6 +1,7 @@
 package com.scirisk.riskanalyzer.backend.service;
 
-import org.jdom2.Element;
+import javax.xml.transform.stream.StreamSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -12,20 +13,22 @@ public class FrequencyDistributionEndpoint {
 
 	@Autowired
 	FrequencyDistributionService frequencyDistributionService;
-	RequestMarshaller requestMarshaller = new RequestMarshaller();
-	ResponseMarshaller responseMarshaller = new ResponseMarshaller();
+	RequestMarshallerJDomImpl requestMarshaller = new RequestMarshallerJDomImpl();
+	ResponseMarshallerJDomIMpl responseMarshaller = new ResponseMarshallerJDomIMpl();
 
 	@PayloadRoot(namespace = "http://scirisk.com/xml/ns/risk-analyzer", localPart = "CalculateRequest")
 	public @ResponsePayload
-	Element FrequencyDistribution(@RequestPayload Element requestElm)
+	StreamSource FrequencyDistribution(@RequestPayload StreamSource request)
 			throws Exception {
-		System.out.println("FQE CALCULATE REQUEST RECEIVED..");
-		CalculateRequest calculateRequest = requestMarshaller.unmarshall(requestElm);
+		System.out.println("FREQUENCY DISTRIBUTION REQUEST RECEIVED..");
+		CalculateRequest calculateRequest = requestMarshaller
+				.unmarshall(request);
+
 		CalculateResponse calculateResponse = frequencyDistributionService
 				.calculate(calculateRequest);
-		Element responseElm = responseMarshaller.marshall(calculateResponse);
-		System.out.println("FQE CALCULATE REQUEST COMPLETE");
-		return responseElm;
+		StreamSource response = responseMarshaller.marshall(calculateResponse);
+		System.out.println("FREQUENCY DISTRIBUTION REQUEST PROCESSED");
+		return response;
 	}
 
 }

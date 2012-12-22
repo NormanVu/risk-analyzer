@@ -2,26 +2,27 @@ package com.scirisk.riskanalyzer.backend.proxy;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.XMLOutputter;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.scirisk.riskanalyzer.backend.service.CalculateRequest;
 import com.scirisk.riskanalyzer.backend.service.CalculateResponse;
 import com.scirisk.riskanalyzer.backend.service.FrequencyDistributionService;
 import com.scirisk.riskanalyzer.backend.service.RequestMarshaller;
+import com.scirisk.riskanalyzer.backend.service.RequestMarshallerJDomImpl;
 import com.scirisk.riskanalyzer.backend.service.ResponseMarshaller;
+import com.scirisk.riskanalyzer.backend.service.ResponseMarshallerJDomIMpl;
 
-public class FrequencyDistributionServiceSoapProxy implements FrequencyDistributionService {
+public class FrequencyDistributionServiceSoapProxy implements
+		FrequencyDistributionService {
 
 	private String endpointUrl;
+	private RequestMarshaller requestMarshaller = new RequestMarshallerJDomImpl();
+	private ResponseMarshaller responseMarshaller = new ResponseMarshallerJDomIMpl();
+	private WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
 
 	public FrequencyDistributionServiceSoapProxy(String endpointUrl) {
 		this.endpointUrl = endpointUrl;
@@ -29,36 +30,16 @@ public class FrequencyDistributionServiceSoapProxy implements FrequencyDistribut
 
 	public CalculateResponse calculate(CalculateRequest request)
 			throws Exception {
-
-		WebServiceTemplate template = new WebServiceTemplate();
-		Element calculateRequestElm = new RequestMarshaller().marshall(request);
-
-		StreamSource source = createStreamSource(calculateRequestElm);
+		StreamSource source = requestMarshaller.marshall(request);
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		StreamResult result = new StreamResult(out);
 
-		template.sendSourceAndReceiveToResult(this.endpointUrl, source, result);
+		webServiceTemplate.sendSourceAndReceiveToResult(endpointUrl, source,
+				result);
 
-		System.out.println(new String(out.toByteArray()));
-		SAXBuilder builder = new SAXBuilder();
-		Document document = builder.build(new ByteArrayInputStream(out
-				.toByteArray()));
-
-		return new ResponseMarshaller().unmarshall(document.getRootElement());
-	}
-
-	private StreamSource createStreamSource(Element document)
-			throws IOException {
-
-		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-		XMLOutputter outputter = new XMLOutputter();
-		outputter.output(document, buffer);
-
-		StreamSource source = new StreamSource(new ByteArrayInputStream(
-				buffer.toByteArray()));
-
-		return source;
+		return responseMarshaller.unmarshall(new StreamSource(
+				new ByteArrayInputStream(out.toByteArray())));
 	}
 
 }
