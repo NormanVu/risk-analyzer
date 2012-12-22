@@ -32,27 +32,32 @@
 
 	<modules>
 		<module>risk-analyzer-domain</module>
+
 		<module>risk-analyzer-repository-api</module>
 		<module>risk-analyzer-repository-jpa</module>
 		<module>risk-analyzer-repository-mongodb</module>
 		<module>risk-analyzer-repository-neo4j</module>
 		<module>risk-analyzer-repository-google</module>
-		<module>risk-analyzer-frontend-service</module>
-		<module>risk-analyzer-frontend-web-controller</module>
-		<module>risk-analyzer-frontend-webapp</module>
-		<module>risk-analyzer-frontend-web-ui-extjs</module>
-		<module>risk-analyzer-web-extjs</module>
+
 		<module>risk-analyzer-datasource-api</module>
 		<module>risk-analyzer-datasource-hsql</module>
 		<module>risk-analyzer-datasource-mysql</module>
 		<module>risk-analyzer-datasource-postgresql-heroku</module>
-		<module>risk-analyzer-deployment</module>
-		<module>risk-analyzer-reference</module>
-		<module>risk-analyzer-backend-webapp</module>
-		<module>risk-analyzer-backend-proxy</module>
-		<module>risk-analyzer-test</module>
-		<module>risk-analyzer-backend-web-controller</module>
+
+		<module>risk-analyzer-frontend-service</module>
+		<module>risk-analyzer-frontend-web-controller</module>
+		<module>risk-analyzer-frontend-web-ui-extjs</module>
+		<module>risk-analyzer-frontend-webapp</module>
+
 		<module>risk-analyzer-backend-service</module>
+		<module>risk-analyzer-backend-proxy</module>
+		<module>risk-analyzer-backend-web-controller</module>
+		<module>risk-analyzer-backend-webapp</module>
+
+		<module>risk-analyzer-deployment</module>
+		<module>risk-analyzer-test</module>
+		<module>risk-analyzer-reference</module>
+		<module>risk-analyzer-web-extjs</module>
 	</modules>
 
 	<build>
