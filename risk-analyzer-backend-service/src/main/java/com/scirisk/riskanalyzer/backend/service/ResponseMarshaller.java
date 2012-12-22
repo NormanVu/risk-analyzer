@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.jdom.Element;
-import org.jdom.Namespace;
+import org.jdom2.Element;
+import org.jdom2.Namespace;
 
 public class ResponseMarshaller {
 
@@ -57,8 +57,7 @@ public class ResponseMarshaller {
 	}
 
 	public Element marshall(CalculateResponse response) {
-		Element responseElm = new Element("CalculateResponse",
-				namespace);
+		Element responseElm = new Element("CalculateResponse", namespace);
 		Element frequencyDistributionElm = createFrequencyDistributionElement(response
 				.getFrequencyDistribution());
 		Element outputParamsElm = createOutputParamsElement(response

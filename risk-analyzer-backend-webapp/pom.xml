@@ -16,11 +16,6 @@
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-backend-web-controller</artifactId>
 		</dependency>
-
-		<!-- <dependency> <groupId>org.springframework.ws</groupId> <artifactId>spring-ws-core</artifactId> 
-			<version>2.1.0.RELEASE</version> </dependency> -->
-		<!-- <dependency> <groupId>org.jdom</groupId> <artifactId>jdom</artifactId> 
-			<version>2.0.2</version> </dependency> -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -32,22 +27,5 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>exec-war</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

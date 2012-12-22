@@ -8,11 +8,11 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>risk-analyzer-backend-proxy</artifactId>
-	<name>Risk Analyzer - Backend Proxy</name>
+	<name>Risk Analyzer - Backend - Proxy</name>
 
 	<dependencies>
 		<!-- Internal -->
-		<dependency><!--  transitive -->
+		<dependency><!-- transitive -->
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-domain</artifactId>
 		</dependency>
@@ -26,9 +26,8 @@
 			<version>2.1.0.RELEASE</version>
 		</dependency>
 		<dependency>
-			<groupId>jdom</groupId>
+			<groupId>org.jdom</groupId>
 			<artifactId>jdom</artifactId>
-			<version>1.0</version>
 		</dependency>
 	</dependencies>
 

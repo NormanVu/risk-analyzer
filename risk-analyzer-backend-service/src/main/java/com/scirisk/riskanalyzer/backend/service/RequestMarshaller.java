@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.jdom.Element;
-import org.jdom.Namespace;
+import org.jdom2.Element;
+import org.jdom2.Namespace;
 
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.domain.DistributionNetwork;
@@ -127,6 +127,7 @@ public class RequestMarshaller {
 	}
 
 	public CalculateRequest unmarshall(Element calculateRequestElm) {
+		
 		System.out.println("Unmarshalling 'CalculateRequest' element: "
 				+ calculateRequestElm);
 		Element inputParamsElm = calculateRequestElm.getChild("InputParams",

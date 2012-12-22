@@ -7,7 +7,7 @@
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>risk-analyzer-repository-google</artifactId>
-	<name>Risk Analyzer - Repository Google</name>
+	<name>Risk Analyzer - Repository - Google</name>
 
 	<properties>
 		<powermock.version>1.4.12</powermock.version>

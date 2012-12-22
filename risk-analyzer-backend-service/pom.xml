@@ -15,9 +15,8 @@
 			<artifactId>risk-analyzer-domain</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>jdom</groupId>
+			<groupId>org.jdom</groupId>
 			<artifactId>jdom</artifactId>
-			<version>1.0</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -7,10 +7,10 @@ import java.io.IOException;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.XMLOutputter;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.XMLOutputter;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.scirisk.riskanalyzer.backend.service.CalculateRequest;

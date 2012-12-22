@@ -1,6 +1,6 @@
 package com.scirisk.riskanalyzer.backend.service;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
