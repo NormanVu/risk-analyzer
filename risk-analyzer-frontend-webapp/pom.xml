@@ -29,7 +29,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-datasource</artifactId>
+			<artifactId>risk-analyzer-datasource-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>

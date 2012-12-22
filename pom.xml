@@ -42,7 +42,7 @@
 		<module>risk-analyzer-frontend-webapp</module>
 		<module>risk-analyzer-frontend-web-ui-extjs</module>
 		<module>risk-analyzer-web-extjs</module>
-		<module>risk-analyzer-datasource</module>
+		<module>risk-analyzer-datasource-api</module>
 		<module>risk-analyzer-datasource-hsql</module>
 		<module>risk-analyzer-datasource-mysql</module>
 		<module>risk-analyzer-datasource-postgresql-heroku</module>
@@ -145,7 +145,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.scirisk</groupId>
-				<artifactId>risk-analyzer-datasource</artifactId>
+				<artifactId>risk-analyzer-datasource-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

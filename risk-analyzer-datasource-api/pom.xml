@@ -5,6 +5,6 @@
     <artifactId>risk-analyzer</artifactId>
     <version>0.0.2-SNAPSHOT</version>
   </parent>
-  <artifactId>risk-analyzer-datasource</artifactId>
+  <artifactId>risk-analyzer-datasource-api</artifactId>
   <name>Risk Analyzer - Datasource - API</name>
 </project>
