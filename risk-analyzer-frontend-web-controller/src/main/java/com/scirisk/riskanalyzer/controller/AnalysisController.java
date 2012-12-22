@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.scirisk.riskanalyzer.backend.proxy.CalculateRequest;
-import com.scirisk.riskanalyzer.backend.proxy.CalculateResponse;
-import com.scirisk.riskanalyzer.backend.proxy.RiskAnalyzerServiceProxy;
-import com.scirisk.riskanalyzer.backend.proxy.RiskAnalyzerServiceProxyImpl;
+import com.scirisk.riskanalyzer.backend.proxy.FrequencyDistributionServiceSoapProxy;
+import com.scirisk.riskanalyzer.backend.service.CalculateRequest;
+import com.scirisk.riskanalyzer.backend.service.CalculateResponse;
+import com.scirisk.riskanalyzer.backend.service.FrequencyDistributionService;
 import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
 
@@ -44,7 +44,7 @@ public class AnalysisController {
 
 		JSONObject submitSimulationResponse = null;
 		try {
-			RiskAnalyzerServiceProxy proxy = new RiskAnalyzerServiceProxyImpl(
+			FrequencyDistributionService proxy = new FrequencyDistributionServiceSoapProxy(
 					endpointUrl);
 
 			CalculateRequest request = new CalculateRequest();

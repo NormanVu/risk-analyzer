@@ -7,8 +7,9 @@ import java.util.Map.Entry;
 import org.jdom.Element;
 import org.jdom.Namespace;
 
-import com.scirisk.riskanalyzer.domain.DistributionNetwork;
+import com.scirisk.riskanalyzer.backend.service.CalculateRequest;
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.scirisk.riskanalyzer.domain.DistributionNetwork;
 import com.scirisk.riskanalyzer.domain.Facility;
 
 public class CalculateRequestMarshaller {

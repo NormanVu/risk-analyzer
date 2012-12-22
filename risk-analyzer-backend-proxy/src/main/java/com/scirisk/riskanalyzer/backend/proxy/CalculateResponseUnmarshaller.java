@@ -8,6 +8,8 @@ import java.util.Map;
 import org.jdom.Element;
 import org.jdom.Namespace;
 
+import com.scirisk.riskanalyzer.backend.service.CalculateResponse;
+
 public class CalculateResponseUnmarshaller {
 
   private Namespace riskAnalyzerNamespace = Namespace.getNamespace("http://scirisk.com/xml/ns/risk-analyzer");
@@ -20,7 +22,7 @@ public class CalculateResponseUnmarshaller {
     Element outputParamsElm = calculateResponseElm.getChild("OutputParams", riskAnalyzerNamespace);
 
     CalculateResponse response = new CalculateResponse();
-    response.setFrequencyDistribution(unmarshallFrequencyDistribution(frequencyDistributionElm));
+    response.setFrequencyDistribution((double[][]) unmarshallFrequencyDistribution(frequencyDistributionElm).toArray());
     response.setOutputParams(unmarshallParams(outputParamsElm));
     response.setInputParams(unmarshallParams(inputParamsElm));
 

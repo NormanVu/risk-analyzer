@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.backend.domain;
+package com.scirisk.riskanalyzer.backend.service;
 
 import java.util.Map;
 

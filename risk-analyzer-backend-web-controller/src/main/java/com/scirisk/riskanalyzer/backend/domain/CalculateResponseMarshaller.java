@@ -6,6 +6,8 @@ import java.util.Map.Entry;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
 
+import com.scirisk.riskanalyzer.backend.service.CalculateResponse;
+
 public class CalculateResponseMarshaller {
 
   Namespace riskAnalyzerNamespace = Namespace.getNamespace("risk-analyzer", "http://scirisk.com/xml/ns/risk-analyzer");

@@ -7,9 +7,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.scirisk.riskanalyzer.backend.domain.CalculateRequest;
 import com.scirisk.riskanalyzer.backend.domain.CalculateRequestUnmarshaller;
-import com.scirisk.riskanalyzer.backend.domain.CalculateResponse;
 import com.scirisk.riskanalyzer.backend.domain.CalculateResponseMarshaller;
 
 @Endpoint
