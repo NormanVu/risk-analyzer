@@ -12,7 +12,6 @@
 	<name>Risk Analyzer - Frontend - Web App</name>
 	<packaging>war</packaging>
 
-
 	<dependencies>
 		<!-- Internal -->
 		<dependency>
@@ -21,7 +20,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-repository</artifactId>
+			<artifactId>risk-analyzer-repository-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
@@ -37,7 +36,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-service</artifactId>
+			<artifactId>risk-analyzer-frontend-service</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>

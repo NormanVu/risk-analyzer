@@ -15,7 +15,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
-			<artifactId>risk-analyzer-repository</artifactId>
+			<artifactId>risk-analyzer-repository-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.scirisk</groupId>
