@@ -11,11 +11,6 @@
 
 	<context:component-scan base-package="com.scirisk.riskanalyzer.backend.service" />
 
-	<bean id="calculateRequestUnmarshaller"
-		class="com.scirisk.riskanalyzer.backend.domain.CalculateRequestUnmarshaller" />
-	<bean id="calculateResponseMarshaller"
-		class="com.scirisk.riskanalyzer.backend.domain.CalculateResponseMarshaller" />
-
 	<bean id="frequencyDistributionService"
 		class="com.scirisk.riskanalyzer.backend.service.FrequencyDistributionServiceMockImpl">
 		<property name="sleepTimeInMilliseconds" value="1000" />

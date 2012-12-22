@@ -43,21 +43,15 @@ public class AnalysisController {
 		inputParams.put("confidence_level", "" + params.getConfidenceLevel());
 
 		JSONObject submitSimulationResponse = null;
-		try {
-			FrequencyDistributionService proxy = new FrequencyDistributionServiceSoapProxy(
-					endpointUrl);
+		FrequencyDistributionService proxy = new FrequencyDistributionServiceSoapProxy(
+				endpointUrl);
 
-			CalculateRequest request = new CalculateRequest();
-			request.setNetwork(network);
-			request.setInputParams(inputParams);
+		CalculateRequest request = new CalculateRequest();
+		request.setNetwork(network);
+		request.setInputParams(inputParams);
 
-			CalculateResponse response = proxy.calculate(request);
-			submitSimulationResponse = toJson(response);
-		} catch (Exception e) {
-			e.printStackTrace();
-			submitSimulationResponse.put("status", "RUNNING");
-			submitSimulationResponse.put("message", e.getMessage());
-		}
+		CalculateResponse response = proxy.calculate(request);
+		submitSimulationResponse = toJson(response);
 
 		PrintWriter out = resp.getWriter();
 		out.println(submitSimulationResponse.toString(2));

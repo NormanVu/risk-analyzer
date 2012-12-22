@@ -14,5 +14,10 @@
 			<groupId>com.scirisk</groupId>
 			<artifactId>risk-analyzer-domain</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -16,12 +16,12 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 import com.scirisk.riskanalyzer.backend.service.CalculateRequest;
 import com.scirisk.riskanalyzer.backend.service.CalculateResponse;
 import com.scirisk.riskanalyzer.backend.service.FrequencyDistributionService;
+import com.scirisk.riskanalyzer.backend.service.RequestMarshaller;
+import com.scirisk.riskanalyzer.backend.service.ResponseMarshaller;
 
 public class FrequencyDistributionServiceSoapProxy implements FrequencyDistributionService {
 
 	private String endpointUrl;
-	CalculateRequestMarshaller requestMarshaller = new CalculateRequestMarshaller();
-	CalculateResponseUnmarshaller responseUnmarshaller = new CalculateResponseUnmarshaller();
 
 	public FrequencyDistributionServiceSoapProxy(String endpointUrl) {
 		this.endpointUrl = endpointUrl;
@@ -31,7 +31,7 @@ public class FrequencyDistributionServiceSoapProxy implements FrequencyDistribut
 			throws Exception {
 
 		WebServiceTemplate template = new WebServiceTemplate();
-		Element calculateRequestElm = requestMarshaller.marshall(request);
+		Element calculateRequestElm = new RequestMarshaller().marshall(request);
 
 		StreamSource source = createStreamSource(calculateRequestElm);
 
@@ -45,9 +45,7 @@ public class FrequencyDistributionServiceSoapProxy implements FrequencyDistribut
 		Document document = builder.build(new ByteArrayInputStream(out
 				.toByteArray()));
 
-		CalculateResponse response = responseUnmarshaller.unmarshall(document
-				.getRootElement());
-		return response;
+		return new ResponseMarshaller().unmarshall(document.getRootElement());
 	}
 
 	private StreamSource createStreamSource(Element document)
