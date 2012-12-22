@@ -13,21 +13,16 @@ public class FrequencyDistributionEndpoint {
 
 	@Autowired
 	FrequencyDistributionService frequencyDistributionService;
-	RequestMarshallerJDomImpl requestMarshaller = new RequestMarshallerJDomImpl();
-	ResponseMarshallerJDomIMpl responseMarshaller = new ResponseMarshallerJDomIMpl();
+	RequestMarshaller requestMarshaller = new RequestMarshallerJDomImpl();
+	ResponseMarshaller responseMarshaller = new ResponseMarshallerJDomIMpl();
 
 	@PayloadRoot(namespace = "http://scirisk.com/xml/ns/risk-analyzer", localPart = "CalculateRequest")
 	public @ResponsePayload
-	StreamSource FrequencyDistribution(@RequestPayload StreamSource request)
-			throws Exception {
-		System.out.println("FREQUENCY DISTRIBUTION REQUEST RECEIVED..");
-		CalculateRequest calculateRequest = requestMarshaller
-				.unmarshall(request);
+	StreamSource frequencyDistribution(@RequestPayload StreamSource request) throws Exception {
+		CalculateRequest calculateRequest = requestMarshaller.unmarshall(request);
 
-		CalculateResponse calculateResponse = frequencyDistributionService
-				.calculate(calculateRequest);
+		CalculateResponse calculateResponse = frequencyDistributionService.calculate(calculateRequest);
 		StreamSource response = responseMarshaller.marshall(calculateResponse);
-		System.out.println("FREQUENCY DISTRIBUTION REQUEST PROCESSED");
 		return response;
 	}
 
