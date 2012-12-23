@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.scirisk</groupId>
+		<groupId>com.danielpacak.risk-analyzer</groupId>
 		<artifactId>risk-analyzer</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
@@ -15,44 +15,44 @@
 	<dependencies>
 		<!-- Internal -->
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-domain</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-repository-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-repository-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-datasource-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-datasource-hsql</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-frontend-service</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-backend-proxy</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-frontend-web-controller</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-frontend-web-ui-extjs</artifactId>
 			<type>war</type>
 		</dependency>
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-web-extjs</artifactId>
 			<type>war</type>
 		</dependency>

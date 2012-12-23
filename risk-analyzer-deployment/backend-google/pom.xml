@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.scirisk</groupId>
+		<groupId>com.danielpacak.risk-analyzer</groupId>
 		<artifactId>risk-analyzer-deployment</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
@@ -17,7 +17,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.scirisk</groupId>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-backend-webapp</artifactId>
 			<type>war</type>
 		</dependency>

@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.scirisk</groupId>
+	<groupId>com.danielpacak.risk-analyzer</groupId>
 	<artifactId>risk-analyzer</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -144,89 +144,89 @@
 		<dependencies>
 			<!-- Internal -->
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-domain</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-datasource-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-datasource-hsql</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-datasource-mysql</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-repository-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-repository-jpa</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-repository-mongodb</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-repository-neo4j</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-repository-google</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-frontend-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-backend-web-controller</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-backend-webapp</artifactId>
 				<type>war</type>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-backend-proxy</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-frontend-web-controller</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-backend-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-frontend-web-ui-extjs</artifactId>
 				<type>war</type>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.scirisk</groupId>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-web-extjs</artifactId>
 				<type>war</type>
 				<version>${project.version}</version>
