@@ -9,6 +9,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.WriteResult;
 import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.domain.Facility.Kind;
 import com.scirisk.riskanalyzer.domain.Facility.Type;
@@ -16,7 +17,7 @@ import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class FacilityRepositoryMongoDbImpl implements FacilityRepository {
 
-	private static final String NETWORK_NODE_COLLECTION = "networkNodeCollection";
+	static final String FACILITY_COLLECTION = "facility";
 
 	private DB db;
 
@@ -25,7 +26,7 @@ public class FacilityRepositoryMongoDbImpl implements FacilityRepository {
 	}
 
 	public Facility save(Facility node) {
-		DBCollection collection = db.getCollection(NETWORK_NODE_COLLECTION);
+		DBCollection collection = db.getCollection(FACILITY_COLLECTION);
 		BasicDBObject nodeObject = new BasicDBObject();
 
 		nodeObject.put("_id", isBlank(node.getId()) ? UUID.randomUUID()
@@ -47,12 +48,12 @@ public class FacilityRepositoryMongoDbImpl implements FacilityRepository {
 		nodeObject.put("recoveryTime2", node.getRecoveryTime2());
 		nodeObject.put("recoveryTime3", node.getRecoveryTime3());
 
-		collection.insert(nodeObject);
+		WriteResult writeResult = collection.insert(nodeObject);
 		return node;
 	}
 
 	public Facility findOne(String nodeId) {
-		DBCollection collection = db.getCollection(NETWORK_NODE_COLLECTION);
+		DBCollection collection = db.getCollection(FACILITY_COLLECTION);
 
 		BasicDBObject query = new BasicDBObject();
 
@@ -72,14 +73,14 @@ public class FacilityRepositoryMongoDbImpl implements FacilityRepository {
 	}
 
 	public void delete(String nodeId) {
-		DBCollection collection = db.getCollection(NETWORK_NODE_COLLECTION);
+		DBCollection collection = db.getCollection(FACILITY_COLLECTION);
 		DBObject query = new BasicDBObject();
 		query.put("_id", nodeId);
 		collection.remove(query);
 	}
 
 	public List<Facility> findAll() {
-		DBCollection collection = db.getCollection(NETWORK_NODE_COLLECTION);
+		DBCollection collection = db.getCollection(FACILITY_COLLECTION);
 		DBCursor cursor = collection.find();
 		List<Facility> nodes = new ArrayList<Facility>();
 		try {
