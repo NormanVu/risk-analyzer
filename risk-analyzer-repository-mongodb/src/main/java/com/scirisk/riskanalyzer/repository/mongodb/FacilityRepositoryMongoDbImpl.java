@@ -1,15 +1,11 @@
 package com.scirisk.riskanalyzer.repository.mongodb;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
+import org.bson.types.ObjectId;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.mongodb.WriteResult;
 import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.domain.Facility.Kind;
 import com.scirisk.riskanalyzer.domain.Facility.Type;
@@ -17,104 +13,81 @@ import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class FacilityRepositoryMongoDbImpl implements FacilityRepository {
 
-	static final String FACILITY_COLLECTION = "facility";
+	private MongoTemplate mongoTemplate;
 
-	private DB db;
-
-	public FacilityRepositoryMongoDbImpl(DB db) {
-		this.db = db;
+	public FacilityRepositoryMongoDbImpl(MongoTemplate mongoTemplate) {
+		this.mongoTemplate = mongoTemplate;
 	}
 
-	public Facility save(Facility node) {
-		DBCollection collection = db.getCollection(FACILITY_COLLECTION);
-		BasicDBObject nodeObject = new BasicDBObject();
-
-		nodeObject.put("_id", isBlank(node.getId()) ? UUID.randomUUID()
-				.toString() : node.getId());
-		nodeObject.put("kind", node.getKind().toString());
-		nodeObject.put("type", node.getType().toString());
-		nodeObject.put("name", node.getName());
-		nodeObject.put("description", node.getDescription());
-
-		nodeObject.put("address", node.getAddress());
-		nodeObject.put("latitude", node.getLatitude());
-		nodeObject.put("longitude", node.getLongitude());
-
-		nodeObject.put("riskCategory1", node.getRiskCategory1());
-		nodeObject.put("riskCategory2", node.getRiskCategory2());
-		nodeObject.put("riskCategory3", node.getRiskCategory3());
-
-		nodeObject.put("recoveryTime1", node.getRecoveryTime1());
-		nodeObject.put("recoveryTime2", node.getRecoveryTime2());
-		nodeObject.put("recoveryTime3", node.getRecoveryTime3());
-
-		WriteResult writeResult = collection.insert(nodeObject);
-		return node;
+	// TODO FIXME UPDATE DOESN'T WORK!
+	public Facility save(Facility facility) {
+		return mongoTemplate.insert(Collection.facilities.name(), facility, entityMapper);
 	}
 
-	public Facility findOne(String nodeId) {
-		DBCollection collection = db.getCollection(FACILITY_COLLECTION);
-
-		BasicDBObject query = new BasicDBObject();
-
-		query.put("_id", nodeId);
-
-		DBCursor cursor = collection.find(query);
-		try {
-			if (cursor.iterator().hasNext()) {
-				DBObject nodeObject = cursor.iterator().next();
-				return map(nodeObject);
-			} else {
-				return null;
-			}
-		} finally {
-			cursor.close();
-		}
-	}
-
-	public void delete(String nodeId) {
-		DBCollection collection = db.getCollection(FACILITY_COLLECTION);
-		DBObject query = new BasicDBObject();
-		query.put("_id", nodeId);
-		collection.remove(query);
+	public Facility findOne(String facilityId) {
+		return mongoTemplate.findOne(Collection.facilities.name(), facilityId, documentMapper);
 	}
 
 	public List<Facility> findAll() {
-		DBCollection collection = db.getCollection(FACILITY_COLLECTION);
-		DBCursor cursor = collection.find();
-		List<Facility> nodes = new ArrayList<Facility>();
-		try {
-			for (DBObject nodeObject : cursor) {
-				nodes.add(map(nodeObject));
-			}
-			return nodes;
-		} finally {
-			cursor.close();
+		return mongoTemplate.findAll(Collection.facilities.name(), documentMapper);
+	}
+
+	public void delete(String facilityId) {
+		mongoTemplate.delete(Collection.facilities.name(), facilityId);
+	}
+
+	EntityMapper<Facility> entityMapper = new EntityMapper<Facility>() {
+		@Override
+		public DBObject map(Facility node) {
+			BasicDBObject nodeObject = new BasicDBObject();
+			nodeObject.put("kind", node.getKind().toString());
+			nodeObject.put("type", node.getType().toString());
+			nodeObject.put("name", node.getName());
+			nodeObject.put("description", node.getDescription());
+
+			nodeObject.put("address", node.getAddress());
+			nodeObject.put("latitude", node.getLatitude());
+			nodeObject.put("longitude", node.getLongitude());
+
+			nodeObject.put("riskCategory1", node.getRiskCategory1());
+			nodeObject.put("riskCategory2", node.getRiskCategory2());
+			nodeObject.put("riskCategory3", node.getRiskCategory3());
+
+			nodeObject.put("recoveryTime1", node.getRecoveryTime1());
+			nodeObject.put("recoveryTime2", node.getRecoveryTime2());
+			nodeObject.put("recoveryTime3", node.getRecoveryTime3());
+			return nodeObject;
 		}
-	}
+	};
 
-	private Facility map(DBObject nodeObject) {
-		Facility node = new Facility();
-		node.setId((String) nodeObject.get("_id"));
-		node.setType(Type.valueOf((String) nodeObject.get("type")));
-		node.setKind(Kind.valueOf((String) nodeObject.get("kind")));
-		node.setName((String) nodeObject.get("name"));
-		node.setDescription((String) nodeObject.get("description"));
-		node.setAddress((String) nodeObject.get("address"));
-		node.setLatitude((Double) nodeObject.get("latitude"));
-		node.setLongitude((Double) nodeObject.get("longitude"));
+	DocumentMapper<Facility> documentMapper = new DocumentMapper<Facility>() {
+		@Override
+		public Facility map(DBObject document) {
+			Facility facility = new Facility();
+			ObjectId id = (ObjectId) document.get("_id");
 
-		node.setRiskCategory1((Double) nodeObject.get("riskCategory1"));
-		node.setRiskCategory2((Double) nodeObject.get("riskCategory2"));
-		node.setRiskCategory3((Double) nodeObject.get("riskCategory3"));
+			facility.setId(id.toString());
+			facility.setType(Type.valueOf((String) document.get("type")));
+			facility.setKind(Kind.valueOf((String) document.get("kind")));
+			facility.setName((String) document.get("name"));
+			facility.setDescription((String) document.get("description"));
+			facility.setAddress((String) document.get("address"));
+			facility.setLatitude((Double) document.get("latitude"));
+			facility.setLongitude((Double) document.get("longitude"));
 
-		node.setRecoveryTime1((Double) nodeObject.get("recoveryTime1"));
-		node.setRecoveryTime2((Double) nodeObject.get("recoveryTime2"));
-		node.setRecoveryTime3((Double) nodeObject.get("recoveryTime3"));
+			facility.setRiskCategory1((Double) document.get("riskCategory1"));
+			facility.setRiskCategory2((Double) document.get("riskCategory2"));
+			facility.setRiskCategory3((Double) document.get("riskCategory3"));
 
-		return node;
-	}
+			facility.setRecoveryTime1((Double) document.get("recoveryTime1"));
+			facility.setRecoveryTime2((Double) document.get("recoveryTime2"));
+			facility.setRecoveryTime3((Double) document.get("recoveryTime3"));
 
+			return facility;
+		}
+	};
+
+	@Deprecated
 	boolean isBlank(String string) {
 		return "".equals(string);
 	}

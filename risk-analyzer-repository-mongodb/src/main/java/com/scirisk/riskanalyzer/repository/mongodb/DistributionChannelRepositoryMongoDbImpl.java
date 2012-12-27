@@ -1,13 +1,10 @@
 package com.scirisk.riskanalyzer.repository.mongodb;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
+import org.bson.types.ObjectId;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
@@ -15,78 +12,55 @@ import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class DistributionChannelRepositoryMongoDbImpl implements DistributionChannelRepository {
 
-	private static final String NETWORK_EDGE_COLLECTION = "networkEdgeCollection";
+	private MongoTemplate mongoTemplate;
 
-	private DB db;
-
-	public DistributionChannelRepositoryMongoDbImpl(DB db) {
-		this.db = db;
+	public DistributionChannelRepositoryMongoDbImpl(MongoTemplate mongoTemplate) {
+		this.mongoTemplate = mongoTemplate;
 	}
 
-	public DistributionChannel save(DistributionChannel edge, String sourceId, String targetId) {
-		DBCollection collection = db.getCollection(NETWORK_EDGE_COLLECTION);
-		BasicDBObject edgeObject = new BasicDBObject();
-
-		edgeObject.put("_id", isBlank(edge.getId()) ? UUID.randomUUID()
-				.toString() : edge.getId());
-		edgeObject.put("purchasingVolume", edge.getPurchasingVolume());
-		edgeObject.put("sourceId", sourceId);
-		edgeObject.put("targetId", targetId);
-
-		collection.insert(edgeObject);
-		return edge;
+	public DistributionChannel save(DistributionChannel channel, final String sourceId, final String targetId) {
+		return mongoTemplate.insert(Collection.distributionChannels.name(), channel,
+				new EntityMapper<DistributionChannel>() {
+					@Override
+					public DBObject map(DistributionChannel entity) {
+						BasicDBObject edgeObject = new BasicDBObject();
+						edgeObject.put("purchasingVolume", entity.getPurchasingVolume());
+						edgeObject.put("source", new ReferenceId(Collection.facilities.name(), sourceId));
+						edgeObject.put("target", new ReferenceId(Collection.facilities.name(), targetId));
+						return edgeObject;
+					}
+				});
 	}
 
-	public void delete(String edgeId) {
-		DBCollection collection = db.getCollection(NETWORK_EDGE_COLLECTION);
-		DBObject query = new BasicDBObject();
-		query.put("_id", edgeId);
-		collection.remove(query);
+	public void delete(String distributionChannelId) {
+		mongoTemplate.delete(Collection.distributionChannels.name(), distributionChannelId);
 	}
 
-	public DistributionChannel findOne(String edgeId) {
-		DBCollection collection = db.getCollection(NETWORK_EDGE_COLLECTION);
-
-		BasicDBObject query = new BasicDBObject();
-
-		query.put("_id", edgeId);
-
-		DBCursor cursor = collection.find(query);
-		try {
-			if (cursor.iterator().hasNext()) {
-				DBObject edgeObject = cursor.iterator().next();
-				return map(edgeObject);
-			} else {
-				return null;
-			}
-		} finally {
-			cursor.close();
-		}
+	public DistributionChannel findOne(String distributionChannelId) {
+		return mongoTemplate.findOne(Collection.distributionChannels.name(), distributionChannelId, documentMapper);
 	}
 
 	public List<DistributionChannel> findAll() {
-		DBCollection collection = db.getCollection(NETWORK_EDGE_COLLECTION);
-		DBCursor cursor = collection.find();
-		List<DistributionChannel> edges = new ArrayList<DistributionChannel>();
-		try {
-			for (DBObject edgeObject : cursor) {
-				edges.add(map(edgeObject));
-			}
-			return edges;
-		} finally {
-			cursor.close();
-		}
+		return mongoTemplate.findAll(Collection.distributionChannels.name(), documentMapper);
 	}
 
-	private DistributionChannel map(DBObject edgeObject) {
-		DistributionChannel edge = new DistributionChannel();
-		edge.setId((String) edgeObject.get("_id"));
-		edge.setPurchasingVolume((Double) edgeObject.get("purchasingVolume"));
-		FacilityRepository nodeManager = new FacilityRepositoryMongoDbImpl(db);
-		edge.setSource(nodeManager.findOne((String) edgeObject.get("sourceId")));
-		edge.setTarget(nodeManager.findOne((String) edgeObject.get("targetId")));
-		return edge;
-	}
+	DocumentMapper<DistributionChannel> documentMapper = new DocumentMapper<DistributionChannel>() {
+		@Override
+		public DistributionChannel map(DBObject document) {
+			DistributionChannel channel = new DistributionChannel();
+			ObjectId id = (ObjectId) document.get("_id");
+			ReferenceId source = new ReferenceId((DBObject) document.get("source"));
+			ReferenceId target = new ReferenceId((DBObject) document.get("target"));
+
+			channel.setId(id.toString());
+			channel.setPurchasingVolume((Double) document.get("purchasingVolume"));
+
+			FacilityRepository nodeManager = new FacilityRepositoryMongoDbImpl(mongoTemplate); // FIXME
+			channel.setSource(nodeManager.findOne(source.getId()));
+			channel.setTarget(nodeManager.findOne(target.getId()));
+			return channel;
+		}
+	};
 
 	boolean isBlank(String string) {
 		return "".equals(string);

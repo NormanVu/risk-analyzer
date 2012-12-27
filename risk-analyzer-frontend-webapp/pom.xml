@@ -22,9 +22,15 @@
 			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-repository-api</artifactId>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-repository-jpa</artifactId>
+		</dependency>
+		-->
+		<dependency>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
+			<artifactId>risk-analyzer-repository-mongodb</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>

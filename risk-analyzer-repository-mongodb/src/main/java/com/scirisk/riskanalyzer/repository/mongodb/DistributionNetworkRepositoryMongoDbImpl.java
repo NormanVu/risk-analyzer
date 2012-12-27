@@ -19,8 +19,8 @@ public class DistributionNetworkRepositoryMongoDbImpl implements DistributionNet
 	}
 
 	public DistributionNetwork read() {
-		FacilityRepository nodeManager = new FacilityRepositoryMongoDbImpl(db);
-		DistributionChannelRepository edgeManager = new DistributionChannelRepositoryMongoDbImpl(db);
+		FacilityRepository nodeManager = new FacilityRepositoryMongoDbImpl(new MongoTemplate(db));
+		DistributionChannelRepository edgeManager = new DistributionChannelRepositoryMongoDbImpl(new MongoTemplate(db));
 		return new DistributionNetwork(nodeManager.findAll(), edgeManager.findAll());
 	}
 
