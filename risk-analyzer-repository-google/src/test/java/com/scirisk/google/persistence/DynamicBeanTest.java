@@ -6,8 +6,8 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.domain.Facility.Kind;
+import com.danielpacak.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.Facility.Kind;
 
 public class DynamicBeanTest {
 

@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
-import com.scirisk.riskanalyzer.domain.DistributionNetwork;
-import com.scirisk.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
+import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
+import com.danielpacak.riskanalyzer.domain.Facility;
 
 public class DefaultDistributionNetworkRepository implements DistributionNetworkRepository {
 

@@ -13,11 +13,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.scirisk.riskanalyzer.domain.DistributionNetwork;
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
-import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.domain.Facility.Kind;
-import com.scirisk.riskanalyzer.domain.Facility.Type;
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
+import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
+import com.danielpacak.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.Facility.Kind;
+import com.danielpacak.riskanalyzer.domain.Facility.Type;
 
 public class NetworkParserDomImpl implements NetworkParser {
 

@@ -1,5 +1,9 @@
-package com.scirisk.riskanalyzer.domain;
+package com.danielpacak.riskanalyzer.domain;
 
+/**
+ * Represents a node in the distribution network, i.e. a target company or
+ * supplier.
+ */
 public class Facility {
 
 	private String id;

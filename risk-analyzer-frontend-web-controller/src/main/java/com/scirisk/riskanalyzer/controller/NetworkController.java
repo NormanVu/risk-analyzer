@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.scirisk.riskanalyzer.domain.DistributionNetwork;
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
-import com.scirisk.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
+import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
+import com.danielpacak.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.service.NetworkMarshaller;
 import com.scirisk.riskanalyzer.service.NetworkParser;

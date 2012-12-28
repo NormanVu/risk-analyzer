@@ -2,7 +2,7 @@ package com.scirisk.riskanalyzer.repository;
 
 import java.util.List;
 
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 
 public interface DistributionChannelRepository {
 

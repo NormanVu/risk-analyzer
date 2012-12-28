@@ -6,7 +6,7 @@
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>risk-analyzer-datasource-hsql</artifactId>
-	<name>Risk Analyzer - Datasource HSQL</name>
+	<name>Risk Analyzer - Datasource - HSQL</name>
 
 	<dependencies>
 		<!-- Internal -->

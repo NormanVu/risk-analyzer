@@ -3,6 +3,8 @@ package com.scirisk.riskanalyzer.repository.google;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
+import com.danielpacak.riskanalyzer.domain.Facility;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
@@ -10,8 +12,6 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
-import com.scirisk.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 
 public class DistributionChannelRepositoryGoogleImpl implements

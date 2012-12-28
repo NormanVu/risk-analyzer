@@ -7,7 +7,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.scirisk.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.Facility;
 
 public class ReflectionLearningTest {
 

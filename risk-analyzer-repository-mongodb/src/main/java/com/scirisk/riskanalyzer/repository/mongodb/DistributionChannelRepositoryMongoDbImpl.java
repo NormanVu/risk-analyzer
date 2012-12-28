@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 

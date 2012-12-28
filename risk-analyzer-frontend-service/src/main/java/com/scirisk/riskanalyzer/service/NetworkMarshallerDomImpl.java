@@ -16,9 +16,9 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.scirisk.riskanalyzer.domain.DistributionNetwork;
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
-import com.scirisk.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
+import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
+import com.danielpacak.riskanalyzer.domain.Facility;
 
 // jaxp dom marshaller
 public class NetworkMarshallerDomImpl implements NetworkMarshaller {

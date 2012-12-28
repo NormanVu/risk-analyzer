@@ -8,14 +8,14 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
+import com.danielpacak.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.Facility.Kind;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
-import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.domain.Facility.Kind;
 
 public class EntityManagerImplTest {
 

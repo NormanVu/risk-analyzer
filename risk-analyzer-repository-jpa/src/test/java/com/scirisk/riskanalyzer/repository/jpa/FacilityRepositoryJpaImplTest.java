@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
-import com.scirisk.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.Facility;
 
 public class FacilityRepositoryJpaImplTest {
 

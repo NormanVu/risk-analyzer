@@ -7,10 +7,10 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
 
 // TODO Implement tests
 @RunWith(PowerMockRunner.class)

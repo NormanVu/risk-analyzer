@@ -11,7 +11,7 @@ import org.neo4j.graphdb.RelationshipType;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.tooling.GlobalGraphOperations;
 
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 

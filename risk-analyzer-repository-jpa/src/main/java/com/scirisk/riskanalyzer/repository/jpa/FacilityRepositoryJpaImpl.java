@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-import com.scirisk.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.Facility;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class FacilityRepositoryJpaImpl implements FacilityRepository {

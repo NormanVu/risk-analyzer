@@ -17,9 +17,9 @@ import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
-import com.scirisk.riskanalyzer.domain.DistributionNetwork;
-import com.scirisk.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
+import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
+import com.danielpacak.riskanalyzer.domain.Facility;
 
 public class RequestMarshallerJDomImpl implements RequestMarshaller {
 

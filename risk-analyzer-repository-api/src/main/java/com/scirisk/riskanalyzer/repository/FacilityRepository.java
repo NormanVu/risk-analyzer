@@ -2,7 +2,7 @@ package com.scirisk.riskanalyzer.repository;
 
 import java.util.List;
 
-import com.scirisk.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.Facility;
 
 public interface FacilityRepository {
 

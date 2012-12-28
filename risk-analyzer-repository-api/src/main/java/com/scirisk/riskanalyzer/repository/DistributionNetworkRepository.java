@@ -1,6 +1,6 @@
 package com.scirisk.riskanalyzer.repository;
 
-import com.scirisk.riskanalyzer.domain.DistributionNetwork;
+import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 
 public interface DistributionNetworkRepository {
 

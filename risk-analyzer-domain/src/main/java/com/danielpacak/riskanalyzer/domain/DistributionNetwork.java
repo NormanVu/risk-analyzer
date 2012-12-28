@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.domain;
+package com.danielpacak.riskanalyzer.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -2,8 +2,8 @@ package com.scirisk.riskanalyzer.controller;
 
 import java.util.List;
 
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
-import com.scirisk.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
+import com.danielpacak.riskanalyzer.domain.Facility;
 
 public class DistributionChannelFormBean {
 

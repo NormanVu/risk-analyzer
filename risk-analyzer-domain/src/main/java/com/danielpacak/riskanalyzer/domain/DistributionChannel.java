@@ -1,9 +1,9 @@
-package com.scirisk.riskanalyzer.domain;
+package com.danielpacak.riskanalyzer.domain;
 
-import java.io.Serializable;
-
-@SuppressWarnings("serial")
-public class DistributionChannel implements Serializable {
+/**
+ * Represents a link between facilities in the distribution network.
+ */
+public class DistributionChannel {
 
 	private String id;
 	private Double purchasingVolume;

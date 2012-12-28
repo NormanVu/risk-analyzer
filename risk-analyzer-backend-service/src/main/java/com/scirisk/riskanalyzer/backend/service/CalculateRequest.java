@@ -3,7 +3,7 @@ package com.scirisk.riskanalyzer.backend.service;
 import java.io.Serializable;
 import java.util.Map;
 
-import com.scirisk.riskanalyzer.domain.DistributionNetwork;
+import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 
 public class CalculateRequest implements Serializable {
 

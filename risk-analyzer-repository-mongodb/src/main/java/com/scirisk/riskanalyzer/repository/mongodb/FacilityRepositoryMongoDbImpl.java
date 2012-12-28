@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 
+import com.danielpacak.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.Facility.Kind;
+import com.danielpacak.riskanalyzer.domain.Facility.Type;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.domain.Facility.Kind;
-import com.scirisk.riskanalyzer.domain.Facility.Type;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
 public class FacilityRepositoryMongoDbImpl implements FacilityRepository {

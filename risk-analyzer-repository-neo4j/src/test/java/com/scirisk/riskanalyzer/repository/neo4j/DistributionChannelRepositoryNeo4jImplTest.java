@@ -8,10 +8,10 @@ import org.junit.Test;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.test.TestGraphDatabaseFactory;
 
-import com.scirisk.riskanalyzer.domain.DistributionChannel;
-import com.scirisk.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.domain.Facility.Kind;
-import com.scirisk.riskanalyzer.domain.Facility.Type;
+import com.danielpacak.riskanalyzer.domain.DistributionChannel;
+import com.danielpacak.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.domain.Facility.Kind;
+import com.danielpacak.riskanalyzer.domain.Facility.Type;
 import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
 import com.scirisk.riskanalyzer.repository.FacilityRepository;
 
