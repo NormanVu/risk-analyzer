@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.danielpacak.risk-analyzer</groupId>
+		<artifactId>risk-analyzer</artifactId>
+		<version>0.0.2-SNAPSHOT</version>
+	</parent>
+	<artifactId>risk-analyzer-datasource</artifactId>
+	<name>Risk Analyzer - Datasource</name>
+	<description>Groups together various datasource factory implementations.</description>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>risk-analyzer-datasource-api</module>
+		<module>risk-analyzer-datasource-hsql</module>
+		<module>risk-analyzer-datasource-mysql</module>
+		<module>risk-analyzer-datasource-postgresql-heroku</module>
+	</modules>
+
+</project>

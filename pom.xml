@@ -33,12 +33,15 @@
 	<modules>
 		<module>risk-analyzer-domain</module>
 
+		<module>risk-analyzer-datasource</module>
 		<module>risk-analyzer-frontend-repository</module>
 
+<!-- 
 		<module>risk-analyzer-datasource-api</module>
 		<module>risk-analyzer-datasource-hsql</module>
 		<module>risk-analyzer-datasource-mysql</module>
 		<module>risk-analyzer-datasource-postgresql-heroku</module>
+		-->
 
 		<module>risk-analyzer-frontend-service</module>
 		<module>risk-analyzer-frontend-web-controller</module>
