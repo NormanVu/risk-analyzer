@@ -20,7 +20,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-repository-api</artifactId>
+			<artifactId>risk-analyzer-frontend-repository-api</artifactId>
 		</dependency>
 		<!--
 		<dependency>
@@ -30,7 +30,7 @@
 		-->
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-repository-mongodb</artifactId>
+			<artifactId>risk-analyzer-frontend-repository-mongodb</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>

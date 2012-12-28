@@ -5,8 +5,8 @@
 		<artifactId>risk-analyzer</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>risk-analyzer-repository-api</artifactId>
-	<name>Risk Analyzer - Repository - API</name>
+	<artifactId>risk-analyzer-frontend-repository-api</artifactId>
+	<name>Risk Analyzer - Frontend - Repository - API</name>
 
 	<dependencies>
 		<dependency>

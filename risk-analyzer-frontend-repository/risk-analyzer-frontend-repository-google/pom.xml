@@ -6,8 +6,8 @@
 		<artifactId>risk-analyzer</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>risk-analyzer-repository-google</artifactId>
-	<name>Risk Analyzer - Repository - Google</name>
+	<artifactId>risk-analyzer-frontend-repository-google</artifactId>
+	<name>Risk Analyzer - Frontend - Repository - Google</name>
 
 	<properties>
 		<powermock.version>1.4.12</powermock.version>
@@ -22,7 +22,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-repository-api</artifactId>
+			<artifactId>risk-analyzer-frontend-repository-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine</groupId>

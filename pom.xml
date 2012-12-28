@@ -33,11 +33,7 @@
 	<modules>
 		<module>risk-analyzer-domain</module>
 
-		<module>risk-analyzer-repository-api</module>
-		<module>risk-analyzer-repository-jpa</module>
-		<module>risk-analyzer-repository-mongodb</module>
-		<module>risk-analyzer-repository-neo4j</module>
-		<module>risk-analyzer-repository-google</module>
+		<module>risk-analyzer-frontend-repository</module>
 
 		<module>risk-analyzer-datasource-api</module>
 		<module>risk-analyzer-datasource-hsql</module>
@@ -165,27 +161,27 @@
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-repository-api</artifactId>
+				<artifactId>risk-analyzer-frontend-repository-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-repository-jpa</artifactId>
+				<artifactId>risk-analyzer-frontend-repository-jpa</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-repository-mongodb</artifactId>
+				<artifactId>risk-analyzer-frontend-repository-mongodb</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-repository-neo4j</artifactId>
+				<artifactId>risk-analyzer-frontend-repository-neo4j</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-repository-google</artifactId>
+				<artifactId>risk-analyzer-frontend-repository-google</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
