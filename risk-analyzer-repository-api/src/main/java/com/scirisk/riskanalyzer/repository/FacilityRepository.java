@@ -11,6 +11,8 @@ public interface FacilityRepository {
 	Facility findOne(String facilityId);
 
 	void delete(String facilityId);
+	
+	// void deleteAll(); FIXME IMPLEMENTT THIS METHOD
 
 	List<Facility> findAll();
 

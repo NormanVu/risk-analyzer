@@ -27,7 +27,7 @@ public class DistributionChannelRepositoryJpaImplTest {
 	EntityManagerFactory emf;
 	EntityManager em;
 	EntityTransaction transaction;
-	DistributionChannelRepositoryJpaImpl manager;
+	DistributionChannelRepositoryJpaImpl repository;
 
 	@Before
 	public void beforeTest() {
@@ -36,7 +36,7 @@ public class DistributionChannelRepositoryJpaImplTest {
 		transaction = mock(EntityTransaction.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-		manager = new DistributionChannelRepositoryJpaImpl(emf);
+		repository = new DistributionChannelRepositoryJpaImpl(emf);
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class DistributionChannelRepositoryJpaImplTest {
 		Mockito.when(em.find(Facility.class, sourceId)).thenReturn(source);
 		Mockito.when(em.find(Facility.class, targetId)).thenReturn(target);
 
-		manager.save(edge, sourceId, targetId);
+		repository.save(edge, sourceId, targetId);
 		InOrder inOrder = Mockito.inOrder(em, transaction);
 		inOrder.verify(transaction).begin();
 		ArgumentCaptor<DistributionChannel> argument = ArgumentCaptor.forClass(DistributionChannel.class);
@@ -74,7 +74,7 @@ public class DistributionChannelRepositoryJpaImplTest {
 		String edgeId = "13";
 		DistributionChannel edge = new DistributionChannel();
 		when(em.find(DistributionChannel.class, edgeId)).thenReturn(edge);
-		DistributionChannel foundEdge = manager.findOne(edgeId);
+		DistributionChannel foundEdge = repository.findOne(edgeId);
 
 		Assert.assertEquals(edge, foundEdge);
 	}
@@ -89,7 +89,7 @@ public class DistributionChannelRepositoryJpaImplTest {
 				em.createQuery("SELECT o FROM " + DistributionChannel.class.getName()
 						+ " o")).thenReturn(q);
 
-		List<DistributionChannel> allEdges = manager.findAll();
+		List<DistributionChannel> allEdges = repository.findAll();
 		Assert.assertEquals(queryResult, allEdges);
 
 		InOrder inOrder = Mockito.inOrder(q, transaction);
@@ -105,7 +105,7 @@ public class DistributionChannelRepositoryJpaImplTest {
 		DistributionChannel edge = new DistributionChannel();
 		when(em.find(DistributionChannel.class, edgeId)).thenReturn(edge);
 
-		manager.delete(edgeId);
+		repository.delete(edgeId);
 		InOrder inOrder = Mockito.inOrder(em, transaction);
 		inOrder.verify(transaction).begin();
 		inOrder.verify(em).remove(edge);

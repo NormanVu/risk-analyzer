@@ -24,7 +24,7 @@
 	</bean>
 
 	<bean
-		class="com.scirisk.riskanalyzer.repository.neo4j.DistributionNetworkRepositoryNeo4jImpl">
+		class="com.scirisk.riskanalyzer.repository.DefaultDistributionNetworkRepository">
 		<constructor-arg ref="facilityRepository" />
 		<constructor-arg ref="distributionChannelRepository" />
 	</bean>

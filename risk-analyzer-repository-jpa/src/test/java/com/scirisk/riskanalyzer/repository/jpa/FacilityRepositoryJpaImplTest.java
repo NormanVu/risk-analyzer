@@ -20,12 +20,12 @@ import org.mockito.Mockito;
 
 import com.scirisk.riskanalyzer.domain.Facility;
 
-public class DistributionNetworkRepositoryJpaImplTest {
+public class FacilityRepositoryJpaImplTest {
 
 	EntityManagerFactory emf;
 	EntityManager em;
 	EntityTransaction transaction;
-	FacilityRepositoryJpaImpl manager;
+	FacilityRepositoryJpaImpl repository;
 
 	@Before
 	public void beforeTest() {
@@ -34,13 +34,13 @@ public class DistributionNetworkRepositoryJpaImplTest {
 		transaction = mock(EntityTransaction.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-		manager = new FacilityRepositoryJpaImpl(emf);
+		repository = new FacilityRepositoryJpaImpl(emf);
 	}
 
 	@Test
 	public void testSave() throws Exception {
 		Facility node = new Facility();
-		manager.save(node);
+		repository.save(node);
 		InOrder inOrder = Mockito.inOrder(em, transaction);
 		inOrder.verify(transaction).begin();
 		inOrder.verify(em).merge(node);
@@ -54,7 +54,7 @@ public class DistributionNetworkRepositoryJpaImplTest {
 		Facility node = new Facility();
 		when(em.find(Facility.class, nodeId)).thenReturn(node);
 
-		manager.delete(nodeId);
+		repository.delete(nodeId);
 		InOrder inOrder = Mockito.inOrder(em, transaction);
 		inOrder.verify(transaction).begin();
 		inOrder.verify(em).remove(node);
@@ -66,7 +66,7 @@ public class DistributionNetworkRepositoryJpaImplTest {
 		String nodeId = "13";
 		Facility node = new Facility();
 		when(em.find(Facility.class, nodeId)).thenReturn(node);
-		Facility foundNode = manager.findOne(nodeId);
+		Facility foundNode = repository.findOne(nodeId);
 
 		Assert.assertEquals(node, foundNode);
 	}
@@ -81,7 +81,7 @@ public class DistributionNetworkRepositoryJpaImplTest {
 				em.createQuery("SELECT o FROM " + Facility.class.getName()
 						+ " o")).thenReturn(q);
 
-		List<Facility> allNodes = manager.findAll();
+		List<Facility> allNodes = repository.findAll();
 		Assert.assertEquals(queryResult, allNodes);
 
 		InOrder inOrder = Mockito.inOrder(q, transaction);
