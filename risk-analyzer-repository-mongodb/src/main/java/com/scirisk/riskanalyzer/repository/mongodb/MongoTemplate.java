@@ -26,6 +26,16 @@ public class MongoTemplate {
 		return entity;
 	}
 
+	public <T> T update(String collectionName, String documentId, T entity, EntityMapper<T> entityMapper) {
+		DBCollection collection = db.getCollection(collectionName);
+		BasicDBObject query = new BasicDBObject("_id", new ObjectId(documentId));
+
+		BasicDBObject newDocument = new BasicDBObject().append("$set", entityMapper.map(entity));
+		collection.update(query, newDocument);
+
+		return entity;
+	}
+
 	public <T> T findOne(String collectionName, String documentId, DocumentMapper<T> documentMapper) {
 		DBCollection collection = db.getCollection(collectionName);
 

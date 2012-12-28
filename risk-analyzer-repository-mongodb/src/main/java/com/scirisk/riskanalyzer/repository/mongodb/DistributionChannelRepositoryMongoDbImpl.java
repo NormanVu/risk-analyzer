@@ -19,17 +19,31 @@ public class DistributionChannelRepositoryMongoDbImpl implements DistributionCha
 	}
 
 	public DistributionChannel save(DistributionChannel channel, final String sourceId, final String targetId) {
-		return mongoTemplate.insert(Collection.distributionChannels.name(), channel,
-				new EntityMapper<DistributionChannel>() {
-					@Override
-					public DBObject map(DistributionChannel entity) {
-						BasicDBObject edgeObject = new BasicDBObject();
-						edgeObject.put("purchasingVolume", entity.getPurchasingVolume());
-						edgeObject.put("source", new ReferenceId(Collection.facilities.name(), sourceId));
-						edgeObject.put("target", new ReferenceId(Collection.facilities.name(), targetId));
-						return edgeObject;
-					}
-				});
+		if (isBlank(channel.getId())) {
+			return mongoTemplate.insert(Collection.distributionChannels.name(), channel,
+					new EntityMapper<DistributionChannel>() {
+						@Override
+						public DBObject map(DistributionChannel entity) {
+							BasicDBObject edgeObject = new BasicDBObject();
+							edgeObject.put("purchasingVolume", entity.getPurchasingVolume());
+							edgeObject.put("source", new ReferenceId(Collection.facilities.name(), sourceId));
+							edgeObject.put("target", new ReferenceId(Collection.facilities.name(), targetId));
+							return edgeObject;
+						}
+					});
+		} else {
+			return mongoTemplate.update(Collection.distributionChannels.name(), channel.getId(), channel,
+					new EntityMapper<DistributionChannel>() {
+						@Override
+						public DBObject map(DistributionChannel entity) {
+							BasicDBObject edgeObject = new BasicDBObject();
+							edgeObject.put("purchasingVolume", entity.getPurchasingVolume());
+							edgeObject.put("source", new ReferenceId(Collection.facilities.name(), sourceId));
+							edgeObject.put("target", new ReferenceId(Collection.facilities.name(), targetId));
+							return edgeObject;
+						}
+					});
+		}
 	}
 
 	public void delete(String distributionChannelId) {
@@ -62,6 +76,7 @@ public class DistributionChannelRepositoryMongoDbImpl implements DistributionCha
 		}
 	};
 
+	@Deprecated
 	boolean isBlank(String string) {
 		return "".equals(string);
 	}

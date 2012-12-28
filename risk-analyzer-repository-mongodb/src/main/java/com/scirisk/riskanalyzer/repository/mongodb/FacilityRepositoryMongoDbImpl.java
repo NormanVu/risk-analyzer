@@ -21,7 +21,11 @@ public class FacilityRepositoryMongoDbImpl implements FacilityRepository {
 
 	// TODO FIXME UPDATE DOESN'T WORK!
 	public Facility save(Facility facility) {
-		return mongoTemplate.insert(Collection.facilities.name(), facility, entityMapper);
+		if (isBlank(facility.getId())) {
+			return mongoTemplate.insert(Collection.facilities.name(), facility, entityMapper);
+		} else {
+			return mongoTemplate.update(Collection.facilities.name(), facility.getId(), facility, entityMapper);
+		}
 	}
 
 	public Facility findOne(String facilityId) {
