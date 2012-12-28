@@ -17,8 +17,8 @@ import org.springframework.http.ResponseEntity;
 
 import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.DistributionChannelRepository;
-import com.scirisk.riskanalyzer.repository.FacilityRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.DistributionChannelRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.FacilityRepository;
 
 public class DistributionChannelControllerTest {
 

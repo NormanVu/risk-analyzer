@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 import com.danielpacak.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.service.NetworkMarshaller;
 import com.scirisk.riskanalyzer.service.NetworkParser;
 

@@ -7,7 +7,7 @@
 	<import resource="classpath:META-INF/spring/datasource.xml" />
 
 	<bean id="dataSource"
-		class="com.scirisk.riskanalyzer.repository.jpa.DataSourceFactoryBean">
+		class="com.danielpacak.riskanalyzer.frontend.repository.jpa.DataSourceFactoryBean">
 		<property name="dataSourceFactory" ref="dataSourceFactory" />
 	</bean>
 
@@ -17,16 +17,17 @@
 	</bean>
 
 	<bean id="facilityRepository"
-		class="com.scirisk.riskanalyzer.repository.jpa.FacilityRepositoryJpaImpl">
+		class="com.danielpacak.riskanalyzer.frontend.repository.jpa.FacilityRepositoryJpaImpl">
 		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 
 	<bean id="distributionChannelRepository"
-		class="com.scirisk.riskanalyzer.repository.jpa.DistributionChannelRepositoryJpaImpl">
+		class="com.danielpacak.riskanalyzer.frontend.repository.jpa.DistributionChannelRepositoryJpaImpl">
 		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 
-	<bean class="com.scirisk.riskanalyzer.repository.DefaultDistributionNetworkRepository">
+	<bean
+		class="com.danielpacak.riskanalyzer.frontend.repository.DefaultDistributionNetworkRepository">
 		<constructor-arg ref="facilityRepository" />
 		<constructor-arg ref="distributionChannelRepository" />
 	</bean>

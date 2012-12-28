@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
-import com.scirisk.riskanalyzer.repository.DistributionNetworkRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.service.NetworkParser;
 
 public class NetworkControllerTest {

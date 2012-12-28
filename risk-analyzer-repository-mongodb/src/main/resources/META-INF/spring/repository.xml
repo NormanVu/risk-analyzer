@@ -14,28 +14,28 @@
 	</bean>
 
 	<bean id="dbFactory"
-		class="com.scirisk.riskanalyzer.repository.mongodb.DbFactoryBean">
+		class="com.danielpacak.riskanalyzer.frontend.repository.mongodb.DbFactoryBean">
 		<property name="databaseName" value="${mongodb.databaseName}" />
 		<property name="mongo" ref="mongo" />
 	</bean>
 
 	<bean id="mongoTemplate"
-		class="com.scirisk.riskanalyzer.repository.mongodb.MongoTemplate">
+		class="com.danielpacak.riskanalyzer.frontend.repository.mongodb.MongoTemplate">
 		<constructor-arg ref="dbFactory" />
 	</bean>
 
-	<bean id="distributionChannelRepository"
-		class="com.scirisk.riskanalyzer.repository.mongodb.DistributionChannelRepositoryMongoDbImpl">
+	<bean id="facilityRepository"
+		class="com.danielpacak.riskanalyzer.frontend.repository.mongodb.FacilityRepositoryMongoDbImpl">
 		<constructor-arg ref="mongoTemplate" />
 	</bean>
 
-	<bean id="facilityRepository"
-		class="com.scirisk.riskanalyzer.repository.mongodb.FacilityRepositoryMongoDbImpl">
+	<bean id="distributionChannelRepository"
+		class="com.danielpacak.riskanalyzer.frontend.repository.mongodb.DistributionChannelRepositoryMongoDbImpl">
 		<constructor-arg ref="mongoTemplate" />
 	</bean>
 
 	<bean
-		class="com.scirisk.riskanalyzer.repository.DefaultDistributionNetworkRepository">
+		class="com.danielpacak.riskanalyzer.frontend.repository.DefaultDistributionNetworkRepository">
 		<constructor-arg ref="facilityRepository" />
 		<constructor-arg ref="distributionChannelRepository" />
 	</bean>

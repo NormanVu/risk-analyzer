@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.danielpacak.riskanalyzer.domain.Facility;
-import com.scirisk.riskanalyzer.repository.FacilityRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.FacilityRepository;
 
 @Controller
 @RequestMapping(value = "/facility")
