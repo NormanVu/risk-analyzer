@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" id="repository">
+<title>Repositories</title>
+<abstract><para>The Fronted web application stores its data in so called repository repository. The repository can be
+a relational database, NoSQL database such as MongoDB, Neo4j, Google BigTable, or completely new and exotic custom implementation.
+This sets out to describe the default repository implementations. It finishes with steps required to write
+your own repository implementation.</para></abstract>
+</chapter>

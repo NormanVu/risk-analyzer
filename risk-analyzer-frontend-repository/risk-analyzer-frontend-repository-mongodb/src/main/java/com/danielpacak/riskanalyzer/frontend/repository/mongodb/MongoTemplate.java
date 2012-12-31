@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
+import org.springframework.beans.BeanUtils;
+import org.springframework.util.StringUtils;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -19,43 +21,47 @@ public class MongoTemplate {
 		this.db = db;
 	}
 
-	public <T> T insert(String collectionName, T entity, EntityMapper<T> entityMapper) {
-		DBCollection collection = db.getCollection(collectionName);
-		DBObject nodeObject = entityMapper.map(entity);
+	public <T> T insert(T entity, Converter<T, DBObject> writeConverter) {
+		DBCollection collection = db.getCollection(determineCollectionName(entity));
+		DBObject nodeObject = writeConverter.convert(entity);
 		collection.insert(nodeObject);
 		return entity;
 	}
 
-	public <T> T update(String collectionName, String documentId, T entity, EntityMapper<T> entityMapper) {
-		DBCollection collection = db.getCollection(collectionName);
-		BasicDBObject query = new BasicDBObject("_id", new ObjectId(documentId));
+	public <T> T update(T entity, Converter<T, DBObject> writeConverter) {
+		DBCollection collection = db.getCollection(determineCollectionName(entity));
+		BasicDBObject query = new BasicDBObject("_id", new ObjectId(getId(entity)));
 
-		BasicDBObject newDocument = new BasicDBObject().append("$set", entityMapper.map(entity));
+		BasicDBObject newDocument = new BasicDBObject().append("$set", writeConverter.convert(entity));
 		collection.update(query, newDocument);
 
 		return entity;
 	}
 
-	public <T> T findOne(String collectionName, String documentId, DocumentMapper<T> documentMapper) {
-		DBCollection collection = db.getCollection(collectionName);
+	public <T> T save(T entity, Converter<T, DBObject> writeConverter) {
+		return StringUtils.hasText(getId(entity)) ? update(entity, writeConverter) : insert(entity, writeConverter);
+	}
+
+	public <T> T findById(String documentId, Class<T> clazz, Converter<DBObject, T> readConverter) {
+		DBCollection collection = db.getCollection(clazz.getName());
 
 		BasicDBObject query = new BasicDBObject("_id", new ObjectId(documentId));
 
 		DBObject document = collection.findOne(query);
 		if (document != null) {
-			return documentMapper.map(document);
+			return readConverter.convert(document);
 		} else {
 			return null;
 		}
 	}
 
-	public <T> List<T> findAll(String collectionName, DocumentMapper<T> documentMapper) {
-		DBCollection collection = db.getCollection(collectionName);
-		DBCursor cursor = collection.find(); // TODO CHECK IF COLLECTION EXISTS
+	public <T> List<T> findAll(Class<T> clazz, Converter<DBObject, T> readConverter) {
+		DBCollection collection = db.getCollection(clazz.getName());
+		DBCursor cursor = collection.find();
 		List<T> mappedDocuments = new ArrayList<T>();
 		try {
 			for (DBObject document : cursor) {
-				mappedDocuments.add(documentMapper.map(document));
+				mappedDocuments.add(readConverter.convert(document));
 			}
 			return mappedDocuments;
 		} finally {
@@ -63,11 +69,23 @@ public class MongoTemplate {
 		}
 	}
 
-	public void delete(String collectionName, String documentId) {
-		DBCollection collection = db.getCollection(collectionName);
+	public <T> void delete(Class<T> clazz, String documentId) {
+		DBCollection collection = db.getCollection(clazz.getName());
 		DBObject query = new BasicDBObject();
 		query.put("_id", new ObjectId(documentId));
 		collection.remove(query);
+	}
+
+	private String determineCollectionName(Object entity) {
+		return entity.getClass().getName();
+	}
+
+	private String getId(Object entity) {
+		try {
+			return (String) BeanUtils.getPropertyDescriptor(entity.getClass(), "id").getReadMethod().invoke(entity);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Error getting id of entity: " + entity, e);
+		}
 	}
 
 }

@@ -1,7 +1,7 @@
 package com.danielpacak.riskanalyzer.frontend.repository.mongodb;
 
-public enum Collection {
+public interface Converter<F, T> {
 
-	facilities, distributionChannels
+	T convert(F f);
 
 }

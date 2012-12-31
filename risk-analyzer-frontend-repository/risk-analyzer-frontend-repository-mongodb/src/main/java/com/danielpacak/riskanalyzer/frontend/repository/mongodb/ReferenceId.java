@@ -6,25 +6,29 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 @SuppressWarnings("serial")
-public class ReferenceId extends BasicDBObject {
+public class ReferenceId<T> extends BasicDBObject {
 
-	private String collection;
+	private Class<T> clazz;
 	private String id;
 
-	public ReferenceId(String collection, String id) {
-		this.collection = collection;
+	public ReferenceId(Class<T> clazz, String id) {
+		this.clazz = clazz;
 		this.id = id;
-		put("ref", collection);
+		put("ref", clazz.getName());
 		put("id", new ObjectId(id));
 	}
 
 	public ReferenceId(DBObject dbObject) {
-		this.collection = (String) dbObject.get("ref");
-		this.id = ((ObjectId) dbObject.get("id")).toString();
+		try {
+			this.clazz = (Class<T>) Class.forName((String) dbObject.get("ref"));
+			this.id = ((ObjectId) dbObject.get("id")).toString();
+		} catch (ClassNotFoundException e) {
+			throw new IllegalArgumentException(e); // TODO DESCRIPTIVE MESSAGE
+		}
 	}
 
 	public String getCollection() {
-		return collection;
+		return clazz.getName();
 	}
 
 	public String getId() {
