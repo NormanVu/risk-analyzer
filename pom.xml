@@ -25,7 +25,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.springframework.version>3.1.1.RELEASE</org.springframework.version>
+		<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
 		<jackson.version>1.9.9</jackson.version>
 		<org.slf4j.version>1.6.1</org.slf4j.version>
 	</properties>
@@ -35,13 +35,6 @@
 
 		<module>risk-analyzer-datasource</module>
 		<module>risk-analyzer-frontend-repository</module>
-
-<!-- 
-		<module>risk-analyzer-datasource-api</module>
-		<module>risk-analyzer-datasource-hsql</module>
-		<module>risk-analyzer-datasource-mysql</module>
-		<module>risk-analyzer-datasource-postgresql-heroku</module>
-		-->
 
 		<module>risk-analyzer-frontend-service</module>
 		<module>risk-analyzer-frontend-web-controller</module>
@@ -256,6 +249,16 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
 				<version>${org.springframework.version}</version>
 			</dependency>
 			<dependency>

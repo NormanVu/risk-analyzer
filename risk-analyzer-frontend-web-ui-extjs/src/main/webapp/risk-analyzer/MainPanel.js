@@ -17,8 +17,34 @@ Ext.define('RiskAnalyzer.MainPanel', {
   },
 
   createToolbar: function() {
+	  var kombo = // display a dropdown menu:
+		  Ext.create('Ext.button.Split', {
+		      text: 'Active',
+		      handler : function() {
+		    	var vehicle = Ext.create('com.riskanalyzer.Vehicle');
+		    	vehicle.setManufacturer('VW');
+		    	vehicle.getDetails();
+		      },
+		      menu: new Ext.menu.Menu({
+		          items: [
+		              {text: 'Project 1', handler: function(){ alert("I'm a fake project 1"); }},
+		              {text: 'Project 2', handler: function(){ alert("I'm a fake project 2"); }}
+		          ]
+		      })
+		  });
+	  
     this.toolbar = Ext.create('widget.toolbar', {
       items: [
+         {
+        	 xtype: 'buttongroup',
+        	 title: 'Project',
+        	 columns: 3,
+        	 items: [
+        	         kombo,
+        	         {text : 'New', iconCls : 'feed-add'},
+        	         {text : 'Delete', iconCls : 'feed-remove'}
+        	 ]
+         },
         {
           xtype: 'buttongroup',
           title: 'Distribution Network',

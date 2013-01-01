@@ -18,6 +18,7 @@ Ext.define('RiskAnalyzer.MapPanel', {
   },
 
   afterRender : function(){
+	  try {
     this.callParent();
     var centerLatLng = new google.maps.LatLng(47.4984056, 19.0407578);
 
@@ -45,6 +46,9 @@ Ext.define('RiskAnalyzer.MapPanel', {
     this.polylineArray = new Array();
 
     this.update();
+	  } catch (error) {
+		alert('Error : ' + error);  
+	  }
   },
 
   update: function() {

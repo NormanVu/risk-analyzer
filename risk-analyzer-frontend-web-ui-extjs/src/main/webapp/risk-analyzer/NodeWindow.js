@@ -7,7 +7,7 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 	initComponent : function() {
 		this.addEvents('nodecreated');
 
-		this.geocoder = new google.maps.Geocoder();
+		//this.geocoder = new google.maps.Geocoder();
 
 		this.kindStore = [
 			['company', 'Company'],
@@ -204,8 +204,8 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 		var fieldValues = form.getForm().getFieldValues();
 		var address = fieldValues.address;
 		form.setLoading({msg: 'Validating address...'});
-
-		this.geocoder.geocode({'address': address}, function(results, status) {
+try {
+		new google.maps.Geocoder().geocode({'address': address}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				form.setLoading(false);
 				var lng = results[0].geometry.location.lng();
@@ -222,6 +222,10 @@ Ext.define('RiskAnalyzer.NodeWindow', {
 				form.getForm().setValues(fieldValues);
 			}
 		});
+} catch (error) {
+	alert('cannot find location...' + error);
+	form.setLoading(false);
+}
 	},
 
 	onSaveClick : function() {
