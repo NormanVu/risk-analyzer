@@ -55,4 +55,10 @@ public class GoogleDatastoreTemplate {
 		datastoreService.getCurrentTransaction().commit();
 	}
 
+	public static interface Converter<F, T> {
+
+		T convert(F f);
+
+	}
+
 }

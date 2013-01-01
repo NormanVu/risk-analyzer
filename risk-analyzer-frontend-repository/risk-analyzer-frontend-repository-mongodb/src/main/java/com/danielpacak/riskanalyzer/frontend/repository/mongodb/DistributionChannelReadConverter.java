@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 
 import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.frontend.repository.mongodb.MongoTemplate.Converter;
 import com.mongodb.DBObject;
 
 public class DistributionChannelReadConverter implements Converter<DBObject, DistributionChannel> {

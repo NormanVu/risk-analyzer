@@ -15,6 +15,10 @@ import com.mongodb.DBObject;
 
 public class MongoTemplate {
 
+	public static interface Converter<F, T> {
+		T convert(F f);
+	}
+
 	private DB db;
 
 	public MongoTemplate(DB db) {

@@ -5,6 +5,7 @@ import org.bson.types.ObjectId;
 import com.danielpacak.riskanalyzer.domain.Facility;
 import com.danielpacak.riskanalyzer.domain.Facility.Kind;
 import com.danielpacak.riskanalyzer.domain.Facility.Type;
+import com.danielpacak.riskanalyzer.frontend.repository.mongodb.MongoTemplate.Converter;
 import com.mongodb.DBObject;
 
 /**

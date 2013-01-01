@@ -1,6 +1,7 @@
 package com.danielpacak.riskanalyzer.frontend.repository.mongodb;
 
 import com.danielpacak.riskanalyzer.domain.Facility;
+import com.danielpacak.riskanalyzer.frontend.repository.mongodb.MongoTemplate.Converter;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
