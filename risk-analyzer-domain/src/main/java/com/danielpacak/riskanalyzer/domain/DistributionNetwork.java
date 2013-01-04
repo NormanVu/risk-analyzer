@@ -1,38 +1,29 @@
 package com.danielpacak.riskanalyzer.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class DistributionNetwork implements Serializable {
 
-	private Collection<Facility> nodes = new ArrayList<Facility>();
-	private Collection<DistributionChannel> edges = new ArrayList<DistributionChannel>();
+	private Collection<Facility> facilities;
+	private Collection<DistributionChannel> channels;
 
 	public DistributionNetwork() {
 	}
 
-	public DistributionNetwork(Collection<Facility> nodes,
-			Collection<DistributionChannel> edges) {
-		this.nodes = nodes;
-		this.edges = edges;
+	public DistributionNetwork(List<Facility> facilities, List<DistributionChannel> channels) {
+		this.facilities = facilities;
+		this.channels = channels;
 	}
 
 	public Collection<Facility> getNodes() {
-		return nodes;
-	}
-
-	public void setNodes(Collection<Facility> nodes) {
-		this.nodes = nodes;
+		return facilities;
 	}
 
 	public Collection<DistributionChannel> getEdges() {
-		return edges;
-	}
-
-	public void setEdges(Collection<DistributionChannel> edges) {
-		this.edges = edges;
+		return channels;
 	}
 
 }
