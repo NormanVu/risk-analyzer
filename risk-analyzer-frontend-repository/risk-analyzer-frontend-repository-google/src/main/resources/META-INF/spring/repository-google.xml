@@ -8,9 +8,14 @@
 		class="com.google.appengine.api.datastore.DatastoreServiceFactory"
 		factory-method="getDatastoreService" />
 
+	<bean id="googleDatastoreTemplate"
+		class="com.danielpacak.riskanalyzer.frontend.repository.google.GoogleDatastoreTemplate">
+		<constructor-arg ref="datastoreService" />
+	</bean>
+
 	<bean id="facilityRepository"
 		class="com.danielpacak.riskanalyzer.frontend.repository.google.FacilityRepositoryGoogleImpl">
-		<constructor-arg ref="datastoreService" />
+		<constructor-arg ref="googleDatastoreTemplate" />
 	</bean>
 
 	<bean id="distributionChannelRepository"
