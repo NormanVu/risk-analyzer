@@ -1,5 +1,7 @@
 package com.danielpacak.riskanalyzer.frontend.repository.google;
 
+import org.springframework.util.StringUtils;
+
 import com.danielpacak.riskanalyzer.domain.Facility;
 import com.danielpacak.riskanalyzer.frontend.repository.google.GoogleDatastoreTemplate.Converter;
 import com.google.appengine.api.datastore.Entity;
@@ -9,7 +11,10 @@ public class FacilityWriteConverter implements Converter<Facility, Entity> {
 
 	@Override
 	public Entity convert(Facility facility) {
-		Entity entity = new Entity(Facility.class.getName());
+		// FIXME CONVERTED SHOULDN'T KNOW ABOUT ENTITY NAME
+		Entity entity = StringUtils.hasText(facility.getId()) ? new Entity(Facility.class.getName(),
+				Long.valueOf(facility.getId())) : new Entity(Facility.class.getName());
+
 		entity.setProperty("type", facility.getType().name());
 		entity.setProperty("kind", facility.getKind().name());
 		entity.setProperty("name", facility.getName());

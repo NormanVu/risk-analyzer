@@ -2,6 +2,8 @@ package com.danielpacak.riskanalyzer.frontend.repository.google;
 
 import java.util.List;
 
+import org.springframework.util.StringUtils;
+
 import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.Facility;
 import com.danielpacak.riskanalyzer.frontend.repository.DistributionChannelRepository;
@@ -21,7 +23,9 @@ public class DistributionChannelRepositoryGoogleImpl implements DistributionChan
 			public Entity convert(DistributionChannel f) {
 				// FIXME LOOKS BAD AS I HAVE TO KNOW INTERNAL STUFF SUCH AS
 				// ENTITY'S NAME
-				Entity entity = new Entity(DistributionChannel.class.getName());
+				Entity entity = StringUtils.hasText(channel.getId()) ? new Entity(DistributionChannel.class.getName(),
+						Long.valueOf(channel.getId())) : new Entity(DistributionChannel.class.getName());
+
 				entity.setProperty("purchasingVolume", channel.getPurchasingVolume());
 				entity.setProperty("sourceId", sourceId);
 				entity.setProperty("targetId", targetId);
