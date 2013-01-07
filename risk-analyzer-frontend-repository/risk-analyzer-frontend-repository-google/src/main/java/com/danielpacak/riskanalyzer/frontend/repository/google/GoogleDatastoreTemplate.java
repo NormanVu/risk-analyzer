@@ -29,7 +29,7 @@ public class GoogleDatastoreTemplate {
 	}
 
 	public <T> T findById(String entityId, Class<T> clazz, Converter<Entity, T> readConverter) {
-		Key googleKey = KeyFactory.createKey(clazz.getName(), Long.valueOf(entityId));
+		Key googleKey = KeyFactory.createKey(DEFAULT_ENTITY_NAME_STRATEGY.getName(clazz), Long.valueOf(entityId));
 		try {
 			Entity googleEntity = datastoreService.get(googleKey);
 			return readConverter.convert(googleEntity);
@@ -39,7 +39,7 @@ public class GoogleDatastoreTemplate {
 	}
 
 	public <T> List<T> findAll(Class<T> clazz, Converter<Entity, T> readConverter) {
-		Query q = new Query(clazz.getName());
+		Query q = new Query(DEFAULT_ENTITY_NAME_STRATEGY.getName(clazz));
 		PreparedQuery pq = datastoreService.prepare(q);
 		List<T> entities = new ArrayList<T>();
 		for (Entity googleEntity : pq.asIterable()) {
@@ -49,16 +49,25 @@ public class GoogleDatastoreTemplate {
 	}
 
 	public <T> void delete(Class<T> clazz, String entityId) {
-		Key entityKey = KeyFactory.createKey(clazz.getName(), Long.valueOf(entityId));
+		Key entityKey = KeyFactory.createKey(DEFAULT_ENTITY_NAME_STRATEGY.getName(clazz), Long.valueOf(entityId));
 		datastoreService.beginTransaction();
 		datastoreService.delete(entityKey);
 		datastoreService.getCurrentTransaction().commit();
 	}
 
 	public static interface Converter<F, T> {
-
 		T convert(F f);
-
 	}
+
+	public static interface EntityNameStrategy {
+		String getName(Class<?> entityClass);
+	}
+
+	public static EntityNameStrategy DEFAULT_ENTITY_NAME_STRATEGY = new EntityNameStrategy() {
+		@Override
+		public String getName(Class<?> entityClass) {
+			return entityClass.getName();
+		}
+	};
 
 }

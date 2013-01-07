@@ -1,5 +1,7 @@
 package com.danielpacak.riskanalyzer.frontend.repository.google;
 
+import static com.danielpacak.riskanalyzer.frontend.repository.google.GoogleDatastoreTemplate.DEFAULT_ENTITY_NAME_STRATEGY;
+
 import java.util.List;
 
 import org.springframework.util.StringUtils;
@@ -23,8 +25,9 @@ public class DistributionChannelRepositoryGoogleImpl implements DistributionChan
 			public Entity convert(DistributionChannel f) {
 				// FIXME LOOKS BAD AS I HAVE TO KNOW INTERNAL STUFF SUCH AS
 				// ENTITY'S NAME
-				Entity entity = StringUtils.hasText(channel.getId()) ? new Entity(DistributionChannel.class.getName(),
-						Long.valueOf(channel.getId())) : new Entity(DistributionChannel.class.getName());
+				final String entityName = DEFAULT_ENTITY_NAME_STRATEGY.getName(channel.getClass());
+				Entity entity = StringUtils.hasText(channel.getId()) ? new Entity(entityName, Long.valueOf(channel
+						.getId())) : new Entity(entityName);
 
 				entity.setProperty("purchasingVolume", channel.getPurchasingVolume());
 				entity.setProperty("sourceId", sourceId);
