@@ -7,16 +7,17 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
 public class GoogleDatastoreTemplate {
 
 	private DatastoreService datastoreService;
+	private KeyFactory keyFactory;
 
-	public GoogleDatastoreTemplate(DatastoreService datastoreService) {
+	public GoogleDatastoreTemplate(DatastoreService datastoreService, KeyFactory keyFactory) {
 		this.datastoreService = datastoreService;
+		this.keyFactory = keyFactory;
 	}
 
 	public <T> T put(T entity, Converter<T, Entity> writeConverter) {
@@ -29,7 +30,7 @@ public class GoogleDatastoreTemplate {
 	}
 
 	public <T> T findById(String entityId, Class<T> clazz, Converter<Entity, T> readConverter) {
-		Key googleKey = KeyFactory.createKey(DEFAULT_ENTITY_NAME_STRATEGY.getName(clazz), Long.valueOf(entityId));
+		Key googleKey = keyFactory.getKey(DEFAULT_ENTITY_NAME_STRATEGY.getName(clazz), entityId);
 		try {
 			Entity googleEntity = datastoreService.get(googleKey);
 			return readConverter.convert(googleEntity);
@@ -49,7 +50,7 @@ public class GoogleDatastoreTemplate {
 	}
 
 	public <T> void delete(Class<T> clazz, String entityId) {
-		Key entityKey = KeyFactory.createKey(DEFAULT_ENTITY_NAME_STRATEGY.getName(clazz), Long.valueOf(entityId));
+		Key entityKey = keyFactory.getKey(DEFAULT_ENTITY_NAME_STRATEGY.getName(clazz), entityId);
 		datastoreService.beginTransaction();
 		datastoreService.delete(entityKey);
 		datastoreService.getCurrentTransaction().commit();
