@@ -20,7 +20,7 @@
 
 	<bean id="distributionChannelRepository"
 		class="com.danielpacak.riskanalyzer.frontend.repository.google.DistributionChannelRepositoryGoogleImpl">
-		<constructor-arg ref="datastoreService" />
+		<constructor-arg ref="googleDatastoreTemplate" />
 	</bean>
 
 	<bean
