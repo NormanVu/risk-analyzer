@@ -133,6 +133,54 @@ public class Facility {
 		this.recoveryTime3 = recoveryTime3;
 	}
 
+	public Facility() {
+
+	}
+
+	public Facility(Builder builder) {
+		this.id = builder.id;
+		this.kind = builder.kind;
+		this.type = builder.type;
+		this.name = builder.name;
+		this.description = builder.description;
+		this.address = builder.address;
+		this.latitude = builder.latitude;
+		this.longitude = builder.longitude;
+	}
+
+	public static class Builder {
+		private String id;
+		private Kind kind;
+		private Type type;
+		private String name;
+		private String description;
+		private String address;
+		private Double latitude;
+		private Double longitude;
+		private Double riskCategory1;
+		private Double riskCategory2;
+		private Double riskCategory3;
+		private Double recoveryTime1;
+		private Double recoveryTime2;
+		private Double recoveryTime3;
+
+		public Builder id(String id) {
+			this.id = id; return this;
+		}
+
+		public Builder kind(Kind kind) {
+			this.kind = kind; return this;
+		}
+		
+		public Builder type(Type type) {
+			this.type = type; return this;
+		}
+
+		public Facility build() {
+			return new Facility(this);
+		}
+	}
+
 	public static enum Kind {
 		company, supplier
 	}

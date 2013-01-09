@@ -1,11 +1,12 @@
 package com.danielpacak.riskanalyzer.frontend.repository.google;
 
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -17,6 +18,7 @@ import com.google.appengine.api.datastore.Transaction;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(value = { Entity.class, Key.class })
+@SuppressWarnings("unchecked")
 public class GoogleDatastoreTemplateTest {
 
 	DatastoreService mockDatastoreService;
@@ -39,10 +41,9 @@ public class GoogleDatastoreTemplateTest {
 	public void testPut() throws Exception {
 		GoogleDatastoreTemplate template = new GoogleDatastoreTemplate(mockDatastoreService, mockKeyFactory);
 
-		@SuppressWarnings("unchecked")
 		Converter<Person, Entity> stubConverter = Mockito.mock(GoogleDatastoreTemplate.Converter.class);
 		Person person = new Person();
-		Entity personEntity = PowerMockito.mock(Entity.class);
+		Entity personEntity = Mockito.mock(Entity.class);
 		Mockito.when(stubConverter.convert(person)).thenReturn(personEntity);
 
 		template.put(person, stubConverter);
@@ -58,7 +59,7 @@ public class GoogleDatastoreTemplateTest {
 		String personId = "666";
 
 		Key mockKey = Mockito.mock(Key.class);
-		Mockito.when(mockKeyFactory.getKey(Person.class.getName(), personId)).thenReturn(mockKey);
+		Mockito.when(mockKeyFactory.getKey(Person.class, personId)).thenReturn(mockKey);
 
 		GoogleDatastoreTemplate template = new GoogleDatastoreTemplate(mockDatastoreService, mockKeyFactory);
 		template.delete(Person.class, personId);
@@ -67,6 +68,25 @@ public class GoogleDatastoreTemplateTest {
 		inOrder.verify(mockDatastoreService).beginTransaction();
 		inOrder.verify(mockDatastoreService).delete(mockKey);
 		inOrder.verify(mockDatastoreTransaction).commit();
+
+	}
+
+	@Test
+	public void testFindOne() throws Exception {
+		GoogleDatastoreTemplate template = new GoogleDatastoreTemplate(mockDatastoreService, mockKeyFactory);
+		String personId = "666";
+		Person person = new Person();
+		Key mockKey = Mockito.mock(Key.class);
+		Entity mockEntity = Mockito.mock(Entity.class);
+		Converter<Entity, Person> mockReadConverter = Mockito.mock(Converter.class);
+		Mockito.when(mockKeyFactory.getKey(Person.class, personId)).thenReturn(mockKey);
+		Mockito.when(mockDatastoreService.get(mockKey)).thenReturn(mockEntity);
+		Mockito.when(mockReadConverter.convert(mockEntity)).thenReturn(person);
+
+		Person foundPerson = template.findById(personId, Person.class, mockReadConverter);
+		Assert.assertEquals(person, foundPerson);
+		Mockito.verify(mockDatastoreService).get(mockKey);
+		Mockito.verify(mockReadConverter).convert(mockEntity);
 
 	}
 

@@ -8,4 +8,8 @@ public class KeyFactory {
 		return com.google.appengine.api.datastore.KeyFactory.createKey(entityName, Long.valueOf(entityId));
 	}
 
+	Key getKey(Class<?> entityClass, String entityId) {
+		return getKey(GoogleDatastoreTemplate.DEFAULT_ENTITY_NAME_STRATEGY.getName(entityClass), entityId);
+	}
+
 }

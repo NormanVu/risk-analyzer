@@ -30,7 +30,7 @@ public class GoogleDatastoreTemplate {
 	}
 
 	public <T> T findById(String entityId, Class<T> clazz, Converter<Entity, T> readConverter) {
-		Key googleKey = keyFactory.getKey(DEFAULT_ENTITY_NAME_STRATEGY.getName(clazz), entityId);
+		Key googleKey = keyFactory.getKey(clazz, entityId);
 		try {
 			Entity googleEntity = datastoreService.get(googleKey);
 			return readConverter.convert(googleEntity);
@@ -50,7 +50,7 @@ public class GoogleDatastoreTemplate {
 	}
 
 	public <T> void delete(Class<T> clazz, String entityId) {
-		Key entityKey = keyFactory.getKey(DEFAULT_ENTITY_NAME_STRATEGY.getName(clazz), entityId);
+		Key entityKey = keyFactory.getKey(clazz, entityId);
 		datastoreService.beginTransaction();
 		datastoreService.delete(entityKey);
 		datastoreService.getCurrentTransaction().commit();

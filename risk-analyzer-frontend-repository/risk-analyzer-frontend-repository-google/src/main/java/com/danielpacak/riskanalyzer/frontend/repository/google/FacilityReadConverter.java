@@ -12,8 +12,9 @@ public class FacilityReadConverter implements Converter<Entity, Facility> {
 		Facility facility = new Facility();
 
 		facility.setId(String.valueOf(entity.getKey().getId()));
-		facility.setType(Type.valueOf((String) entity.getProperty(("type"))));
-		facility.setKind(Kind.valueOf((String) entity.getProperty("kind")));
+
+		facility.setType(convertTypeProperty(entity));
+		facility.setKind(convertKindProperty(entity));
 		facility.setName((String) entity.getProperty("name"));
 		facility.setDescription((String) entity.getProperty("description"));
 		facility.setAddress((String) entity.getProperty("address"));
@@ -28,6 +29,16 @@ public class FacilityReadConverter implements Converter<Entity, Facility> {
 		facility.setRecoveryTime2((Double) entity.getProperty("recoveryTime2"));
 		facility.setRecoveryTime3((Double) entity.getProperty("recoveryTime3"));
 		return facility;
+	}
+
+	Type convertTypeProperty(Entity entity) {
+		String type = (String) entity.getProperty("type");
+		return type != null ? Type.valueOf(type) : null;
+	}
+
+	Kind convertKindProperty(Entity entity) {
+		String kind = (String) entity.getProperty("kind");
+		return kind != null ? Kind.valueOf(kind) : null;
 	}
 
 }
