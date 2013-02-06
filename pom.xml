@@ -50,6 +50,7 @@
 		<module>risk-analyzer-test</module>
 		<module>risk-analyzer-reference</module>
 		<module>risk-analyzer-web-extjs</module>
+		<module>risk-analyzer-frontend-web-ui-wicket</module>
 	</modules>
 
 	<build>
