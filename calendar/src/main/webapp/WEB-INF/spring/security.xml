@@ -12,9 +12,10 @@
 		<intercept-url pattern="/events/" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 
-		<form-login login-page="/login/form.do" login-processing-url="/login"
-			username-parameter="username" password-parameter="password"
-			authentication-failure-url="/login/form.do?error" />
+		<form-login login-page="/login/form.do"
+			login-processing-url="/login" username-parameter="username"
+			password-parameter="password" authentication-failure-url="/login/form.do?error"
+			default-target-url="/index.do" />
 
 		<logout logout-url="/logout" logout-success-url="/login/form.do?logout" />
 	</http>
