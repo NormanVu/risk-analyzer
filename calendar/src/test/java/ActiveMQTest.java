@@ -6,6 +6,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,8 +22,13 @@ public class ActiveMQTest {
 				"activemq.xml");
 		this.jmsTemplate = context.getBean(JmsTemplate.class);
 	}
+	@Test
+	public void testname() throws Exception {
+		Thread.sleep(10000);
+	}
 
 	@Test
+	@Ignore
 	public void testSendMessages() throws Exception {
 
 		int numberOfMessages = 10;
