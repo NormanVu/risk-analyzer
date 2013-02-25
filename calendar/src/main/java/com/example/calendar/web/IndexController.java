@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class IndexController {
 
-	@RequestMapping(value = "/index.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/index", method = { RequestMethod.GET })
 	public String indexPage(HttpServletRequest request) {
 		System.out.println("user principal: " + request.getUserPrincipal());
 		System.out.println("is user admin: " + request.isUserInRole("ROLE_ADMIN"));
