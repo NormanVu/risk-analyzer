@@ -15,8 +15,36 @@
 			<artifactId>risk-analyzer-domain</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
+			<artifactId>logging</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.jdom</groupId>
 			<artifactId>jdom</artifactId>
 		</dependency>
+		<!-- Spring Framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+		</dependency>
+		<!-- ActiveMQ -->
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-pool</artifactId>
+		</dependency>
+		<!-- Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
 	</dependencies>
+
 </project>
