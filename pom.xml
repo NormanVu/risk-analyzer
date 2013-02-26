@@ -44,9 +44,9 @@
 		<module>risk-analyzer-frontend-webapp</module>
 
 		<module>backend-service</module>
-		<module>risk-analyzer-backend-proxy</module>
-		<module>risk-analyzer-backend-web-controller</module>
-		<module>risk-analyzer-backend-webapp</module>
+		<module>backend-proxy</module>
+		<module>backend-web-controller</module>
+		<module>backend-webapp</module>
 
 		<module>risk-analyzer-deployment</module>
 		<module>risk-analyzer-test</module>
