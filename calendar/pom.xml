@@ -80,16 +80,5 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
-		<!-- for fun activemq client -->
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-core</artifactId>
-			<version>5.7.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-pool</artifactId>
-			<version>5.8.0</version>
-		</dependency>
 	</dependencies>
 </project>

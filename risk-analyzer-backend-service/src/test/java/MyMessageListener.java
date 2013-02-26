@@ -5,13 +5,14 @@ import javax.jms.TextMessage;
 
 public class MyMessageListener implements MessageListener {
 
+	@Override
 	public void onMessage(Message message) {
-		TextMessage msg = (TextMessage) message;
 		try {
-			System.out.println("msg received: " + msg.getText());
+			TextMessage msg = (TextMessage) message;
+			System.out.println("Consumed message: " + msg.getText());
 		} catch (JMSException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 }
