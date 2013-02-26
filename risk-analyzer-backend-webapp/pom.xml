@@ -16,15 +16,14 @@
 			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-backend-web-controller</artifactId>
 		</dependency>
+		<!-- JEE API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.backend.service;
+package com.danielpacak.riskanalyzer.backend.web;
 
 import javax.xml.transform.stream.StreamSource;
 
@@ -7,6 +7,14 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+
+import com.danielpacak.riskanalyzer.backend.service.CalculateRequest;
+import com.danielpacak.riskanalyzer.backend.service.CalculateResponse;
+import com.danielpacak.riskanalyzer.backend.service.FrequencyDistributionService;
+import com.danielpacak.riskanalyzer.backend.service.RequestMarshaller;
+import com.danielpacak.riskanalyzer.backend.service.RequestMarshallerJDomImpl;
+import com.danielpacak.riskanalyzer.backend.service.ResponseMarshaller;
+import com.danielpacak.riskanalyzer.backend.service.ResponseMarshallerJDomIMpl;
 
 @Endpoint
 public class FrequencyDistributionEndpoint {

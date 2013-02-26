@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.backend.service;
+package com.danielpacak.riskanalyzer.backend.web;
 
 import static org.mockito.Mockito.mock;
 
@@ -8,6 +8,13 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import com.danielpacak.riskanalyzer.backend.service.CalculateRequest;
+import com.danielpacak.riskanalyzer.backend.service.CalculateResponse;
+import com.danielpacak.riskanalyzer.backend.service.FrequencyDistributionService;
+import com.danielpacak.riskanalyzer.backend.service.RequestMarshaller;
+import com.danielpacak.riskanalyzer.backend.service.ResponseMarshaller;
+import com.danielpacak.riskanalyzer.backend.web.FrequencyDistributionEndpoint;
 
 public class FrequencyDistributionEndpointTest {
 

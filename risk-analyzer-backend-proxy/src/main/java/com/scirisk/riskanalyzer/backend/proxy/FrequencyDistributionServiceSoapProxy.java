@@ -8,13 +8,13 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.ws.client.core.WebServiceTemplate;
 
-import com.scirisk.riskanalyzer.backend.service.CalculateRequest;
-import com.scirisk.riskanalyzer.backend.service.CalculateResponse;
-import com.scirisk.riskanalyzer.backend.service.FrequencyDistributionService;
-import com.scirisk.riskanalyzer.backend.service.RequestMarshaller;
-import com.scirisk.riskanalyzer.backend.service.RequestMarshallerJDomImpl;
-import com.scirisk.riskanalyzer.backend.service.ResponseMarshaller;
-import com.scirisk.riskanalyzer.backend.service.ResponseMarshallerJDomIMpl;
+import com.danielpacak.riskanalyzer.backend.service.CalculateRequest;
+import com.danielpacak.riskanalyzer.backend.service.CalculateResponse;
+import com.danielpacak.riskanalyzer.backend.service.FrequencyDistributionService;
+import com.danielpacak.riskanalyzer.backend.service.RequestMarshaller;
+import com.danielpacak.riskanalyzer.backend.service.RequestMarshallerJDomImpl;
+import com.danielpacak.riskanalyzer.backend.service.ResponseMarshaller;
+import com.danielpacak.riskanalyzer.backend.service.ResponseMarshallerJDomIMpl;
 
 public class FrequencyDistributionServiceSoapProxy implements
 		FrequencyDistributionService {

@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.backend.service;
+package com.danielpacak.riskanalyzer.backend.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

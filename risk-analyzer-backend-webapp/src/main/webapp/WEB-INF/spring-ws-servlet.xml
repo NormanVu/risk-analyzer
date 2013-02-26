@@ -9,10 +9,10 @@
 
 	<web-services:annotation-driven />
 
-	<context:component-scan base-package="com.scirisk.riskanalyzer.backend.service" />
+	<context:component-scan base-package="com.danielpacak.riskanalyzer.backend.web" />
 
 	<bean id="frequencyDistributionService"
-		class="com.scirisk.riskanalyzer.backend.service.FrequencyDistributionServiceMockImpl">
+		class="com.danielpacak.riskanalyzer.backend.service.FrequencyDistributionServiceMockImpl">
 		<property name="sleepTimeInMilliseconds" value="1000" />
 	</bean>
 
