@@ -1,4 +1,4 @@
-package com.danielpacak.riskanalyzer.backend.service;
+package com.scirisk.riskanalyzer.backend.proxy;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,6 +15,7 @@ import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
+
 
 public class ResponseMarshallerJDomIMpl implements ResponseMarshaller {
 

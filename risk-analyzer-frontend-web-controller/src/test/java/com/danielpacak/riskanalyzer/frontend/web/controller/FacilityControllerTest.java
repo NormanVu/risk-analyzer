@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.controller;
+package com.danielpacak.riskanalyzer.frontend.web.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.danielpacak.riskanalyzer.domain.Facility;
 import com.danielpacak.riskanalyzer.frontend.repository.FacilityRepository;
+import com.danielpacak.riskanalyzer.frontend.web.controller.FacilityController;
 
 public class FacilityControllerTest {
 

@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.controller;
+package com.danielpacak.riskanalyzer.frontend.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

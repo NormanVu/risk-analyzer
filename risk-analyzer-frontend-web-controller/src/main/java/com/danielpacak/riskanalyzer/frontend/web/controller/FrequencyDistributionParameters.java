@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.controller;
+package com.danielpacak.riskanalyzer.frontend.web.controller;
 
 public class FrequencyDistributionParameters {
 	private Float confidenceLevel;

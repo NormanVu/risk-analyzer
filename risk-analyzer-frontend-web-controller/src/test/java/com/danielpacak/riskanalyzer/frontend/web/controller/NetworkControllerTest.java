@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.controller;
+package com.danielpacak.riskanalyzer.frontend.web.controller;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 import com.danielpacak.riskanalyzer.frontend.repository.DistributionNetworkRepository;
+import com.danielpacak.riskanalyzer.frontend.web.controller.NetworkController;
 import com.scirisk.riskanalyzer.service.NetworkParser;
 
 public class NetworkControllerTest {

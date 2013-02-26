@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.controller;
+package com.danielpacak.riskanalyzer.frontend.web.controller;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.danielpacak.riskanalyzer.backend.service.CalculateRequest;
-import com.danielpacak.riskanalyzer.backend.service.CalculateResponse;
-import com.danielpacak.riskanalyzer.backend.service.FrequencyDistributionService;
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 import com.danielpacak.riskanalyzer.frontend.repository.DistributionNetworkRepository;
+import com.scirisk.riskanalyzer.backend.proxy.CalculateRequest;
+import com.scirisk.riskanalyzer.backend.proxy.CalculateResponse;
+import com.scirisk.riskanalyzer.backend.proxy.FrequencyDistributionService;
 import com.scirisk.riskanalyzer.backend.proxy.FrequencyDistributionServiceSoapProxy;
 
 @Controller

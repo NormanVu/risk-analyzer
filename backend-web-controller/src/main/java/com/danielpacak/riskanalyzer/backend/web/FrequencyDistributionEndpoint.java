@@ -8,13 +8,13 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.danielpacak.riskanalyzer.backend.service.CalculateRequest;
-import com.danielpacak.riskanalyzer.backend.service.CalculateResponse;
-import com.danielpacak.riskanalyzer.backend.service.FrequencyDistributionService;
-import com.danielpacak.riskanalyzer.backend.service.RequestMarshaller;
-import com.danielpacak.riskanalyzer.backend.service.RequestMarshallerJDomImpl;
-import com.danielpacak.riskanalyzer.backend.service.ResponseMarshaller;
-import com.danielpacak.riskanalyzer.backend.service.ResponseMarshallerJDomIMpl;
+import com.scirisk.riskanalyzer.backend.proxy.CalculateRequest;
+import com.scirisk.riskanalyzer.backend.proxy.CalculateResponse;
+import com.scirisk.riskanalyzer.backend.proxy.FrequencyDistributionService;
+import com.scirisk.riskanalyzer.backend.proxy.RequestMarshaller;
+import com.scirisk.riskanalyzer.backend.proxy.RequestMarshallerJDomImpl;
+import com.scirisk.riskanalyzer.backend.proxy.ResponseMarshaller;
+import com.scirisk.riskanalyzer.backend.proxy.ResponseMarshallerJDomIMpl;
 
 @Endpoint
 public class FrequencyDistributionEndpoint {

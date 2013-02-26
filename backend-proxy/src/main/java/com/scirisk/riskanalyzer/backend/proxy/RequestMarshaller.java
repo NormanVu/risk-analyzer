@@ -1,8 +1,9 @@
-package com.danielpacak.riskanalyzer.backend.service;
+package com.scirisk.riskanalyzer.backend.proxy;
 
 import java.io.IOException;
 
 import javax.xml.transform.stream.StreamSource;
+
 
 public interface RequestMarshaller {
 

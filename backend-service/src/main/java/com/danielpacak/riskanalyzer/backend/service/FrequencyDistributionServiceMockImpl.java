@@ -3,6 +3,10 @@ package com.danielpacak.riskanalyzer.backend.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.scirisk.riskanalyzer.backend.proxy.CalculateRequest;
+import com.scirisk.riskanalyzer.backend.proxy.CalculateResponse;
+import com.scirisk.riskanalyzer.backend.proxy.FrequencyDistributionService;
+
 public class FrequencyDistributionServiceMockImpl implements FrequencyDistributionService {
 
 	private int sleepTimeInMilliseconds = 1000;
