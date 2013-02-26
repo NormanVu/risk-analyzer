@@ -13,6 +13,17 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
+  <context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:META-INF/spring/backend-service.xml
+		</param-value>
+	</context-param>
+ 
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
   <servlet-mapping>
     <servlet-name>spring-ws</servlet-name>
