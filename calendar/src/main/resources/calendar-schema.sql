@@ -1,18 +1,19 @@
-create table calendar_users (
-    id bigint identity,
-    email varchar(256) not null unique,
-    password varchar(256) not null,
-    first_name varchar(256) not null,
-    last_name varchar(256) not null
+CREATE TABLE CALENDAR_USERS (
+    ID INT IDENTITY,
+    EMAIL VARCHAR(256) NOT NULL UNIQUE,
+    PASSWORD VARCHAR(256) NOT NULL,
+    FIRST_NAME VARCHAR(256) NOT NULL,
+    LAST_NAME VARCHAR(256) NOT NULL
 );
 
-create table events (
-    id bigint identity,
-    whenn timestamp not null,
-    summary varchar(256) not null,
-    description varchar(500) not null,
-    owner bigint not null,
-    attendee bigint not null,
-    FOREIGN KEY(owner) REFERENCES calendar_users(id),
-    FOREIGN KEY(attendee) REFERENCES calendar_users(id)
+CREATE TABLE EVENTS (
+    ID INT IDENTITY,
+    STARTS_AT TIMESTAMP NOT NULL,
+    ENDS_AT TIMESTAMP NULL,
+    SUMMARY VARCHAR(256) not null,
+    DESCRIPTION VARCHAR(500) not null,
+    OWNER_ID INT NOT NULL,
+    ATTENDEE_ID INT NOT NULL,
+    FOREIGN KEY(OWNER_ID) REFERENCES CALENDAR_USERS(ID),
+    FOREIGN KEY(ATTENDEE_ID) REFERENCES CALENDAR_USERS(ID)
 );

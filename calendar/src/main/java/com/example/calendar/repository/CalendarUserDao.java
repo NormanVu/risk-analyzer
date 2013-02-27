@@ -23,7 +23,7 @@ public interface CalendarUserDao {
      * @throws EmptyResultDataAccessException
      *             if the {@link CalendarUser} cannot be found
      */
-    CalendarUser getUser(int id);
+    CalendarUser getUser(Integer id);
 
     /**
      * Finds a given {@link CalendarUser} by email address.
@@ -58,5 +58,5 @@ public interface CalendarUserDao {
      * @throws IllegalArgumentException
      *             if {@link CalendarUser#getId()} is non-null.
      */
-    int createUser(CalendarUser user);
+    Integer createUser(CalendarUser user);
 }

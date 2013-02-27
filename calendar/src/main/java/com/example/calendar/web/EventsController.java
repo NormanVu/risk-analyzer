@@ -99,7 +99,7 @@ public class EventsController {
         event.setDescription(createEventForm.getDescription());
         event.setOwner(userContext.getCurrentUser());
         event.setSummary(createEventForm.getSummary());
-        event.setWhen(createEventForm.getWhen());
+        event.setStartsAt(createEventForm.getWhen());
         calendarService.createEvent(event);
         redirectAttributes.addFlashAttribute("message", "Successfully added the new event");
         return "redirect:/events/my";

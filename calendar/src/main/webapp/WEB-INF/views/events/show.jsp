@@ -16,7 +16,7 @@
     <dt>Attendee</dt>
     <dd id="attendee"><c:out value="${event.attendee.lastName}, ${event.attendee.firstName}"/></dd>
     <dt>When</dt>
-    <fmt:formatDate value="${event.when.time}" type="both" pattern="yyyy-MM-dd HH:mm" var="when"/>
+    <fmt:formatDate value="${event.startsAt.time}" type="both" pattern="yyyy-MM-dd HH:mm" var="when"/>
     <dd id="when"><c:out value="${when}"/></dd>
     <dt>Message Details</dt>
     <dd id="owner"><c:out value="${event.description}"/></dd>

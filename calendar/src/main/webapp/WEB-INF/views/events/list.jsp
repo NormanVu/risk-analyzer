@@ -27,7 +27,7 @@
         </c:if>
          <c:forEach items="${events}" var="event">
             <tr>
-                <fmt:formatDate value="${event.when.time}" type="both" pattern="yyyy-MM-dd HH:mm" var="when"/>
+                <fmt:formatDate value="${event.startsAt.time}" type="both" pattern="yyyy-MM-dd HH:mm" var="when"/>
                 <td><c:out value="${when}"/></td>
                 <td><c:out value="${event.owner.name}" /></td>
                 <td><c:out value="${event.attendee.name}" /></td>
