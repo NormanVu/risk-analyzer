@@ -38,9 +38,10 @@
 		<module>risk-analyzer-datasource</module>
 		<module>frontend-repository</module>
 		<module>frontend-service</module>
-		<module>risk-analyzer-frontend-web-controller</module>
-		<module>risk-analyzer-frontend-web-ui-extjs</module>
-		<module>risk-analyzer-frontend-webapp</module>
+		<module>frontend-web-controller</module>
+		<module>frontend-webapp</module>
+		<module>frontend-web-ui-extjs</module>
+		<module>frontend-web-ui-wicket</module>
 
 		<module>backend-service</module>
 		<module>backend-proxy</module>
@@ -51,7 +52,6 @@
 		<module>risk-analyzer-test</module>
 		<module>risk-analyzer-reference</module>
 		<module>risk-analyzer-web-extjs</module>
-		<module>risk-analyzer-frontend-web-ui-wicket</module>
 		<module>calendar</module>
 	</modules>
 
