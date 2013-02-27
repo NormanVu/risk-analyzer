@@ -6,6 +6,9 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<context:component-scan base-package="com.example.calendar.service" />
+	<context:component-scan base-package="com.example.calendar.repository" />
+
 	<jdbc:embedded-database id="dataSource" type="HSQL">
 		<jdbc:script location="classpath:calendar-schema.sql" />
 		<jdbc:script location="classpath:calendar-data.sql" />
@@ -17,22 +20,5 @@
 
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
 		p:dataSource-ref="dataSource" />
-
-	<bean id="calendarService" class="com.example.calendar.service.DefaultCalendarService">
-		<constructor-arg ref="eventDao" />
-		<constructor-arg ref="userDao" />
-	</bean>
-
-	<bean class="com.example.calendar.service.SpringSecurityUserContext">
-		<constructor-arg ref="calendarService" />
-	</bean>
-
-	<bean id="userDao" class="com.example.calendar.repository.JdbcCalendarUserDao">
-		<constructor-arg ref="jdbcTemplate" />
-	</bean>
-
-	<bean id="eventDao" class="com.example.calendar.repository.JdbcEventDao">
-		<constructor-arg ref="jdbcTemplate" />
-	</bean>
 
 </beans>

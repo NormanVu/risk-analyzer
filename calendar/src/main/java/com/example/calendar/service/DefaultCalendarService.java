@@ -4,64 +4,58 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
 import com.example.calendar.domain.CalendarUser;
 import com.example.calendar.domain.Event;
 import com.example.calendar.repository.CalendarUserDao;
 import com.example.calendar.repository.EventDao;
 
-/**
- * A default implementation of {@link CalendarService} that delegates to {@link EventDao} and {@link CalendarUserDao}.
- *
- * @author Rob Winch
- *
- */
 @Repository
 public class DefaultCalendarService implements CalendarService {
-    private final EventDao eventDao;
-    private final CalendarUserDao userDao;
 
-    @Autowired
-    public DefaultCalendarService(EventDao eventDao, CalendarUserDao userDao) {
-        if (eventDao == null) {
-            throw new IllegalArgumentException("eventDao cannot be null");
-        }
-        if (userDao == null) {
-            throw new IllegalArgumentException("userDao cannot be null");
-        }
-        this.eventDao = eventDao;
-        this.userDao = userDao;
-    }
+	private final EventDao eventDao;
+	private final CalendarUserDao userDao;
 
-    public Event getEvent(int eventId) {
-        return eventDao.getEvent(eventId);
-    }
+	@Autowired
+	public DefaultCalendarService(EventDao eventDao, CalendarUserDao userDao) {
+		Assert.notNull(eventDao, "EventDao cannot be null");
+		Assert.notNull(userDao, "UserDao cannot be null");
 
-    public int createEvent(Event event) {
-        return eventDao.createEvent(event);
-    }
+		this.eventDao = eventDao;
+		this.userDao = userDao;
+	}
 
-    public List<Event> findForUser(int userId) {
-        return eventDao.findForUser(userId);
-    }
+	public Event getEvent(int eventId) {
+		return eventDao.getEvent(eventId);
+	}
 
-    public List<Event> getEvents() {
-        return eventDao.getEvents();
-    }
+	public int createEvent(Event event) {
+		return eventDao.createEvent(event);
+	}
 
-    public CalendarUser getUser(int id) {
-        return userDao.getUser(id);
-    }
+	public List<Event> findForUser(int userId) {
+		return eventDao.findForUser(userId);
+	}
 
-    public CalendarUser findUserByEmail(String email) {
-        return userDao.findUserByEmail(email);
-    }
+	public List<Event> getEvents() {
+		return eventDao.getEvents();
+	}
 
-    public List<CalendarUser> findUsersByEmail(String partialEmail) {
-        return userDao.findUsersByEmail(partialEmail);
-    }
+	public CalendarUser getUser(int id) {
+		return userDao.getUser(id);
+	}
 
-    public int createUser(CalendarUser user) {
-        return userDao.createUser(user);
-    }
+	public CalendarUser findUserByEmail(String email) {
+		return userDao.findUserByEmail(email);
+	}
+
+	public List<CalendarUser> findUsersByEmail(String emailPattern) {
+		return userDao.findUsersByEmail(emailPattern);
+	}
+
+	public int createUser(CalendarUser user) {
+		return userDao.createUser(user);
+	}
+
 }
