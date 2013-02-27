@@ -36,9 +36,8 @@
 		<module>logging</module>
 
 		<module>risk-analyzer-datasource</module>
-		<module>risk-analyzer-frontend-repository</module>
-
-		<module>risk-analyzer-frontend-service</module>
+		<module>frontend-repository</module>
+		<module>frontend-service</module>
 		<module>risk-analyzer-frontend-web-controller</module>
 		<module>risk-analyzer-frontend-web-ui-extjs</module>
 		<module>risk-analyzer-frontend-webapp</module>
