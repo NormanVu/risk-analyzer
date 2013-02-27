@@ -32,8 +32,6 @@ body {
 						<c:url var="createEventUrl" value="/events/form" />
 						<li><a id="navCreateEventLink" href="${createEventUrl}">Create
 								Event</a></li>
-						<c:url var="h2ConsoleUrl" value="/admin/h2" />
-						<li><a id="navH2Link" href="${h2ConsoleUrl}">H2</a></li>
 					</ul>
 				</div>
 				<div id="nav-account" class="nav-collapse pull-right">

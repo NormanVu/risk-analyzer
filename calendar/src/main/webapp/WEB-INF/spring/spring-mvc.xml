@@ -11,6 +11,9 @@
 	<mvc:annotation-driven />
 
 	<context:component-scan base-package="com.example.calendar.web" />
+
+	<mvc:view-controller path="/" view-name="index" />
+	<mvc:view-controller path="/login/form" view-name="login" />
 	<mvc:view-controller path="/errors/403" view-name="errors/403" />
 
 	<mvc:resources location="/resources/" mapping="/resources/**"

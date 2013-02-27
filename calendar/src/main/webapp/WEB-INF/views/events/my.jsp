@@ -10,7 +10,7 @@
 <p id="description">
     Below you can find the events for
     <strong><c:out value="${currentUser.email}" /></strong>.
-    Once security is applied this will be the events for the currently logged in user.
+    Notice it is updated depending on which user you are logged in as.
 </p>
 <c:url var="createUrl" value="/events/form"/>
 <div id="create" class="pull-right"><a href="${createUrl}">Create Event</a></div>
