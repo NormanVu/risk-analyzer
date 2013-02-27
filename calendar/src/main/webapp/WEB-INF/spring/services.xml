@@ -18,18 +18,19 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
 		p:dataSource-ref="dataSource" />
 
-	<bean class="com.example.calendar.service.DefaultCalendarService">
+	<bean id="calendarService" class="com.example.calendar.service.DefaultCalendarService">
 		<constructor-arg ref="eventDao" />
 		<constructor-arg ref="userDao" />
 	</bean>
 
-	<bean class="com.example.calendar.service.UserContextStub">
-		<constructor-arg ref="userDao" />
+	<bean class="com.example.calendar.service.SpringSecurityUserContext">
+		<constructor-arg ref="calendarService" />
 	</bean>
 
 	<bean id="userDao" class="com.example.calendar.repository.JdbcCalendarUserDao">
 		<constructor-arg ref="jdbcTemplate" />
 	</bean>
+
 	<bean id="eventDao" class="com.example.calendar.repository.JdbcEventDao">
 		<constructor-arg ref="jdbcTemplate" />
 	</bean>

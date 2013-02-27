@@ -34,7 +34,8 @@ public class JdbcEventDao implements EventDao {
 	@Override
 	@Transactional(readOnly = true)
 	public Event getEvent(int eventId) {
-		return jdbcOperations.queryForObject(EVENT_QUERY + " and e.id = ?", EVENT_ROW_MAPPER, eventId);
+		return jdbcOperations.queryForObject(EVENT_QUERY + " and e.id = ?",
+				EVENT_ROW_MAPPER, eventId);
 	}
 
 	@Override
@@ -43,15 +44,18 @@ public class JdbcEventDao implements EventDao {
 			throw new IllegalArgumentException("event cannot be null");
 		}
 		if (event.getId() != null) {
-			throw new IllegalArgumentException("event.getId() must be null when creating a new Message");
+			throw new IllegalArgumentException(
+					"event.getId() must be null when creating a new Message");
 		}
 		final CalendarUser owner = event.getOwner();
 		if (owner == null) {
-			throw new IllegalArgumentException("event.getOwner() cannot be null");
+			throw new IllegalArgumentException(
+					"event.getOwner() cannot be null");
 		}
 		final CalendarUser attendee = event.getAttendee();
 		if (attendee == null) {
-			throw new IllegalArgumentException("attendee.getOwner() cannot be null");
+			throw new IllegalArgumentException(
+					"attendee.getOwner() cannot be null");
 		}
 		final Calendar when = event.getWhen();
 		if (when == null) {
@@ -59,10 +63,12 @@ public class JdbcEventDao implements EventDao {
 		}
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		this.jdbcOperations.update(new PreparedStatementCreator() {
-			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-				PreparedStatement ps = connection.prepareStatement(
-						"insert into events (whenn,summary,description,owner,attendee) values (?, ?, ?, ?, ?)",
-						new String[] { "id" });
+			public PreparedStatement createPreparedStatement(
+					Connection connection) throws SQLException {
+				PreparedStatement ps = connection
+						.prepareStatement(
+								"insert into events (whenn,summary,description,owner,attendee) values (?, ?, ?, ?, ?)",
+								PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setDate(1, new java.sql.Date(when.getTimeInMillis()));
 				ps.setString(2, event.getSummary());
 				ps.setString(3, event.getDescription());
@@ -77,14 +83,16 @@ public class JdbcEventDao implements EventDao {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Event> findForUser(int userId) {
-		return jdbcOperations.query(EVENT_QUERY + " and (e.owner = ? or e.attendee = ?) order by e.id",
+		return jdbcOperations.query(EVENT_QUERY
+				+ " and (e.owner = ? or e.attendee = ?) order by e.id",
 				EVENT_ROW_MAPPER, userId, userId);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<Event> getEvents() {
-		return jdbcOperations.query(EVENT_QUERY + " order by e.id", EVENT_ROW_MAPPER);
+		return jdbcOperations.query(EVENT_QUERY + " order by e.id",
+				EVENT_ROW_MAPPER);
 	}
 
 	private static final RowMapper<Event> EVENT_ROW_MAPPER = new RowMapper<Event>() {
