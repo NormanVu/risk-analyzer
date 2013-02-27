@@ -6,15 +6,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-/**
- * An {@link Event} is an item on a calendar that contains an owner (the person
- * who created it), an attendee (someone who was invited to the event), when the
- * event will occur, a summary, and a description. For simplicity, all fields
- * are required.
- * 
- * @author Rob Winch
- * 
- */
 public class Event {
 
 	private Integer id;
@@ -28,21 +19,10 @@ public class Event {
 	private CalendarUser owner;
 	private CalendarUser attendee;
 
-	/**
-	 * The identifier for the {@link Event}. Must be null when creating a new
-	 * {@link Event}, otherwise non-null.
-	 * 
-	 * @return
-	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/**
-	 * The summary of the event.
-	 * 
-	 * @return
-	 */
 	public String getSummary() {
 		return summary;
 	}
@@ -55,11 +35,6 @@ public class Event {
 		this.id = id;
 	}
 
-	/**
-	 * The detailed description of the event.
-	 * 
-	 * @return
-	 */
 	public String getDescription() {
 		return description;
 	}
@@ -68,11 +43,6 @@ public class Event {
 		this.description = description;
 	}
 
-	/**
-	 * When this event is happening.
-	 * 
-	 * @return
-	 */
 	public Calendar getStartsAt() {
 		return startedAt;
 	}
@@ -81,11 +51,6 @@ public class Event {
 		this.startedAt = startedAt;
 	}
 
-	/**
-	 * The owner (who created the Event)
-	 * 
-	 * @return
-	 */
 	public CalendarUser getOwner() {
 		return owner;
 	}
@@ -94,11 +59,6 @@ public class Event {
 		this.owner = owner;
 	}
 
-	/**
-	 * The user that was invited to the event.
-	 * 
-	 * @return
-	 */
 	public CalendarUser getAttendee() {
 		return attendee;
 	}
@@ -106,8 +66,6 @@ public class Event {
 	public void setAttendee(CalendarUser attendee) {
 		this.attendee = attendee;
 	}
-
-	// --- override Object ---
 
 	@Override
 	public int hashCode() {

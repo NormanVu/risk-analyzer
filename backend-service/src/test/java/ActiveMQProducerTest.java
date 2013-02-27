@@ -13,6 +13,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
+
+@Ignore
 public class ActiveMQProducerTest {
 
 	JmsTemplate jmsTemplate;
@@ -22,6 +24,7 @@ public class ActiveMQProducerTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext("activemq-producer.xml");
 		this.jmsTemplate = context.getBean(JmsTemplate.class);
 	}
+
 	@Test
 	public void testname() throws Exception {
 		Thread.sleep(10000);

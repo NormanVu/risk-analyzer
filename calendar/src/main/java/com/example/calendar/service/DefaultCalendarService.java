@@ -3,6 +3,7 @@ package com.example.calendar.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
@@ -11,7 +12,7 @@ import com.example.calendar.domain.Event;
 import com.example.calendar.repository.CalendarUserDao;
 import com.example.calendar.repository.EventDao;
 
-@Repository
+@Component
 public class DefaultCalendarService implements CalendarService {
 
 	private final EventDao eventDao;
@@ -26,15 +27,15 @@ public class DefaultCalendarService implements CalendarService {
 		this.userDao = userDao;
 	}
 
-	public Event getEvent(int eventId) {
+	public Event getEvent(Integer eventId) {
 		return eventDao.getEvent(eventId);
 	}
 
-	public int createEvent(Event event) {
+	public Integer createEvent(Event event) {
 		return eventDao.createEvent(event);
 	}
 
-	public List<Event> findForUser(int userId) {
+	public List<Event> findForUser(Integer userId) {
 		return eventDao.findForUser(userId);
 	}
 
@@ -42,7 +43,7 @@ public class DefaultCalendarService implements CalendarService {
 		return eventDao.getEvents();
 	}
 
-	public CalendarUser getUser(int id) {
+	public CalendarUser getUser(Integer id) {
 		return userDao.getUser(id);
 	}
 
@@ -54,7 +55,7 @@ public class DefaultCalendarService implements CalendarService {
 		return userDao.findUsersByEmail(emailPattern);
 	}
 
-	public int createUser(CalendarUser user) {
+	public Integer createUser(CalendarUser user) {
 		return userDao.createUser(user);
 	}
 
