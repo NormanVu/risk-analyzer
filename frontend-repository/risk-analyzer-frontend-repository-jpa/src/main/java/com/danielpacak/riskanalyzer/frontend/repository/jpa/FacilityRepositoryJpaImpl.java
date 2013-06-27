@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
+import org.springframework.cache.annotation.Cacheable;
+
 import com.danielpacak.riskanalyzer.domain.Facility;
 import com.danielpacak.riskanalyzer.frontend.repository.FacilityRepository;
 
@@ -21,8 +23,7 @@ public class FacilityRepositoryJpaImpl implements FacilityRepository {
 	public Facility save(final Facility node) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		node.setId(isBlank(node.getId()) ? UUID.randomUUID().toString() : node
-				.getId());
+		node.setId(isBlank(node.getId()) ? UUID.randomUUID().toString() : node.getId());
 		em.merge(node);
 		em.flush();
 		em.getTransaction().commit();
@@ -31,8 +32,7 @@ public class FacilityRepositoryJpaImpl implements FacilityRepository {
 
 	public List<Facility> findAll() {
 		EntityManager em = emf.createEntityManager();
-		final String queryString = "SELECT o FROM " + Facility.class.getName()
-				+ " o";
+		final String queryString = "SELECT o FROM " + Facility.class.getName() + " o";
 		Query q = em.createQuery(queryString);
 		em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
@@ -49,6 +49,7 @@ public class FacilityRepositoryJpaImpl implements FacilityRepository {
 		em.getTransaction().commit();
 	}
 
+	@Cacheable("facility")
 	public Facility findOne(final String nodeId) {
 		EntityManager em = emf.createEntityManager();
 		Facility node = em.find(Facility.class, nodeId);
