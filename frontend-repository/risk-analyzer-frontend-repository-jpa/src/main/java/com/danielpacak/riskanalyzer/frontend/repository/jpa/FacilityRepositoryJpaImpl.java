@@ -3,11 +3,12 @@ package com.danielpacak.riskanalyzer.frontend.repository.jpa;
 import java.util.List;
 import java.util.UUID;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
@@ -16,6 +17,7 @@ import com.danielpacak.riskanalyzer.frontend.repository.FacilityRepository;
 
 public class FacilityRepositoryJpaImpl implements FacilityRepository {
 
+	private static final Logger logger = LoggerFactory.getLogger(FacilityRepositoryJpaImpl.class);
 	private EntityManagerFactory emf;
 
 	public FacilityRepositoryJpaImpl(EntityManagerFactory emf) {
@@ -26,8 +28,7 @@ public class FacilityRepositoryJpaImpl implements FacilityRepository {
 	public Facility save(final Facility facility) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		facility.setId(isBlank(facility.getId()) ? UUID.randomUUID().toString()
-				: facility.getId());
+		facility.setId(isBlank(facility.getId()) ? UUID.randomUUID().toString() : facility.getId());
 		em.merge(facility);
 		em.flush();
 		em.getTransaction().commit();
@@ -36,8 +37,7 @@ public class FacilityRepositoryJpaImpl implements FacilityRepository {
 
 	public List<Facility> findAll() {
 		EntityManager em = emf.createEntityManager();
-		final String queryString = "SELECT o FROM " + Facility.class.getName()
-				+ " o";
+		final String queryString = "SELECT o FROM " + Facility.class.getName() + " o";
 		Query q = em.createQuery(queryString);
 		em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
@@ -55,9 +55,9 @@ public class FacilityRepositoryJpaImpl implements FacilityRepository {
 		em.getTransaction().commit();
 	}
 
-	@Cacheable("facility")
+	@Cacheable(value = "facility")
 	public Facility findOne(final String facilityId) {
-		System.out.println("Expensive retrieval of facility: " + facilityId);
+		logger.debug("Expensive retrieval of facility with id [{}]", facilityId);
 		EntityManager em = emf.createEntityManager();
 		Facility node = em.find(Facility.class, facilityId);
 		return node;

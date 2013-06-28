@@ -25,7 +25,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:META-INF/spring/servlet-context.xml</param-value>
+			<param-value>/WEB-INF/spring/dispatcher-servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -39,7 +39,7 @@
 		<param-value>
 			classpath:META-INF/spring/service.xml
 			classpath:META-INF/spring/repository.xml
-			/WEB-INF/spring/spring-cache.xml
+			classpath:META-INF/spring/datasource.xml
 		</param-value>
 	</context-param>
  
