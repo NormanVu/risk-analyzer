@@ -21,13 +21,13 @@ import org.mockito.Mockito;
 
 import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.Facility;
-import com.danielpacak.riskanalyzer.frontend.repository.jpa.DistributionChannelRepositoryJpaImpl;
+import com.danielpacak.riskanalyzer.frontend.repository.jpa.JpaDistributionChannelRepository;
 
-public class DistributionChannelRepositoryJpaImplTest {
+public class JpaDistributionChannelRepositoryTest {
 	EntityManagerFactory emf;
 	EntityManager em;
 	EntityTransaction transaction;
-	DistributionChannelRepositoryJpaImpl repository;
+	JpaDistributionChannelRepository repository;
 
 	@Before
 	public void beforeTest() {
@@ -36,7 +36,7 @@ public class DistributionChannelRepositoryJpaImplTest {
 		transaction = mock(EntityTransaction.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-		repository = new DistributionChannelRepositoryJpaImpl(emf);
+		repository = new JpaDistributionChannelRepository(emf);
 	}
 
 	@Test

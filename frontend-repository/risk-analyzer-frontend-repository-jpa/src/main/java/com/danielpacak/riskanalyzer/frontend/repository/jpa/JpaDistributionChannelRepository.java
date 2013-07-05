@@ -16,12 +16,12 @@ import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.Facility;
 import com.danielpacak.riskanalyzer.frontend.repository.DistributionChannelRepository;
 
-public class DistributionChannelRepositoryJpaImpl implements DistributionChannelRepository {
+public class JpaDistributionChannelRepository implements DistributionChannelRepository {
 
-	private static final Logger logger = LoggerFactory.getLogger(DistributionChannelRepositoryJpaImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(JpaDistributionChannelRepository.class);
 	private EntityManagerFactory emf;
 
-	public DistributionChannelRepositoryJpaImpl(EntityManagerFactory emf) {
+	public JpaDistributionChannelRepository(EntityManagerFactory emf) {
 		this.emf = emf;
 	}
 

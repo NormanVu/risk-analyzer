@@ -15,12 +15,12 @@ import org.springframework.cache.annotation.Cacheable;
 import com.danielpacak.riskanalyzer.domain.Facility;
 import com.danielpacak.riskanalyzer.frontend.repository.FacilityRepository;
 
-public class FacilityRepositoryJpaImpl implements FacilityRepository {
+public class JpaFacilityRepository implements FacilityRepository {
 
-	private static final Logger logger = LoggerFactory.getLogger(FacilityRepositoryJpaImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(JpaFacilityRepository.class);
 	private EntityManagerFactory emf;
 
-	public FacilityRepositoryJpaImpl(EntityManagerFactory emf) {
+	public JpaFacilityRepository(EntityManagerFactory emf) {
 		this.emf = emf;
 	}
 

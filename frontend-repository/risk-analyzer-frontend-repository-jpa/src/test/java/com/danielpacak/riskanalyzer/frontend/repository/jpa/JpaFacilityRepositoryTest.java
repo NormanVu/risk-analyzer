@@ -19,14 +19,14 @@ import org.mockito.InOrder;
 import org.mockito.Mockito;
 
 import com.danielpacak.riskanalyzer.domain.Facility;
-import com.danielpacak.riskanalyzer.frontend.repository.jpa.FacilityRepositoryJpaImpl;
+import com.danielpacak.riskanalyzer.frontend.repository.jpa.JpaFacilityRepository;
 
-public class FacilityRepositoryJpaImplTest {
+public class JpaFacilityRepositoryTest {
 
 	EntityManagerFactory emf;
 	EntityManager em;
 	EntityTransaction transaction;
-	FacilityRepositoryJpaImpl repository;
+	JpaFacilityRepository repository;
 
 	@Before
 	public void beforeTest() {
@@ -35,7 +35,7 @@ public class FacilityRepositoryJpaImplTest {
 		transaction = mock(EntityTransaction.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-		repository = new FacilityRepositoryJpaImpl(emf);
+		repository = new JpaFacilityRepository(emf);
 	}
 
 	@Test

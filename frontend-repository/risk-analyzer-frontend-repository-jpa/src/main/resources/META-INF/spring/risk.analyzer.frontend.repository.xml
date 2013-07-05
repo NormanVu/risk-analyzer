@@ -16,12 +16,12 @@
 	</bean>
 
 	<bean id="facilityRepository"
-		class="com.danielpacak.riskanalyzer.frontend.repository.jpa.FacilityRepositoryJpaImpl">
+		class="com.danielpacak.riskanalyzer.frontend.repository.jpa.JpaFacilityRepository">
 		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 
 	<bean id="distributionChannelRepository"
-		class="com.danielpacak.riskanalyzer.frontend.repository.jpa.DistributionChannelRepositoryJpaImpl">
+		class="com.danielpacak.riskanalyzer.frontend.repository.jpa.JpaDistributionChannelRepository">
 		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 
