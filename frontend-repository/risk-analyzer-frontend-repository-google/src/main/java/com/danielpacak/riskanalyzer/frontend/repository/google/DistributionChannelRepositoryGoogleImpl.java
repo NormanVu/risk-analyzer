@@ -17,8 +17,8 @@ public class DistributionChannelRepositoryGoogleImpl implements DistributionChan
 	}
 
 	@CacheEvict(value = "distribution-channel", key = "#distributionChannel.id", condition = "#distributionChannel.id != null")
-	public DistributionChannel save(final DistributionChannel channel, final String sourceId, final String targetId) {
-		return datastoreTemplate.put(channel, new DistributionChannelWriteConverter(sourceId, targetId));
+	public DistributionChannel save(final DistributionChannel distributionChannel, final String sourceId, final String targetId) {
+		return datastoreTemplate.put(distributionChannel, new DistributionChannelWriteConverter(sourceId, targetId));
 	}
 
 	@CacheEvict(value = "distribution-channel")
