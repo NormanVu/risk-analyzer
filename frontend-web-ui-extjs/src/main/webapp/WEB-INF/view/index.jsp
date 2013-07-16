@@ -23,6 +23,7 @@
 		<script type="text/javascript" src="./risk-analyzer/HelpWindow.js"></script>
 		<script type="text/javascript" src="./risk-analyzer/EmailWindow.js"></script>
 		<script type="text/javascript" src="./risk-analyzer/AddressWindow.js"></script>
+		<script type="text/javascript" src="./com/danielpacak/risk/analyzer/frontend/FacilityWindow.js"></script>
 		<script type="text/javascript">
 			Ext.Loader.setConfig({enabled: true});
 			Ext.Loader.setPath('Ext.ux', './ux');

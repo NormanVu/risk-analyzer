@@ -258,14 +258,18 @@ Ext.define('RiskAnalyzer.MainPanel', {
   },
 
   onImportClick: function() {
-    var win = Ext.create('widget.importwindow', {
+	  var win = Ext.create('com.danielpacak.risk.analyzer.frontend.FacilityWindowController');
+	  win.display();
+	  
+	  
+    /*var win = Ext.create('widget.importwindow', {
       listeners: {
         scope: this,
         networkimported: this.onNetworkImported
       }
     });
 
-    win.show();
+    win.show();*/
   },
 
   onNetworkImported: function(win) {
