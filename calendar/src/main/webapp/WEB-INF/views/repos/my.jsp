@@ -15,6 +15,7 @@
         <tr>
             <th>Name</th>
             <th>Clone URL</th>
+            <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +29,8 @@
                 <c:url var="repoUrl" value="${repo.name}"/>
                 <td><a href="${repoUrl}"><c:out value="${repo.name}" /></a></td>
                 <td>${repo.cloneUrl}</td>
+                <c:url var="releaseUrl" value="/repos/release/${repo.name}" />
+                <td><a href="${releaseUrl}">Release</a></td>
             </tr>
         </c:forEach>
     </tbody>

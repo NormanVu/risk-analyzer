@@ -20,15 +20,18 @@ public class GitHubRepositoryService implements RepositoryService {
 		return rs.getRepositories();
 	}
 
+	// FIXME JUST TO DEMONSTRATE
 	@Override
 	public Repository findByUser(UserContext context, String repoName)
 			throws IOException {
-		GitHubClient client = new GitHubClient();
-		client.setCredentials(context.getCurrentUser().getEmail(), context
-				.getCurrentUser().getPassword());
 
-		org.eclipse.egit.github.core.service.RepositoryService rs = new org.eclipse.egit.github.core.service.RepositoryService(client);
-		return rs.getRepository(context.getCurrentUser().getName(), repoName);
+		List<Repository> repositories = findByUser(context);
+		for (Repository repository : repositories) {
+			if (repoName.equals(repository.getName())) {
+				return repository;
+			}
+		}
+		return null;
 	}
 
 	public Repository create(UserContext context, String name,

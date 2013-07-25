@@ -16,12 +16,8 @@ Ext.define('com.danielpacak.risk.analyzer.frontend.FacilityWindow', {
 
 	initComponent : function() {
 		var me = this;
-
-		me._form = Ext.create('widget.form', {
-			bodyPadding : '12 10 10',
-			border : false,
-			unstyled : true,
-			items : [{
+		
+		var general = {
 				xtype : 'fieldset',
 				padding : 10,
 				defaults : {
@@ -51,7 +47,13 @@ Ext.define('com.danielpacak.risk.analyzer.frontend.FacilityWindow', {
 					xtype : 'textarea',
 					maxLength : 255
 				}]
-			}, {
+			};
+
+		me._form = Ext.create('widget.form', {
+			bodyPadding : '12 10 10',
+			border : false,
+			unstyled : true,
+			items : [general,{
 				xtype : 'fieldset',
 				title: 'Location',
 				padding: 10,
@@ -66,7 +68,7 @@ Ext.define('com.danielpacak.risk.analyzer.frontend.FacilityWindow', {
 					allowBlank : false,
 					listeners : {
 						scope : me._controller,
-						blur : me._controller.onAddressChange,
+						blur : me._controller.onAddressChange
 					}
 				}, {
 					name : 'latitude',
@@ -173,20 +175,17 @@ Ext.define('com.danielpacak.risk.analyzer.frontend.FacilityWindow', {
 				}]
 			}]
 		});
-
-		
-		
 		
 		var saveButton = {
-			id : 'facilityDialogSaveButton',
 			xtype : 'button',
+			id : 'facilityDialogSaveButton',
 			text : 'Save',
 			scope : me._controller,
 			handler : me._controller.onSaveButtonClick
 		}; 
 		var cancelButton = {
-			id : 'facilityDialogCloseButton',
 			xtype : 'button',
+			id : 'facilityDialogCloseButton',
 			text : 'Cancel',
 			scope : me._controller,
 			handler : me._controller.onCancelButtonClick
