@@ -36,7 +36,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-frontend-service</artifactId>
+			<artifactId>frontend.service.api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
+			<artifactId>frontend.service.simple</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>

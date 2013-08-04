@@ -3,13 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.danielpacak.risk-analyzer</groupId>
-		<artifactId>risk-analyzer</artifactId>
+		<artifactId>frontend</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>frontend</artifactId>
+	<artifactId>frontend.service</artifactId>
 	<packaging>pom</packaging>
+
 	<modules>
-		<module>repository</module>
-		<module>service</module>
+		<module>service.api</module>
+		<module>service.simple</module>
 	</modules>
+
 </project>

@@ -22,8 +22,8 @@ import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 import com.danielpacak.riskanalyzer.domain.Facility;
 import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionNetworkRepository;
-import com.scirisk.riskanalyzer.service.NetworkMarshaller;
-import com.scirisk.riskanalyzer.service.NetworkParser;
+import com.danielpacak.riskanalyzer.frontend.service.api.NetworkMarshaller;
+import com.danielpacak.riskanalyzer.frontend.service.api.NetworkParser;
 
 @Controller
 public class NetworkController {
