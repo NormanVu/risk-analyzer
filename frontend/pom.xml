@@ -8,9 +8,12 @@
 	</parent>
 	<artifactId>frontend</artifactId>
 	<packaging>pom</packaging>
+
 	<modules>
 		<module>repository</module>
 		<module>service</module>
 		<module>web.controller</module>
+		<module>web.ui.extjs</module>
 	</modules>
+
 </project>
