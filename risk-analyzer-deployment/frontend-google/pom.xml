@@ -34,7 +34,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-frontend-repository-google</artifactId>
+			<artifactId>frontend.repository.google</artifactId>
 		</dependency>
 		<!-- JSON Processor -->
 		<dependency>

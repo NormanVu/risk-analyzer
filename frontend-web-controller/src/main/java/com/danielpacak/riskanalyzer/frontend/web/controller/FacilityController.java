@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.danielpacak.riskanalyzer.domain.Facility;
-import com.danielpacak.riskanalyzer.frontend.repository.FacilityRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.api.FacilityRepository;
 
 @Controller
 @RequestMapping(value = "/facility")
@@ -23,8 +23,7 @@ public class FacilityController {
 	FacilityRepository facilityRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<String> save(@RequestBody Facility node)
-			throws Exception {
+	public ResponseEntity<String> save(@RequestBody Facility node) throws Exception {
 		facilityRepository.save(node);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
@@ -36,8 +35,7 @@ public class FacilityController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("id") String nodeId)
-			throws Exception {
+	public ResponseEntity<String> delete(@PathVariable("id") String nodeId) throws Exception {
 		facilityRepository.delete(nodeId);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}

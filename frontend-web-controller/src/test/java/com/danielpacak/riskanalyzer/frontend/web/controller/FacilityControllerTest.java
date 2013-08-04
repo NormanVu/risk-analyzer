@@ -15,8 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.danielpacak.riskanalyzer.domain.Facility;
-import com.danielpacak.riskanalyzer.frontend.repository.FacilityRepository;
-import com.danielpacak.riskanalyzer.frontend.web.controller.FacilityController;
+import com.danielpacak.riskanalyzer.frontend.repository.api.FacilityRepository;
 
 public class FacilityControllerTest {
 
@@ -40,8 +39,7 @@ public class FacilityControllerTest {
 	public void testRead() throws Exception {
 		String facilityId = "13";
 		Facility facility = new Facility();
-		when(controller.facilityRepository.findOne(facilityId)).thenReturn(
-				facility);
+		when(controller.facilityRepository.findOne(facilityId)).thenReturn(facility);
 		Facility foundFacility = controller.read(facilityId);
 		verify(controller.facilityRepository).findOne(facilityId);
 		assertEquals(facility, foundFacility);

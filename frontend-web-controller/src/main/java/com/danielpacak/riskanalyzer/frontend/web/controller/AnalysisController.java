@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
-import com.danielpacak.riskanalyzer.frontend.repository.DistributionNetworkRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.backend.proxy.CalculateRequest;
 import com.scirisk.riskanalyzer.backend.proxy.CalculateResponse;
 import com.scirisk.riskanalyzer.backend.proxy.FrequencyDistributionService;
@@ -30,21 +30,18 @@ public class AnalysisController {
 	private DistributionNetworkRepository networkRepository;
 
 	@RequestMapping(value = "/frequency-distribution", method = RequestMethod.POST)
-	public void submit(@RequestBody FrequencyDistributionParameters params,
-			HttpServletResponse resp) throws Exception {
+	public void submit(@RequestBody FrequencyDistributionParameters params, HttpServletResponse resp) throws Exception {
 		DistributionNetwork network = networkRepository.read();
 
 		String endpointUrl = params.getEndpointUrl();
 
 		Map<String, String> inputParams = new HashMap<String, String>();
-		inputParams.put("number_of_iterations",
-				"" + params.getNumberOfIterations());
+		inputParams.put("number_of_iterations", "" + params.getNumberOfIterations());
 		inputParams.put("time_horizon", "" + params.getTimeHorizon());
 		inputParams.put("confidence_level", "" + params.getConfidenceLevel());
 
 		JSONObject submitSimulationResponse = null;
-		FrequencyDistributionService proxy = new FrequencyDistributionServiceSoapProxy(
-				endpointUrl);
+		FrequencyDistributionService proxy = new FrequencyDistributionServiceSoapProxy(endpointUrl);
 
 		CalculateRequest request = new CalculateRequest();
 		request.setNetwork(network);
@@ -69,8 +66,7 @@ public class AnalysisController {
 		}
 
 		JSONArray outputParams = new JSONArray();
-		for (Entry<String, String> entry : response.getOutputParams()
-				.entrySet()) {
+		for (Entry<String, String> entry : response.getOutputParams().entrySet()) {
 			JSONObject param = new JSONObject();
 			param.put("param", entry.getKey());
 			param.put("value", entry.getValue());
@@ -78,8 +74,7 @@ public class AnalysisController {
 		}
 
 		JSONObject outputParamsFormData = new JSONObject();
-		for (Entry<String, String> entry : response.getOutputParams()
-				.entrySet()) {
+		for (Entry<String, String> entry : response.getOutputParams().entrySet()) {
 			outputParamsFormData.put(entry.getKey(), entry.getValue());
 		}
 

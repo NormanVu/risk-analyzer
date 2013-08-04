@@ -36,7 +36,7 @@
 		<module>logging</module>
 
 		<module>risk-analyzer-datasource</module>
-		<module>frontend-repository</module>
+		<!-- <module>frontend-repository</module>-->
 		<module>frontend-service</module>
 		<module>frontend-web-controller</module>
 		<module>frontend-webapp</module>
@@ -50,16 +50,41 @@
 
 		<module>risk-analyzer-deployment</module>
 		<module>risk-analyzer-test</module>
-		<module>risk-analyzer-reference</module>
 		<module>risk-analyzer-web-extjs</module>
+		<module>frontend</module>
 	</modules>
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- Internal -->
+			<!-- Internal Modules -->
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-domain</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
+				<artifactId>frontend.repository.api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
+				<artifactId>frontend.repository.jpa</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
+				<artifactId>frontend.repository.google</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
+				<artifactId>frontend.repository.mongodb</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
+				<artifactId>frontend.repository.neo4j</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -80,31 +105,6 @@
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-datasource-mysql</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-frontend-repository-api</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-frontend-repository-jpa</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-frontend-repository-mongodb</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-frontend-repository-neo4j</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-frontend-repository-google</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -348,7 +348,7 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.10</version>
+				<version>4.11</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>

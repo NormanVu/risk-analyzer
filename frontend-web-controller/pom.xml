@@ -13,7 +13,7 @@
 		<!-- Internal -->
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-frontend-repository-api</artifactId>
+			<artifactId>frontend.repository.api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>

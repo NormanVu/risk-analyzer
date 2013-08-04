@@ -17,10 +17,8 @@ import org.springframework.http.ResponseEntity;
 
 import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.Facility;
-import com.danielpacak.riskanalyzer.frontend.repository.DistributionChannelRepository;
-import com.danielpacak.riskanalyzer.frontend.repository.FacilityRepository;
-import com.danielpacak.riskanalyzer.frontend.web.controller.DistributionChannelController;
-import com.danielpacak.riskanalyzer.frontend.web.controller.DistributionChannelFormBean;
+import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionChannelRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.api.FacilityRepository;
 
 public class DistributionChannelControllerTest {
 
@@ -44,15 +42,12 @@ public class DistributionChannelControllerTest {
 		formBean.setTargetId("311");
 
 		ResponseEntity<String> responseEntity = controller.save(formBean);
-		ArgumentCaptor<DistributionChannel> argument = ArgumentCaptor
-				.forClass(DistributionChannel.class);
+		ArgumentCaptor<DistributionChannel> argument = ArgumentCaptor.forClass(DistributionChannel.class);
 
-		verify(controller.distributionChannelRepository).save(
-				argument.capture(), eq(formBean.getSourceId()),
+		verify(controller.distributionChannelRepository).save(argument.capture(), eq(formBean.getSourceId()),
 				eq(formBean.getTargetId()));
 		assertEquals(distributionChannelId, argument.getValue().getId());
-		assertEquals(purchasingVolume, argument.getValue()
-				.getPurchasingVolume());
+		assertEquals(purchasingVolume, argument.getValue().getPurchasingVolume());
 		assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
 	}
 
@@ -72,14 +67,10 @@ public class DistributionChannelControllerTest {
 		distributionChannel.setTarget(target);
 
 		List<Facility> facilities = new ArrayList<Facility>();
-		when(
-				controller.distributionChannelRepository
-						.findOne(distributionChannelId)).thenReturn(
-				distributionChannel);
+		when(controller.distributionChannelRepository.findOne(distributionChannelId)).thenReturn(distributionChannel);
 		when(controller.facilityRepository.findAll()).thenReturn(facilities);
 
-		DistributionChannelFormBean foundFormBean = controller
-				.read(distributionChannelId);
+		DistributionChannelFormBean foundFormBean = controller.read(distributionChannelId);
 		assertEquals(distributionChannelId, foundFormBean.getId());
 		assertEquals(new Double(0.5), foundFormBean.getPurchasingVolume());
 		assertEquals(sourceId, foundFormBean.getSourceId());
@@ -90,10 +81,8 @@ public class DistributionChannelControllerTest {
 	@Test
 	public void testDelete() throws Exception {
 		String distributionChannelId = "13";
-		ResponseEntity<String> responseEntity = controller
-				.delete(distributionChannelId);
-		verify(controller.distributionChannelRepository).delete(
-				distributionChannelId);
+		ResponseEntity<String> responseEntity = controller.delete(distributionChannelId);
+		verify(controller.distributionChannelRepository).delete(distributionChannelId);
 		assertEquals(HttpStatus.ACCEPTED, responseEntity.getStatusCode());
 	}
 

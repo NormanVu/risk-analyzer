@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.Facility;
-import com.danielpacak.riskanalyzer.frontend.repository.DistributionChannelRepository;
-import com.danielpacak.riskanalyzer.frontend.repository.FacilityRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionChannelRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.api.FacilityRepository;
 
 @Controller
 @RequestMapping(value = "/distribution-channel")
@@ -28,26 +28,22 @@ public class DistributionChannelController {
 	FacilityRepository facilityRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<String> save(
-			@RequestBody DistributionChannelFormBean formBean) throws Exception {
-		distributionChannelRepository.save(formBean.getDistributionChannel(),
-				formBean.getSourceId(), formBean.getTargetId());
+	public ResponseEntity<String> save(@RequestBody DistributionChannelFormBean formBean) throws Exception {
+		distributionChannelRepository.save(formBean.getDistributionChannel(), formBean.getSourceId(),
+				formBean.getTargetId());
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	DistributionChannelFormBean read(
-			@PathVariable("id") String distributionChannelId) throws Exception {
-		DistributionChannel channel = distributionChannelRepository
-				.findOne(distributionChannelId);
+	DistributionChannelFormBean read(@PathVariable("id") String distributionChannelId) throws Exception {
+		DistributionChannel channel = distributionChannelRepository.findOne(distributionChannelId);
 		List<Facility> facilities = facilityRepository.findAll();
 		return new DistributionChannelFormBean(channel, facilities);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(
-			@PathVariable("id") String distributionChannelId) throws Exception {
+	public ResponseEntity<String> delete(@PathVariable("id") String distributionChannelId) throws Exception {
 		distributionChannelRepository.delete(distributionChannelId);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}

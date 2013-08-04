@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 import com.danielpacak.riskanalyzer.domain.Facility;
-import com.danielpacak.riskanalyzer.frontend.repository.DistributionNetworkRepository;
+import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.service.NetworkMarshaller;
 import com.scirisk.riskanalyzer.service.NetworkParser;
 
@@ -44,8 +44,7 @@ public class NetworkController {
 	}
 
 	@RequestMapping(value = "/network/tree", method = RequestMethod.GET)
-	public void getNetworkForTree(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public void getNetworkForTree(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("application/json");
 		DistributionNetwork network = networkManager.read();
 
@@ -81,23 +80,20 @@ public class NetworkController {
 	}
 
 	@RequestMapping(value = "/network.xml", method = RequestMethod.GET)
-	public void exportToXml(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public void exportToXml(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		DistributionNetwork network = networkManager.read();
 		response.setContentType("application/xml");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-		String file = "risk-analyzer-network-export-"
-				+ dateFormat.format(new Date()) + ".xml";
+		String file = "risk-analyzer-network-export-" + dateFormat.format(new Date()) + ".xml";
 		response.setHeader("Content-Disposition", "attachment;filename=" + file);
 
 		networkMarshaller.marshall(network, response.getOutputStream());
 	}
 
 	@RequestMapping(value = "/network", method = RequestMethod.POST)
-	public void importFromXml(
-			@RequestParam("networkXml") MultipartFile networkXml,
-			HttpServletResponse resp) throws Exception {
+	public void importFromXml(@RequestParam("networkXml") MultipartFile networkXml, HttpServletResponse resp)
+			throws Exception {
 
 		JSONObject jsonResponse = new JSONObject();
 
@@ -131,8 +127,7 @@ public class NetworkController {
 		for (DistributionChannel e : edges) {
 			JSONObject edgeObject = new JSONObject();
 			edgeObject.element("id", "e_" + e.getId());
-			final String caption = e.getSource().getName() + " > "
-					+ e.getTarget().getName();
+			final String caption = e.getSource().getName() + " > " + e.getTarget().getName();
 			edgeObject.element("text", caption);
 			edgeObject.element("leaf", true);
 			edgesArray.add(edgeObject);

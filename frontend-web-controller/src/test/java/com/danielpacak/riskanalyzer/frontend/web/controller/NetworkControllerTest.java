@@ -9,15 +9,14 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
-import junit.framework.Assert;
 import net.sf.json.JSONObject;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
-import com.danielpacak.riskanalyzer.frontend.repository.DistributionNetworkRepository;
-import com.danielpacak.riskanalyzer.frontend.web.controller.NetworkController;
+import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionNetworkRepository;
 import com.scirisk.riskanalyzer.service.NetworkParser;
 
 public class NetworkControllerTest {

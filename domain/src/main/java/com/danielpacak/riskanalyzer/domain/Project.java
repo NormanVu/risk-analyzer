@@ -1,5 +1,6 @@
 package com.danielpacak.riskanalyzer.domain;
 
+/** Project model class. */
 public class Project {
 
 	private String id;
