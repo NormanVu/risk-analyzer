@@ -1,4 +1,4 @@
-## Risk Analyzer
+# Risk Analyzer
 
 This repository hosts the source code of a start-up project I took part in few months ago.
 The application requirement was for a supply chain management system that is accessible through a Web browser.
@@ -28,6 +28,13 @@ and deployed through a continuous integration infrastructure powered by [BuildHi
 You can see the latest build status by clicking here
 [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/). 
 
+## Packages
+The project is composed of 2 web applications named **backend** and **frontend**. They communicate by exchanging
+SOAP messages over the HTTP(S) protocol. The backend application is supposed to handle computationally intensive requests,
+whereas the fronted is meant to render the UI. The reason for such a split was mainly driven by pricing models
+offered by cloud/hosting providers which are proportional to CPU/memory consumption of a given application.
+
+## Screenshots
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/risk-analyzer.png)
 
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/node-dialog.png)
