@@ -1,5 +1,4 @@
-package com.scirisk.riskanalyzer.backend.proxy;
-
+package com.danielpacak.riskanalyzer.backend.service.proxy;
 
 public interface FrequencyDistributionService {
 

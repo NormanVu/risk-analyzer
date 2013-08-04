@@ -8,12 +8,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.danielpacak.riskanalyzer.backend.web.controller.FrequencyDistributionEndpoint;
-import com.scirisk.riskanalyzer.backend.proxy.CalculateRequest;
-import com.scirisk.riskanalyzer.backend.proxy.CalculateResponse;
-import com.scirisk.riskanalyzer.backend.proxy.FrequencyDistributionService;
-import com.scirisk.riskanalyzer.backend.proxy.RequestMarshaller;
-import com.scirisk.riskanalyzer.backend.proxy.ResponseMarshaller;
+import com.danielpacak.riskanalyzer.backend.service.proxy.CalculateRequest;
+import com.danielpacak.riskanalyzer.backend.service.proxy.CalculateResponse;
+import com.danielpacak.riskanalyzer.backend.service.proxy.FrequencyDistributionService;
+import com.danielpacak.riskanalyzer.backend.service.proxy.RequestMarshaller;
+import com.danielpacak.riskanalyzer.backend.service.proxy.ResponseMarshaller;
 
 public class FrequencyDistributionEndpointTest {
 

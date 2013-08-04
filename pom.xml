@@ -37,7 +37,6 @@
 		<module>backend</module>
 
 		<module>risk-analyzer-datasource</module>
-		<module>backend-proxy</module>
 		<module>backend-webapp</module>
 
 		<module>risk-analyzer-deployment</module>
@@ -127,7 +126,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-backend-proxy</artifactId>
+				<artifactId>backend.service.proxy</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

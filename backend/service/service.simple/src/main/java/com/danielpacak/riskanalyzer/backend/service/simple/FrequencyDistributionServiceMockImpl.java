@@ -3,9 +3,9 @@ package com.danielpacak.riskanalyzer.backend.service.simple;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.scirisk.riskanalyzer.backend.proxy.CalculateRequest;
-import com.scirisk.riskanalyzer.backend.proxy.CalculateResponse;
-import com.scirisk.riskanalyzer.backend.proxy.FrequencyDistributionService;
+import com.danielpacak.riskanalyzer.backend.service.proxy.CalculateRequest;
+import com.danielpacak.riskanalyzer.backend.service.proxy.CalculateResponse;
+import com.danielpacak.riskanalyzer.backend.service.proxy.FrequencyDistributionService;
 
 public class FrequencyDistributionServiceMockImpl implements FrequencyDistributionService {
 
