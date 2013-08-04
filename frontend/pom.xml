@@ -11,5 +11,6 @@
 	<modules>
 		<module>repository</module>
 		<module>service</module>
+		<module>web.controller</module>
 	</modules>
 </project>

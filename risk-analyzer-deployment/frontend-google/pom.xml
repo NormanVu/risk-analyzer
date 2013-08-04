@@ -30,7 +30,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-frontend-web-controller</artifactId>
+			<artifactId>frontend.web.controller</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
