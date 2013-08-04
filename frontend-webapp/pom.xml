@@ -52,7 +52,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-frontend-web-ui-extjs</artifactId>
+			<artifactId>frontend.web.ui.extjs</artifactId>
 			<type>war</type>
 		</dependency>
 		<dependency>
