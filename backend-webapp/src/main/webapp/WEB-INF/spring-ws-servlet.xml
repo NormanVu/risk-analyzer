@@ -9,7 +9,7 @@
 
 	<web-services:annotation-driven />
 
-	<context:component-scan base-package="com.danielpacak.riskanalyzer.backend.web" />
+	<context:component-scan base-package="com.danielpacak.riskanalyzer.backend.web.controller" />
 
 	<bean id="network_1_0" class="org.springframework.xml.xsd.SimpleXsdSchema">
 		<property name="xsd" value="/WEB-INF/network_1_0.xsd" />

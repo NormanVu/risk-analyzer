@@ -33,19 +33,16 @@
 
 	<modules>
 		<module>domain</module>
-		<module>logging</module>
+		<module>frontend</module>
+		<module>backend</module>
 
 		<module>risk-analyzer-datasource</module>
-
-		<module>backend-service</module>
 		<module>backend-proxy</module>
-		<module>backend-web-controller</module>
 		<module>backend-webapp</module>
 
 		<module>risk-analyzer-deployment</module>
 		<module>risk-analyzer-test</module>
 		<module>risk-analyzer-web-extjs</module>
-		<module>frontend</module>
 	</modules>
 
 	<dependencyManagement>
@@ -104,11 +101,6 @@
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>logging</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>risk-analyzer-datasource-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -124,7 +116,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-backend-web-controller</artifactId>
+				<artifactId>backend.web.controller</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -140,7 +132,12 @@
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-backend-service</artifactId>
+				<artifactId>backend.service.api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.danielpacak.risk-analyzer</groupId>
+				<artifactId>backend.service.simple</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
