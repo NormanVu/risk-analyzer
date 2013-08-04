@@ -52,7 +52,6 @@
 		<module>risk-analyzer-test</module>
 		<module>risk-analyzer-reference</module>
 		<module>risk-analyzer-web-extjs</module>
-		<module>calendar</module>
 	</modules>
 
 	<dependencyManagement>
@@ -338,6 +337,12 @@
 				<groupId>org.jdom</groupId>
 				<artifactId>jdom</artifactId>
 				<version>2.0.2</version>
+			</dependency>
+			<!--Ext JS Framework -->
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>extjs</artifactId>
+				<version>4.2.1.883</version>
 			</dependency>
 			<!-- Testing -->
 			<dependency>
