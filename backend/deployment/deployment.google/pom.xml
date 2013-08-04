@@ -10,7 +10,7 @@
 	<packaging>war</packaging>
 
 	<build>
-		<finalName>risk-analyzer-backend</finalName>
+		<finalName>${project.artifactId}</finalName>
 	</build>
 
 	<dependencies>
