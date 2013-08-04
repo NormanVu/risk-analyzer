@@ -11,6 +11,5 @@
 	<name>Risk Analyzer - Deployment</name>
 	<modules>
 		<module>backend-google</module>
-		<module>frontend-google</module>
 	</modules>
 </project>
