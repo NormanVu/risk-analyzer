@@ -35,11 +35,7 @@
 		<module>domain</module>
 		<module>frontend</module>
 		<module>backend</module>
-
 		<module>risk-analyzer-datasource</module>
-		<module>backend-webapp</module>
-
-		<module>risk-analyzer-deployment</module>
 		<module>risk-analyzer-test</module>
 		<module>risk-analyzer-web-extjs</module>
 	</modules>
@@ -120,7 +116,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-backend-webapp</artifactId>
+				<artifactId>backend.deployment.dev</artifactId>
 				<type>war</type>
 				<version>${project.version}</version>
 			</dependency>

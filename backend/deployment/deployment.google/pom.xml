@@ -3,27 +3,21 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.danielpacak.risk-analyzer</groupId>
-		<artifactId>risk-analyzer</artifactId>
+		<artifactId>backend.deployment</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>risk-analyzer-backend-webapp</artifactId>
+	<artifactId>backend.deployment.google</artifactId>
 	<packaging>war</packaging>
-	<name>Risk Analyzer - Backend - Web App</name>
+
+	<build>
+		<finalName>risk-analyzer-backend</finalName>
+	</build>
 
 	<dependencies>
-		<!-- Internal -->
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>backend.web.controller</artifactId>
-		</dependency>
-		<!-- JEE API -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
+			<artifactId>backend.deployment.dev</artifactId>
+			<type>war</type>
 		</dependency>
 	</dependencies>
 

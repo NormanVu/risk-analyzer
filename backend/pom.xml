@@ -10,5 +10,6 @@
   <modules>
   	<module>web.controller</module>
   	<module>service</module>
+  	<module>deployment</module>
   </modules>
 </project>

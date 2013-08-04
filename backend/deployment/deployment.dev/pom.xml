@@ -3,13 +3,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.danielpacak.risk-analyzer</groupId>
-		<artifactId>risk-analyzer</artifactId>
+		<artifactId>backend.deployment</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>risk-analyzer-deployment</artifactId>
-	<packaging>pom</packaging>
-	<name>Risk Analyzer - Deployment</name>
-	<modules>
-		<module>backend-google</module>
-	</modules>
+	<artifactId>backend.deployment.dev</artifactId>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<!-- Internal Modules -->
+		<dependency>
+			<groupId>com.danielpacak.risk-analyzer</groupId>
+			<artifactId>backend.web.controller</artifactId>
+		</dependency>
+	</dependencies>
+
 </project>
