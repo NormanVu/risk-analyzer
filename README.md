@@ -29,10 +29,11 @@ You can see the latest build status by clicking here
 [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/). 
 
 ## Packages
-The project is composed of 2 web applications named **backend** and **frontend**. They communicate by exchanging
-SOAP messages over the HTTP(S) protocol. The backend application is supposed to handle computationally intensive requests,
-whereas the fronted is meant to render the UI. The reason for such a split was mainly driven by pricing models
-offered by cloud/hosting providers which are proportional to CPU/memory consumption of a given application.
+The project is composed of two web applications named *backend* and *frontend*. Those two applications communicate
+by exchanging SOAP messages over the HTTP(S) protocol. The *backend* application is supposed to handle computationally
+intensive requests, whereas the *fronted* application is meant to render the UI. The reason for such a split was
+driven by common pricing models offered by cloud/hosting providers which are proportional to the CPU/memory consumption
+of a given application.
 
 ## Screenshots
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/risk-analyzer.png)
