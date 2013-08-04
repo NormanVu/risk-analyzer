@@ -3,18 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.danielpacak.risk-analyzer</groupId>
-		<artifactId>risk-analyzer</artifactId>
+		<artifactId>frontend.deployment</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>frontend</artifactId>
-	<packaging>pom</packaging>
-
-	<modules>
-		<module>repository</module>
-		<module>service</module>
-		<module>web.controller</module>
-		<module>web.ui.extjs</module>
-		<module>deployment</module>
-	</modules>
-
+	<artifactId>frontend.deployment.google</artifactId>
 </project>

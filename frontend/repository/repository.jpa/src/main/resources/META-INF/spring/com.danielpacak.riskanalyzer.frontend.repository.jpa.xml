@@ -26,7 +26,7 @@
 	</bean>
 
 	<bean
-		class="com.danielpacak.riskanalyzer.frontend.repository.DefaultDistributionNetworkRepository">
+		class="com.danielpacak.riskanalyzer.frontend.repository.api.DefaultDistributionNetworkRepository">
 		<constructor-arg ref="facilityRepository" />
 		<constructor-arg ref="distributionChannelRepository" />
 	</bean>

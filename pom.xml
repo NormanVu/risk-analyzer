@@ -36,7 +36,6 @@
 		<module>logging</module>
 
 		<module>risk-analyzer-datasource</module>
-		<module>frontend-webapp</module>
 
 		<module>backend-service</module>
 		<module>backend-proxy</module>

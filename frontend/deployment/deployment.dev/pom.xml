@@ -1,26 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<groupId>com.danielpacak.risk-analyzer</groupId>
-		<artifactId>risk-analyzer</artifactId>
+		<artifactId>frontend.deployment</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-
-	<artifactId>risk-analyzer-frontend-webapp</artifactId>
-	<name>Risk Analyzer - Frontend - Web App</name>
+	<artifactId>frontend.deployment.dev</artifactId>
 	<packaging>war</packaging>
 
 	<dependencies>
-		<!-- Internal -->
+		<!-- Internal Modules -->
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-domain</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>frontend.repository.api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
@@ -28,23 +21,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-datasource-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-datasource-hsql</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>frontend.service.api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>frontend.service.simple</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-backend-proxy</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
@@ -55,6 +36,7 @@
 			<artifactId>frontend.web.ui.extjs</artifactId>
 			<type>war</type>
 		</dependency>
+		<!-- TODO To be replaced with extjs webjar -->
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
 			<artifactId>risk-analyzer-web-extjs</artifactId>

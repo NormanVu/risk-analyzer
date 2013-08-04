@@ -4,7 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="networkMarshaller"
-		class="com.scirisk.riskanalyzer.service.NetworkMarshallerDomImpl" />
-	<bean id="networkParser" class="com.scirisk.riskanalyzer.service.NetworkParserDomImpl" />
+		class="com.danielpacak.riskanalyzer.frontend.service.simple.NetworkMarshallerDomImpl" />
+	<bean id="networkParser"
+		class="com.danielpacak.riskanalyzer.frontend.service.simple.NetworkParserDomImpl" />
 
 </beans>

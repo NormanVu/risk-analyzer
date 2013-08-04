@@ -33,16 +33,16 @@
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>/service/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:META-INF/spring/service.xml
-			classpath:META-INF/spring/risk.analyzer.frontend.repository.xml
+			classpath:META-INF/spring/com.danielpacak.riskanalyzer.frontend.service.simple.xml
+			classpath:META-INF/spring/com.danielpacak.riskanalyzer.frontend.repository.jpa.xml
 			classpath:META-INF/spring/datasource.xml
 		</param-value>
 	</context-param>
- 
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
