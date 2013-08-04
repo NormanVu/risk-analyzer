@@ -31,9 +31,9 @@ You can see the latest build status by clicking here
 ## Packages
 The project is composed of two web applications named *backend* and *frontend*. Those two applications communicate
 by exchanging SOAP messages over the HTTP(S) protocol. The *backend* application is supposed to handle computationally
-intensive requests, whereas the *fronted* application is meant to render the UI. The reason for such a split was
-driven by common pricing models offered by cloud/hosting providers which are proportional to the CPU/memory consumption
-of a given application.
+intensive requests, e.g. calculating a frequency distribution, whereas the *fronted* application is meant
+to render the UI. The reason for such a split was driven by common pricing models offered by cloud/hosting providers
+which are proportional to the CPU/memory consumption of a given application.
 
 ## Screenshots
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/risk-analyzer.png)
