@@ -1,4 +1,5 @@
-Ext.define('RiskAnalyzer.HelpWindow', {
+Ext.define('riskanalyzer.frontend.HelpWindow', {
+
 	extend : 'Ext.window.Window',
 
 	alias : 'widget.helpwindow',

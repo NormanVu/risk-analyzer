@@ -1,9 +1,18 @@
-Ext.define('RiskAnalyzer.MainPanel', {
-  extend: 'Ext.panel.Panel',
+Ext.define('riskanalyzer.frontend.MainPanel', {
 
-  alias: 'widget.mainpanel',
+	extend: 'Ext.panel.Panel',
 
-  initComponent: function(){
+	requires: ['riskanalyzer.frontend.NetworkPanel',
+	           'riskanalyzer.frontend.MapPanel',
+	           'riskanalyzer.frontend.FacilityWindow',
+	           'riskanalyzer.frontend.DistributionChannelWindow',
+	           'riskanalyzer.frontend.ParamsWindow',
+	           'riskanalyzer.frontend.FrequencyDistributionWindow',
+	           'riskanalyzer.frontend.HelpWindow'],
+
+	alias: 'widget.mainpanel',
+
+	initComponent: function() {
     Ext.apply(this, {
       layout: 'border',
       items: [
@@ -258,18 +267,14 @@ Ext.define('RiskAnalyzer.MainPanel', {
   },
 
   onImportClick: function() {
-	  var win = Ext.create('com.danielpacak.risk.analyzer.frontend.FacilityWindowController');
-	  win.display();
-	  
-	  
-    /*var win = Ext.create('widget.importwindow', {
+    var win = Ext.create('widget.importwindow', {
       listeners: {
         scope: this,
         networkimported: this.onNetworkImported
       }
     });
 
-    win.show();*/
+    win.show();
   },
 
   onNetworkImported: function(win) {

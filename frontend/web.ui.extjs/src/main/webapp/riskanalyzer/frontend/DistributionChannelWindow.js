@@ -1,4 +1,5 @@
-Ext.define('RiskAnalyzer.EdgeWindow', {
+Ext.define('riskanalyzer.frontend.DistributionChannelWindow', {
+
 	extend: 'Ext.window.Window',
 
 	alias: 'widget.edgewindow',

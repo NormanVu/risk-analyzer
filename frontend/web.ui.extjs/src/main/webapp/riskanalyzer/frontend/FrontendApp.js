@@ -1,10 +1,8 @@
-/**
- * The main RiskAnalyzer application.
- * 
- * @author Daniel Pacak
- */
-Ext.define('RiskAnalyzer.App', {
+Ext.define('riskanalyzer.frontend.FrontendApp', {
+
 	extend : 'Ext.container.Viewport',
+
+	requires : 'riskanalyzer.frontend.MainPanel',
 
 	initComponent : function() {
 		Ext.apply(this, {

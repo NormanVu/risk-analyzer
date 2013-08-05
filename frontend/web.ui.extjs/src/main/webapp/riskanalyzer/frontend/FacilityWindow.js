@@ -1,23 +1,25 @@
-/** The UI component for editing facility properties. */
-Ext.define('com.danielpacak.risk.analyzer.frontend.FacilityWindow', {
+Ext.define('riskanalyzer.frontend.FacilityWindow', {
 
 	extend : 'Ext.window.Window',
 
-	alias : 'widget.window.facility',
-	
-	_controller : undefined,
-	_form : undefined,
-	
-	constructor : function(config) {
-		var me = this;
-		me._controller = config.controller;
-		me.callParent(arguments);
-	},
+	alias : 'widget.nodewindow',
+	plain : true,
 
 	initComponent : function() {
-		var me = this;
-		
-		var general = {
+		this.addEvents('nodecreated');
+
+		//this.geocoder = new google.maps.Geocoder();
+
+		this.kindStore = [
+			['company', 'Company'],
+			['supplier', 'Supplier']
+		];
+
+		this.form = Ext.create('widget.form', {
+			bodyPadding : '12 10 10',
+			border : false,
+			unstyled : true,
+			items : [{
 				xtype : 'fieldset',
 				padding : 10,
 				defaults : {
@@ -31,7 +33,7 @@ Ext.define('com.danielpacak.risk.analyzer.frontend.FacilityWindow', {
 					name : 'kind',
 					fieldLabel : 'Kind',
 					xtype : 'combo',
-					store : [['company', 'Company'], ['supplier', 'Supplier']],
+					store : this.kindStore,
 					editable : false,
 					allowBlank : false
 				}, {
@@ -47,13 +49,7 @@ Ext.define('com.danielpacak.risk.analyzer.frontend.FacilityWindow', {
 					xtype : 'textarea',
 					maxLength : 255
 				}]
-			};
-
-		me._form = Ext.create('widget.form', {
-			bodyPadding : '12 10 10',
-			border : false,
-			unstyled : true,
-			items : [general,{
+			}, {
 				xtype : 'fieldset',
 				title: 'Location',
 				padding: 10,
@@ -67,8 +63,8 @@ Ext.define('com.danielpacak.risk.analyzer.frontend.FacilityWindow', {
 					xtype : 'textfield',
 					allowBlank : false,
 					listeners : {
-						scope : me._controller,
-						blur : me._controller.onAddressChange
+						blur : this.onAddressBlur,
+						scope : this
 					}
 				}, {
 					name : 'latitude',
@@ -175,31 +171,95 @@ Ext.define('com.danielpacak.risk.analyzer.frontend.FacilityWindow', {
 				}]
 			}]
 		});
-		
-		var saveButton = {
-			xtype : 'button',
-			id : 'facilityDialogSaveButton',
-			text : 'Save',
-			scope : me._controller,
-			handler : me._controller.onSaveButtonClick
-		}; 
-		var cancelButton = {
-			xtype : 'button',
-			id : 'facilityDialogCloseButton',
-			text : 'Cancel',
-			scope : me._controller,
-			handler : me._controller.onCancelButtonClick
-		};
 
-		Ext.apply(me, {
+		Ext.apply(this, {
 			width : 400,
 			title : 'Facility',
 			modal : true,
-			items : me._form,
-			buttons : [ saveButton, cancelButton ]
+			iconCls : 'feed',
+			layout : 'fit',
+			items : this.form,
+			buttons : [{
+				id : 'facilityDialogSaveButton',
+				xtype : 'button',
+				text : 'Save',
+				scope : this,
+				handler : this.onSaveClick
+			}, {
+				id : 'facilityDialogCloseButton',
+				xtype : 'button',
+				text : 'Cancel',
+				scope : this,
+				handler : this.destroy
+			}]
 		});
+		this.callParent(arguments);
+	},
 
-		me.callParent(arguments);
+	setFieldValues : function(values) {
+		this.form.getForm().setValues(values);
+	},
+
+	onAddressBlur : function(field, eOpts) {
+		var form = this.form;
+		var fieldValues = form.getForm().getFieldValues();
+		var address = fieldValues.address;
+		form.setLoading({msg: 'Validating address...'});
+try {
+		new google.maps.Geocoder().geocode({'address': address}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				form.setLoading(false);
+				var lng = results[0].geometry.location.lng();
+				var lat = results[0].geometry.location.lat();
+
+				fieldValues.latitude = lat;
+				fieldValues.longitude = lng;
+				form.getForm().setValues(fieldValues);
+			} else {
+				form.setLoading(false);
+				field.markInvalid(address + " is not a valid address");
+				fieldValues.latitude = null;
+				fieldValues.longitude = null;
+				form.getForm().setValues(fieldValues);
+			}
+		});
+} catch (error) {
+	alert('cannot find location...' + error);
+	form.setLoading(false);
+}
+	},
+
+	onSaveClick : function() {
+		if (this.form.getForm().isValid()) {
+			var fieldValues = this.form.getForm().getFieldValues();
+
+			this.form.setLoading({
+				msg: 'Saving facility...'
+			});
+			Ext.Ajax.request({
+				url : 'service/facility',
+				jsonData : fieldValues,
+				success : this.onSaveSuccess,
+				failure : this.onSaveFailure,
+				scope: this
+			});
+		}
+	},
+
+	onSaveSuccess : function(response){
+		this.form.setLoading(false);
+		this.fireEvent('nodecreated', this);
+		this.destroy();
+	},
+
+	onSaveFailure : function(){
+		this.form.setLoading(false);
+		Ext.MessageBox.show({
+			title: 'Application Error',
+			msg: 'There was a problem processing your request. Please try again later or contact your system administrator.',
+			buttons: Ext.MessageBox.OK,
+			icon: Ext.MessageBox.ERROR
+		});
 	}
 
 });

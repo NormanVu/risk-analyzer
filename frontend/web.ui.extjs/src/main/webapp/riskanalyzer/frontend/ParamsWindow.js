@@ -1,19 +1,9 @@
-/**
- * @class RiskAnalyzer.ParamsWindow
- * @extends Ext.window.Window
- *
- * Shows a dialog for editing simulation parameters.
- * 
- * @constructor
- * Create a new Params Window
- * @param {Object} config The config object
- */
+Ext.define('riskanalyzer.frontend.ParamsWindow', {
 
-Ext.define('RiskAnalyzer.ParamsWindow', {
-  extend: 'Ext.window.Window',
+	extend: 'Ext.window.Window',
 
-  alias: 'widget.paramswindow',
-  plain: true,
+	alias: 'widget.paramswindow',
+	plain: true,
 
   initComponent: function() {
     this.addEvents(

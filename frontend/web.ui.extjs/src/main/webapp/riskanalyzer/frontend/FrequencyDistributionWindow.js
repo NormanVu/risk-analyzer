@@ -1,16 +1,4 @@
-// simulation report window
-/**
- * @class RiskAnalyzer.ReportWindow
- * @extends Ext.window.Window
- *
- * Shows a dialog for displaying simulation results.
- * 
- * @constructor
- * Create a new Report Window
- * @param {Object} config The config object
- */
-
-Ext.define('RiskAnalyzer.ReportWindow', {
+Ext.define('riskanalyzer.frontend.FrequencyDistributionWindow', {
   extend: 'Ext.window.Window',
 
   alias: 'widget.reportwindow',

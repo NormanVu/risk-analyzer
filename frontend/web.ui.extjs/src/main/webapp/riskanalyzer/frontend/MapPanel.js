@@ -1,21 +1,13 @@
-Ext.define('RiskAnalyzer.MapPanel', {
-  extend: 'Ext.panel.Panel',
+Ext.define('riskanalyzer.frontend.MapPanel', {
 
-  alias: 'widget.mappanel',
+	extend: 'Ext.panel.Panel',
 
-  initComponent: function() {
-    this.addEvents(
-      /**
-       * @event nodecreated
-       * @param {RiskAnalyzer.MapPanel} this
-       * @param {int} nodeId
-       */
-      'nodeclick',
-      'edgeclick'
-    );
+	alias: 'widget.mappanel',
 
-    this.callParent(arguments);
-  },
+	initComponent: function() {
+		this.addEvents('nodeclick', 'edgeclick');
+		this.callParent(arguments);
+	},
 
   afterRender : function(){
 	  try {
