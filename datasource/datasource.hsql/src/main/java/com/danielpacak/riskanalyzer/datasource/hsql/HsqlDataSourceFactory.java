@@ -1,11 +1,12 @@
-package com.scirisk.riskanalyzer.datasource.mysql;
+package com.danielpacak.riskanalyzer.datasource.hsql;
 
 import javax.sql.DataSource;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import com.scirisk.riskanalyzer.datasource.DataSourceFactory;
+import org.hsqldb.jdbc.JDBCDataSource;
 
-public class DataSourceFactoryMySqlImpl implements DataSourceFactory {
+import com.danielpacak.riskanalyzer.datasource.api.DataSourceFactory;
+
+public class HsqlDataSourceFactory implements DataSourceFactory {
 
 	private String user;
 	private String password;
@@ -24,7 +25,7 @@ public class DataSourceFactoryMySqlImpl implements DataSourceFactory {
 	}
 
 	public DataSource getDataSource() {
-		MysqlDataSource dataSource = new MysqlDataSource();
+		JDBCDataSource dataSource = new JDBCDataSource();
 		dataSource.setUser(user);
 		dataSource.setPassword(password);
 		dataSource.setUrl(url);

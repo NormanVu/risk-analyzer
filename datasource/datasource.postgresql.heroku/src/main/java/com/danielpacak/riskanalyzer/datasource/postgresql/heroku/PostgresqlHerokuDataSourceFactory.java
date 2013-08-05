@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.datasource.postgresql;
+package com.danielpacak.riskanalyzer.datasource.postgresql.heroku;
 
 import java.net.URI;
 
@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 
 import org.postgresql.ds.PGSimpleDataSource;
 
-import com.scirisk.riskanalyzer.datasource.DataSourceFactory;
+import com.danielpacak.riskanalyzer.datasource.api.DataSourceFactory;
 
 /**
  * Heroku automatically provisions a small database when you create a Java
@@ -17,11 +17,11 @@ import com.scirisk.riskanalyzer.datasource.DataSourceFactory;
  * postgres://user:password@hostname:port/dbname
  * </pre>
  */
-public class DataSourceFactoryPostgresqlImpl implements DataSourceFactory {
+public class PostgresqlHerokuDataSourceFactory implements DataSourceFactory {
 
 	private URI databaseUri;
 
-	public DataSourceFactoryPostgresqlImpl(URI databaseUri) {
+	public PostgresqlHerokuDataSourceFactory(URI databaseUri) {
 		this.databaseUri = databaseUri;
 	}
 

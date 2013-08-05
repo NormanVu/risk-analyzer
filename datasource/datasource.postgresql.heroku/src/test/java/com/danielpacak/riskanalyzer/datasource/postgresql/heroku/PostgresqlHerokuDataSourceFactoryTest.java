@@ -1,4 +1,4 @@
-package com.scirisk.riskanalyzer.datasource.postgresql;
+package com.danielpacak.riskanalyzer.datasource.postgresql.heroku;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,18 +9,19 @@ import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.scirisk.riskanalyzer.datasource.DataSourceFactory;
+import com.danielpacak.riskanalyzer.datasource.api.DataSourceFactory;
+import com.danielpacak.riskanalyzer.datasource.postgresql.heroku.PostgresqlHerokuDataSourceFactory;
 
-public class DataSourceFactoryPostgresqlImplTest {
+/**
+ * Tests for {@link PostgresqlHerokuDataSourceFactory}.
+ */
+public class PostgresqlHerokuDataSourceFactoryTest {
 
 	@Test
 	public void testGetDataSource() throws Exception {
-		URI databaseUri = new URI(
-				"postgres://user:password@hostname:9090/dbname");
-		DataSourceFactory factory = new DataSourceFactoryPostgresqlImpl(
-				databaseUri);
-		PGSimpleDataSource dataSource = (PGSimpleDataSource) factory
-				.getDataSource();
+		URI databaseUri = new URI("postgres://user:password@hostname:9090/dbname");
+		DataSourceFactory factory = new PostgresqlHerokuDataSourceFactory(databaseUri);
+		PGSimpleDataSource dataSource = (PGSimpleDataSource) factory.getDataSource();
 		assertEquals("user", dataSource.getUser());
 		assertEquals("password", dataSource.getPassword());
 		assertEquals("hostname", dataSource.getServerName());
@@ -30,13 +31,10 @@ public class DataSourceFactoryPostgresqlImplTest {
 
 	@Test
 	public void testGetDataSourceThroughApplicationContext() throws Exception {
-		System.setProperty("DATABASE_URL",
-				"postgres://user:password@hostname:9090/dbname");
-		ApplicationContext ctx = new ClassPathXmlApplicationContext(
-				"META-INF/spring/datasource.xml");
+		System.setProperty("DATABASE_URL", "postgres://user:password@hostname:9090/dbname");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/spring/datasource.xml");
 		DataSourceFactory factory = ctx.getBean(DataSourceFactory.class);
-		PGSimpleDataSource dataSource = (PGSimpleDataSource) factory
-				.getDataSource();
+		PGSimpleDataSource dataSource = (PGSimpleDataSource) factory.getDataSource();
 		assertEquals("user", dataSource.getUser());
 		assertEquals("password", dataSource.getPassword());
 		assertEquals("hostname", dataSource.getServerName());

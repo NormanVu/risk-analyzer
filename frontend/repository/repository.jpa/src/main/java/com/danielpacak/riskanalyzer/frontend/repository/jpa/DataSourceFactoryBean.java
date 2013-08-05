@@ -4,7 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.FactoryBean;
 
-import com.scirisk.riskanalyzer.datasource.DataSourceFactory;
+import com.danielpacak.riskanalyzer.datasource.api.DataSourceFactory;
 
 public class DataSourceFactoryBean implements FactoryBean<DataSource> {
 

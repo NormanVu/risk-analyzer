@@ -8,10 +8,10 @@
 		location="classpath:META-INF/spring/datasource.properties" />
 
 	<bean id="dataSourceFactory"
-		class="com.scirisk.riskanalyzer.datasource.hsql.DataSourceFactoryHsqlImpl">
-		<property name="user" value="${datasource.user}" />
-		<property name="password" value="${datasource.password}" />
-		<property name="url" value="${datasource.url}" />
+		class="com.danielpacak.riskanalyzer.datasource.mysql.MysqlDataSourceFactory">
+		<property name="user" value="${datasource.mysql.user}" />
+		<property name="password" value="${datasource.mysql.password}" />
+		<property name="url" value="${datasource.mysql.url}" />
 	</bean>
 
 </beans>
