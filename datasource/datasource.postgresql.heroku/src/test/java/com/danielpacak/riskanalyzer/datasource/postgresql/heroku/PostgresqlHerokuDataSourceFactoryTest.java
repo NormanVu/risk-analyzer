@@ -32,7 +32,8 @@ public class PostgresqlHerokuDataSourceFactoryTest {
 	@Test
 	public void testGetDataSourceThroughApplicationContext() throws Exception {
 		System.setProperty("DATABASE_URL", "postgres://user:password@hostname:9090/dbname");
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/spring/datasource.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext(
+				"META-INF/spring/com.danielpacak.riskanalyzer.datasource.postgresql.heroku.xml");
 		DataSourceFactory factory = ctx.getBean(DataSourceFactory.class);
 		PGSimpleDataSource dataSource = (PGSimpleDataSource) factory.getDataSource();
 		assertEquals("user", dataSource.getUser());

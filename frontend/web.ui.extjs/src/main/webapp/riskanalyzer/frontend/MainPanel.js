@@ -8,117 +8,84 @@ Ext.define('riskanalyzer.frontend.MainPanel', {
 	           'riskanalyzer.frontend.DistributionChannelWindow',
 	           'riskanalyzer.frontend.ParamsWindow',
 	           'riskanalyzer.frontend.FrequencyDistributionWindow',
-	           'riskanalyzer.frontend.HelpWindow'],
+	           'riskanalyzer.frontend.HelpWindow',
+	           'riskanalyzer.frontend.ImportNetworkWindow'],
 
 	alias: 'widget.mainpanel',
 
 	initComponent: function() {
-    Ext.apply(this, {
-      layout: 'border',
-      items: [
-        this.createNetworkPanel(),
-        this.createMapPanel()
-      ],
-      dockedItems: this.createToolbar()
-    });
+		var me = this;
+		Ext.apply(me, {
+			layout: 'border',
+			items: [
+				me.createNetworkPanel(),
+				me.createMapPanel()
+			],
+			dockedItems: me.createToolbar()
+		});
 
-    this.callParent(arguments);
-  },
+		me.callParent(arguments);
+	},
 
-  createToolbar: function() {
-	  var kombo = // display a dropdown menu:
-		  Ext.create('Ext.button.Split', {
-		      text: 'Active',
-		      handler : function() {
-		    	var vehicle = Ext.create('com.riskanalyzer.Vehicle');
-		    	vehicle.setManufacturer('VW');
-		    	vehicle.getDetails();
-		      },
-		      menu: new Ext.menu.Menu({
-		          items: [
-		              {text: 'Project 1', handler: function(){ alert("I'm a fake project 1"); }},
-		              {text: 'Project 2', handler: function(){ alert("I'm a fake project 2"); }}
-		          ]
-		      })
-		  });
-	  
-    this.toolbar = Ext.create('widget.toolbar', {
-      items: [
-         {
-        	 xtype: 'buttongroup',
-        	 title: 'Project',
-        	 columns: 3,
-        	 items: [
-        	         kombo,
-        	         {text : 'New', iconCls : 'feed-add'},
-        	         {text : 'Delete', iconCls : 'feed-remove'}
-        	 ]
-         },
-        {
-          xtype: 'buttongroup',
-          title: 'Distribution Network',
-          columns: 3,
-          items: [
-            {text: 'Refresh', iconCls: 'feed', handler: this.onRefreshClick, scope: this},
-            {text: 'Import', iconCls: 'feed-add', handler: this.onImportClick, scope: this},
-            {text: 'Export', iconCls: 'feed-remove', handler: this.onExportClick, scope: this}
-          ]
-        },
-        {
-          xtype: 'buttongroup',
-          itemId: 'nodeButtons',
-          title: 'Facility',
-          columns: 2,
-          items: [
-            {id: 'newFacilityButton', text: 'New', iconCls: 'feed-add', handler: this.onAddNodeClick, scope: this},
-            {text: 'Delete', iconCls: 'feed-remove', handler: this.onDeleteNodeClick, itemId: 'deleteNodeBtn', disabled: true, scope: this}
-          ]
-        },
-        {
-          xtype: 'buttongroup',
-          itemId: 'edgeButtons',
-          title: 'Distribution Channel',
-          columns: 2,
-          items: [
-            {text: 'New', iconCls: 'feed-add', handler: this.onAddEdgeClick, scope: this},
-            {text: 'Delete', iconCls: 'feed-remove', handler: this.onDeleteEdgeClick, itemId: 'deleteEdgeBtn', disabled: true, scope: this}
-          ]
-        },
-        {
-          xtype: 'buttongroup',
-          title: 'Analysis',
-          columns: 1,
-          items: [
-            {text: 'Frequency Distribution', iconCls: 'feed', handler: this.onFrequencyDistributionClick, scope: this}
-          ]
-        },
-        '->',
-        {
-          xtype: 'buttongroup',
-          title: 'Map',
-          columns: 3,
-          items: [
-            /*{text: 'Find Address', iconCls: 'feed', handler: this.onFindAddressClick, scope: this},*/
-            {text: 'Auto Center', iconCls: 'feed', handler: this.onAutoCenterClick, scope: this},
-            {text: 'Display', iconCls: 'feed',
-              menu: [{text: 'Facility', checked: true, checkHandler: this.onDisplayNodesCheck, scope: this},
-                     {text: 'Distribution Channel', checked: true, checkHandler: this.onDisplayEdgeCheck, scope: this}]}
-          ]
-        },
-        {
-          xtype: 'buttongroup',
-          title: 'Info',
-          columns: 2,
-          items: [
-            {text: 'About', iconCls: 'feed', handler: this.onHelpClick, scope: this}
-            //{text: 'Logout', iconCls: 'feed'}
-          ]
-        }
-      ]
-    });
+	createToolbar: function() {
+		var me = this;
+		this.toolbar = Ext.create('widget.toolbar', {
+			items: [{
+				xtype: 'buttongroup',
+				title: 'Distribution Network',
+				columns: 3,
+				items: [
+					{text: 'Refresh', iconCls: 'feed', handler: me.onRefreshClick, scope: me},
+					{text: 'Import', iconCls: 'feed-add', handler: me.onImportClick, scope: me},
+					{text: 'Export', iconCls: 'feed-remove', handler: me.onExportClick, scope: me}
+				]
+			}, {
+				xtype: 'buttongroup',
+				itemId: 'nodeButtons',
+				title: 'Facility',
+				columns: 2,
+				items: [
+					{id: 'newFacilityButton', text: 'New', iconCls: 'feed-add', handler: this.onAddNodeClick, scope: this},
+					{text: 'Delete', iconCls: 'feed-remove', handler: this.onDeleteNodeClick, itemId: 'deleteNodeBtn', disabled: true, scope: this}
+				]
+			}, {
+				xtype: 'buttongroup',
+				itemId: 'edgeButtons',
+				title: 'Distribution Channel',
+				columns: 2,
+				items: [
+					{text: 'New', iconCls: 'feed-add', handler: this.onAddEdgeClick, scope: this},
+					{text: 'Delete', iconCls: 'feed-remove', handler: this.onDeleteEdgeClick, itemId: 'deleteEdgeBtn', disabled: true, scope: this}
+				]
+			}, {
+				xtype: 'buttongroup',
+				title: 'Analysis',
+				columns: 1,
+				items: [
+					{text: 'Frequency Distribution', iconCls: 'feed', handler: this.onFrequencyDistributionClick, scope: this}
+					]
+			}, '->', {
+				xtype: 'buttongroup',
+				title: 'Map',
+				columns: 3,
+				items: [
+					{text: 'Auto Center', iconCls: 'feed', handler: this.onAutoCenterClick, scope: this},
+					{text: 'Display', iconCls: 'feed', menu: [
+						{text: 'Facility', checked: true, checkHandler: this.onDisplayNodesCheck, scope: this},
+						{text: 'Distribution Channel', checked: true, checkHandler: this.onDisplayEdgeCheck, scope: this}]}
+				]
+			}, {
+				xtype: 'buttongroup',
+				title: 'Info',
+				columns: 1,
+				items: [
+					{text: 'About', iconCls: 'feed', handler: this.onHelpClick, scope: this}
+				]
+			}]
+		});
 
-    return this.toolbar;
-  },
+		return me.toolbar;
+	},
 
   createNetworkPanel: function() {
     this.networkPanel = Ext.create('widget.networkpanel', {

@@ -5,7 +5,8 @@ Ext.define('riskanalyzer.frontend.FrontendApp', {
 	requires : 'riskanalyzer.frontend.MainPanel',
 
 	initComponent : function() {
-		Ext.apply(this, {
+		var me = this;
+		Ext.apply(me, {
 			layout : 'border',
 			padding : 5,
 			items : [ {
@@ -16,17 +17,18 @@ Ext.define('riskanalyzer.frontend.FrontendApp', {
 				height : 30
 			},
 
-			this.createMainPanel() ]
+			me.createMainPanel() ]
 		});
 
-		this.callParent(arguments);
+		me.callParent(arguments);
 	},
 
-	createMainPanel : function() {
-		this.mainPanel = Ext.create('widget.mainpanel', {
-			region : 'center'
+	createMainPanel: function() {
+		var me = this;
+		me.mainPanel = Ext.create('widget.mainpanel', {
+			region: 'center'
 		});
-		return this.mainPanel;
+		return me.mainPanel;
 	}
 
 });

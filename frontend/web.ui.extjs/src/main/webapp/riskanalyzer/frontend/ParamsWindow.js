@@ -5,115 +5,112 @@ Ext.define('riskanalyzer.frontend.ParamsWindow', {
 	alias: 'widget.paramswindow',
 	plain: true,
 
-  initComponent: function() {
-    this.addEvents(
-      'paramsvalid'
-    );
+	initComponent: function() {
+		var me = this;
+		me.addEvents('paramsvalid');
 
-    this.form = Ext.create('widget.form', {
-        bodyPadding: 10,
-        border: false,
-        unstyled: true,
-        defaults : {
-        	anchor : '100%',
-        	labelWidth : 120,
-        	allowBlank : false
-        },
-        items: [
-          {
-             xtype: 'numberfield',
-             name: 'numberOfIterations',
-             fieldLabel: 'Number of Iterations',
-             minValue: 1,
-             maxValue: 10000,
-             value: 1
-          }, {
-             xtype: 'numberfield',
-             fieldLabel: 'Time Horizon',
-             name: 'timeHorizon',
-             minValue: 1,
-             maxValue: 365,
-             value: 1
-           }, {
-             xtype: 'numberfield',
-             name: 'confidenceLevel',
-             fieldLabel: 'Confidence Level',
-             hideTrigger: true,
-             minValue: 0,
-             maxValue: 1,
-             value: 0.95
-           }, {
-             xtype: 'textfield',
-             name: 'endpointUrl',
-             fieldLabel: 'Endpoint URL',
-             value: 'http://risk-analyzer-backend.appspot.com/soap/endpoint'
-           }
-        ]
-    });
+		me.form = Ext.create('widget.form', {
+			bodyPadding: 10,
+			border: false,
+			unstyled: true,
+			defaults: {
+				anchor: '100%',
+				labelWidth: 120,
+				allowBlank: false
+			},
+			items: [{
+				xtype: 'numberfield',
+				name: 'numberOfIterations',
+				fieldLabel: 'Number of Iterations',
+				minValue: 1,
+				maxValue: 10000,
+				value: 1
+			}, {
+				xtype: 'numberfield',
+				fieldLabel: 'Time Horizon',
+				name: 'timeHorizon',
+				minValue: 1,
+				maxValue: 365,
+				value: 1
+			}, {
+				xtype: 'numberfield',
+				name: 'confidenceLevel',
+				fieldLabel: 'Confidence Level',
+				hideTrigger: true,
+				minValue: 0,
+				maxValue: 1,
+				value: 0.95
+			}, {
+				xtype: 'textfield',
+				name: 'endpointUrl',
+				fieldLabel: 'Endpoint URL',
+				value: 'http://risk-analyzer-backend.appspot.com/soap/endpoint'
+			}]
+		});
 
-    Ext.apply(this, {
-      width: 380,
-      modal: true,
-      title: 'Frequency Distribution Parameters',
-      iconCls: 'feed',
-      layout: 'fit',
-      items: this.form,
-      buttons: [{
-        xtype: 'button',
-        text: 'Run',
-        scope: this,
-        handler: this.onSubmitClick
-      },{
-        xtype: 'button',
-        text: 'Cancel',
-        scope: this,
-        handler: this.destroy
-      }]
-    });
+		Ext.apply(me, {
+			width: 380,
+			modal: true,
+			title: 'Frequency Distribution Parameters',
+			iconCls: 'feed',
+			layout: 'fit',
+			items: me.form,
+			buttons: [{
+				xtype: 'button',
+				text: 'Calculate',
+				scope: me,
+				handler: me.onCalculateClick
+			}, {
+				xtype: 'button',
+				text: 'Cancel',
+				scope: me,
+				handler: me.destroy
+			}]
+		});
 
-    this.callParent(arguments);
-  },
+		this.callParent(arguments);
+	},
 
-  onSubmitClick: function() {
-    if (this.form.getForm().isValid()) {
-    	var fieldValues = this.form.getForm().getFieldValues();
+	onCalculateClick: function() {
+		var me = this;
+		if (me.form.getForm().isValid()) {
+			var fieldValues = me.form.getForm().getFieldValues();
 
+			me.form.setLoading({
+				msg: 'Calculating...'
+			});
 
-      this.form.setLoading({
-        msg: 'Running simulation...'
-      });
+			Ext.Ajax.request({
+				url: 'service/frequency-distribution',
+				timeout: 1800000,
+				jsonData: fieldValues,
+				success: me.onCalculateSuccess,
+				failure: me.onCalculateFailure,
+				scope: me
+			});
+		}
+	},
 
-      Ext.Ajax.request({
-        url: 'service/frequency-distribution',
-        timeout: 1800000,
-        //params: fieldValues,
-        jsonData : fieldValues,
-        success: this.onSubmitSimulationSuccess,
-        failure: this.onSubmitSimulationFailure,
-        scope: this
-      });
-    }
-  },
+	onCalculateSuccess: function(response) {
+		var me = this;
+		me.form.setLoading(false);
+		var json = Ext.JSON.decode(response.responseText);
+		var win = Ext.create('widget.reportwindow');
+		win.setFrequencyDistributionData(json.frequencyDistributionData);
+		win.setOutputParamsData(json.outputParamsData);
+		win.setOutputParamsFormData(json.outputParamsFormData);
+		win.show();
+		me.destroy();
+	},
 
-  onSubmitSimulationSuccess: function(response) {
-    this.form.setLoading(false);
-    var json = Ext.JSON.decode(response.responseText);
-    var win = Ext.create('widget.reportwindow');
-    win.setFrequencyDistributionData(json.frequencyDistributionData);
-    win.setOutputParamsData(json.outputParamsData);
-    win.setOutputParamsFormData(json.outputParamsFormData);
-    win.show();
-    this.destroy();
-  },
-
-  onSubmitSimulationFailure: function() {
-    this.form.setLoading(false);
-    Ext.MessageBox.show({
-      title: 'Application Error',
-      msg: 'There was a problem processing your request. Please try again later or contact your system administrator.',
-      buttons: Ext.MessageBox.OK,
-      icon: Ext.MessageBox.ERROR
-    });
-  }
+	onCalculateFailure: function() {
+		this.form.setLoading(false);
+		Ext.MessageBox.show({
+			title: 'Application Error',
+			msg: 'There was a problem processing your request. Please try again later or contact your system administrator.',
+			buttons: Ext.MessageBox.OK,
+			icon: Ext.MessageBox.ERROR
+		});
+	}
 
 });

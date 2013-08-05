@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-	Copyright 2010-2012 SciRisk, Inc. All rights reserved.
+	Copyright 2010-2013 Daniel Pacak, Inc. All rights reserved.
 -->
 <html>
 	<head>

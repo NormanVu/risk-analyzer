@@ -1,10 +1,13 @@
 Ext.define('riskanalyzer.frontend.FrequencyDistributionWindow', {
-  extend: 'Ext.window.Window',
 
-  alias: 'widget.reportwindow',
-  plain: true,
+	extend: 'Ext.window.Window',
+	
+	requires: 'riskanalyzer.frontend.EmailWindow',
 
-  initComponent: function() {
+	alias: 'widget.reportwindow',
+	plain: true,
+
+	initComponent: function() {
 
     this.frequencyDistributionStore = Ext.create('Ext.data.Store', {
       fields: ['x', 'y']
@@ -25,7 +28,7 @@ Ext.define('riskanalyzer.frontend.FrequencyDistributionWindow', {
     Ext.apply(this, {
       width: 820,
       height: 500,
-      title: 'Simulation Report',
+      title: 'Frequency Distribution',
       modal: true,
       collapsible: true,
       animCollapse: true,
