@@ -1,11 +1,21 @@
 # Risk Analyzer
 
+* [Introduction](#introduction)
+* [Packages](#packages)
+* [Screenshots](#screenshots)
+* [Building](#building)
+* [Deploying](#deploying)
+ * [Deploying locally](#deploying_locally)
+ * [Deploying on Google App Engine](#deploying_on_google_app_engine)
+ * [Deploying on CloudBees](#deploying_on_cloudbees)
+
+## Introduction
 This repository hosts the source code of a start-up project I took part in few months ago.
 The application requirement was for a supply chain management system that is accessible through a Web browser.
 
-The users of the application are supply chain managers who in the course of their work need to view and manage information regarding
-a distribution network, i.e. the network of facilities (suppliers and target companies) and distribution channels (paths from one facility to another).
-The application supports the following use cases:
+The users of the application are supply *chain manager*s who in the course of their work need to view and manage information regarding
+a *distribution network*, i.e. the network of *facilities* (suppliers and target companies) and *distribution channels* (paths
+from one facility to another). The application supports the following use cases:
 
 1. View the distribution network
 2. View information pertaining to an existing facility
@@ -44,15 +54,24 @@ which are proportional to the CPU/memory consumption of a given application.
 
 ![Risk Analyzer Screenshot](https://github.com/danielpacak/risk-analyzer/raw/master/README/simulation.png)
 
-## Deployment
+## Building
+The project is built using [Apache Maven](http://maven.apache.org). To build frontend and backend web
+applications run the following command from the project root directory
+
+`mvn clean install`
+
+If everything went well, you'll find the frontend WAR file in the `frontend/deployment/deployment.dev/target` directory.
+Similarly, the backend WAR file can be found in the `backend/deployment/deployment.dev/target` directory.
+
+## Deploying
 The Risk Analyzer application is divided into a set of functional units named modules. These module can be deployed in
-various configurations. For instance, the application can be run on a local machine with the [relational database (RDBMS)]
+various configurations. For instance, the application can be run locally with the [relational database (RDBMS)]
 (http://en.wikipedia.org/wiki/Relational_database) as data storage, or on Google App Engine with its schemaless
 [High Replication Datastore (HRD)](https://developers.google.com/appengine/docs/java/datastore/overview).
 
 The most common deployment configurations are described in the following sections.
 
-### Deploying Risk Analyzer on a Local Machine
+### Deploying locally
 
 1. Create a working directory, for example C:\RiskAnalyzer, hereafter referred to as RISK_ANALYZER_HOME.
 2. Create a sub-directory for the Backend Web application in RISK_ANALYZER_HOME\backed.
@@ -64,13 +83,13 @@ The most common deployment configurations are described in the following section
 8. Launch the Frontend Web application by executing java -jar risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar
 9. Open this URL [http://localhost:8080/risk-analyzer-web](http://localhost:8080/risk-analyzer-web) in your favorite Web browser to make sure that the frontend application is up and running.
 
-### Deploying Risk Analyzer on Google App Engine
+### Deploying on Google App Engine
 
 https://pacak-daniel.ci.cloudbees.com/job/risk-analyzer-deployment-google/
 
 [http://risk-analyzer-frontend.appspot.com](http://risk-analyzer-frontend.appspot.com)
 
-### Deploying Risk Analyzer on CloudBees
+### Deploying on CloudBees
 
 [Frontend Web](http://risk-analyzer-frontend-web.pacak-daniel.cloudbees.net)
 
