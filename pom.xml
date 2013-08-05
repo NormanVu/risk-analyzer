@@ -35,8 +35,9 @@
 		<module>domain</module>
 		<module>frontend</module>
 		<module>backend</module>
-		<module>risk-analyzer-datasource</module>
-		<module>risk-analyzer-test</module>
+		<module>datasource</module>
+		<module>test</module>
+
 		<module>risk-analyzer-web-extjs</module>
 	</modules>
 
@@ -45,9 +46,10 @@
 			<!-- Internal Modules -->
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-domain</artifactId>
+				<artifactId>domain</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<!-- Frontend Repositories -->
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>frontend.repository.api</artifactId>
@@ -73,6 +75,7 @@
 				<artifactId>frontend.repository.neo4j</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<!-- Frontend Services -->
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
 				<artifactId>frontend.service.api</artifactId>
@@ -94,19 +97,20 @@
 				<type>war</type>
 				<version>${project.version}</version>
 			</dependency>
+			<!-- Datasource Factories -->
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-datasource-api</artifactId>
+				<artifactId>datasource.api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-datasource-hsql</artifactId>
+				<artifactId>datasource.hsql</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.danielpacak.risk-analyzer</groupId>
-				<artifactId>risk-analyzer-datasource-mysql</artifactId>
+				<artifactId>datasource.mysql</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -204,32 +208,6 @@
 				<artifactId>spring-webmvc</artifactId>
 				<version>${org.springframework.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-jms</artifactId>
-				<version>${org.springframework.version}</version>
-			</dependency>
-			<!-- Spring Security Framework -->
-			<dependency>
-				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-core</artifactId>
-				<version>${spring.security.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-web</artifactId>
-				<version>${spring.security.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-config</artifactId>
-				<version>${spring.security.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-taglibs</artifactId>
-				<version>${spring.security.version}</version>
-			</dependency>
 			<!-- JSON Processor -->
 			<dependency>
 				<groupId>org.codehaus.jackson</groupId>
@@ -291,17 +269,6 @@
 				<groupId>org.hsqldb</groupId>
 				<artifactId>hsqldb</artifactId>
 				<version>2.2.8</version>
-			</dependency>
-			<!-- ActiveMQ -->
-			<dependency>
-				<groupId>org.apache.activemq</groupId>
-				<artifactId>activemq-core</artifactId>
-				<version>5.7.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.activemq</groupId>
-				<artifactId>activemq-pool</artifactId>
-				<version>5.8.0</version>
 			</dependency>
 			<!-- Logging -->
 			<dependency>

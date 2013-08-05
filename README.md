@@ -85,7 +85,7 @@ The most common deployment configurations are described in the following section
 
 ### Deploying locally
 
-**This has changed recently. Needs to be updated***
+**This has changed recently. Needs to be updated**
 
 1. Create a working directory, for example C:\RiskAnalyzer, hereafter referred to as RISK_ANALYZER_HOME.
 2. Create a sub-directory for the Backend Web application in RISK_ANALYZER_HOME\backed.

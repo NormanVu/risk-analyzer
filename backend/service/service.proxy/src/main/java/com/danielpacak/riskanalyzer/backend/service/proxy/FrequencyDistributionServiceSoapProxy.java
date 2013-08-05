@@ -8,6 +8,10 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.ws.client.core.WebServiceTemplate;
 
+import com.danielpacak.riskanalyzer.backend.service.api.CalculateRequest;
+import com.danielpacak.riskanalyzer.backend.service.api.CalculateResponse;
+import com.danielpacak.riskanalyzer.backend.service.api.FrequencyDistributionService;
+
 public class FrequencyDistributionServiceSoapProxy implements
 		FrequencyDistributionService {
 

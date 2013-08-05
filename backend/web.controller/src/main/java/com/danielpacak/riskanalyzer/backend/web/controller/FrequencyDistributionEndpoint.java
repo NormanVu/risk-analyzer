@@ -8,9 +8,10 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.danielpacak.riskanalyzer.backend.service.proxy.CalculateRequest;
-import com.danielpacak.riskanalyzer.backend.service.proxy.CalculateResponse;
-import com.danielpacak.riskanalyzer.backend.service.proxy.FrequencyDistributionService;
+import com.danielpacak.riskanalyzer.backend.service.api.CalculateRequest;
+import com.danielpacak.riskanalyzer.backend.service.api.CalculateResponse;
+import com.danielpacak.riskanalyzer.backend.service.api.FrequencyDistributionService;
+
 import com.danielpacak.riskanalyzer.backend.service.proxy.RequestMarshaller;
 import com.danielpacak.riskanalyzer.backend.service.proxy.RequestMarshallerJDomImpl;
 import com.danielpacak.riskanalyzer.backend.service.proxy.ResponseMarshaller;

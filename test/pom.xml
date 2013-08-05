@@ -6,8 +6,7 @@
 		<artifactId>risk-analyzer</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>risk-analyzer-test</artifactId>
-	<name>Risk Analyzer - Test</name>
+	<artifactId>test</artifactId>
 
 	<dependencies>
 		<dependency>

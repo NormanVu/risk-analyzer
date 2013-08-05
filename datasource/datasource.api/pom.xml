@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.danielpacak.risk-analyzer</groupId>
-		<artifactId>risk-analyzer</artifactId>
+		<artifactId>datasource</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>domain</artifactId>
+	<artifactId>datasource.api</artifactId>
 
 </project>

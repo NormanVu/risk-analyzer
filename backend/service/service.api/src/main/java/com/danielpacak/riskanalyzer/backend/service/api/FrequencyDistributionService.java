@@ -1,4 +1,4 @@
-package com.danielpacak.riskanalyzer.backend.service.proxy;
+package com.danielpacak.riskanalyzer.backend.service.api;
 
 public interface FrequencyDistributionService {
 

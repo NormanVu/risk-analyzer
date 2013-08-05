@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.xml.transform.stream.StreamSource;
 
+import com.danielpacak.riskanalyzer.backend.service.api.CalculateRequest;
+
 
 public interface RequestMarshaller {
 

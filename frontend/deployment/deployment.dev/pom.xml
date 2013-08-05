@@ -13,7 +13,7 @@
 		<!-- Internal Modules -->
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-domain</artifactId>
+			<artifactId>domain</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
@@ -21,7 +21,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-datasource-hsql</artifactId>
+			<artifactId>datasource.hsql</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>

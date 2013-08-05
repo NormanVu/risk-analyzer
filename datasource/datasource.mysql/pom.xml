@@ -1,18 +1,18 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.danielpacak.risk-analyzer</groupId>
-		<artifactId>risk-analyzer-datasource</artifactId>
+		<artifactId>datasource</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>risk-analyzer-datasource-mysql</artifactId>
-	<name>Risk Analyzer - Datasource - MySQL</name>
+	<artifactId>datasource.mysql</artifactId>
 
 	<dependencies>
-		<!-- Internal -->
+		<!-- Internal Modules -->
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-datasource-api</artifactId>
+			<artifactId>datasource.api</artifactId>
 		</dependency>
 		<!-- JDBC Driver -->
 		<dependency>

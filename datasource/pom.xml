@@ -6,16 +6,14 @@
 		<artifactId>risk-analyzer</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>risk-analyzer-datasource</artifactId>
-	<name>Risk Analyzer - Datasource</name>
-	<description>Groups together various datasource factory implementations.</description>
+	<artifactId>datasource</artifactId>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>risk-analyzer-datasource-api</module>
-		<module>risk-analyzer-datasource-hsql</module>
-		<module>risk-analyzer-datasource-mysql</module>
-		<module>risk-analyzer-datasource-postgresql-heroku</module>
+		<module>datasource.api</module>
+		<module>datasource.hsql</module>
+		<module>datasource.mysql</module>
+		<module>datasource.postgresql.heroku</module>
 	</modules>
 
 </project>

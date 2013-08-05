@@ -16,7 +16,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-datasource-api</artifactId>
+			<artifactId>datasource.api</artifactId>
 		</dependency>
 		<!-- JPA -->
 		<dependency>

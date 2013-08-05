@@ -12,7 +12,11 @@
 		<!-- Internal Modules -->
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-domain</artifactId>
+			<artifactId>domain</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>com.danielpacak.risk-analyzer</groupId>
+		    <artifactId>backend.service.api</artifactId>
 		</dependency>
 		<!-- Spring Web Services Framework -->
 		<dependency>

@@ -3,17 +3,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.danielpacak.risk-analyzer</groupId>
-		<artifactId>risk-analyzer-datasource</artifactId>
+		<artifactId>datasource</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>risk-analyzer-datasource-postgresql-heroku</artifactId>
-	<name>Risk Analyzer - Datasource - PostgreSQL - Heroku</name>
+	<artifactId>datasource.postgresql.heroku</artifactId>
 
 	<dependencies>
-		<!-- Internal -->
+		<!-- Internal Modules -->
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>risk-analyzer-datasource-api</artifactId>
+			<artifactId>datasource.api</artifactId>
 		</dependency>
 		<!-- JDBC Driver -->
 		<dependency>

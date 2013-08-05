@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.danielpacak.riskanalyzer.backend.service.proxy.CalculateRequest;
-import com.danielpacak.riskanalyzer.backend.service.proxy.CalculateResponse;
-import com.danielpacak.riskanalyzer.backend.service.proxy.FrequencyDistributionService;
+import com.danielpacak.riskanalyzer.backend.service.api.CalculateRequest;
+import com.danielpacak.riskanalyzer.backend.service.api.CalculateResponse;
+import com.danielpacak.riskanalyzer.backend.service.api.FrequencyDistributionService;
 import com.danielpacak.riskanalyzer.backend.service.proxy.FrequencyDistributionServiceSoapProxy;
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionNetworkRepository;
