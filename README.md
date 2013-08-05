@@ -5,9 +5,9 @@
 * [Screenshots](#screenshots)
 * [Building](#building)
 * [Deploying](#deploying)
- * [Deploying locally](#deploying_locally)
- * [Deploying on Google App Engine](#deploying_on_google_app_engine)
- * [Deploying on CloudBees](#deploying_on_cloudbees)
+ * [Deploying locally](#deploying-locally)
+ * [Deploying on Google App Engine](#deploying-on-google-app-engine)
+ * [Deploying on CloudBees](#deploying-on-cloudbees)
 
 ## Introduction
 This repository hosts the source code of a start-up project I took part in few months ago.
@@ -85,6 +85,8 @@ The most common deployment configurations are described in the following section
 
 ### Deploying locally
 
+**This has changed recently. Needs to be updated***
+
 1. Create a working directory, for example C:\RiskAnalyzer, hereafter referred to as RISK_ANALYZER_HOME.
 2. Create a sub-directory for the Backend Web application in RISK_ANALYZER_HOME\backed.
 3. Create a sub-directory for the Frontend Web application in RISK_ANALYZER_HOME\frontend.
@@ -105,7 +107,7 @@ The frontend is accessible at [http://risk-analyzer-frontend.appspot.com](http:/
 The backend is accessible at [http://risk-analyzer-backend.appspot.com](http://risk-analyzer-backend.appspot.com/soap/risk-analyzer.wsdl).
 
 ### Deploying on CloudBees
-Risk Analyzer is also deployed on the CloudBees platform. It's configured as a
+Risk Analyzer is also deployed on the CloudBees platform. Similarly, it's configured as a
 [one-click deployment](https://pacak-daniel.ci.cloudbees.com/job/risk-analyzer-deployment-cloudbees).
 
 The frontend is accessible at [http://risk-analyzer-frontend-web.pacak-daniel.cloudbees.net](http://risk-analyzer-frontend-web.pacak-daniel.cloudbees.net).
