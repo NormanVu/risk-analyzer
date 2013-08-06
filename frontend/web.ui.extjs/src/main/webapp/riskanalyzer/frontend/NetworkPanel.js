@@ -20,6 +20,10 @@ Ext.define('riskanalyzer.frontend.NetworkPanel', {
 		me.callParent(arguments);
 	},
 
+	afterRender: function() {
+		this.update();
+	},
+
 	update: function() {
 		var me = this; 
 	

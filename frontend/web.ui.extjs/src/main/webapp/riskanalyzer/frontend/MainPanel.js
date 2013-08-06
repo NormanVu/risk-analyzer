@@ -348,7 +348,7 @@ Ext.define('riskanalyzer.frontend.MainPanel', {
 
   // handle on delete node click
   onDeleteNodeClick: function() {
-    Ext.MessageBox.confirm('Delete Node', 'Are you sure you want to do that?', this.deleteNode, this);
+    Ext.MessageBox.confirm('Delete Facility', 'Are you sure you want to do that?', this.deleteNode, this);
   },
 
   deleteNode: function(btn) {
@@ -370,7 +370,7 @@ Ext.define('riskanalyzer.frontend.MainPanel', {
   },
 
   onDeleteEdgeClick: function() {
-    Ext.MessageBox.confirm('Delete Edge', 'Are you sure you want to do that?', this.deleteEdge, this);
+    Ext.MessageBox.confirm('Delete Channel', 'Are you sure you want to do that?', this.deleteEdge, this);
   },
 
   deleteEdge: function(btn) {
@@ -439,12 +439,6 @@ Ext.define('riskanalyzer.frontend.MainPanel', {
   onDisplayEdgeCheck: function(item, checked) {
 	  //alert("on display edge check: " + checked);
 	  this.mapPanel.displayEdges(checked);
-  },
-
-  onFindAddressClick: function() {
-    //alert('find address');
-    var win = Ext.create('widget.addresswindow');
-    win.show();
   }
 
 });

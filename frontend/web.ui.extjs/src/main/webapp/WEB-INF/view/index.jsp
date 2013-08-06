@@ -25,7 +25,8 @@
 				'Ext.layout.container.Card',
 				'Ext.layout.container.Border',
 				'Ext.ux.PreviewPlugin',
-				'Ext.ux.statusbar.StatusBar'
+				'Ext.ux.statusbar.StatusBar',
+				'riskanalyzer.frontend.FrontendApp'
 			]);
 			Ext.onReady(function() {
 				Ext.create('riskanalyzer.frontend.FrontendApp');
