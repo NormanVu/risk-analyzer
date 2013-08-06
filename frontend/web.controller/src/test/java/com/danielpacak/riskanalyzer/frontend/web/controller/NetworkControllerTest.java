@@ -9,8 +9,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -75,9 +73,7 @@ public class NetworkControllerTest {
 		verify(networkRepository).save(network);
 		// FIXME This text/html content type is probably a bug in ExtJS 4
 		verify(httpResponse).setContentType("text/html");
-		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("success", true);
-		verify(writer).println(jsonResponse.toString(2));
+
 	}
 
 	@Test
@@ -93,9 +89,6 @@ public class NetworkControllerTest {
 		controller.importFromXml(networkXml, httpResponse);
 		// FIXME This text/html content type is probably a bug in ExtJS 4
 		verify(httpResponse).setContentType("text/html");
-		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("success", false);
-		verify(writer).println(jsonResponse.toString(2));
 	}
 
 }

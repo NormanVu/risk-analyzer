@@ -30,7 +30,7 @@ public class DefaultDistributionNetworkRepository implements DistributionNetwork
 
 		for (Facility node : network.getNodes()) {
 			String fakeId = node.getId();
-			node.setId(null);
+			//node.setId(null);
 			facilityIdMap.put(fakeId, facilityRepository.save(node).getId());
 			node.setId(fakeId);
 		}

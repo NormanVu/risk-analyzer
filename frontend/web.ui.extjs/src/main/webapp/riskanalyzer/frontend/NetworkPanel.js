@@ -5,22 +5,80 @@ Ext.define('riskanalyzer.frontend.NetworkPanel', {
 	alias: 'widget.networkpanel',
 
 	initComponent: function() {
-		this.treeStore = Ext.create('Ext.data.TreeStore', {
+		var me = this;
+		me.treeStore = Ext.create('Ext.data.TreeStore', {
 			proxy: {
-				type: 'ajax',
-				url: 'service/network/tree'
+				type: 'memory'
 			}
 		});
-		Ext.apply(this, {
-			store: this.treeStore,
-			rootVisible: false
+
+		Ext.apply(me, {
+			store: me.treeStore,
+			rootVisible: true
 		});
 
-		this.callParent(arguments);
+		me.callParent(arguments);
 	},
 
 	update: function() {
-		this.treeStore.load();
+		var me = this; 
+	
+		Ext.Ajax.request({
+			url: 'service/network',
+			scope: me,
+			success: me.onUpdateSuccess,
+			failure: me.onUpdateFailure
+		});
+
+	},
+
+	onUpdateSuccess: function(response) {
+		var network = Ext.JSON.decode(response.responseText);
+
+		var facilitiesNode = {
+			text: 'Facilities',
+			cls: 'folder',
+			expanded: true,
+			children: []
+		};
+		
+		var channelsNode = {
+			text: 'Channels',
+			cls: 'folder',
+			expanded: true,
+			children: []
+		};
+
+		var rootNode = {
+			text: 'Supply Chain',
+			cls: 'folder',
+			expanded: true,
+			children: [facilitiesNode, channelsNode]
+		};
+
+		for (var i = 0; i < network.nodes.length; i++) {
+			var facility = network.nodes[i];
+			facilitiesNode.children.push({
+				id: 'n_' + facility.id,
+				text: facility.name,
+				leaf: true
+			});
+		}
+
+		for (var i = 0; i < network.edges.length; i++) {
+			var channel = network.edges[i];
+			channelsNode.children.push({
+				id: 'e_' + channel.id,
+				text: channel.source.name + ' > ' + channel.target.name,
+				leaf: true
+			});
+		}
+
+		this.treeStore.setRootNode(rootNode);
+	},
+
+	onUpdateFailure: function() {
+		alert('There was an error!');
 	},
 
 	onDestroy: function() {

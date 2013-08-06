@@ -45,7 +45,7 @@ Ext.define('riskanalyzer.frontend.MapPanel', {
 
   update: function() {
     Ext.Ajax.request({
-      url: 'service/network/map',
+      url: 'service/network',
       scope: this,
       success: function(response) {
         this.deleteEdges();

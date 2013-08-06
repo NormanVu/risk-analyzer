@@ -37,12 +37,6 @@
 			<artifactId>servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- JSON Library -->
-		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<classifier>jdk15</classifier>
-		</dependency>
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
