@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="frequencyDistributionService"
-		class="com.danielpacak.riskanalyzer.backend.service.simple.FrequencyDistributionServiceMockImpl">
+		class="com.danielpacak.riskanalyzer.backend.service.simple.DummyFrequencyDistributionService">
 		<property name="sleepTimeInMilliseconds" value="1000" />
 	</bean>
 

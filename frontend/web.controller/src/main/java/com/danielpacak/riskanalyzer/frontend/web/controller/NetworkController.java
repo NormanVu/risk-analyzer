@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionNetworkRepository;
 import com.danielpacak.riskanalyzer.frontend.service.api.NetworkMarshaller;
-import com.danielpacak.riskanalyzer.frontend.service.api.NetworkParser;
 
 @Controller
 public class NetworkController {
@@ -25,20 +24,17 @@ public class NetworkController {
 	private DistributionNetworkRepository distributionNetworkRepository;
 
 	private NetworkMarshaller networkMarshaller;
-	// TODO NETWORK UNMARSHALLER
-	private NetworkParser networkParser;
 
 	@Autowired
 	public NetworkController(DistributionNetworkRepository distributionNetworkRepository,
-			NetworkMarshaller networkMarshaller, NetworkParser networkParser) {
+			NetworkMarshaller networkMarshaller) {
 		this.distributionNetworkRepository = distributionNetworkRepository;
 		this.networkMarshaller = networkMarshaller;
-		this.networkParser = networkParser;
 	}
 
 	@RequestMapping(value = "/network", method = RequestMethod.GET)
 	public @ResponseBody
-	DistributionNetwork getNetworkForGoogleMap() throws Exception {
+	DistributionNetwork getNetwork() throws Exception {
 		return distributionNetworkRepository.read();
 	}
 
@@ -60,12 +56,11 @@ public class NetworkController {
 
 		Boolean result = true;
 		if (!networkXml.isEmpty()) {
-			DistributionNetwork network = networkParser.parse(networkXml.getInputStream());
+			DistributionNetwork network = networkMarshaller.unmarshall(networkXml.getInputStream());
 			distributionNetworkRepository.save(network);
 		} else {
 			result = false;
 		}
-
 
 		// FIXME This text/html content type is probably a bug in ExtJS 4
 		resp.setContentType("text/html");

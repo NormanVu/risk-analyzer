@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionNetworkRepository;
 import com.danielpacak.riskanalyzer.frontend.service.api.NetworkMarshaller;
-import com.danielpacak.riskanalyzer.frontend.service.api.NetworkParser;
 
 /**
  * Tests for {@link NetworkController}.
@@ -34,22 +33,19 @@ public class NetworkControllerTest {
 	@Mock
 	NetworkMarshaller networkMarshaller;
 
-	@Mock
-	NetworkParser networkParser;
-
 	NetworkController controller;
 
 	@Before
 	public void beforeTest() throws Exception {
-		controller = new NetworkController(networkRepository, networkMarshaller, networkParser);
+		controller = new NetworkController(networkRepository, networkMarshaller);
 	}
 
 	@Test
-	public void testGetNetworkForGoogleMap() throws Exception {
+	public void testGetNetwork() throws Exception {
 		DistributionNetwork network = new DistributionNetwork();
 		when(networkRepository.read()).thenReturn(network);
 
-		Assert.assertEquals(network, controller.getNetworkForGoogleMap());
+		Assert.assertEquals(network, controller.getNetwork());
 		verify(networkRepository).read();
 	}
 
@@ -61,7 +57,7 @@ public class NetworkControllerTest {
 		InputStream inputStream = mock(InputStream.class);
 		when(networkXml.getInputStream()).thenReturn(inputStream);
 		DistributionNetwork network = mock(DistributionNetwork.class);
-		when(networkParser.parse(inputStream)).thenReturn(network);
+		when(networkMarshaller.unmarshall(inputStream)).thenReturn(network);
 
 		HttpServletResponse httpResponse = mock(HttpServletResponse.class);
 		PrintWriter writer = mock(PrintWriter.class);
@@ -69,7 +65,7 @@ public class NetworkControllerTest {
 
 		controller.importFromXml(networkXml, httpResponse);
 
-		verify(networkParser).parse(inputStream);
+		verify(networkMarshaller).unmarshall(inputStream);
 		verify(networkRepository).save(network);
 		// FIXME This text/html content type is probably a bug in ExtJS 4
 		verify(httpResponse).setContentType("text/html");

@@ -5,7 +5,5 @@
 
 	<bean id="networkMarshaller"
 		class="com.danielpacak.riskanalyzer.frontend.service.simple.NetworkMarshallerDomImpl" />
-	<bean id="networkParser"
-		class="com.danielpacak.riskanalyzer.frontend.service.simple.NetworkParserDomImpl" />
 
 </beans>
