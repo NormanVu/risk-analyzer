@@ -19,30 +19,34 @@ import com.danielpacak.riskanalyzer.frontend.repository.api.FacilityRepository;
 @RequestMapping(value = "/facility")
 public class FacilityController {
 
+	private FacilityRepository facilityRepository;
+
 	@Autowired
-	FacilityRepository facilityRepository;
+	public FacilityController(FacilityRepository facilityRepository) {
+		this.facilityRepository = facilityRepository;
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<String> save(@RequestBody Facility node) throws Exception {
+	public ResponseEntity<String> save(@RequestBody Facility node) {
 		facilityRepository.save(node);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	Facility read(@PathVariable("id") String nodeId) throws Exception {
+	Facility read(@PathVariable("id") String nodeId) {
 		return facilityRepository.findOne(nodeId);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("id") String nodeId) throws Exception {
+	public ResponseEntity<String> delete(@PathVariable("id") String nodeId) {
 		facilityRepository.delete(nodeId);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
-	List<Facility> findAll() throws Exception {
+	List<Facility> findAll() {
 		return facilityRepository.findAll();
 	}
 

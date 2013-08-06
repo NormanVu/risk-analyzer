@@ -16,30 +16,36 @@ import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.Facility;
 import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionChannelRepository;
 import com.danielpacak.riskanalyzer.frontend.repository.api.FacilityRepository;
+import com.danielpacak.riskanalyzer.frontend.web.form.DistributionChannelForm;
 
 @Controller
 @RequestMapping(value = "/distribution-channel")
 public class DistributionChannelController {
 
-	@Autowired
-	DistributionChannelRepository distributionChannelRepository;
+	private DistributionChannelRepository distributionChannelRepository;
+
+	private FacilityRepository facilityRepository;
 
 	@Autowired
-	FacilityRepository facilityRepository;
+	public DistributionChannelController(DistributionChannelRepository distributionChannelRepository,
+			FacilityRepository facilityRepository) {
+		this.distributionChannelRepository = distributionChannelRepository;
+		this.facilityRepository = facilityRepository;
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<String> save(@RequestBody DistributionChannelFormBean formBean) throws Exception {
-		distributionChannelRepository.save(formBean.getDistributionChannel(), formBean.getSourceId(),
-				formBean.getTargetId());
+	public ResponseEntity<String> save(@RequestBody DistributionChannelForm form) throws Exception {
+		distributionChannelRepository.save(form.getDistributionChannel(), form.getSourceId(),
+				form.getTargetId());
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	DistributionChannelFormBean read(@PathVariable("id") String distributionChannelId) throws Exception {
+	DistributionChannelForm read(@PathVariable("id") String distributionChannelId) throws Exception {
 		DistributionChannel channel = distributionChannelRepository.findOne(distributionChannelId);
 		List<Facility> facilities = facilityRepository.findAll();
-		return new DistributionChannelFormBean(channel, facilities);
+		return new DistributionChannelForm(channel, facilities);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

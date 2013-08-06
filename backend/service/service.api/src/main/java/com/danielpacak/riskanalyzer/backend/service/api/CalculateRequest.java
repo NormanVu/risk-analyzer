@@ -20,16 +20,18 @@ public class CalculateRequest implements Serializable {
 		return inputParams;
 	}
 
-	public void setInputParams(Map<String, String> inputParams) {
+	public CalculateRequest setInputParams(Map<String, String> inputParams) {
 		this.inputParams = inputParams;
+		return this;
 	}
 
 	public DistributionNetwork getNetwork() {
 		return network;
 	}
 
-	public void setNetwork(DistributionNetwork network) {
+	public CalculateRequest setNetwork(DistributionNetwork network) {
 		this.network = network;
+		return this;
 	}
 
 }

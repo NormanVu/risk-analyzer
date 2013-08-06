@@ -22,7 +22,7 @@ import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 import com.danielpacak.riskanalyzer.domain.Facility;
 
-public class RequestMarshallerJDomImpl implements RequestMarshaller {
+public class JDom2RequestMarshaller implements RequestMarshaller {
 
 	private Namespace riskAnalyzerNamespace = Namespace
 			.getNamespace("http://scirisk.com/xml/ns/risk-analyzer");

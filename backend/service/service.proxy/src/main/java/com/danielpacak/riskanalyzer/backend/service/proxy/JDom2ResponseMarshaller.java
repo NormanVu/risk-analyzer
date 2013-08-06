@@ -19,7 +19,7 @@ import org.jdom2.output.XMLOutputter;
 import com.danielpacak.riskanalyzer.backend.service.api.CalculateResponse;
 
 
-public class ResponseMarshallerJDomIMpl implements ResponseMarshaller {
+public class JDom2ResponseMarshaller implements ResponseMarshaller {
 
 	private Namespace namespace = Namespace
 			.getNamespace("http://scirisk.com/xml/ns/risk-analyzer");

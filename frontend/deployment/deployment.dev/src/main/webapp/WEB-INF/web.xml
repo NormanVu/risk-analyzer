@@ -37,6 +37,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
+		    classpath:META-INF/spring/riskanalyzer.backend.service.proxy.xml
 			classpath:META-INF/spring/com.danielpacak.riskanalyzer.frontend.service.simple.xml
 			classpath:META-INF/spring/com.danielpacak.riskanalyzer.frontend.repository.jpa.xml
 			classpath:META-INF/spring/com.danielpacak.riskanalyzer.datasource.hsql.xml

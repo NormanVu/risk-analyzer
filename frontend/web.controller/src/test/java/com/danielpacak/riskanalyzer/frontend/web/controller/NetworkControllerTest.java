@@ -12,38 +12,58 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 import com.danielpacak.riskanalyzer.frontend.repository.api.DistributionNetworkRepository;
+import com.danielpacak.riskanalyzer.frontend.service.api.NetworkMarshaller;
 import com.danielpacak.riskanalyzer.frontend.service.api.NetworkParser;
 
+/**
+ * Tests for {@link NetworkController}.
+ */
+@RunWith(MockitoJUnitRunner.class)
 public class NetworkControllerTest {
+
+	@Mock
+	DistributionNetworkRepository networkRepository;
+
+	@Mock
+	NetworkMarshaller networkMarshaller;
+
+	@Mock
+	NetworkParser networkParser;
+
+	NetworkController controller;
+
+	@Before
+	public void beforeTest() throws Exception {
+		controller = new NetworkController(networkRepository, networkMarshaller, networkParser);
+	}
 
 	@Test
 	public void testGetNetworkForGoogleMap() throws Exception {
-		NetworkController controller = new NetworkController();
-		controller.networkManager = mock(DistributionNetworkRepository.class);
 		DistributionNetwork network = new DistributionNetwork();
-		when(controller.networkManager.read()).thenReturn(network);
+		when(networkRepository.read()).thenReturn(network);
 
 		Assert.assertEquals(network, controller.getNetworkForGoogleMap());
-		verify(controller.networkManager).read();
+		verify(networkRepository).read();
 	}
 
 	@Test
 	public void testImportFromXmlWithNonEmptyFile() throws Exception {
-		NetworkController controller = new NetworkController();
-		controller.networkParser = mock(NetworkParser.class);
-		controller.networkManager = mock(DistributionNetworkRepository.class);
 
 		MultipartFile networkXml = mock(MultipartFile.class);
 		when(networkXml.isEmpty()).thenReturn(false);
 		InputStream inputStream = mock(InputStream.class);
 		when(networkXml.getInputStream()).thenReturn(inputStream);
 		DistributionNetwork network = mock(DistributionNetwork.class);
-		when(controller.networkParser.parse(inputStream)).thenReturn(network);
+		when(networkParser.parse(inputStream)).thenReturn(network);
 
 		HttpServletResponse httpResponse = mock(HttpServletResponse.class);
 		PrintWriter writer = mock(PrintWriter.class);
@@ -51,8 +71,8 @@ public class NetworkControllerTest {
 
 		controller.importFromXml(networkXml, httpResponse);
 
-		verify(controller.networkParser).parse(inputStream);
-		verify(controller.networkManager).save(network);
+		verify(networkParser).parse(inputStream);
+		verify(networkRepository).save(network);
 		// FIXME This text/html content type is probably a bug in ExtJS 4
 		verify(httpResponse).setContentType("text/html");
 		JSONObject jsonResponse = new JSONObject();
@@ -62,7 +82,6 @@ public class NetworkControllerTest {
 
 	@Test
 	public void testImportFromXmlWithEmptyFile() throws Exception {
-		NetworkController controller = new NetworkController();
 
 		MultipartFile networkXml = mock(MultipartFile.class);
 		when(networkXml.isEmpty()).thenReturn(true);

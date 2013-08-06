@@ -6,36 +6,36 @@ import java.io.ByteArrayOutputStream;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.springframework.ws.client.core.WebServiceTemplate;
+import org.springframework.ws.client.core.WebServiceOperations;
 
 import com.danielpacak.riskanalyzer.backend.service.api.CalculateRequest;
 import com.danielpacak.riskanalyzer.backend.service.api.CalculateResponse;
 import com.danielpacak.riskanalyzer.backend.service.api.FrequencyDistributionService;
 
-public class FrequencyDistributionServiceSoapProxy implements
-		FrequencyDistributionService {
+public class FrequencyDistributionServiceSoapProxy implements FrequencyDistributionService {
 
-	private String endpointUrl;
-	private RequestMarshaller requestMarshaller = new RequestMarshallerJDomImpl();
-	private ResponseMarshaller responseMarshaller = new ResponseMarshallerJDomIMpl();
-	private WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+	private RequestMarshaller requestMarshaller = new JDom2RequestMarshaller();
+	private ResponseMarshaller responseMarshaller = new JDom2ResponseMarshaller();
 
-	public FrequencyDistributionServiceSoapProxy(String endpointUrl) {
-		this.endpointUrl = endpointUrl;
+	private WebServiceOperations webServiceOperations;
+
+	public FrequencyDistributionServiceSoapProxy(WebServiceOperations webServiceOperations,
+			RequestMarshaller requestMarshaller, ResponseMarshaller responseMarshaller) {
+		this.webServiceOperations = webServiceOperations;
+		this.requestMarshaller = requestMarshaller;
+		this.responseMarshaller = responseMarshaller;
 	}
 
-	public CalculateResponse calculate(CalculateRequest request)
-			throws Exception {
+	@Override
+	public CalculateResponse calculate(CalculateRequest request) throws Exception {
 		StreamSource source = requestMarshaller.marshall(request);
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		StreamResult result = new StreamResult(out);
 
-		webServiceTemplate.sendSourceAndReceiveToResult(endpointUrl, source,
-				result);
+		webServiceOperations.sendSourceAndReceiveToResult(source, result);
 
-		return responseMarshaller.unmarshall(new StreamSource(
-				new ByteArrayInputStream(out.toByteArray())));
+		return responseMarshaller.unmarshall(new StreamSource(new ByteArrayInputStream(out.toByteArray())));
 	}
 
 }

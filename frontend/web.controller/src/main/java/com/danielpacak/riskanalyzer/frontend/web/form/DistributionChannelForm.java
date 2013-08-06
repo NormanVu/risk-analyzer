@@ -1,11 +1,14 @@
-package com.danielpacak.riskanalyzer.frontend.web.controller;
+package com.danielpacak.riskanalyzer.frontend.web.form;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.danielpacak.riskanalyzer.domain.DistributionChannel;
 import com.danielpacak.riskanalyzer.domain.Facility;
 
-public class DistributionChannelFormBean {
+public class DistributionChannelForm implements Serializable {
+
+	private static final long serialVersionUID = 4901990226773004944L;
 
 	private String id;
 	private String sourceId;
@@ -13,12 +16,11 @@ public class DistributionChannelFormBean {
 	private Double purchasingVolume;
 	private List<Facility> facilities;
 
-	public DistributionChannelFormBean() {
+	public DistributionChannelForm() {
 
 	}
 
-	public DistributionChannelFormBean(DistributionChannel distributionChannel,
-			List<Facility> facilities) {
+	public DistributionChannelForm(DistributionChannel distributionChannel, List<Facility> facilities) {
 		this.id = distributionChannel.getId();
 		this.sourceId = distributionChannel.getSource().getId();
 		this.targetId = distributionChannel.getTarget().getId();

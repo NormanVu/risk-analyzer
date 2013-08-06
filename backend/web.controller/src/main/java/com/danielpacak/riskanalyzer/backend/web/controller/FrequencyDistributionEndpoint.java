@@ -13,17 +13,17 @@ import com.danielpacak.riskanalyzer.backend.service.api.CalculateResponse;
 import com.danielpacak.riskanalyzer.backend.service.api.FrequencyDistributionService;
 
 import com.danielpacak.riskanalyzer.backend.service.proxy.RequestMarshaller;
-import com.danielpacak.riskanalyzer.backend.service.proxy.RequestMarshallerJDomImpl;
+import com.danielpacak.riskanalyzer.backend.service.proxy.JDom2RequestMarshaller;
 import com.danielpacak.riskanalyzer.backend.service.proxy.ResponseMarshaller;
-import com.danielpacak.riskanalyzer.backend.service.proxy.ResponseMarshallerJDomIMpl;
+import com.danielpacak.riskanalyzer.backend.service.proxy.JDom2ResponseMarshaller;
 
 @Endpoint
 public class FrequencyDistributionEndpoint {
 
 	@Autowired
 	FrequencyDistributionService frequencyDistributionService;
-	RequestMarshaller requestMarshaller = new RequestMarshallerJDomImpl();
-	ResponseMarshaller responseMarshaller = new ResponseMarshallerJDomIMpl();
+	RequestMarshaller requestMarshaller = new JDom2RequestMarshaller();
+	ResponseMarshaller responseMarshaller = new JDom2ResponseMarshaller();
 
 	@PayloadRoot(namespace = "http://scirisk.com/xml/ns/risk-analyzer", localPart = "CalculateRequest")
 	public @ResponsePayload

@@ -40,11 +40,6 @@ Ext.define('riskanalyzer.frontend.ParamsWindow', {
 				minValue: 0,
 				maxValue: 1,
 				value: 0.95
-			}, {
-				xtype: 'textfield',
-				name: 'endpointUrl',
-				fieldLabel: 'Endpoint URL',
-				value: 'http://risk-analyzer-backend.appspot.com/soap/endpoint'
 			}]
 		});
 

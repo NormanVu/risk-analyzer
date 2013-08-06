@@ -28,25 +28,30 @@ import com.danielpacak.riskanalyzer.frontend.service.api.NetworkParser;
 @Controller
 public class NetworkController {
 
-	@Autowired
-	DistributionNetworkRepository networkManager;
+	private DistributionNetworkRepository distributionNetworkRepository;
 
-	@Autowired
 	private NetworkMarshaller networkMarshaller;
+	// TODO NETWORK UNMARSHALLER
+	private NetworkParser networkParser;
 
 	@Autowired
-	NetworkParser networkParser;
+	public NetworkController(DistributionNetworkRepository distributionNetworkRepository,
+			NetworkMarshaller networkMarshaller, NetworkParser networkParser) {
+		this.distributionNetworkRepository = distributionNetworkRepository;
+		this.networkMarshaller = networkMarshaller;
+		this.networkParser = networkParser;
+	}
 
 	@RequestMapping(value = "/network/map", method = RequestMethod.GET)
 	public @ResponseBody
 	DistributionNetwork getNetworkForGoogleMap() throws Exception {
-		return networkManager.read();
+		return distributionNetworkRepository.read();
 	}
 
 	@RequestMapping(value = "/network/tree", method = RequestMethod.GET)
 	public void getNetworkForTree(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("application/json");
-		DistributionNetwork network = networkManager.read();
+		DistributionNetwork network = distributionNetworkRepository.read();
 
 		Collection<Facility> nodes = network.getNodes();
 		Collection<DistributionChannel> edges = network.getEdges();
@@ -82,7 +87,7 @@ public class NetworkController {
 	@RequestMapping(value = "/network.xml", method = RequestMethod.GET)
 	public void exportToXml(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		DistributionNetwork network = networkManager.read();
+		DistributionNetwork network = distributionNetworkRepository.read();
 		response.setContentType("application/xml");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 		String file = "risk-analyzer-network-export-" + dateFormat.format(new Date()) + ".xml";
@@ -99,7 +104,7 @@ public class NetworkController {
 
 		if (!networkXml.isEmpty()) {
 			DistributionNetwork network = networkParser.parse(networkXml.getInputStream());
-			networkManager.save(network);
+			distributionNetworkRepository.save(network);
 			jsonResponse.put("success", true);
 		} else {
 			jsonResponse.put("success", false);

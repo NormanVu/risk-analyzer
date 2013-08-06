@@ -5,6 +5,7 @@ import java.util.List;
 import com.danielpacak.riskanalyzer.domain.Facility;
 
 public interface FacilityRepository {
+
 	Facility save(Facility facility);
 
 	Facility findOne(String facilityId);
@@ -12,4 +13,5 @@ public interface FacilityRepository {
 	void delete(String facilityId);
 
 	List<Facility> findAll();
+
 }
