@@ -1,19 +1,21 @@
 # Risk Analyzer
 
 * [Introduction](#introduction)
-* [Packages](#packages)
+* [Components](#components)
 * [Screenshots](#screenshots)
 * [Building](#building)
 * [Deploying](#deploying)
  * [Deploying locally](#deploying-locally)
  * [Deploying on Google App Engine](#deploying-on-google-app-engine)
  * [Deploying on CloudBees](#deploying-on-cloudbees)
+* [Backend API](#backend-api)
+ * [Frequency Distribution API](#frequency-distribution-api)
 
 ## Introduction
 The application requirement was for a supply chain management system that is accessible through a Web browser.
 
-The users of the application are supply *chain managers* who in the course of their work need to view and manage information regarding
-a *distribution network*, i.e. the network of *facilities* (suppliers and target companies) and *distribution channels* (paths
+The users of the application are supply chain managers who in the course of their work need to view and manage information regarding
+a distribution network, i.e. the network of facilities (suppliers and target companies) and distribution channels (paths
 from one facility to another). The application supports the following use cases:
 
 1. View the distribution network
@@ -31,18 +33,20 @@ from one facility to another). The application supports the following use cases:
 
 Risk Analyzer presents information using an [Ext JS 4.1](http://www.sencha.com/products/extjs)-based graphical user interface
 in combination with [Spring 3.1.x](http://static.springsource.org/spring/docs/3.1.x/spring-framework-reference/html),
-[Hibernate](http://www.hibernate.org), and a custom network analysis engine implementing the REST API.
+[Hibernate](http://www.hibernate.org). Any kind of supply chain analysis is performed by a remote network analysis engine.
 The result is a visually rich, enterprise system that is both quick and secure. It is fully controlled, tested,
 and deployed through a continuous integration infrastructure powered by [BuildHive](https://buildhive.cloudbees.com).
 You can see the latest build status by clicking here
 [![Build Status](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/badge/icon)](https://buildhive.cloudbees.com/job/danielpacak/job/risk-analyzer/). 
 
-## Packages
-The project is composed of two web applications named *backend* and *frontend*. Those two applications communicate
-by exchanging JSON data over the HTTP(S) protocol. The backend application is supposed to handle computationally
-intensive requests, e.g. calculating a frequency distribution, whereas the fronted application is meant
-to render the UI. The reason for such a split was driven by common pricing models offered by cloud/hosting providers
-which are proportional to the CPU/memory consumption of a given application.
+## Components
+As shown in the picture below, the project is composed of two web applications named backend and frontend.
+Those two applications communicate by exchanging JSON data over the HTTP(S) protocol (see [Backend API](#backend-api)).
+The backend is supposed to handle computationally intensive requests, e.g. calculating a frequency distribution,
+whereas the fronted is meant to render the UI. The reason for such a split was driven by common pricing models
+offered by cloud/hosting providers which are proportional to the CPU/memory consumption of a given application.
+
+![Components](https://github.com/danielpacak/risk-analyzer/raw/master/README/components.png)
 
 ## Screenshots
 The screenshot below shows the main view of the frontend application. It's a workspace that allows a user
@@ -131,7 +135,7 @@ This API allows you to perform the frequency distribution simulation on a given 
   },
   "inputParams": []
 }
-```javascript
+```
 
 ### Response
 Status: 201 Accepted
@@ -140,4 +144,4 @@ Status: 201 Accepted
 {
   data: [{x:1,y:2}]
 }
-```javascript
+```
