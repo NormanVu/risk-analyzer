@@ -1,42 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-  <display-name>Risk Analyzer Web Service</display-name>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>Risk Analyzer - Backend</display-name>
 
-  <servlet>
-    <servlet-name>spring-ws</servlet-name>
-    <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>transformWsdlLocations</param-name>
-      <param-value>true</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  
-  <context-param>
+	<servlet>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/dispatcher-servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:META-INF/spring/backend-service.xml
+		    classpath:META-INF/spring/com.danielpacak.riskanalyzer.backend.service.simple.xml
 		</param-value>
 	</context-param>
- 
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-  <servlet-mapping>
-    <servlet-name>spring-ws</servlet-name>
-    <url-pattern>/soap/*</url-pattern>
-  </servlet-mapping>
-
-  <session-config>
-    <session-timeout>
-      30
-    </session-timeout>
-  </session-config>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 
 </web-app>

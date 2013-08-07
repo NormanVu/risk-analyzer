@@ -1,45 +1,38 @@
 package com.danielpacak.riskanalyzer.backend.web.controller;
 
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
-import javax.xml.transform.stream.StreamSource;
-
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import com.danielpacak.riskanalyzer.backend.service.api.CalculateRequest;
 import com.danielpacak.riskanalyzer.backend.service.api.CalculateResponse;
 import com.danielpacak.riskanalyzer.backend.service.api.FrequencyDistributionService;
-import com.danielpacak.riskanalyzer.backend.service.proxy.RequestMarshaller;
-import com.danielpacak.riskanalyzer.backend.service.proxy.ResponseMarshaller;
 
+@RunWith(MockitoJUnitRunner.class)
 public class FrequencyDistributionEndpointTest {
 
+	@Mock
+	FrequencyDistributionService frequencyDistributionService;
+	FrequencyDistributionController controller;
+
+	@Before
+	public void beforeTest() throws Exception {
+		controller = new FrequencyDistributionController(frequencyDistributionService);
+	}
+
 	@Test
-	public void tesMe() throws Exception {
-		FrequencyDistributionService mockFrequencyDistributionService = mock(FrequencyDistributionService.class);
-		RequestMarshaller mockRequestMarshaller = mock(RequestMarshaller.class);
-		ResponseMarshaller mockResponseMarshaller = mock(ResponseMarshaller.class);
-
-		FrequencyDistributionEndpoint endpoint = new FrequencyDistributionEndpoint();
-
-		StreamSource requestSource = mock(StreamSource.class);
-		StreamSource responseSource = mock(StreamSource.class);
+	public void tesFrequencyDistribution() throws Exception {
 		CalculateRequest request = new CalculateRequest();
 		CalculateResponse response = new CalculateResponse();
 
-		Mockito.when(mockFrequencyDistributionService.calculate(request)).thenReturn(response);
-		Mockito.when(mockRequestMarshaller.unmarshall(requestSource)).thenReturn(request);
-		Mockito.when(mockResponseMarshaller.marshall(response)).thenReturn(responseSource);
+		when(frequencyDistributionService.calculate(request)).thenReturn(response);
 
-		endpoint.frequencyDistributionService = mockFrequencyDistributionService;
-		endpoint.requestMarshaller = mockRequestMarshaller;
-		endpoint.responseMarshaller = mockResponseMarshaller;
-
-		Assert.assertEquals(responseSource, endpoint.frequencyDistribution(requestSource));
-
-		Mockito.verify(mockFrequencyDistributionService).calculate(request);
+		assertEquals(response, controller.frequencyDistribution(request));
 	}
 
 }

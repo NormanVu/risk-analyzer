@@ -12,7 +12,11 @@ public class CalculateResponse implements Serializable {
 
 	private double[][] frequencyDistribution;
 
-	private Map<String, String> inputParams;
+	private Long numberOfIterations;
+
+	private Long timeHorizon;
+
+	private Float confidenceLevel;
 
 	private Map<String, String> outputParams;
 
@@ -20,24 +24,45 @@ public class CalculateResponse implements Serializable {
 		return frequencyDistribution;
 	}
 
-	public void setFrequencyDistribution(double[][] frequencyDistribution) {
+	public CalculateResponse setFrequencyDistribution(double[][] frequencyDistribution) {
 		this.frequencyDistribution = frequencyDistribution;
+		return this;
 	}
 
-	public Map<String, String> getInputParams() {
-		return inputParams;
+	public Long getNumberOfIterations() {
+		return numberOfIterations;
 	}
 
-	public void setInputParams(Map<String, String> inputParams) {
-		this.inputParams = inputParams;
+	public CalculateResponse setNumberOfIterations(Long numberOfIterations) {
+		this.numberOfIterations = numberOfIterations;
+		return this;
+	}
+
+	public Long getTimeHorizon() {
+		return timeHorizon;
+	}
+
+	public CalculateResponse setTimeHorizon(Long timeHorizon) {
+		this.timeHorizon = timeHorizon;
+		return this;
+	}
+
+	public Float getConfidenceLevel() {
+		return confidenceLevel;
+	}
+
+	public CalculateResponse setConfidenceLevel(Float confidenceLevel) {
+		this.confidenceLevel = confidenceLevel;
+		return this;
 	}
 
 	public Map<String, String> getOutputParams() {
 		return outputParams;
 	}
 
-	public void setOutputParams(Map<String, String> outputParams) {
+	public CalculateResponse setOutputParams(Map<String, String> outputParams) {
 		this.outputParams = outputParams;
+		return this;
 	}
 
 }

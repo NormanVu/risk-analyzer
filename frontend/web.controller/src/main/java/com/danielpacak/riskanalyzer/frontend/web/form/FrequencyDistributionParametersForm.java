@@ -10,7 +10,7 @@ public class FrequencyDistributionParametersForm implements Serializable {
 
 	private Long numberOfIterations;
 
-	private Integer timeHorizon;
+	private Long timeHorizon;
 
 	public Float getConfidenceLevel() {
 		return confidenceLevel;
@@ -30,11 +30,11 @@ public class FrequencyDistributionParametersForm implements Serializable {
 		return this;
 	}
 
-	public Integer getTimeHorizon() {
+	public Long getTimeHorizon() {
 		return timeHorizon;
 	}
 
-	public FrequencyDistributionParametersForm setTimeHorizon(Integer timeHorizon) {
+	public FrequencyDistributionParametersForm setTimeHorizon(Long timeHorizon) {
 		this.timeHorizon = timeHorizon;
 		return this;
 	}

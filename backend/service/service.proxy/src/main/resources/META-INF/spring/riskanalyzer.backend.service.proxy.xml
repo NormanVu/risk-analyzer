@@ -3,21 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
-		<property name="defaultUri"
-			value="http://risk-analyzer-backend.appspot.com/soap/endpoint" />
-	</bean>
-
-	<bean id="requestMarshaller"
-		class="com.danielpacak.riskanalyzer.backend.service.proxy.JDom2RequestMarshaller" />
-	<bean id="responseMarshaller"
-		class="com.danielpacak.riskanalyzer.backend.service.proxy.JDom2ResponseMarshaller" />
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 
 	<bean
 		class="com.danielpacak.riskanalyzer.backend.service.proxy.FrequencyDistributionServiceSoapProxy">
-		<constructor-arg ref="webServiceTemplate" />
-		<constructor-arg ref="requestMarshaller" />
-		<constructor-arg ref="responseMarshaller" />
+		<constructor-arg ref="restTemplate" />
 	</bean>
 
 </beans>

@@ -1,10 +1,5 @@
 package com.danielpacak.riskanalyzer.frontend.web.controller;
 
-import static com.danielpacak.riskanalyzer.backend.service.api.FrequencyDistributionService.CONFIDENCE_LEVEL;
-import static com.danielpacak.riskanalyzer.backend.service.api.FrequencyDistributionService.NUMBER_OF_ITERATIONS;
-import static com.danielpacak.riskanalyzer.backend.service.api.FrequencyDistributionService.TIME_HORIZON;
-
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -43,15 +38,12 @@ public class FrequencyDistributionController {
 	FrequencyDistribution calculate(@RequestBody FrequencyDistributionParametersForm form) throws Exception {
 		DistributionNetwork network = networkRepository.read();
 
-		Map<String, String> inputParams = new HashMap<String, String>();
-		inputParams.put(NUMBER_OF_ITERATIONS, "" + form.getNumberOfIterations());
-		inputParams.put(TIME_HORIZON, "" + form.getTimeHorizon());
-		inputParams.put(CONFIDENCE_LEVEL, "" + form.getConfidenceLevel());
-
 		// @formatter:off
 		CalculateRequest request = new CalculateRequest()
 			.setNetwork(network)
-			.setInputParams(inputParams);
+			.setNumberOfIterations(form.getNumberOfIterations())
+			.setTimeHorizon(form.getTimeHorizon())
+			.setConfidenceLevel(form.getConfidenceLevel());
 		// @formatter:on
 
 		return convert(frequencyDistributionService.calculate(request));

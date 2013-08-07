@@ -37,14 +37,14 @@ public class FrequencyDistributionControllerTest {
 		CalculateResponse calculateResponse = new CalculateResponse();
 		calculateResponse.setFrequencyDistribution(new double[][] {});
 		calculateResponse.setOutputParams(new HashMap<String, String>());
-		calculateResponse.setInputParams(new HashMap<String, String>());
+		//calculateResponse.setInputParams(new HashMap<String, String>());
 
 		Mockito.when(networkRepository.read()).thenReturn(network);
 		Mockito.when(frequencyDistributionService.calculate(Mockito.any(CalculateRequest.class))).thenReturn(
 				calculateResponse);
 
 		FrequencyDistributionParametersForm form = new FrequencyDistributionParametersForm()
-				.setNumberOfIterations(new Long(100)).setTimeHorizon(69).setConfidenceLevel(0.5f);
+				.setNumberOfIterations(new Long(100)).setTimeHorizon(new Long(69)).setConfidenceLevel(new Float(0.5));
 
 		FrequencyDistribution frequencyDistribution = controller.calculate(form);
 		ArgumentCaptor<CalculateRequest> captor = ArgumentCaptor.forClass(CalculateRequest.class);

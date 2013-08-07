@@ -8,65 +8,64 @@ Ext.define('riskanalyzer.frontend.FrequencyDistributionWindow', {
 	plain: true,
 
 	initComponent: function() {
+		var me = this;
 
-    this.frequencyDistributionStore = Ext.create('Ext.data.Store', {
-      fields: ['x', 'y']
-    });
-    this.outputParamsStore = Ext.create('Ext.data.Store', {
-      fields: ['param', 'value']
-    });
+		me.frequencyDistributionStore = Ext.create('Ext.data.Store', {
+			fields: ['x', 'y']
+		});
+		me.outputParamsStore = Ext.create('Ext.data.Store', {
+			fields: ['param', 'value']
+		});
 
-    this.contentPanel = Ext.create('Ext.panel.Panel', {
-      layout: { type: 'border'},
-      border: false,
-      items: [
-        this.createFrequencyDistributionChart(),
-        this.createParamsPanel()
-      ]
-    });
+		me.contentPanel = Ext.create('Ext.panel.Panel', {
+			layout: { type: 'border'},
+			border: false,
+			items: [
+				me.createFrequencyDistributionChart(),
+				me.createParamsPanel()
+			]
+		});
 
-    Ext.apply(this, {
-      width: 820,
-      height: 500,
-      title: 'Frequency Distribution',
-      modal: true,
-      collapsible: true,
-      animCollapse: true,
-      maximizable: true,
-      iconCls: 'feed', // TODO CHANGE THIS ICON
-      layout: {type: 'fit'},
-      items: [this.contentPanel],
-      dockedItems: this.createToolbar(),
-      bbar: Ext.create('Ext.ux.StatusBar', {
-          id: 'win-statusbar',
-          items: ['-', 'Number of Iterations: 100', '-', 'Time Horizon: 10', '-', 'Confidence Level: 0.95']
-          })
-    });
+		Ext.apply(me, {
+			width: 820,
+			height: 500,
+			title: 'Frequency Distribution',
+			modal: true,
+			collapsible: true,
+			animCollapse: true,
+			maximizable: true,
+			iconCls: 'feed',
+			layout: {type: 'fit'},
+			items: [me.contentPanel],
+			dockedItems: me.createToolbar(),
+			bbar: Ext.create('Ext.ux.StatusBar', {
+				id: 'win-statusbar',
+				items: ['-', 'Number of Iterations: 100', '-', 'Time Horizon: 10', '-', 'Confidence Level: 0.95']
+			})
+		});
 
-    this.callParent(arguments);
-  },
+		me.callParent(arguments);
+	},
 
-  setFrequencyDistributionData: function(data) {
-    this.frequencyDistributionStore.add(data);
-  },
+	setFrequencyDistributionData: function(data) {
+		this.frequencyDistributionStore.add(data);
+	},
 
-  setOutputParamsData: function(data) {
-    this.outputParamsStore.add(data);
-  },
+	setOutputParamsData: function(data) {
+		this.outputParamsStore.add(data);
+	},
 
-  setOutputParamsFormData: function(data) {
-    this.outputParamsForm.getForm().setValues(data);
-  },
+	setOutputParamsFormData: function(data) {
+		this.outputParamsForm.getForm().setValues(data);
+	},
 
-  createToolbar: function() {
-    this.toolbar = Ext.create('widget.toolbar', {
-      items: [
-        {text: 'Export', iconCls: 'feed', handler: this.onExportClick, scope: this},
-        {text: 'E-mail', iconCls: 'feed', handler: this.onEmailClick, scope: this}
-      ]
-    });
-    return this.toolbar;
-  },
+	createToolbar: function() {	
+		return Ext.create('widget.toolbar', {
+			items: [
+				{text: 'Email', iconCls: 'feed', handler: this.onEmailClick, scope: this}
+			]
+		});
+	},
 
   createFrequencyDistributionChart: function() {
     var chart = Ext.create('Ext.chart.Chart', {
@@ -174,49 +173,26 @@ Ext.define('riskanalyzer.frontend.FrequencyDistributionWindow', {
     return this.outputParamsForm;
   },
 
-  createParamsPanel: function() {
-	  var panel = Ext.create('Ext.panel.Panel', {
-		  width: 280,
-		  region: 'east',
-		  border: false,
-		  layout: {
-			  type: 'vbox',
-			  align: 'stretch'
-		  },
-		  items: [
-		    this.createParamsForm(),
-		    this.createRadarChart()
-		  ]
-	  });
-	  return panel;
-  },
-  
-  onExportClick: function() {
-	    //alert("show network display");
-	    try {
-	      Ext.destroy(Ext.get('reportIframe'));
-	    } catch(e) {
-	      alert("error " + e);
-	    }
+	createParamsPanel: function() {
+		var panel = Ext.create('Ext.panel.Panel', {
+			width: 280,
+			region: 'east',
+			border: false,
+			layout: {
+				type: 'vbox',
+				align: 'stretch'
+			},
+			items: [
+				this.createParamsForm(),
+				this.createRadarChart()
+			]
+		});
+		return panel;
+	},
 
-	    Ext.core.DomHelper.append(document.body, {
-	      tag: 'iframe',
-	      id:'reportIframe',
-	      css: 'display:none;visibility:hidden;height:0px;',
-	      src: 'ExportReport.do',
-	      frameBorder: 0,
-	      width: 0,
-	      height: 0
-	    });
-
-	  },
-
-onEmailClick: function() {
-	    var win = Ext.create('widget.emailwindow');
-
-	    win.show();
-
-}
-
+	onEmailClick: function() {
+		var win = Ext.create('widget.emailwindow');
+		win.show();
+	}
 
 });

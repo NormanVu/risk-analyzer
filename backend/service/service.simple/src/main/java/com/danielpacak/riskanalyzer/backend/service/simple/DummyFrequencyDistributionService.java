@@ -16,20 +16,23 @@ public class DummyFrequencyDistributionService implements FrequencyDistributionS
 	private int sleepTimeInMilliseconds = 1000;
 
 	public CalculateResponse calculate(CalculateRequest request) {
-		Map<String, String> inputParams = request.getInputParams();
-		int steps = Integer.parseInt(inputParams.get(NUMBER_OF_ITERATIONS));
+		long steps = request.getNumberOfIterations();
 		calculate(steps);
-		CalculateResponse response = new CalculateResponse();
-		response.setFrequencyDistribution(frequencyDistribution);
-		response.setInputParams(request.getInputParams());
-		response.setOutputParams(createMap(outputParams));
+
+		// @formatter:off
+		CalculateResponse response = new CalculateResponse()
+			.setFrequencyDistribution(frequencyDistribution)
+			.setNumberOfIterations(request.getNumberOfIterations())
+			.setTimeHorizon(request.getTimeHorizon())
+			.setConfidenceLevel(request.getConfidenceLevel())
+			.setOutputParams(createMap(outputParams));
+		// @formatter:on
 
 		return response;
 	}
 
-	private void calculate(int steps) {
+	private void calculate(long steps) {
 		for (int i = 1; i <= steps; i++) {
-			System.out.println("HEAVY CALCULATION STEP " + i + " OF " + steps + " ..");
 			try {
 				Thread.sleep(sleepTimeInMilliseconds); // go to sleep for 30 sec
 			} catch (InterruptedException e) {

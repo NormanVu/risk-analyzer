@@ -1,3 +1,5 @@
+package com.danielpacak.riskanalyzer.frontend;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -10,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Ignore("Run it manually or during the right maven lifecycle phase ..")
-public class SeleniumExampleTest {
+public class FacilityTest {
 
 	WebDriver webDriver;
 
@@ -27,31 +29,27 @@ public class SeleniumExampleTest {
 	@Test
 	public void testCreateFacility() throws Exception {
 		// webDriver.navigate().to("http://risk-analyzer-frontend.appspot.com/");
-		webDriver.get("http://localhost:8080/risk-analyzer-web");
+		webDriver.get("http://localhost:8080/frontend.deployment.dev");
 
-		WebElement newFacilityButton = findButtonById(webDriver,
-				"newFacilityButton");
+		WebElement newFacilityButton = findButtonById(webDriver, "newFacilityButton");
 		newFacilityButton.click();
 
 		WebElement nameInput = findInputById(webDriver, "facilityName");
 		WebElement addressInput = findInputById(webDriver, "facilityAddress");
-		WebElement typeInput = findInputById(webDriver,
-				"facilityTypeIndependent");
+		WebElement typeInput = findInputById(webDriver, "facilityTypeIndependent");
 		typeInput.click();
 
 		setText(nameInput, "Antibes");
 		setText(addressInput, "Antibes");
 
-		WebElement saveButton = findButtonById(webDriver,
-				"facilityDialogSaveButton");
+		WebElement saveButton = findButtonById(webDriver, "facilityDialogSaveButton");
 		saveButton.click();
 
 	}
 
 	// this is a trick for extjs framework that is using id for messing up
 	public static WebElement findButtonById(WebDriver webDriver, String id) {
-		return findAndWait(webDriver,
-				By.xpath(String.format("//button[contains(@id,'%s')]", id)));
+		return findAndWait(webDriver, By.xpath(String.format("//button[contains(@id,'%s')]", id)));
 	}
 
 	public static void setText(WebElement webElement, String text) {
@@ -60,18 +58,17 @@ public class SeleniumExampleTest {
 	}
 
 	public static WebElement findInputById(WebDriver webDriver, String id) {
-		return findAndWait(webDriver,
-				By.xpath(String.format("//input[contains(@id,'%s')]", id)));
+		return findAndWait(webDriver, By.xpath(String.format("//input[contains(@id,'%s')]", id)));
 	}
 
 	public static WebElement findAndWait(WebDriver driver, final By by) {
 		int timeoutInSeconds = 5;
-		WebElement myDynamicElement = (new WebDriverWait(driver,
-				timeoutInSeconds)).until(new ExpectedCondition<WebElement>() {
-			public WebElement apply(WebDriver d) {
-				return d.findElement(by);
-			}
-		});
+		WebElement myDynamicElement = (new WebDriverWait(driver, timeoutInSeconds))
+				.until(new ExpectedCondition<WebElement>() {
+					public WebElement apply(WebDriver d) {
+						return d.findElement(by);
+					}
+				});
 		return myDynamicElement;
 	}
 

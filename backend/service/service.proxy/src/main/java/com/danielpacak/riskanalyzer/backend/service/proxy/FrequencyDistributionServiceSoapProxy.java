@@ -1,12 +1,6 @@
 package com.danielpacak.riskanalyzer.backend.service.proxy;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-
-import org.springframework.ws.client.core.WebServiceOperations;
+import org.springframework.web.client.RestOperations;
 
 import com.danielpacak.riskanalyzer.backend.service.api.CalculateRequest;
 import com.danielpacak.riskanalyzer.backend.service.api.CalculateResponse;
@@ -14,28 +8,31 @@ import com.danielpacak.riskanalyzer.backend.service.api.FrequencyDistributionSer
 
 public class FrequencyDistributionServiceSoapProxy implements FrequencyDistributionService {
 
-	private RequestMarshaller requestMarshaller = new JDom2RequestMarshaller();
-	private ResponseMarshaller responseMarshaller = new JDom2ResponseMarshaller();
+	private final String baseUri;
 
-	private WebServiceOperations webServiceOperations;
+	private RestOperations restOperations;
 
-	public FrequencyDistributionServiceSoapProxy(WebServiceOperations webServiceOperations,
-			RequestMarshaller requestMarshaller, ResponseMarshaller responseMarshaller) {
-		this.webServiceOperations = webServiceOperations;
-		this.requestMarshaller = requestMarshaller;
-		this.responseMarshaller = responseMarshaller;
+	public FrequencyDistributionServiceSoapProxy(RestOperations restOperations) {
+		this(restOperations, "http", "localhost", 8080, "/backend.deployment.dev/api");
+	}
+
+	public FrequencyDistributionServiceSoapProxy(RestOperations restOperations, String scheme, String host,
+			Integer port, String prefix) {
+		this.restOperations = restOperations;
+		// @formatter:off
+		StringBuilder uri = new StringBuilder()
+			.append(scheme)
+			.append("://")
+			.append(host)
+			.append(':')
+			.append(port);
+		// @formatter:on
+		baseUri = prefix != null ? uri.append(prefix).toString() : uri.toString();
 	}
 
 	@Override
 	public CalculateResponse calculate(CalculateRequest request) throws Exception {
-		StreamSource source = requestMarshaller.marshall(request);
-
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		StreamResult result = new StreamResult(out);
-
-		webServiceOperations.sendSourceAndReceiveToResult(source, result);
-
-		return responseMarshaller.unmarshall(new StreamSource(new ByteArrayInputStream(out.toByteArray())));
+		return restOperations.postForObject(baseUri + "/frequency-distribution", request, CalculateResponse.class);
 	}
 
 }

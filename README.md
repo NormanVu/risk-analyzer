@@ -10,7 +10,6 @@
  * [Deploying on CloudBees](#deploying-on-cloudbees)
 
 ## Introduction
-This repository hosts the source code of a start-up project I took part in few months ago.
 The application requirement was for a supply chain management system that is accessible through a Web browser.
 
 The users of the application are supply *chain managers* who in the course of their work need to view and manage information regarding
@@ -32,7 +31,7 @@ from one facility to another). The application supports the following use cases:
 
 Risk Analyzer presents information using an [Ext JS 4.1](http://www.sencha.com/products/extjs)-based graphical user interface
 in combination with [Spring 3.1.x](http://static.springsource.org/spring/docs/3.1.x/spring-framework-reference/html),
-[Hibernate](http://www.hibernate.org), RESTful Web Services, and a custom network analysis engine exposing the SOAP interface.
+[Hibernate](http://www.hibernate.org), and a custom network analysis engine implementing the REST API.
 The result is a visually rich, enterprise system that is both quick and secure. It is fully controlled, tested,
 and deployed through a continuous integration infrastructure powered by [BuildHive](https://buildhive.cloudbees.com).
 You can see the latest build status by clicking here
@@ -40,7 +39,7 @@ You can see the latest build status by clicking here
 
 ## Packages
 The project is composed of two web applications named *backend* and *frontend*. Those two applications communicate
-by exchanging SOAP messages over the HTTP(S) protocol. The backend application is supposed to handle computationally
+by exchanging JSON data over the HTTP(S) protocol. The backend application is supposed to handle computationally
 intensive requests, e.g. calculating a frequency distribution, whereas the fronted application is meant
 to render the UI. The reason for such a split was driven by common pricing models offered by cloud/hosting providers
 which are proportional to the CPU/memory consumption of a given application.
@@ -113,3 +112,32 @@ Risk Analyzer is also deployed on the CloudBees platform. Similarly, it's config
 The frontend is accessible at [http://risk-analyzer-frontend-web.pacak-daniel.cloudbees.net](http://risk-analyzer-frontend-web.pacak-daniel.cloudbees.net).
 
 The backend is accessible at [http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net](http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/risk-analyzer.wsdl).
+
+## Backend API
+This section describes the resources that make up the Backend API. The API is accessible over HTTP(S). The data is sent and received
+as JSON.
+
+## Frequency Distribution API
+This API allows you to perform the frequency distribution simulation on a given supply chain.
+
+`POST /frequency-distribution`
+
+### Input
+```javascript
+{
+  "network": {
+    facilities: [],
+    channels: []
+  },
+  "inputParams": []
+}
+```javascript
+
+### Response
+Status: 201 Accepted
+
+```javascript
+{
+  data: [{x:1,y:2}]
+}
+```javascript

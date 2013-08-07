@@ -1,7 +1,6 @@
 package com.danielpacak.riskanalyzer.backend.service.api;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import com.danielpacak.riskanalyzer.domain.DistributionNetwork;
 
@@ -14,16 +13,11 @@ public class CalculateRequest implements Serializable {
 
 	private DistributionNetwork network;
 
-	private Map<String, String> inputParams;
+	private Long numberOfIterations;
 
-	public Map<String, String> getInputParams() {
-		return inputParams;
-	}
+	private Long timeHorizon;
 
-	public CalculateRequest setInputParams(Map<String, String> inputParams) {
-		this.inputParams = inputParams;
-		return this;
-	}
+	private Float confidenceLevel;
 
 	public DistributionNetwork getNetwork() {
 		return network;
@@ -31,6 +25,33 @@ public class CalculateRequest implements Serializable {
 
 	public CalculateRequest setNetwork(DistributionNetwork network) {
 		this.network = network;
+		return this;
+	}
+
+	public Long getNumberOfIterations() {
+		return numberOfIterations;
+	}
+
+	public CalculateRequest setNumberOfIterations(Long numberOfIterations) {
+		this.numberOfIterations = numberOfIterations;
+		return this;
+	}
+
+	public Long getTimeHorizon() {
+		return timeHorizon;
+	}
+
+	public CalculateRequest setTimeHorizon(Long timeHorizon) {
+		this.timeHorizon = timeHorizon;
+		return this;
+	}
+
+	public Float getConfidenceLevel() {
+		return confidenceLevel;
+	}
+
+	public CalculateRequest setConfidenceLevel(Float confidenceLevel) {
+		this.confidenceLevel = confidenceLevel;
 		return this;
 	}
 

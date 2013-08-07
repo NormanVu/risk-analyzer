@@ -16,7 +16,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.danielpacak.risk-analyzer</groupId>
-			<artifactId>backend.service.proxy</artifactId>
+			<artifactId>backend.service.api</artifactId>
 		</dependency>
 	</dependencies>
 
