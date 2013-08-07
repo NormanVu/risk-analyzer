@@ -9,7 +9,7 @@
  * [Deploying on Google App Engine](#deploying-on-google-app-engine)
  * [Deploying on CloudBees](#deploying-on-cloudbees)
 * [Backend API](#backend-api)
- * [Frequency Distribution API](#frequency-distribution-api)
+ * [Frequency Distribution](#frequency-distribution)
 
 ## Introduction
 The application requirement was for a supply chain management system that is accessible through a Web browser.
@@ -121,7 +121,7 @@ The backend is accessible at [http://risk-analyzer-backend-web.pacak-daniel.clou
 This section describes the resources that make up the Backend API. The API is accessible over HTTP(S). The data is sent and received
 as JSON.
 
-## Frequency Distribution API
+## Frequency Distribution
 This API allows you to perform the frequency distribution simulation on a given supply chain.
 
 `POST /frequency-distribution`
