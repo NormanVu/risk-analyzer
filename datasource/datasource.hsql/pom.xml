@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.danielpacak.risk-analyzer</groupId>
 		<artifactId>datasource</artifactId>
-		<version>0.0.2</version>
+		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 	<artifactId>datasource.hsql</artifactId>
 
