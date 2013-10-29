@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.danielpacak.risk-analyzer</groupId>
 		<artifactId>risk-analyzer</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
+		<version>0.0.2</version>
 	</parent>
 	<artifactId>risk-analyzer-web-extjs</artifactId>
 	<packaging>war</packaging>
