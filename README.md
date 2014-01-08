@@ -142,6 +142,6 @@ Status: 201 Accepted
 
 ```javascript
 {
-  data: [{x:1,y:2}]
+  data: [{x:1,y:3}]
 }
 ```
