@@ -145,3 +145,7 @@ Status: 201 Accepted
   data: [{x:1,y:3}]
 }
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/danielpacak/risk-analyzer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
