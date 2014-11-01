@@ -11,7 +11,6 @@
 
 	<modules>
 		<module>deployment.dev</module>
-		<module>deployment.google</module>
 	</modules>
 
 </project>

@@ -12,7 +12,6 @@
 	<modules>
 		<module>repository.api</module>
 		<module>repository.jpa</module>
-		<module>repository.google</module>
 		<module>repository.mongodb</module>
 		<module>repository.neo4j</module>
 	</modules>

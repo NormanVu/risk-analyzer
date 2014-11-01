@@ -6,7 +6,6 @@
 * [Building](#building)
 * [Deploying](#deploying)
  * [Deploying locally](#deploying-locally)
- * [Deploying on Google App Engine](#deploying-on-google-app-engine)
  * [Deploying on CloudBees](#deploying-on-cloudbees)
 * [Backend API](#backend-api)
  * [Frequency Distribution](#frequency-distribution)
@@ -99,15 +98,6 @@ The most common deployment configurations are described in the following section
 7. Open this URL [http://localhost:9090/risk-analyzer-backend-web/soap/risk-analyzer.wsdl](http://localhost:9090/risk-analyzer-backend-web/soap/risk-analyzer.wsdl) in your favorite Web browser to make sure that the backend application is up and running.
 8. Launch the Frontend Web application by executing java -jar risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar
 9. Open this URL [http://localhost:8080/risk-analyzer-web](http://localhost:8080/risk-analyzer-web) in your favorite Web browser to make sure that the frontend application is up and running.
-
-### Deploying on Google App Engine
-For demonstration purpose Risk Analyzer is already deployed on Google App Engine. It's configured
-as a [one-click deployment](https://pacak-daniel.ci.cloudbees.com/job/risk-analyzer-deployment-google)
-with [Jenkins](http://jenkins-ci.org/) provided by CloudBees.
-
-The frontend is accessible at [http://risk-analyzer-frontend.appspot.com](http://risk-analyzer-frontend.appspot.com).
-
-The backend is accessible at [http://risk-analyzer-backend.appspot.com](http://risk-analyzer-backend.appspot.com/soap/risk-analyzer.wsdl).
 
 ### Deploying on CloudBees
 Risk Analyzer is also deployed on the CloudBees platform. Similarly, it's configured as a
