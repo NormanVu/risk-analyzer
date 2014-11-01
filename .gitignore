@@ -4,3 +4,6 @@
 .extract
 .settings/
 target/
+
+*.iml
+.idea/
