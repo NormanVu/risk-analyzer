@@ -35,7 +35,6 @@
         <module>domain</module>
         <module>frontend</module>
         <module>backend</module>
-        <module>datasource</module>
         <module>risk-analyzer-web-extjs</module>
     </modules>
 
