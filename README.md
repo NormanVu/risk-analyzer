@@ -1,5 +1,7 @@
 # Risk Analyzer
 
+[![Build Status](https://travis-ci.org/danielpacak/risk-analyzer.svg?branch=master)](https://travis-ci.org/danielpacak/risk-analyzer)
+
 * [Introduction](#introduction)
 * [Components](#components)
 * [Screenshots](#screenshots)
@@ -98,44 +100,3 @@ The most common deployment configurations are described in the following section
 7. Open this URL [http://localhost:9090/risk-analyzer-backend-web/soap/risk-analyzer.wsdl](http://localhost:9090/risk-analyzer-backend-web/soap/risk-analyzer.wsdl) in your favorite Web browser to make sure that the backend application is up and running.
 8. Launch the Frontend Web application by executing java -jar risk-analyzer-web-0.0.1-SNAPSHOT-exec-war.jar
 9. Open this URL [http://localhost:8080/risk-analyzer-web](http://localhost:8080/risk-analyzer-web) in your favorite Web browser to make sure that the frontend application is up and running.
-
-### Deploying on CloudBees
-Risk Analyzer is also deployed on the CloudBees platform. Similarly, it's configured as a
-[one-click deployment](https://pacak-daniel.ci.cloudbees.com/job/risk-analyzer-deployment-cloudbees).
-
-The frontend is accessible at [http://risk-analyzer-frontend-web.pacak-daniel.cloudbees.net](http://risk-analyzer-frontend-web.pacak-daniel.cloudbees.net).
-
-The backend is accessible at [http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net](http://risk-analyzer-backend-web.pacak-daniel.cloudbees.net/soap/risk-analyzer.wsdl).
-
-## Backend API
-This section describes the resources that make up the Backend API. The API is accessible over HTTP(S). The data is sent and received
-as JSON.
-
-## Frequency Distribution
-This API allows you to perform the frequency distribution simulation on a given supply chain.
-
-`POST /frequency-distribution`
-
-### Input
-```javascript
-{
-  "network": {
-    facilities: [],
-    channels: []
-  },
-  "inputParams": []
-}
-```
-
-### Response
-Status: 201 Accepted
-
-```javascript
-{
-  data: [{x:1,y:3}]
-}
-```
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/danielpacak/risk-analyzer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
